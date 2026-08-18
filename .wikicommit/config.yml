@@ -1,0 +1,21 @@
+translation:
+  targets: []
+  primary_lang: en
+
+theme: "A knowledge base for AI-assisted software development methodologies and practices:\
+  \ vibe coding, spec-driven development, agentic engineering/agentic coding workflows,\
+  \ and related terminology and tooling patterns. Prioritizes primary-source blog\
+  \ posts, official documentation, and open-source toolkits from practitioners and\
+  \ vendors (e.g. Anthropic, Google, GitHub, independent developer blogs); excludes\
+  \ generic AI news aggregation, vendor product marketing/comparison listicles, and\
+  \ unverified rumor articles."
+
+generate:
+  max_retries: 2
+
+review:
+  auto_merge: true
+  chain_of_thought: false
+
+schema:
+  base_types: [Person, Place, Organization, Event, HowTo, DefinedTerm, ScholarlyArticle, NewsArticle, BlogPosting, ShortStory, Book]
