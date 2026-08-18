@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://github.github.com/spec-kit/concepts/sdd.html'
     hash: sha256:8eb0247a43c5afbc5b75f447d9f90202cdd390cf55fa951daad26cb7eedbad2f
-review_status: pending
+review_status: reviewed
 generated_at: "2026-08-18"
 generated_by: "claude-opus-5[1m]"
 
