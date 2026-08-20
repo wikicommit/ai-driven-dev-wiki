@@ -40,4 +40,4 @@ Not every practitioner reaches for it. [[Person/geoffrey-huntley]] argues in [[B
 
 ## Related Terms
 
-The mechanism it is built from is covered under [[DefinedTerm/subagents]], and one specific discipline for applying it under [[DefinedTerm/subagent-driven-development]]. It is one of the strategies of [[DefinedTerm/context-engineering]], and the evaluation step it usually pairs with is [[DefinedTerm/llm-as-judge]]. Frameworks providing building blocks for it include [[SoftwareApplication/langgraph]] and [[SoftwareApplication/context-engineering-kit]].
+The mechanism it is built from is covered under [[DefinedTerm/subagents]], and one specific discipline for applying it under [[DefinedTerm/subagent-driven-development]]. It is one of the strategies of [[DefinedTerm/context-engineering]], and the evaluation step it usually pairs with is [[DefinedTerm/llm-as-judge]]. Frameworks providing building blocks for it include [[SoftwareApplication/langgraph]] and [[SoftwareApplication/context-engineering-kit]]. A concrete practice built on it is [[custom/Practice/parallel-coding-agents]].
