@@ -6,7 +6,7 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-19"
+last_generated_at: "2026-08-20"
 extracted_tokens: 16859
 generated_pages:
   - .wikicommit/entity/en/Organization/anysphere.md
@@ -20,3 +20,5 @@ Wikipedia's article on Anysphere, Inc., trading as Cursor, covering its 2022 fou
 
 Excluded as unrelated to the configured theme:
 - "SpaceX" (theme_mismatch): named as the acquirer and now parent company, but the source states only transaction facts about it — no independent facts about SpaceX itself, and corporate M&A falls outside this wiki's focus on AI-assisted software development methodology. The acquisition itself is recorded on the Anysphere page.
+
+Re-checked on 2026-08-20 (content unchanged, cache hit). The article's history, funding, revenue, product, model and acquisition sections are already reflected on the Anysphere and Cursor pages, along with the July 2026 maintenance banner warning that the article may incorporate large-language-model text. No new material, and no page was rewritten.

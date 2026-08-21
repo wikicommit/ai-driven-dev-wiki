@@ -6,7 +6,7 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-19"
+last_generated_at: "2026-08-20"
 extracted_tokens: 4306
 generated_pages:
   - .wikicommit/entity/en/SoftwareApplication/jules.md
@@ -22,3 +22,5 @@ Excluded as unrelated to the configured theme:
 - "Gemini 2.0 Flash" (theme_mismatch): a model release with multimodal output and native tool use; a model announcement rather than AI-assisted software development methodology or tooling practice.
 - "Multimodal Live API" (theme_mismatch): a real-time audio and video streaming API, outside the theme's scope.
 - "Colab data science agent" (theme_mismatch): an agent that generates analysis notebooks from natural language; data analysis rather than software development.
+
+Re-checked on 2026-08-20 (content unchanged, cache hit). The post's coding-agent material — Jules as an experimental agent for Python and JavaScript tasks limited to trusted testers, its multi-step plans and GitHub pull-request integration, and the 51.8% SWE-bench Verified research result — is already on the Jules page. The remainder is model and API release material excluded above. No new material, and no page was rewritten.

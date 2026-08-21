@@ -22,8 +22,14 @@ sources:
   - type: url
     url: 'https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/model-context-protocol-security-1.pdf'
     hash: sha256:d5ea586dbd65785c34ba7afa769d56a4d1bcc77eb7876b7578edff5516c979a5
+  - type: url
+    url: 'https://github.com/agentskills/agentskills'
+    hash: sha256:62d24fa3cf7cabfa0348af3065f32a15c43faf2d30b3352ff41f02e3a2399faa
+  - type: url
+    url: 'https://www.anthropic.com/engineering/writing-tools-for-agents'
+    hash: sha256:effc06d088266ee895582c23541e543435288246b1dc4d89d3a2f4b8a1993b54
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-20"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -37,11 +43,11 @@ Anthropic is the company behind the Claude family of models and [[SoftwareApplic
 
 The sources ingested here do not cover Anthropic's founding or corporate history; they document its output on agentic coding from late 2024 onward.
 
-The earliest event they record is the announcement of [[DefinedTerm/model-context-protocol]] on 25 November 2024, created at Anthropic by [[Person/david-soria-parra]] and [[Person/justin-spahr-summers]] and open-sourced as a standard for connecting AI assistants to the systems where data lives. In December 2025 Anthropic donated the protocol to the [[Organization/agentic-ai-foundation]], a directed fund under the Linux Foundation it co-founded with Block and [[Organization/openai]]; later that month it published [[DefinedTerm/agent-skills]] as a companion open standard for packaging task-specific instructions and resources that agents load on demand, following the same open-standard approach.
+The earliest event they record is the announcement of [[DefinedTerm/model-context-protocol]] on 25 November 2024, created at Anthropic by [[Person/david-soria-parra]] and [[Person/justin-spahr-summers]] and open-sourced as a standard for connecting AI assistants to the systems where data lives. In December 2025 Anthropic donated the protocol to the [[Organization/agentic-ai-foundation]], a directed fund under the Linux Foundation it co-founded with Block and [[Organization/openai]]; later that month it published [[DefinedTerm/agent-skills]] as a companion open standard for packaging task-specific instructions and resources that agents load on demand, following the same open-standard approach. The Agent Skills specification repository gives the same account of the format's origin from the standard's own side — originally developed by Anthropic, then released as an open standard — and records that it has since been adopted by a growing number of agent products and is open to contributions from the broader ecosystem, with repository code under Apache 2.0 and documentation under CC-BY-4.0.
 
 ## Activities & Products
 
-Its engineering writing on agent design is published under an "Engineering at Anthropic" banner. [[TechArticle/effective-context-engineering-for-ai-agents]], published on 29 September 2025 by its Applied AI team, sets out the company's position that [[DefinedTerm/context-engineering]] is the natural progression of prompt engineering, and prescribes [[DefinedTerm/compaction]], structured note-taking, and sub-agent architectures for long-horizon tasks. That post describes several techniques by reference to how Claude Code implements them, including just-in-time file retrieval through glob and grep alongside `CLAUDE.md` loaded up front.
+Its engineering writing on agent design is published under an "Engineering at Anthropic" banner. [[TechArticle/effective-context-engineering-for-ai-agents]], published on 29 September 2025 by its Applied AI team, sets out the company's position that [[DefinedTerm/context-engineering]] is the natural progression of prompt engineering, and prescribes [[DefinedTerm/compaction]], structured note-taking, and sub-agent architectures for long-horizon tasks. That post describes several techniques by reference to how Claude Code implements them, including just-in-time file retrieval through glob and grep alongside `CLAUDE.md` loaded up front. A second post in the same series, [[TechArticle/writing-effective-tools-for-agents]] of 11 September 2025 by Ken Aizawa, applies the same reasoning to the tools an agent is given, and is notable for how the company says the advice was produced: most of it came from repeatedly optimizing Anthropic's own internal tool implementations with Claude Code, evaluated against its own internal workspace, with held-out test sets showing gains beyond implementations written by its researchers.
 
 The company also publishes forecasts. [[Report/2026-agentic-coding-trends-report]] predicts eight trends for agentic coding in 2026 and reports internal research findings, including work from its Societal Impacts team finding that developers use AI in roughly 60% of their work while reporting they can "fully delegate" only 0–20% of tasks. That report also describes Anthropic's own internal use of Claude Code outside engineering — its legal team building Claude-powered workflows for contract redlining and content review, with a lawyer who had no coding experience building self-service triage tools.
 

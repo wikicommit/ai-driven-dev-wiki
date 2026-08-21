@@ -6,7 +6,7 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-19"
+last_generated_at: "2026-08-20"
 extracted_tokens: 24701
 generated_pages:
   - .wikicommit/entity/en/DefinedTerm/vibe-coding.md
@@ -22,3 +22,4 @@ Wikipedia's article on vibe coding, covering the term's coining in February 2025
 Excluded as unrelated to the configured theme:
 - "vibe valuation" (theme_mismatch): a term The Economist coined for venture capital valuations of AI startups; it concerns finance rather than AI-assisted software development methodology.
 
+Re-checked on 2026-08-20 (content unchanged, cache hit). This is the third pass over this source; the second pass already added the August 2026 neutrality banner on the Criticism section to the vibe coding page. Nothing further was uncovered, and no page was rewritten.
