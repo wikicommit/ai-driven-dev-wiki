@@ -13,8 +13,14 @@ sources:
   - type: url
     url: 'https://github.com/github/spec-kit/blob/main/docs/reference/workflows.md'
     hash: sha256:9edc007a729f332382682e209b40662bb963919d8d88fe0d101594ce7adad161
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.05278'
+    hash: sha256:a9436d2944579fdac4ded1e91308767999c4eba452e3d149c066ac95095750ba
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.30689'
+    hash: sha256:a18183a689a7171dd459d93148005c0a497297442e4c68cb3cd91953c958f93b
 review_status: reviewed
-generated_at: "2026-08-19"
+generated_at: "2026-08-20"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -52,6 +58,12 @@ The built-in workflow that ships with the tool, `speckit` ("Full SDD Cycle"), ma
 **Catalogs and distribution.** Workflows are discovered through catalogs resolved in a fixed order — the `SPECKIT_WORKFLOW_CATALOG_URL` environment variable overriding everything, then project config, then user config, then the built-in official and community catalogs — and organisations can host their own catalogs to curate what their developers discover. The site states the tool works offline, behind firewalls, and on Windows, macOS, and Linux.
 
 **Stated security posture.** The workflows reference is unusually direct about what the engine does *not* guarantee, and the caveats are worth recording alongside the capabilities. A `shell` step runs a local command with the user's own privileges and there is no capability sandbox; the `requires` block is an advisory pre-condition, not a runtime gate, and a `requires.permissions` capability gate is rejected by validation precisely because it would imply a sandbox that does not exist. Expressions are resolved by plain string substitution with no quoting or escaping added, so an interpolated value reaching a `run` field is interpreted as shell syntax — a risk the documentation flags as sharpest for workflow inputs supplied by whoever runs the workflow and for a prior `prompt` step's output, which it says should be treated as untrusted because it is text produced by the AI agent and can in turn be influenced by files, tickets, or web content the agent read. Its recommended controls are to constrain values at the source with an `enum` allowlist, to keep unconstrained values out of `run` fields entirely, and not to treat quoting as a security boundary; it also warns that a `gate` step does not display or sanitise the command that follows it and prints its `message` verbatim, so untrusted material should be surfaced through `show_file`, whose contents are control- and ANSI-stripped, instead. On the same theme, its FAQ states that most workflows are independently created and maintained by their respective authors and that the Spec Kit maintainers do not review, audit, endorse, or support workflow code.
+
+## Research use
+
+Spec Kit's staged workflow has been used as the baseline that academic work builds on and measures against. [[ScholarlyArticle/spec-kit-agents]] takes the Specify → Plan → Tasks → Implement sequence as its starting point and argues that the structure alone does not prevent [[DefinedTerm/context-blindness]] — intermediate artifacts that are internally coherent yet incompatible with the target repository. Its proposed addition is a context-grounding layer wrapped around the existing stages: read-only discovery hooks that probe the repository before each phase, and validation hooks that check the resulting artifact afterwards, both kept outside the agent's main prompt. In that paper's own evaluation the addition raised a 1–5 composite judged-quality score from 3.51 to 3.66 across 128 runs, at the cost of roughly 13 minutes of extra runtime per run in its longer workflow family — figures reported by the paper's authors about their own system.
+
+A second study, [[ScholarlyArticle/citation-discipline-in-spec-driven-development]], measures Spec Kit against two rival traceability disciplines and reaches a less favourable conclusion. It characterises Spec Kit as enforcing artifact-level consistency through its spec-plan-tasks chain, with the citation chain ending once implementation begins, and contrasts this with per-line requirement citations on one side and post-hoc external trace maps on the other. On its two measured dimensions Spec Kit came last: lower output determinism than either comparator (mean lexical similarity 0.460 against OpenSpec's 0.487 on Claude Sonnet 4.6, and 0.434 against 0.480 on GLM-5-turbo), and no automated hallucination detection at all, since detection in that study depended on requirement identifiers being present in the code itself. The paper states this makes Spec Kit "the weakest choice on the measured dimensions", while explicitly allowing that "its developer experience and natural workflow may compensate in practice".
 
 ## History
 

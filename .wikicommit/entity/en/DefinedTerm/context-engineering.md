@@ -19,8 +19,11 @@ sources:
   - type: url
     url: 'https://code.claude.com/docs/en/best-practices'
     hash: sha256:92807ef3d58f63fbea435ea928df49e2f3341e118eb8c40db08800c100a4c4c5
+  - type: url
+    url: 'https://www.anthropic.com/engineering/writing-tools-for-agents'
+    hash: sha256:effc06d088266ee895582c23541e543435288246b1dc4d89d3a2f4b8a1993b54
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-20"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -62,6 +65,8 @@ Concrete techniques the report groups under the discipline include:
 Two lessons the report draws are framed as broadly applicable. The first is to treat context as a budget rather than a buffer, designing graduated reduction stages instead of a single emergency compaction at a hard limit. The second is to calibrate from API-reported token counts rather than local estimates, because providers inject invisible content — safety preambles, tool schema serializations, internal formatting — that makes local counting systematically underestimate actual usage; in the author's system that discrepancy was large enough to cause compaction to trigger too late and produce context overflow errors.
 
 The report also notes a finding from the survey literature it treats as a design lever: LLMs are more robust to compressed context during understanding tasks than during generation tasks, which suggests aggressive compression is most viable for context that informs reasoning rather than context that directly shapes output text.
+
+The tool layer is a context-engineering surface in its own right, not only a capability layer. [[TechArticle/writing-effective-tools-for-agents]] applies the same minimality reasoning to what tools return: because an agent's context is limited where computer memory is cheap and abundant, a tool that returns everything forces the agent to spend context reading through irrelevant material, so tools should be chosen and shaped to return only high-signal information. Its concrete prescriptions are of a piece with the definitions above — prefer a `search_contacts` tool over a `list_contacts` tool, consolidate frequently chained operations into a single call so intermediate outputs never enter the context, drop low-level identifiers such as `uuid` and `mime_type` in favour of fields an agent will actually act on, and apply pagination, filtering and truncation with sensible defaults, with Claude Code restricting tool responses to 25,000 tokens by default. It also treats the tool's own text as context to be engineered: descriptions, specs and even error messages are loaded into the agent's window and therefore steer behaviour, which puts them under the same budget as everything else.
 
 ## Related Terms
 

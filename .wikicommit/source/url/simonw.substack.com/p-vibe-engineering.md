@@ -6,7 +6,7 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-19"
+last_generated_at: "2026-08-20"
 extracted_tokens: 7201
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/vibe-engineering.md
@@ -31,3 +31,4 @@ Excluded as unrelated to the configured theme (all are link-blog items in the sa
 - "Deloitte's refunded AI-assisted report" (theme_mismatch): an incident about generative AI use in a consulting report, not in software development.
 - "Datasette bot traffic and facets" (theme_mismatch): an operational note on crawler load against the author's own sites, unrelated to AI-assisted development.
 
+Re-checked on 2026-08-20 (content unchanged, cache hit). This is the third pass over this source; the second pass already added the Thomas Klausner "brain coding" coinage that the first had missed. Nothing further was uncovered, and no page was rewritten.

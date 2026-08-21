@@ -28,8 +28,11 @@ sources:
   - type: url
     url: 'https://aws.amazon.com/blogs/industries/from-spec-to-production-a-three-week-drug-discovery-agent-using-kiro/'
     hash: sha256:88a7c9517554f4f93af74e1fddd0380527eccaa4427916af91e6ffd946845cff
+  - type: url
+    url: 'https://specstory.com/whitepapers/beyond-code-centric-specstory-2025.pdf'
+    hash: sha256:4dc1c2f09b2ea2dff0c8bfb3cc6e5eb177c4c5134a96a0025cf03ad6841972e8
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-20"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -79,6 +82,10 @@ Ryan's book proposes scaffolding for the same idea rather than a tool. Its metho
 The reason the post gives for that separation is where the human sits. Of four advantages it lists, it calls this the most important: the approach "maintains human-in-the-loop oversight at the planning stage", so a misreading of intent is caught and corrected in the requirements, design and tasks documents before execution begins, which it says prevents costly rework. The other three are the context the specifications give the tool to implement features autonomously while developers review and validate; onboarding, since new team members can read the specs to learn what was built and why; and reuse, since a team can ask for "a new feature based on the previous implementation with the same tech stack".
 
 Its reported outcome for one project — three developers, three weeks, more than 95% of business logic code generated, over 80 hours of development time and an estimated 8 hours of documentation time saved — is the vendor team's own figure for its own tool, published by AWS, with no independent verification. Its stated recommendation is nonetheless method-level rather than tool-level: define clear acceptance criteria with stakeholders before writing any code, front-load steering documents capturing architecture decisions, coding standards and integration patterns, and connect [[DefinedTerm/model-context-protocol]] knowledge sources to improve generation accuracy.
+
+### A practitioner's qualification
+
+[[Report/beyond-code-centric]], a whitepaper by [[Person/greg-ceccarelli]] of [[Organization/specstory]], arrives at the approach from the same premise as the accounts above — agents can implement well given solid specifications, humans remain indispensable for design, prioritization and judgment, and the gap between English-language specification and code is narrowing — but stops short of endorsing it as ready. Its stated position is that the approach redistributes complexity rather than removing it, demanding mastery of micro-decisions that seasoned developers otherwise handle by intuition: what context to load before a prompt, which model suits which stage, and which scope assumptions must be made explicit that humans would leave unspoken. Its conclusion is a qualified one — "until we create better intent-centric tools that reduce these micro-decisions, spec-driven development with agents remains powerful in theory but insufficient in practice" — with the practical advice that teams should distinguish frictional micro-decisions from high-leverage macro-decisions and "spend energy shaping architecture, not typing file paths". Its own named implementation of the approach is [[DefinedTerm/specflow]].
 
 ## Related Terms
 

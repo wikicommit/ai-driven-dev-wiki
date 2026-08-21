@@ -25,12 +25,18 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/code-execution-with-mcp'
     hash: sha256:00595274b94dc84401f5d20a982fac4221bd6fef1a8b89c318ac7ad3122afaf8
+  - type: url
+    url: 'https://github.com/agentskills/agentskills'
+    hash: sha256:62d24fa3cf7cabfa0348af3065f32a15c43faf2d30b3352ff41f02e3a2399faa
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.13044'
+    hash: sha256:a0f563e8eab498ab940d491c23dbefca46144c318375cdb4d69d12a19fb5532f
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-20"
 generated_by: "claude-opus-5[1m]"
 
 properties:
-  description: "A configuration mechanism for agentic AI coding tools, referred to simply as Skills, that bundles prompts, tools, and documentation an agent can invoke on demand. Introduced by Anthropic and now an open standard supported across tools, a Skill is a directory containing a SKILL.md file with YAML frontmatter and instructions."
+  description: "A configuration mechanism for agentic AI coding tools, referred to simply as Skills, that bundles prompts, tools, and documentation an agent can invoke on demand. Originally developed by Anthropic and released as an open standard, a Skill is a directory containing a SKILL.md file with metadata and instructions, loaded by agents through progressive disclosure."
 ---
 
 Agent Skills — referred to in the literature simply as Skills — are a configuration mechanism that extends the capabilities of agentic AI coding tools with specialized contextual knowledge and workflows. [[ScholarlyArticle/configuring-agentic-ai-coding-tools]] describes them as bundling prompts, tools, and documentation that an agent can invoke on demand. They were introduced by Anthropic and now serve as an open standard supported across tools.
@@ -50,6 +56,16 @@ Developers do appear to follow the specification's length guidance: it recommend
 Anthropic's Claude Code documentation describes two distinct uses for the mechanism. The first is knowledge specific to a project, team, or domain, applied automatically when relevant — its example being an `api-conventions` skill holding REST design rules. The second is a repeatable workflow invoked directly as `/skill-name`, its example being a `fix-issue` skill whose body is a numbered procedure for analysing and fixing a GitHub issue; for workflows with side effects the documentation recommends `disable-model-invocation: true` so they only run when triggered deliberately. It also frames Skills against [[DefinedTerm/context-files]] on a loading criterion: a context file is loaded every session, so only broadly-applicable material belongs there, while knowledge relevant only sometimes belongs in a Skill that loads on demand without bloating every conversation.
 
 Skills are also the packaging format for third-party distribution. [[SoftwareApplication/context-engineering-kit]] ships its techniques as plugins whose skills follow the agentskills.io specification, and its maintainers describe preferring command-oriented skills paired with subagents over general information skills, specifically to avoid populating context with information that will not be needed — a token-efficiency argument for the same on-demand property. They note the limitation that installing skills through generic tooling does not carry subagents across, so a plugin depending on both is only partially portable.
+
+### The format as its own specification describes it
+
+The Agent Skills specification repository states the format's purpose as "a standardized way to give AI agents new capabilities and expertise", and calls it "a lightweight, open format for extending AI agent capabilities with specialized knowledge and workflows". Its minimal definition matches the survey account above: a skill is a folder containing a `SKILL.md` file carrying metadata — `name` and `description` at minimum — plus instructions telling an agent how to perform a specific task, with optional bundled scripts, reference materials, templates and other resources.
+
+The motivation it gives is a context gap: agents are increasingly capable but often lack the context needed to do real work reliably, and skills answer that by packaging procedural knowledge together with company-, team- and user-specific context into portable, version-controlled folders that agents load on demand. It names three resulting properties — domain expertise, in that specialized knowledge from legal review processes to data analysis pipelines to presentation formatting becomes reusable instructions and resources; repeatable workflows, in that multi-step tasks become consistent, auditable procedures; and cross-product reuse, in that a skill built once can be used across any skills-compatible agent.
+
+Loading works by [[DefinedTerm/progressive-disclosure]] in three stages. At **discovery**, agents load only the name and description of each available skill at startup — just enough to know when it might be relevant. At **activation**, when a task matches a skill's description, the agent reads the full `SKILL.md` instructions into context. At **execution**, the agent follows those instructions, optionally running bundled code or loading referenced files as needed. Because full instructions load only when a task calls for them, the specification states that agents can keep many skills on hand with only a small context footprint.
+
+On governance, the specification repository states that the format "was originally developed by [[Organization/anthropic]], released as an open standard, and has been adopted by a growing number of agent products", and that the standard is open to contributions from the broader ecosystem. Code in the repository is licensed under Apache 2.0 and its documentation under CC-BY-4.0. The repository points to `agentskills.io` for documentation and the format specification, and separately links to a Client Showcase at `agentskills.io/clients` as a way to explore some of the AI tools and agentic clients that support the format, which it says are a large number.
 
 ### The mechanism as one vendor documents it
 
@@ -76,6 +92,12 @@ The connection he draws to [[DefinedTerm/spec-driven-development]] is that the t
 The Wikipedia account of [[DefinedTerm/model-context-protocol]] dates Anthropic's publication of Agent Skills to December 2025, describing it as a companion open standard for packaging task-specific instructions and resources that AI agents load on demand, following the same open-standard approach as MCP — the same month Anthropic donated MCP itself to the [[Organization/agentic-ai-foundation]].
 
 Anthropic's own engineering writing reaches skills from a different direction. [[TechArticle/code-execution-with-mcp]] describes them as folders of reusable instructions, scripts and resources for models to improve performance on specialized tasks, and treats them as the natural endpoint for an agent with filesystem access: once an agent has developed working code for a task it can save that implementation for future use, and adding a `SKILL.md` file to such a saved function creates a structured skill the model can reference. On that account the agent gradually builds a toolbox of higher-level capabilities, evolving the scaffolding it needs to work most effectively — see [[DefinedTerm/code-execution-with-mcp]].
+
+### The safety rules skills declare for themselves
+
+Because a skill bundles natural-language instructions with optional executable scripts, its safety constraints are written as prose rather than enforced by a runtime — and [[ScholarlyArticle/no-attack-required]] reports that those constraints frequently do not hold. Its semantic fuzzing of 402 skills from the OpenClaw marketplace found [[DefinedTerm/specification-violations]] in 120 of them (29.9%), including 26 previously unknown exploitable guardrail violations in deployed skills. The failures it describes need no attacker: an ordinary user request causes a skill to breach a rule its own specification declared.
+
+Two of its findings bear directly on how skills are written. The first is that clear prose is not sufficient — of the 120 violated skills, 46 (38%) had all their guardrails rated well-written by an independent LLM judge, and were violated anyway because terms such as "critical domains" and "explicit approval" have no runtime definition. The second concerns the execution environment: skill specifications are typically written for human-interactive use or CI/CD automation, while agent execution is a third modality with no stdin yet a reachable human, so confirmation prompts built on shell or `input()` reads fail silently and push the agent toward `--yes` and `--force` flags that bypass the intended gate. The paper's recommendation to skill authors is that guardrails "must be operationally testable, not probabilistically interpreted".
 
 ## Related Terms
 

@@ -12,6 +12,7 @@ type: "schema:Person"
 [[Person/david-soria-parra]] — David Soria Parra
 [[Person/gene-kim]] — Gene Kim
 [[Person/geoffrey-huntley]] — Geoffrey Huntley
+[[Person/greg-ceccarelli]] — Greg Ceccarelli
 [[Person/justin-spahr-summers]] — Justin Spahr-Summers
 [[Person/kevin-ryan]] — Kevin Ryan
 [[Person/martin-fowler]] — Martin Fowler

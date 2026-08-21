@@ -18,4 +18,5 @@ type: "schema:SoftwareApplication"
 [[SoftwareApplication/kiro]] — Kiro
 [[SoftwareApplication/langgraph]] — LangGraph
 [[SoftwareApplication/opendev]] — OpenDev
+[[SoftwareApplication/openhands]] — OpenHands
 [[SoftwareApplication/spec-kit]] — Spec Kit
