@@ -10,4 +10,7 @@ type: "schema:Organization"
 [[Organization/coalition-for-secure-ai]] — Coalition for Secure AI
 [[Organization/dora]] — DORA
 [[Organization/openai]] — OpenAI
+[[Organization/sonar]] — Sonar
+[[Organization/sourcegraph]] — Sourcegraph
+[[Organization/specstory]] — SpecStory
 [[Organization/strongdm]] — StrongDM
