@@ -40,8 +40,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/html/2510.00328v1'
     hash: sha256:b2c0a6654af54f57a7e60e8031d5b71ee36c0c875804c8a0ac5cb42ba4d8026b
+  - type: url
+    url: 'https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/'
+    hash: sha256:d5efc58fb9f6c8e44c88eb246031dace67556db67152702ac3bb82b8c358bb3a
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -117,6 +120,20 @@ Two 2025 papers propose formal treatments of the practice, and they differ in wh
 [[ScholarlyArticle/vibe-coding-ai-native-paradigm]] proposes a different definition, in which the developer communicates three things to an agent: functional intent, an emotional tone or style — the "vibe" itself, expressed in descriptors such as "playful and engaging" or "minimalist and professional" — and contextual constraints. On this reading vibe coding builds on prompt programming but goes further by placing equal emphasis on the software's functional intent and on the qualitative feel the developer envisions, with the agent selecting language, colours, or architectural patterns accordingly. The same paper also retains the trust element of Karpathy's original description, noting that proponents describe copying and pasting code without reading the diffs and adjusting the result by asking the agent for high-level changes until it looks right.
 
 The two formalizations share the claim that the developer's role shifts away from writing and verifying code, but they disagree on whether the "vibe" in the name refers to the developer's relinquishing of code review (Karpathy's sense) or to a qualitative specification supplied alongside the functional one (Bamil's sense).
+
+### The line, and where its author found it blurring
+
+[[BlogPosting/vibe-coding-and-agentic-engineering-are-getting-closer]] restates [[Person/simon-willison]]'s boundary and then reports it eroding. His restatement keeps the term narrow and non-pejorative: vibe coding is asking for a thing and getting a thing, not caring about code quality or additional constraints, possibly without knowing how to program — and it is "fantastic, provided you understand when it can be used and when it can't." His stated boundary is who bears the cost: a personal tool where a bug hurts only you is fine, while building for other people is "grossly irresponsible" at that standard because other people are hurt by your bugs.
+
+What he reports changing is not the definition but his own conformity to it. As agents grew more reliable he stopped reviewing every line, including for production work, which leaves him with "that feeling of guilt: if I haven't reviewed the code, is it really responsible for me to use this in production?"
+
+The post adds a second-order consequence for anyone judging software from the outside. A repository with a hundred commits, a good readme and comprehensive tests used to signal care; he can now produce one in half an hour that looks identical, and says he cannot tell the difference even for his own projects. The substitute signal he proposes is usage — a vibe-coded tool someone has used daily for two weeks is worth more than something barely exercised — with the enterprise version being that he would not adopt a CRM unless two other large enterprises had run it successfully for six months.
+
+### Where it stops working
+
+Wikipedia's article states the boundary in terms of task structure rather than skill. Generative AI "is capable of handling simple tasks like basic algorithms" — a phrase the article itself tags as needing clarification — but such systems "struggle with more novel, complex coding problems," and it names three shapes specifically: projects involving multiple files, projects depending on poorly documented libraries, and safety-critical code.
+
+That characterisation is worth separating from the productivity findings above, because it describes a different limit. The measured slowdowns concern how much faster the practice makes an experienced developer; this names the categories of problem the article says such systems struggle with, which lines up with the boundary practitioners draw around who bears the cost of a defect.
 
 ## Related Terms
 

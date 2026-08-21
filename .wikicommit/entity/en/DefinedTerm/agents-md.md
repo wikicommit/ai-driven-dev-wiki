@@ -16,8 +16,17 @@ sources:
   - type: url
     url: 'https://agents.md/'
     hash: sha256:5ec43d6577c80fd2ba9a6b8db4aa810296c14fbd3d8a190442a89a81f486cf24
+  - type: url
+    url: 'https://arxiv.org/pdf/2601.20404'
+    hash: sha256:a73a7d48c7792ddb34e456bd8a12088273326af22933553ee5bf51dfcf545cc2
+  - type: url
+    url: 'https://nyosegawa.com/en/posts/coding-agent-workflow-2026/'
+    hash: sha256:bb7d36388cc5d0dc91fc90185585f6fff68833b1b198e732c6e2d6d41a285f45
+  - type: url
+    url: 'https://www.jeffmixon.com/post/dotagents-standard-agent-skill/'
+    hash: sha256:b41f531a8b968768046d0a7c12e5e9658ea9dd26d4b4f3ece81e2e7340854718
 review_status: pending
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -57,6 +66,32 @@ Practitioner material frames the file in the same interoperability terms the stu
 OpenAI's own description, in [[BlogPosting/introducing-codex]], is briefer than the empirical accounts above and worth keeping separate from them. AGENTS.md files are "text files, akin to README.md", placed within a repository, in which the developer can tell the agent how to navigate the codebase, which commands to run for testing, and how best to adhere to the project's standard practices. OpenAI frames the dependency by analogy: "Like human developers, Codex agents perform best when provided with configured dev environments, reliable testing setups, and clear documentation" — while claiming that its `codex-1` model performs strongly on coding evaluations and internal benchmarks even without AGENTS.md files or custom scaffolding, so the file is presented as an aid rather than a requirement.
 
 The same post shows the file reaching into model behaviour rather than just tooling: OpenAI published the `codex-1` system message and gives, as its example of why that transparency is useful, that the system message encourages the agent to run all tests mentioned in the AGENTS.md file — something a user short on time can explicitly ask it to skip.
+
+### Measured effect on agent efficiency
+
+[[ScholarlyArticle/on-the-impact-of-agents-md-files]] is the first controlled measurement of what the file costs rather than of how widely it is adopted. Its design replays 124 real merged pull requests from 10 repositories at their pre-merge state, running an agent twice per task — once with the repository's own root `AGENTS.md` as it existed at that commit, and once with that single file deleted — so that repository, task, codebase state, and agent configuration are all held fixed.
+
+With the file present, median wall-clock time to completion falls 28.64% (98.57s to 70.34s) and median output tokens fall 16.58% (2,925 to 2,440); both differences are reported as statistically significant. The two effects have different shapes, which the authors read separately: output-token savings concentrate in a small number of very high-cost runs, since the mean improves much more than the median, while the wall-clock improvement is uniform enough to indicate "a general shift toward faster task completion." Input and cached-input tokens barely move, and their medians go slightly the other way.
+
+The authors' own hypothesis for the mechanism is that the file "describes repository structure and conventions upfront, reducing the need for agents to infer project organization through exploratory navigation," which they flag as speculation pending trace analysis.
+
+The study measures efficiency only. It states explicitly that evaluating semantic correctness or functional equivalence to the merged pull request was out of scope, substituting a manual sanity check on 50 sampled tasks to confirm the agent produced non-trivial changes rather than aborted runs. So the finding is that a root instruction file makes the agent cheaper and faster on small, real tasks — not that it makes the work better. Set against the agentfiles study summarised in [[DefinedTerm/context-files]], which reports agents spending *more* reasoning tokens on context-file instructions without improving resolution rates, the two do not directly contradict: they measure different quantities on different task distributions, and neither measures cost and correctness together.
+
+### Sizing it: a table of contents, not an encyclopedia
+
+[[BlogPosting/survey-of-development-workflows-in-the-coding-agent-era]] collects the converged sizing guidance. It relays OpenAI's framing that these files should be treated as a table of contents rather than an encyclopedia, with a target of 60-150 lines; HumanLayer's tighter recommendation of 60 lines or fewer; and a Vercel report of compressing 40KB to 8KB while maintaining a 100% pass rate. The recommended pattern in all three cases is [[DefinedTerm/progressive-disclosure]] — file pointers in the top-level file, details split into subfolder context files, skills, or external docs.
+
+The same post relays a result that cuts against loading everything on demand. In a Vercel case study on Next.js 16, an 8KB `AGENTS.md` document index reached a 100% pass rate, 47 points above skills-based retrieval at 53%, with the stated explanation that passive context — always available — beat on-demand retrieval. That is one team's evaluation on one codebase rather than a general finding.
+
+It also lays out how the files divide labour in practice: `AGENTS.md` as the tool-agnostic universal brief for what to do, `CLAUDE.md` for Claude Code-specific operational instructions, and an optional `SOUL.md` for agent personality. And it records the governance milestone — the format, released by OpenAI in August 2025, was transferred to the Linux Foundation's [[Organization/agentic-ai-foundation]] in December 2025 — along with adoption figures of 60,000-plus open-source projects and support across Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf and Aider.
+
+### The router pattern
+
+Where the sizing guidance above says how long the file should be, [[DefinedTerm/dotagents]] proposes what it should *contain*: nothing but conditional pointers. [[BlogPosting/dotagents-standard-agent-skill]] describes the file becoming a slim, always-read **router** whose job is to tell the agent where to look for deeper context, with the heavy material moved into a hidden `.agents/` directory organised by kind — rules, context, memory, personas, skills, specs and logs.
+
+Its diagnosis of why these files bloat is worth recording separately from the fix, because it explains why length caps alone do not hold. Each addition earned its place the day it was written — a schema excerpt because the agent kept guessing a column name wrong, a paragraph on voice and tone after a derived document read badly, a hard-won CI scar so nobody re-learns it expensively — and "the failure mode is cumulative," ending with an agent reading a database schema while it edits CSS.
+
+The mechanical requirement that post insists on is conditionality. A routing rule must name a trigger and carry an action verb, so that the agent knows both when the pointer applies and what to do with it; an unconditional "always read everything" router "just recreates the monolith one directory deeper."
 
 ## Related Terms
 

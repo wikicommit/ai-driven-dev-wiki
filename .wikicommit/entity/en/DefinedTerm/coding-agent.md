@@ -25,8 +25,14 @@ sources:
   - type: url
     url: 'https://openai.com/index/introducing-codex/'
     hash: sha256:c899f94e6c00781777e4a0c930a154bee0271654282a1a6f195b368868a1366b
+  - type: url
+    url: 'https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/'
+    hash: sha256:e6c2c65056d73b991e32cf28fde817d0bb3d43f3a9824b25ae882a93a180b6a6
+  - type: url
+    url: 'https://www.anthropic.com/engineering/building-effective-agents'
+    hash: sha256:89d6d2e67b90631137ed1aba80dbebb0264d98646e0db9850e22d6a6c80c67cf
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -52,6 +58,20 @@ Both vendors describe the same requirement that asynchrony forces: evidence of w
 Each frames this as a shift in how work is organised rather than a feature. OpenAI predicted that "the asynchronous, multi-agent workflow introduced by Codex in ChatGPT will become the de facto way engineers produce high-quality code", and that real-time pairing and task delegation would ultimately converge into one workflow; Google's framing was that "agentic development is shifting from prototype to product and quickly becoming central to how software gets built." Both are vendor predictions about their own products, made at launch, not observed outcomes — and OpenAI conceded in the same post that delegating to a remote agent takes longer than interactive editing and "can take some getting used to".
 
 Google's earlier post introducing Jules, of December 2024, also records what it was measuring against. It reported 51.8% on [[Dataset/swe-bench]] Verified from research using Gemini 2.0 Flash equipped with code execution tools, attributing the result partly to inference speed letting the agent sample hundreds of potential solutions and select the best using existing unit tests and the model's own judgment, and said it was in the process of turning that research into developer products. OpenAI's Codex post states no SWE-bench score of its own, only the configuration it used.
+
+### The minimal definition
+
+[[TechArticle/what-is-agentic-engineering]] defines the term by composing two smaller ones. An **agent** is software that "run[s] tools in a loop to achieve a goal" — it calls an LLM with the user's prompt plus a set of tool definitions, calls whatever tools the LLM requests, and feeds the results back into the LLM. A **coding agent** is that arrangement where the tools include one that can execute code; the chapter names Claude Code, OpenAI Codex and Gemini CLI as popular examples. The user prompts it with a goal, and it generates and executes code in a loop until the goal is met.
+
+That chapter identifies code execution as the capability that makes the whole practice possible: without it, anything an LLM outputs is of limited value, and with it an agent can iterate toward software that demonstrably works. It also acknowledges the definitional ground it is standing on, noting that clearly defining "agent" has frustrated AI researchers since at least the 1990s.
+
+### Why software was where agents landed first
+
+[[TechArticle/building-effective-agents]] gives four properties that make coding a good fit for the agent pattern: solutions are verifiable through automated tests, agents can iterate using test results as feedback, the problem space is well-defined and structured, and output quality can be measured objectively. Its own reported implementation solved real GitHub issues in [[Dataset/swe-bench]] Verified from the pull request description alone.
+
+Its qualification is stated in the same breath: while automated testing verifies functionality, "human review remains crucial for ensuring solutions align with broader system requirements" — the tests establish that the code does something, not that it does the right thing for the system it joins.
+
+That post also describes the general agent loop the coding case instantiates: work begins from a command or discussion with a human, the agent then plans and operates independently, gaining ground truth from the environment at each step — tool call results, code execution — to assess progress, and pausing for human feedback at checkpoints or on blockers. It recommends stopping conditions such as a maximum iteration count to maintain control, and notes that autonomy brings higher costs and the potential for compounding errors.
 
 ## Related Terms
 

@@ -19,8 +19,17 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.30689'
     hash: sha256:a18183a689a7171dd459d93148005c0a497297442e4c68cb3cd91953c958f93b
+  - type: url
+    url: 'https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering/'
+    hash: sha256:4f50523f95a4cb4f60ff352214d2246d274b6f50c67967a56174d96b51f8d4ed
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.01160'
+    hash: sha256:5df903e44f8c186d0b13aaf412c53e475ccd30551e159a2cbba53b5c0a79dd50
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.04967'
+    hash: sha256:635e6e4cd572aa410a5b7b000d0057fa763bfbaca72834a18577ce02d2ea86f0
 review_status: reviewed
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -59,11 +68,33 @@ The built-in workflow that ships with the tool, `speckit` ("Full SDD Cycle"), ma
 
 **Stated security posture.** The workflows reference is unusually direct about what the engine does *not* guarantee, and the caveats are worth recording alongside the capabilities. A `shell` step runs a local command with the user's own privileges and there is no capability sandbox; the `requires` block is an advisory pre-condition, not a runtime gate, and a `requires.permissions` capability gate is rejected by validation precisely because it would imply a sandbox that does not exist. Expressions are resolved by plain string substitution with no quoting or escaping added, so an interpolated value reaching a `run` field is interpreted as shell syntax — a risk the documentation flags as sharpest for workflow inputs supplied by whoever runs the workflow and for a prior `prompt` step's output, which it says should be treated as untrusted because it is text produced by the AI agent and can in turn be influenced by files, tickets, or web content the agent read. Its recommended controls are to constrain values at the source with an `enum` allowlist, to keep unconstrained values out of `run` fields entirely, and not to treat quoting as a security boundary; it also warns that a `gate` step does not display or sanitise the command that follows it and prints its `message` verbatim, so untrusted material should be surfaced through `show_file`, whose contents are control- and ANSI-stripped, instead. On the same theme, its FAQ states that most workflows are independently created and maintained by their respective authors and that the Spec Kit maintainers do not review, audit, endorse, or support workflow code.
 
+### A seven-step lifecycle, as its advocates present it
+
+[[BlogPosting/spec-driven-development-a-spec-first-approach-to-ai-native-engineering]] presents the tool's engineering lifecycle in seven steps rather than the four-phase core process above, expanding it at both ends: **Constitution** (define principles, standards, and guardrails), **Specify** (capture requirements, scenarios, and acceptance criteria), **Clarify** (resolve ambiguity, dependencies, and edge cases), **Plan** (translate intent into architecture, flows, and constraints), **Tasks** (break the work into implementation-ready units), **Implement** (use AI to generate and refine code and tests), and **Validate** (verify that the output matches the spec). Its summary of the shape is "define intent, remove ambiguity, plan with constraints, implement with AI, and validate against the spec."
+
+That post also states an origin claim the project's own site does not: it describes Spec Kit as "an open-source tools, created by Microsoft," and names [[SoftwareApplication/github-copilot]] as an AI coding tool the workflow works well with. This is Microsoft's own characterisation on Microsoft's own blog, recorded here as such; the project site described above presents the project as community-built and does not name a creating organisation.
+
 ## Research use
 
 Spec Kit's staged workflow has been used as the baseline that academic work builds on and measures against. [[ScholarlyArticle/spec-kit-agents]] takes the Specify → Plan → Tasks → Implement sequence as its starting point and argues that the structure alone does not prevent [[DefinedTerm/context-blindness]] — intermediate artifacts that are internally coherent yet incompatible with the target repository. Its proposed addition is a context-grounding layer wrapped around the existing stages: read-only discovery hooks that probe the repository before each phase, and validation hooks that check the resulting artifact afterwards, both kept outside the agent's main prompt. In that paper's own evaluation the addition raised a 1–5 composite judged-quality score from 3.51 to 3.66 across 128 runs, at the cost of roughly 13 minutes of extra runtime per run in its longer workflow family — figures reported by the paper's authors about their own system.
 
 A second study, [[ScholarlyArticle/citation-discipline-in-spec-driven-development]], measures Spec Kit against two rival traceability disciplines and reaches a less favourable conclusion. It characterises Spec Kit as enforcing artifact-level consistency through its spec-plan-tasks chain, with the citation chain ending once implementation begins, and contrasts this with per-line requirement citations on one side and post-hoc external trace maps on the other. On its two measured dimensions Spec Kit came last: lower output determinism than either comparator (mean lexical similarity 0.460 against OpenSpec's 0.487 on Claude Sonnet 4.6, and 0.434 against 0.480 on GLM-5-turbo), and no automated hallucination detection at all, since detection in that study depended on requirement identifiers being present in the code itself. The paper states this makes Spec Kit "the weakest choice on the measured dimensions", while explicitly allowing that "its developer experience and natural workflow may compensate in practice".
+
+### Assessed as a governance instantiation
+
+[[ScholarlyArticle/productivity-reliability-paradox]] evaluates Spec Kit as the most complete existing instantiation of its [[DefinedTerm/specification-governance-model]], operating at the feature level and governing the lifecycle from intent capture to implementation. It highlights the tool-agnostic design as an economic point rather than a convenience: because specifications are committed to the repository and can be consumed by any participating agent, the governance structure does not create the lock-in that agent-specific tooling would.
+
+That paper's assessment of the tool's maturity is deliberately cautious. It records Spec Kit at version 0.8.x as of April 2026, with a small but growing adopter community, no independent academic evaluation, and the majority of software teams not having adopted or even encountered it — and states that it evaluates Spec Kit "not as a proven solution but as the most complete existing instantiation" of its model. It names two limitations directly: specification quality depends on human authorship, and the tool does not yet include automated verification of specification completeness. Reported outcomes it passes on, describing them as preliminary and not independently validated, include compression of upstream artefact production — PRD, design, structure, technical specs, test plans — from roughly 12 hours to roughly 15 minutes of human steering plus agent execution time.
+
+A four-month pilot study in that paper put Spec Kit through a two-month baseline and two-month intervention phase across three full-stack web projects with fourteen mid-level and senior engineers. Each project defined a `/speckit.constitution` capturing non-negotiable architectural and coding principles, and medium- and high-impact changes were routed through `/speckit.specify`, `/speckit.plan` and `/speckit.tasks`. The author reports the resulting figures as indicative rather than controlled — there was no parallel control group and instrumentation was retrospective — with median lead time per feature moving from 8–12 to 6–9 working days, late-stage hotfixes per sprint from 3–5 to 1–2, rollbacks per month from 2–4 to 0–1, and short-horizon code churn from 12–18% to 6–10% of changed lines, against a specification-authoring overhead of 45–90 minutes per medium feature.
+
+### Position among comparable frameworks
+
+[[ScholarlyArticle/from-prompt-to-process]] places Spec Kit in a set of six frameworks compared on a six-dimension process taxonomy, where it scores 2 for specification, 1 each for context, roles, execution and validation, and 2 for portability — a total of 8 out of 12, behind the [[SoftwareApplication/bmad-method]] at 10 and [[SoftwareApplication/spec-kitty]] at 9. Its recorded dominant strength is "specification as source of truth and portability"; its recorded dominant risk is "drift between artifacts and implementation if validation is weak." Those scores are the author's judgement from official documentation rather than an independent empirical measurement.
+
+That paper's characterisation is that the specification is treated as a source of truth rather than a disposable document, and that the spec-plan-tasks-implement cycle shortens the distance between natural language and the agent's action by creating reviewable intermediate artifacts. It lists the repository's commands as constitution, specification, plan, tasks and implementation, plus optional clarification, analysis and checklist commands. Its stated fragility is dependence on the agent interpreting the artifacts well: a clear specification helps, but does not guarantee that implementation, tests and maintenance stay aligned without additional checks.
+
+In the same comparison, Spec Kit and [[SoftwareApplication/openspec]] are positioned as competing SDD toolkits, with OpenSpec lighter and Spec Kit more complete in phases and portability.
 
 ## History
 

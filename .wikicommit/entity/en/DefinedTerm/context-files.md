@@ -22,8 +22,14 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2510.21413'
     hash: sha256:7909394fa333078b9020474426f99bd50bbd8d63bcee81ee63930892a2f363a1
+  - type: url
+    url: 'https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents'
+    hash: sha256:210c3b64f14464d0f411066d18a2164f9d8b5069812277a8a440cb571d86e3f1
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.21744'
+    hash: sha256:9f7862701079fdcc2025b4eb823bc28cb07820a6313b554d8637b079e666e6f8
 review_status: pending
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -59,6 +65,20 @@ The test it proposes for each line is: *"Would removing this cause Claude to mak
 Its stated failure mode is bloat. A file that is too long causes the model to ignore instructions because important rules get lost in the noise — so if the model keeps doing something despite a rule against it, the documentation's diagnosis is that the file is too long rather than that the rule is unclear, while a model asking questions the file already answers suggests ambiguous phrasing. The recommended treatment is to handle the file like code: review it when things go wrong, prune regularly, and test changes by observing whether behaviour actually shifts. Where an instruction must be followed without exception, it recommends converting it to a hook (see [[DefinedTerm/agent-hooks]]) rather than restating it more forcefully, though it does note that emphasis such as "IMPORTANT" or "YOU MUST" can improve adherence. Files can import others using `@path/to/import` syntax, and the documentation recommends checking the file into git so a team can contribute to it.
 
 Practitioner writing converges on the same point from other directions. [[BlogPosting/agentic-engineering-surpasses-vibe-coding]] gives passing context explicitly through `CLAUDE.md` and `README.md` as one of its five principles. [[BlogPosting/context-engineering]] frames the always-loaded file as a way of sidestepping the memory-selection problem entirely — a narrow fixed set of files pulled in every time, functioning as procedural memory — naming `CLAUDE.md` for Claude Code and rules files for Cursor and Windsurf. [[TechArticle/effective-context-engineering-for-ai-agents]] describes the same behaviour as half of a hybrid retrieval strategy, with `CLAUDE.md` dropped into context up front while glob and grep retrieve everything else just in time.
+
+### Evidence that most of these files do not help
+
+The strongest published check on whether context files earn their place reaches this wiki secondhand, through [[BlogPosting/skill-issue-harness-engineering-for-coding-agents]]. That post summarises an ETH Zurich study testing 138 agentfiles across a variety of repositories and reports its findings as: LLM-generated files actually *hurt* performance while costing over 20% more; human-written ones helped only about 4%; agents spent 14–22% more reasoning tokens processing context-file instructions, took more steps, and ran more tools without improving resolution rates; and codebase overviews and directory listings did not help at all, because agents discover repository structure on their own. The study itself has not been ingested here, so these figures are recorded as that post's characterisation of it rather than as the study's own text.
+
+The post's reading is that the findings confirm the authoring guidance above rather than undermining it — each failure it identifies maps onto advice that team had already given: do not auto-generate the file, include as few instructions as reasonably possible, use progressive disclosure, and keep contents concise and universally applicable. It reports its own file is under 60 lines. That converges with the 200-line ceiling recommended for large codebases in [[PresentationDigitalDocument/claude-code-advanced-patterns]] and with the vendor guidance above that diagnoses ignored rules as a length problem rather than a phrasing one.
+
+### A proposed layer above the project file
+
+[[ScholarlyArticle/agentic-ai-assisted-coding-epistemic-grounding]] argues that the file types now in common use share a gap: a plan file carries user intent, a project context file carries project guidelines, and a `SKILL.md` carries a technique, but none of them "enforce domain-specific validity constraints" — rules that hold regardless of what this user, this project, or this technique wants.
+
+Its proposal is a fourth, field-scoped layer, [[DefinedTerm/epistemic-grounding-document]], written and governed by a domain community rather than by the repository's owners. The ordering it sets out is by decreasing plasticity — session, project, technique, field — with each layer more stable and authoritative than the one below, so that field-scoped invariants constrain everything beneath them and "win any conflict with the plan or skills, not the other way around."
+
+Two design details distinguish it from the files described above. Its content splits into Hard Constraints, which override all other contexts, and Convention Parameters, which merely warn — a strictness distinction the single-tier files here do not make. And its authority is claimed to come from provenance rather than location: because the rules are the domain community's consensus rather than an individual's preference, the paper argues they "resist being overridden by non-experts," which is the case it makes for the whole layer given that the person driving the agent may not be a domain expert. This is a proposal illustrated by a drafted example file and backed so far by a single-configuration, single-turn proof-of-principle test — six prompts each violating a Hard Constraint, run against an adversarial project context file that told the agent to ignore scientific validity. Its authors report compliance improving substantially but degrading “under explicit override instructions or weakened normative language,” and note that no agent scaffold implements the authority ordering natively; loading through the system prompt was the workaround they found most consistent.
 
 ## Related Terms
 

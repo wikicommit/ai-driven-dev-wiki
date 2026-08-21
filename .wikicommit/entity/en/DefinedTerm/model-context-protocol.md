@@ -34,8 +34,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2512.08290'
     hash: sha256:41c224d999eee798d882744ca794c7590e437175f2cbba1d8a6ca07317125f28
+  - type: url
+    url: 'https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents'
+    hash: sha256:210c3b64f14464d0f411066d18a2164f9d8b5069812277a8a440cb571d86e3f1
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -83,6 +86,14 @@ Two peer-directed surveys treat MCP as an object of study rather than a tool to 
 ### Token cost at scale
 
 A distinct, non-security problem emerges as the number of connected tools grows. Anthropic's engineering account in [[TechArticle/code-execution-with-mcp]] identifies two patterns that increase agent cost and latency: most clients load all tool definitions upfront into context, so an agent connected to thousands of tools processes hundreds of thousands of tokens before reading a request; and every intermediate tool result must pass through the model, so data flows through context repeatedly and may exceed the context window entirely. Its proposed answer, [[DefinedTerm/code-execution-with-mcp]], presents servers as code APIs the agent writes code against rather than as direct tool calls.
+
+### What practitioners actually use it for
+
+[[BlogPosting/skill-issue-harness-engineering-for-coding-agents]] reports a narrower working scope than the specification implies: "MCP servers are primarily for plugging tools into your coding agent to extend its capabilities beyond file I/O and bash commands," because the spec's additional features — resources, prompts, and elicitations — "are generally not well-supported by MCP clients and coding agent harnesses." That gap between the specified primitives and the supported ones matters for the security analysis above, which reasons from all three primitives being in play.
+
+That post also draws the prompt-injection consequence directly from where tool metadata lands: because a server's tool list, descriptions, and argument schemas are injected into the agent's system prompt, a server can shape the agent's behaviour through its descriptions alone — so its warning is never to connect to a server you do not trust. It adds a second exposure independent of injection: STDIO servers and others that run client-side through `npx` or `uvx` can execute code on the host.
+
+On the token-cost problem, the same post supplies the practitioner's version of the finding above and one remedy the vendor accounts do not emphasise. Its advice is to turn off any server providing a large number of tools that is not actively in use, and — where an MCP server duplicates functionality already available as a CLI well-represented in training data, its examples being GitHub, Docker, and most databases — to prompt the agent to use the CLI instead, on the reasoning that the model already knows the tool and its output composes with `grep` and `jq`. Their own worked example replaced the Linear MCP server with a small CLI wrapping the Linear API, documented as six example invocations in their context file, which they report saved thousands of tokens of tool definitions plus more from verbose MCP responses.
 
 ## Related Terms
 

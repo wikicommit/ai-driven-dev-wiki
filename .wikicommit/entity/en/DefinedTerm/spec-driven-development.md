@@ -31,8 +31,20 @@ sources:
   - type: url
     url: 'https://specstory.com/whitepapers/beyond-code-centric-specstory-2025.pdf'
     hash: sha256:4dc1c2f09b2ea2dff0c8bfb3cc6e5eb177c4c5134a96a0025cf03ad6841972e8
+  - type: url
+    url: 'https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering/'
+    hash: sha256:4f50523f95a4cb4f60ff352214d2246d274b6f50c67967a56174d96b51f8d4ed
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.01160'
+    hash: sha256:5df903e44f8c186d0b13aaf412c53e475ccd30551e159a2cbba53b5c0a79dd50
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.04967'
+    hash: sha256:635e6e4cd572aa410a5b7b000d0057fa763bfbaca72834a18577ce02d2ea86f0
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.27045'
+    hash: sha256:9004fd8330acfa64f27d8cc588f1234dd91b29303e4ee479b537bbdebca481f6
 review_status: pending
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -86,6 +98,38 @@ Its reported outcome for one project — three developers, three weeks, more tha
 ### A practitioner's qualification
 
 [[Report/beyond-code-centric]], a whitepaper by [[Person/greg-ceccarelli]] of [[Organization/specstory]], arrives at the approach from the same premise as the accounts above — agents can implement well given solid specifications, humans remain indispensable for design, prioritization and judgment, and the gap between English-language specification and code is narrowing — but stops short of endorsing it as ready. Its stated position is that the approach redistributes complexity rather than removing it, demanding mastery of micro-decisions that seasoned developers otherwise handle by intuition: what context to load before a prompt, which model suits which stage, and which scope assumptions must be made explicit that humans would leave unspoken. Its conclusion is a qualified one — "until we create better intent-centric tools that reduce these micro-decisions, spec-driven development with agents remains powerful in theory but insufficient in practice" — with the practical advice that teams should distinguish frictional micro-decisions from high-leverage macro-decisions and "spend energy shaping architecture, not typing file paths". Its own named implementation of the approach is [[DefinedTerm/specflow]].
+
+### Translation loss as the stated motivation
+
+[[BlogPosting/spec-driven-development-a-spec-first-approach-to-ai-native-engineering]], a Microsoft developer-blog post of June 2026 by [[Person/apoorv-gupta]], motivates the approach from a different starting point than the code-drift diagnosis above: **translation loss**, the erosion of meaning as an idea moves through the delivery lifecycle. It locates that loss at four specific handoffs — stakeholder needs to product requirements, requirements to architecture and design, design to implementation, and implementation to validation and release — and argues that "without a shared artifact that preserves intent, every handoff becomes an interpretation step." Its sharpest formulation of what AI does and does not change is that "AI can accelerate those steps, but it cannot correct ambiguity that was never resolved."
+
+Its case against prompt-first workflows is correspondingly about durability rather than quality: prompt-first works for simple tasks, but when requirements, constraints, and edge cases live only in prompts, teams get fast output with no durable source of truth, which the post says produces architectural drift, code drift, inconsistent implementations, harder reviews, and rework. The reallocation it describes is of effort rather than of total time — more spent clarifying intent and planning up front, less lost to downstream rework, with test shifting earlier because acceptance criteria are explicit from the start.
+
+One of its stated lessons cuts against maximal adoption of the practice, and its adoption playbook adds cautions in the same direction — both worth keeping alongside the spectrum above. The lesson is that "not every change needs the full lifecycle, so adoption should be right-sized"; the playbook recommends piloting on a single feature where alignment problems are already visible, keeping the process lightweight at first, treating specs as living artifacts, avoiding over-specification too early, and expanding only where value is clear. Its compact statement of the dependency the whole practice rests on is "Spec quality = output quality." These are first-party lessons from a vendor advocating its own toolkit, reported qualitatively; the three project outcomes the post gives — including onboarding time cut from two to three weeks to a few days in one brownfield project — come with no methodology.
+
+### An economic argument for why it emerges
+
+[[ScholarlyArticle/productivity-reliability-paradox]] argues that specification discipline is not a stylistic preference but the economically rational governance response to a specific set of transaction attributes, and proposes the [[DefinedTerm/specification-governance-model]] to formalise that claim. Its reasoning is that AI-mediated code production combines high asset specificity (generated code has limited value outside its intended architecture and codebase), high behavioural uncertainty (non-deterministic generators that violate unstated conventions without intent), and high frequency (dozens to hundreds of invocations a day), and that this combination makes heavy upfront specification investment the optimal choice under Transaction Cost Economics — because frequency amortises the fixed cost of building the governance structure.
+
+The same paper's thesis statement is the strong form of the claim: "specification discipline, not model capability, is the binding constraint on AI-assisted software dependability." It also gives specifications a second, non-economic rationale — as compressed, persistent representations of project context (architectural rules, API contracts, invariants) that can be included in every invocation, partially compensating for a model's finite context window.
+
+### Convergence across frameworks, and what it does not settle
+
+[[ScholarlyArticle/from-prompt-to-process]] compares six frameworks that structure work around coding agents and reports convergence in mechanism: among frameworks that already adopt some process, "the isolated prompt loses centrality, and persistent artifacts, work contracts, traceability and human review become mechanisms that reduce ambiguity and coordinate agents." It names this pattern *from prompt to contract* — the initial instruction becomes only a starting point, and the real work begins when it becomes a PRD, specification, plan, story, task, architecture or checklist.
+
+Its dimensional scoring qualifies how much that convergence explains. Specification is the most saturated of its six dimensions, with almost all frameworks scoring the maximum, which makes it the common denominator of the field but a poor discriminator between tools; roles and validation are the polarised dimensions that actually distinguish them. And no framework in the set scores strongly on all six dimensions, which the paper reads as a structural trade-off between process depth and portability across agents rather than a gap current tools have already closed.
+
+Two of its other cross-cutting patterns bear directly on the practice. Context is treated as an engineering asset, whose absence produces what it calls *functional hallucinations* — code that compiles but violates implicit contracts. And validation must extend beyond the final test, because an agent can pass the tests while improperly altering the architecture, removing a business constraint, or ignoring a product decision; the paper's stated consequence is that evaluation must measure not only whether the final answer works but whether the path to it was auditable.
+
+The paper also records the inverse direction as a legitimate case, through [[SoftwareApplication/reversa]]: many real environments are brownfield, where the problem is recovering operational contracts from existing systems rather than writing specifications for new ones.
+
+### A middle ground between spec-first and spec-as-source
+
+[[ScholarlyArticle/the-spec-growth-engine]] positions its own proposal against two extremes it argues both fail. *Spec-first* frameworks generate full specifications before any code, at the cost of upfront overhead and the risk of specifying the wrong thing. *Spec-as-source* systems generate code from specifications, which it says introduces nondeterminism and a fragile single point of truth that teams consistently reject in practice. Its stated middle ground is to be spec-anchored — every node has a specification — while remaining code-coupled, with code and specification evolving in the same commit, and drift-enforced, so that divergence is a blocking merge error rather than a discipline problem.
+
+Its growth protocol is a two-layer rule rather than a single ordering. Layer 1 — root invariants and key container boundaries such as persistence, security, external integrations and the error taxonomy — is specified before any feature and is deliberately *not* just-in-time, forming a floor below which architecture cannot silently erode. Layer 2 grows as hardest-first vertical slices. The paper's argument is that this blocks two orderings that each fail on their own: breadth-first, where hard problems hide in stubs and surface only at the end, and pure agile with no floor, where a needed boundary never appears because no feature happened to force it — which it names as the origin of many hardcoded workarounds in production systems.
+
+The same framework treats [[DefinedTerm/spec-code-drift]] as the failure mode that determines whether any of this survives contact with an agent, and its stated remedy is structural rather than procedural: the agent updates the affected specification in the same commit as the code, and the human reviews only contract-level changes.
 
 ## Related Terms
 

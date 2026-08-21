@@ -13,8 +13,17 @@ sources:
   - type: url
     url: 'https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/model-context-protocol-security-1.pdf'
     hash: sha256:d5ea586dbd65785c34ba7afa769d56a4d1bcc77eb7876b7578edff5516c979a5
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.22528'
+    hash: sha256:ef37298f918eb3603bb29e729bf5490c27887bfadf9b5c6794e31dee79647cc2
+  - type: url
+    url: 'https://www.anthropic.com/engineering/managed-agents'
+    hash: sha256:0e4e8bf6d9cb724da07f95297d00f7077a224890c85346851d0d455eba93d529
+  - type: url
+    url: 'https://www.sonarsource.com/state-of-code-developer-survey-report.pdf'
+    hash: sha256:3d43f704cf1e52ecf4045d4342479248b68f557da49a051f79fb79b036967a0d
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -32,6 +41,22 @@ Microsoft recommends two lines of defence. The first is AI Prompt Shields, which
 Microsoft closes on a fundamentals argument: that any AI implementation inherits the existing security posture of the organization's environment, so improving overall organizational posture comes first, and that on its reading of security research, getting the fundamentals right — enabling MFA, applying least privilege, keeping devices, infrastructure and applications up to date, and otherwise protecting important data — is the most effective protection against breaches of any kind.
 
 The CoSAI threat model — set out in a report approved on 8 January 2026 but still marked "Status: Draft" — treats the underlying problem as structural rather than incidental. It proposes "Data/Control Boundary Distinction Failure" as its own threat category (MCP-T4), grouping tool poisoning, full schema poisoning and resource content poisoning as MCP-specific instances alongside prompt injection as an MCP-contextualized one, and names input sanitization, guardrails and context isolation as the controls. Its stated reason for needing a different threat model at all is that existing frameworks assume components behave predictably according to predefined logic, whereas, in its words, "MCP places an LLM, an agent whose behavior is shaped by natural language input, at the center of security-critical decisions, requiring a fundamentally different threat model."
+
+### Injection that deletes rather than inserts
+
+[[ScholarlyArticle/governance-decay]] describes a variant it calls the **Compaction-Eviction Attack**, which inverts the usual shape of the technique. Rather than smuggling an instruction *into* the agent's context, an adversary who can supply only in-context data biases the harness's [[DefinedTerm/compaction]] step into omitting a constraint the operator legitimately put there — removing a rule instead of adding one. The paper reports that optimizing the injection defeated every model it tested, including one that had been immune to its fixed probe, taking that model's violation rate from 0% to 65%.
+
+The reason this matters beyond its novelty is what it targets. That paper's argument is that the runtime-enforcement defences proposed against ordinary injection — least-privilege tool authorization, policy monitors and DSLs, checks on execution paths — all "share an implicit assumption that the constraint is present at decision time," so an attack on the context-management layer undercuts them without engaging them. See [[DefinedTerm/governance-decay]] for the non-adversarial version of the same failure.
+
+### Removing the credential from reach rather than narrowing it
+
+[[TechArticle/scaling-managed-agents]] describes how an early architecture made injection cheap. With session, harness and sandbox in one container, any untrusted code Claude generated ran alongside the credentials, so "a prompt injection only had to convince Claude to read its own environment." The escalation path it names is what makes that severe: once an attacker holds those tokens, they can spawn fresh, unrestricted sessions and delegate work to them.
+
+Its argument against the obvious mitigation is worth recording. Narrowly scoping the token, it says, "encodes an assumption about what Claude can't do with a limited token — and Claude is getting increasingly smart." The structural fix it adopts instead is that tokens are never reachable from the sandbox where generated code runs. Authentication is either bundled with the resource or held in a vault outside the sandbox: a repository access token clones the repo during sandbox initialisation and is wired into the local git remote, so push and pull work from inside without the agent ever handling the token; and OAuth credentials for custom tools sit in a vault reached through a dedicated MCP proxy, which exchanges a session-associated token for the real credential. The harness itself is never made aware of any credentials.
+
+### How widely practitioners rate the risk
+
+[[Report/state-of-code-developer-survey-2026]] measures concern about injection directly, and finds it stratified by organisation size rather than uniform. Enterprise developers are significantly more concerned than those at small and medium businesses about both direct prompt injections (34% against 25%) and indirect prompt injections (35% against 25%) — a gap that tracks the same report's finding on compliance with coding standards (38% against 28%). Every figure is that vendor's own survey of developers who use AI tools, not a measurement of incidence.
 
 ## Related Terms
 
