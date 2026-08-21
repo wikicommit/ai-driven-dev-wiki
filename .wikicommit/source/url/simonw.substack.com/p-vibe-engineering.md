@@ -6,8 +6,8 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-20"
-extracted_tokens: 7201
+last_generated_at: "2026-08-21"
+extracted_tokens: 7272
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/vibe-engineering.md
   - .wikicommit/entity/en/DefinedTerm/vibe-engineering.md
@@ -20,7 +20,7 @@ failed_pages: []
 
 ## Summary
 
-The 8 October 2025 issue of Simon Willison's Newsletter, whose lead item republishes his post of 2025-10-07 proposing "vibe engineering" for the accountable end of AI-assisted programming, listing the existing engineering practices he argues LLMs actively reward and defending the name as deliberately cheeky. Re-processing the source in this run (content unchanged, cache hit) found one item the earlier pass had missed: a quote item of 2025-10-07 in which Thomas Klausner coins "brain coding" for writing code oneself in an empty editor buffer. That term now has its own page, and the vibe coding page cross-references it.
+The 8 October 2025 issue of Simon Willison's Newsletter, whose lead item republishes his post of 2025-10-07 proposing "vibe engineering" for the accountable end of AI-assisted programming, listing the existing engineering practices he argues LLMs actively reward and defending the name as deliberately cheeky. A quote item in the same issue, in which Thomas Klausner coins "brain coding" for writing code oneself in an empty editor buffer, has its own page, cross-referenced from the vibe coding page.
 
 Excluded as unrelated to the configured theme (all are link-blog items in the same issue, unconnected to the vibe engineering argument):
 - "GPT-5 pro" (theme_mismatch): a model release note, general AI news rather than AI-assisted development methodology.
@@ -31,4 +31,4 @@ Excluded as unrelated to the configured theme (all are link-blog items in the sa
 - "Deloitte's refunded AI-assisted report" (theme_mismatch): an incident about generative AI use in a consulting report, not in software development.
 - "Datasette bot traffic and facets" (theme_mismatch): an operational note on crawler load against the author's own sites, unrelated to AI-assisted development.
 
-Re-checked on 2026-08-20 (content unchanged, cache hit). This is the third pass over this source; the second pass already added the Thomas Klausner "brain coding" coinage that the first had missed. Nothing further was uncovered, and no page was rewritten.
+Re-checked on 2026-08-21 (content unchanged, cache hit). Fifth pass, as a dedicated coverage comparison of the full source against all six generated pages. No uncovered theme-relevant material was found and no page was rewritten. The status stays `partial` because of the theme exclusions above.

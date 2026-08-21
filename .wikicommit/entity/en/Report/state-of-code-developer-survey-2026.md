@@ -8,7 +8,7 @@ sources:
     url: 'https://www.sonarsource.com/state-of-code-developer-survey-report.pdf'
     hash: sha256:3d43f704cf1e52ecf4045d4342479248b68f557da49a051f79fb79b036967a0d
 review_status: pending
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -39,6 +39,24 @@ The State of Code Developer Survey report 2026 is a vendor survey published by [
 **Junior and senior developers diverge.** Developers with ten years' experience or less estimated 45% of their committed code was AI-assisted against 40% for those with over twenty years, reported a 40% average productivity increase against 32%, and reported higher job satisfaction (58% against 49%) and more time to advance their skills (62% against 51%) — while also being more likely to report that reviewing AI-generated code takes greater effort.
 
 **Shadow adoption is uneven by tool.** Of the 74% of developers who had used ChatGPT in the past year, 52% accessed it through personal accounts, rising to 63% for Perplexity users; the report contrasts this with GitHub Copilot and Amazon Q Developer at 17% each and Cursor at 27%, which it reads as evidence of a more formal, top-down rollout for those tools.
+
+**Adoption has consolidated around a few tools, but teams still run several at once.** In the past year 75% of respondents had used [[SoftwareApplication/github-copilot]] and 74% ChatGPT for software development tasks, with Claude or [[SoftwareApplication/claude-code]] at 48%, Gemini/Duet AI at 37%, [[SoftwareApplication/cursor]] at 31%, Perplexity and OpenAI Codex at 21% each, JetBrains at 17%, Amazon Q Developer at 12%, and Windsurf at 8%. Those shares sum well past 100% because the average development team uses **four** different AI tools. The report's own reading of that spread is a governance one: it names the result a "bring your own AI" (BYOAI) culture that is "running ahead of official governance" — the framing the shadow-adoption finding below then quantifies.
+
+**AI is a better explainer than maintainer.** The report pairs adoption of each use case with the share rating it extremely or very effective, and the gaps are widest on the most common uses: assisting development of new code at 90% adoption against 55% rating it effective, and refactoring or optimizing existing code at 72% against 43%. The highest-rated uses are elsewhere — writing documentation (74%), explaining existing code (66%), vibe coding and green-field prototyping (62%) and generating tests (59%). Its own summary is that developers "are finding it's a much better 'explainer' and 'prototyper' than it is a 'maintainer' or 'refactorer'—at least for now."
+
+**Use extends into critical software.** Reported use spans prototypes and proofs of concept (88%), internal non-critical production software (83%), customer-facing applications (73%), and business- or mission-critical services (58%).
+
+**The benefit-side baseline.** Developers reported an average personal productivity boost of 35%, 54% said they were more satisfied with their job as a result of AI, 82% agreed AI helps them code faster, and 71% that it helps solve complex problems more efficiently.
+
+**Company size changes the outcome more than tooling does.** Developers at small and medium businesses reported a 39% average productivity increase against 34% at mid-market and enterprise, and higher time-to-market gains (76% against 67%), while enterprises reported better code quality and maintainability outcomes. SMBs also report up to 11 percentage points higher negative impacts — 67% against 56% agreeing AI produces code that looks correct but isn't reliable — and are far more likely to cite correcting or rewriting AI-created code as a top source of toil (28% against 17%). The report's stated explanation is that SMBs "may lack the formal guardrails of larger orgs" and so experience more acute friction managing AI code.
+
+**Distinct process for AI-generated code is rare everywhere.** Only 18% of enterprises, 12% of SMBs and 10% of mid-market organisations have well-defined, distinct guidelines or automated checks specifically for AI-generated code as opposed to developer-written code. Enterprises are also more rigorous on compliance review of AI code (39% against 28% of SMBs).
+
+**Concerns invert with experience.** Developers with more than twenty years' experience are *less* likely than those with ten or fewer to agree that AI code "looks correct but isn't reliable" (48% against 66%), that too many lines of code are being generated (32% against 47%), and that AI makes complex tasks harder for lack of context (31% against 47%). They are also less worried about deskilling (41% against 50%) and declining codebase understanding (45% against 56%) — the mirror image of the junior/senior split in reported benefits above.
+
+**Agent effectiveness also splits by company size.** 67% of SMB developers rated agents effective for vibe coding apps from conversational language against 52% at enterprises, which the report reads as agents being "a powerful force multiplier for smaller, agile teams." SMBs also lead on project planning, task breakdown and requirements analysis (63%) and security vulnerability remediation (57%), while mid-market developers report the highest effectiveness for automated infrastructure setup (62%) and deployment pipeline management (56%).
+
+**Its explanation for code bloat is a model property.** Against the 40% of developers reporting AI created unnecessary or duplicative code, the report cites its own LLM personality research for the claim that "LLMs have inherent tendencies to create verbosity, complexity, and unnecessary technical debt when writing code" — a first-party causal claim rather than a survey result.
 
 ## Context
 

@@ -31,8 +31,23 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.13044'
     hash: sha256:a0f563e8eab498ab940d491c23dbefca46144c318375cdb4d69d12a19fb5532f
+  - type: url
+    url: 'https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills'
+    hash: sha256:67f4d43862e0cdc95ff69a5da0f2ecb7b3ca20fb9db59e1962077b1c422289d1
+  - type: url
+    url: 'https://cloud.google.com/blog/topics/developers-practitioners/level-up-your-agents-announcing-googles-official-skills-repository'
+    hash: sha256:210f5c528be90562beb949c8a4b394a47ec471fd6c6b05d92b132032f930d547
+  - type: url
+    url: 'https://github.com/addyosmani/agent-skills'
+    hash: sha256:1438a09672625c5be59b8c9d50d37e217646a38b19d7e89d26dbfea6ffa0896a
+  - type: url
+    url: 'https://github.com/google/skills'
+    hash: sha256:2cd546f966e823a193b2fe7ded97411a80bdb5450a80bc311f1b4a2f5495e4d8
+  - type: url
+    url: 'https://nyosegawa.com/en/posts/coding-agent-workflow-2026/'
+    hash: sha256:bb7d36388cc5d0dc91fc90185585f6fff68833b1b198e732c6e2d6d41a285f45
 review_status: pending
-generated_at: "2026-08-20"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -56,6 +71,18 @@ Developers do appear to follow the specification's length guidance: it recommend
 Anthropic's Claude Code documentation describes two distinct uses for the mechanism. The first is knowledge specific to a project, team, or domain, applied automatically when relevant — its example being an `api-conventions` skill holding REST design rules. The second is a repeatable workflow invoked directly as `/skill-name`, its example being a `fix-issue` skill whose body is a numbered procedure for analysing and fixing a GitHub issue; for workflows with side effects the documentation recommends `disable-model-invocation: true` so they only run when triggered deliberately. It also frames Skills against [[DefinedTerm/context-files]] on a loading criterion: a context file is loaded every session, so only broadly-applicable material belongs there, while knowledge relevant only sometimes belongs in a Skill that loads on demand without bloating every conversation.
 
 Skills are also the packaging format for third-party distribution. [[SoftwareApplication/context-engineering-kit]] ships its techniques as plugins whose skills follow the agentskills.io specification, and its maintainers describe preferring command-oriented skills paired with subagents over general information skills, specifically to avoid populating context with information that will not be needed — a token-efficiency argument for the same on-demand property. They note the limitation that installing skills through generic tooling does not carry subagents across, so a plugin depending on both is only partially portable.
+
+### The mechanism as its vendor first introduced it
+
+[[TechArticle/equipping-agents-for-the-real-world-with-agent-skills]], published 16 October 2025, is the announcement that introduced the mechanism, and it dates the open-standard step separately: an update on the post, dated 18 December 2025, states that Agent Skills has been published as an open standard for cross-platform portability. The stated motivation is that as models become capable enough to operate full computing environments, equipping them with domain-specific expertise needs something more composable, scalable, and portable than a custom-built agent per use case — the post's analogy for authoring a skill being an onboarding guide for a new hire.
+
+That post also supplies the worked example behind the abstract format. The PDF skill that powers Claude's document-editing abilities exists because Claude already understands PDFs but is limited in manipulating them directly, such as filling out a form. Its `SKILL.md` references two further bundled files, `reference.md` and `forms.md`, and the post explains the split as a deliberate leanness decision: moving the form-filling instructions out keeps the core small, on the author's trust that Claude reads `forms.md` only when actually filling a form. The same skill bundles a pre-written Python script that extracts a PDF's form fields, which Claude can run without loading either the script or the PDF into context.
+
+The argument the post makes for bundling code at all is worth separating from the packaging story, since it is about cost and determinism rather than context: "sorting a list via token generation is far more expensive than simply running a sorting algorithm," and many applications require the deterministic reliability only code provides. This is the same property the adoption study above found largely unused in practice, with 83.3% of surveyed skills shipping no additional resources at all.
+
+Its four authoring guidelines are stated as process rather than format rules: start from evaluation, identifying capability gaps by running agents on representative tasks before writing anything; structure for scale by splitting an unwieldy `SKILL.md` into referenced files and keeping rarely co-occurring paths separate to reduce token usage, while making clear whether a script is to be run or read as reference; think from Claude's perspective by watching real usage for unexpected trajectories, with special attention to `name` and `description` since those decide whether the skill triggers at all; and iterate with Claude, asking it to capture successful approaches and common mistakes into the skill as work proceeds rather than trying to anticipate the needed context upfront.
+
+On security the post takes the same position the adoption and marketplace research above bears out from the other direction: because skills supply both instructions and code, a malicious skill may introduce vulnerabilities or direct Claude to exfiltrate data and take unintended actions. Its recommendation is to install only from trusted sources and, for anything less trusted, to audit before use — reading the bundled files with particular attention to code dependencies and bundled resources, and watching for instructions or code that connect to potentially untrusted external network sources.
 
 ### The format as its own specification describes it
 
@@ -98,6 +125,32 @@ Anthropic's own engineering writing reaches skills from a different direction. [
 Because a skill bundles natural-language instructions with optional executable scripts, its safety constraints are written as prose rather than enforced by a runtime — and [[ScholarlyArticle/no-attack-required]] reports that those constraints frequently do not hold. Its semantic fuzzing of 402 skills from the OpenClaw marketplace found [[DefinedTerm/specification-violations]] in 120 of them (29.9%), including 26 previously unknown exploitable guardrail violations in deployed skills. The failures it describes need no attacker: an ordinary user request causes a skill to breach a rule its own specification declared.
 
 Two of its findings bear directly on how skills are written. The first is that clear prose is not sufficient — of the 120 violated skills, 46 (38%) had all their guardrails rated well-written by an independent LLM judge, and were violated anyway because terms such as "critical domains" and "explicit approval" have no runtime definition. The second concerns the execution environment: skill specifications are typically written for human-interactive use or CI/CD automation, while agent execution is a third modality with no stdin yet a reachable human, so confirmation prompts built on shell or `input()` reads fail silently and push the agent toward `--yes` and `--force` flags that bypass the intended gate. The paper's recommendation to skill authors is that guardrails "must be operationally testable, not probabilistically interpreted".
+
+### Skills as an alternative to loading documentation through MCP
+
+[[BlogPosting/level-up-your-agents-google-skills-repository]] frames skills against a specific cost of the obvious alternative. Google offers a [[DefinedTerm/model-context-protocol]] server for its developer documentation, but the post argues that heavy MCP use causes **context bloat** — huge amounts of context loaded into the window, confusing the model and driving up token costs. Skills are presented as the complement rather than the replacement: "a way to equip agents with additional, condensed expertise," compact agent-first documentation for a specific technology or task, written in Markdown and able to carry reference files, code snippets and other assets, loaded only as needed.
+
+That framing is a vendor's argument for its own launch rather than a measured comparison, and the post offers no figures for either the bloat or the saving. What it does record concretely is the shape of an organisation-scale skills library: Google's official repository launched at Google Cloud Next 2026 with thirteen skills in three groups — product skills for AlloyDB, BigQuery, Cloud Run, Cloud SQL, Firebase, the Gemini API and Google Kubernetes Engine; Well-Architected Pillar skills for Security, Reliability and Cost Optimization; and "recipe" skills for onboarding, authentication and network observability — installed across agents with a single `npx skills install` command.
+
+### The anatomy of a skill, as one large pack builds them
+
+[[SoftwareApplication/addyosmani-agent-skills]] documents a consistent internal structure it applies across all 24 of its skills: frontmatter carrying a lowercase-hyphen `name` and a `description` of the form "Guides agents through [task]. Use when…", followed by an Overview of what the skill does, When to Use giving triggering conditions, Process giving the step-by-step workflow, Rationalizations pairing excuses with rebuttals, Red Flags signalling something is wrong, and Verification stating evidence requirements.
+
+Four design choices are stated behind that shape. Skills are **process, not prose** — workflows with steps, checkpoints and exit criteria rather than reference documents an agent reads. **Anti-rationalization** is treated as a first-class section: each skill tabulates the excuses agents use to skip steps, the given example being "I'll add tests later," against documented counter-arguments. **Verification is non-negotiable**, with every skill ending in evidence requirements — tests passing, build output, runtime data — and the rule that "'seems right' is never sufficient." And [[DefinedTerm/progressive-disclosure]] governs loading, with `SKILL.md` as the entry point and supporting references pulled in only when needed to keep token usage minimal.
+
+That repository also documents a portability consequence of the format: installing a single skill through `npx` copies only that skill's own directory, so a shared repository-level `references/` directory is not carried along, and paths to supplementary checklists break unless the whole repository is integrated.
+
+### Bundled with MCP servers rather than opposed to them
+
+[[SoftwareApplication/google-skills]] shows the two mechanisms shipping together rather than as alternatives: alongside its skills, the repository bundles Google product **plugins** defined as skills plus [[DefinedTerm/model-context-protocol]] servers, packaged for agent harnesses and installed through each harness's own plugin mechanism — a marketplace-add step for Claude Code and Codex, a direct plugin-path install for the Antigravity CLI. That is a different arrangement from the framing of skills as the answer to MCP-driven context bloat, and both come from the same vendor.
+
+### The three loading levels, and what they cost
+
+[[BlogPosting/survey-of-development-workflows-in-the-coding-agent-era]] sets out the token economics of the format as three levels. **L1 metadata** — the YAML frontmatter's name and description — is loaded at startup, always, at roughly 100 tokens per skill. **L2 instructions** — the `SKILL.md` body — loads when the skill activates, under 5,000 tokens. **L3 resources** — scripts, references and other files — load only on demand and are effectively unbounded. Its stated consequence is a 98% token reduction for a skill that is not used, so that installing ten or more skills still costs context only for the ones that activate.
+
+That post's usage guidance follows from the same arithmetic: compress project conventions and framework knowledge into an always-loaded [[DefinedTerm/agents-md]] file, and reserve skills for complex multi-step workflows such as TDD or code review that should load on demand.
+
+It also records that skill placement differs per tool — `.claude/skills/` for Claude Code, `.agents/skills/` for Codex CLI, `.gemini/skills/` or `.agents/skills/` for Gemini CLI, with Gemini CLI exposing an `activate_skill` tool for autonomous activation — and that Claude Code's own Plugins bundle skills, MCP, slash commands and agents into a single package.
 
 ## Related Terms
 

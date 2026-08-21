@@ -6,8 +6,8 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-08-20"
-extracted_tokens: 11612
+last_generated_at: "2026-08-21"
+extracted_tokens: 11647
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/three-week-drug-discovery-agent-using-kiro.md
   - .wikicommit/entity/en/SoftwareApplication/kiro.md
@@ -24,4 +24,4 @@ Excluded as unrelated to the configured theme:
 - "Amazon Bedrock AgentCore" (theme_mismatch): cloud infrastructure for hosting and orchestrating agents, adjacent to but outside this wiki's focus on how software is developed with AI assistance.
 - "Strands Agents SDK" (theme_mismatch): an agent-building SDK used to construct the domain agent, same reasoning as above.
 
-Re-checked on 2026-08-20 (content unchanged, cache hit). The source is fully mined: the three specification documents, the three steering documents, agent hooks, the day-by-day three-week breakdown, all five takeaways and both future directions are already on the generated pages. No new material, and no page was rewritten. The status stays `partial` because of the theme exclusions above, not because anything failed.
+Re-checked on 2026-08-21 (content unchanged, cache hit). Fifth pass, this time as a dedicated coverage comparison of the full source against all three generated pages. No uncovered theme-relevant material was found and no page was rewritten. The status stays `partial` because of the theme exclusions above, which is its correct terminal state.

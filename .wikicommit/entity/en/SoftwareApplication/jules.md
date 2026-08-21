@@ -10,8 +10,11 @@ sources:
   - type: url
     url: 'https://blog.google/innovation-and-ai/models-and-research/google-labs/jules/'
     hash: sha256:600f7a1ec8134e15607bb66edb2851d78e361864e2e6017d9ccec7914744aafc
+  - type: url
+    url: 'https://addyosmani.com/blog/code-agent-orchestra/'
+    hash: sha256:399fcd256a0dea0d4dc0841558f7f17cf41a9b447bc6bbc5adfbaf8728e9c557
 review_status: pending
-generated_at: "2026-08-19"
+generated_at: "2026-08-21"
 generated_by: "claude-opus-5[1m]"
 
 properties:
@@ -43,8 +46,14 @@ These are Google's own claims for its own product, made in launch and beta annou
 - Audio changelogs of recent commits.
 - Private by default, with no training on private code and data isolated to the execution environment.
 
+### As a Tier 3 cloud agent
+
+[[BlogPosting/the-code-agent-orchestra]] places Jules among the cloud async agents — tools where a task is assigned and the developer returns to a pull request, with no terminal or local setup. Its description of the workflow matches the plan-first shape above: connect a GitHub repository, describe a task, approve the plan Jules generates before any code is written, then let it run in a cloud VM and return a pull request with full reasoning and terminal logs. The distinctive features it names are audio changelogs, mid-task interruption, and the Jules Tools CLI for piping GitHub issues directly, and it records that Jules reads a repository's [[DefinedTerm/agents-md]] file automatically with no extra configuration.
+
 ## History
 
 Jules was introduced in Google Labs in December 2024, in [[Organization/google]]'s "The next chapter of the Gemini era for developers" post, as an experimental AI-powered code agent available to a select group of trusted testers, with wider availability promised for other interested developers in early 2025. That post situated it inside a broader claim about the field — "As AI code assistance rapidly evolves from simple code searches to AI-powered assistants embedded in developer workflows, we want to share the latest advancement that will use Gemini 2.0" — and reported alongside it a research result of 51.8% on [[Dataset/swe-bench]] Verified using Gemini 2.0 Flash equipped with code execution tools.
+
+That introduction also stated three benefits Google reported from its own internal use, which are worth recording as the vendor's original claims for the product rather than as observed outcomes: **more productivity**, from assigning issues and coding tasks for asynchronous execution; **progress tracking**, through real-time updates that let a developer prioritise what needs attention; and **full developer control**, meaning reviewing the plans Jules creates along the way, giving feedback or requesting adjustments, and reviewing before merging. The last of these — review of the plan, not only of the diff — is the earliest statement of the human-checkpoint shape the tool has kept.
 
 On 20 May 2025 Jules entered public beta in [[BlogPosting/build-with-jules]], available to everyone with no waitlist, worldwide wherever the Gemini model is available. Google's framing there was that "agentic development is shifting from prototype to product and quickly becoming central to how software gets built." Access during the beta was free of charge with usage limits applying, and Google said it expected to introduce pricing after the beta as the platform matured.

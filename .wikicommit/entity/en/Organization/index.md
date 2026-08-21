@@ -11,5 +11,6 @@ type: "schema:Organization"
 [[Organization/dora]] — DORA
 [[Organization/openai]] — OpenAI
 [[Organization/sonar]] — Sonar
+[[Organization/sourcegraph]] — Sourcegraph
 [[Organization/specstory]] — SpecStory
 [[Organization/strongdm]] — StrongDM

@@ -4,7 +4,9 @@ lang: en
 type: "schema:Person"
 ---
 
+[[Person/addy-osmani]] — Addy Osmani
 [[Person/andrej-karpathy]] — Andrej Karpathy
+[[Person/apoorv-gupta]] — Apoorv Gupta
 [[Person/arun-gupta]] — Arun Gupta
 [[Person/birgitta-bockeler]] — Birgitta Böckeler
 [[Person/boris-cherny]] — Boris Cherny
@@ -16,4 +18,5 @@ type: "schema:Person"
 [[Person/justin-spahr-summers]] — Justin Spahr-Summers
 [[Person/kevin-ryan]] — Kevin Ryan
 [[Person/martin-fowler]] — Martin Fowler
+[[Person/nicholas-carlini]] — Nicholas Carlini
 [[Person/simon-willison]] — Simon Willison
