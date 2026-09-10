@@ -1,0 +1,15 @@
+# lychee external link validation config
+# WikiCommit: validates sources[].url and https:// links in page bodies
+
+timeout = 10          # request timeout (seconds)
+max_retries = 2       # retries (for transient network errors)
+accept = [200, 206, 429]  # 200 OK, 206 Partial, 429 Too Many Requests (rate limiting is treated as a warning)
+
+# Set the GITHUB_TOKEN environment variable to avoid GitHub rate limiting.
+# lychee reads GITHUB_TOKEN from the environment automatically -- it does not
+# need to be named in this file. GitHub Actions sets secrets.GITHUB_TOKEN for you.
+
+# Internal links ([[WikiLink]] and relative paths) are out of lychee's scope;
+# WikiLink validation is check_wikilinks.py's job.
+# Note: which files get validated is controlled by CLI arguments, not by this file:
+#   lychee --config .lychee.toml .wikicommit/entity/**/*.md
