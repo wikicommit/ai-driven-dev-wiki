@@ -31,6 +31,15 @@ wikicommit:
   # a syntax error here would take exclude_domains down with it.
   rejected:
 ---
+Prioritize primary sources: blog posts and official documentation from practitioners and vendors
+(Anthropic, Google, GitHub, independent developer blogs), open-source toolkits, and papers.
+Do not take in generic AI news aggregation, vendor product marketing or comparison listicles,
+or unverified rumor articles.
+
+Wikipedia articles are read as an index only: follow their reference sections to the primary
+sources and register those, never the article itself. Register a Wikipedia article itself only
+where no primary source covers the term at all, and record its license when you do.
+
 
 <!--
 What belongs in this file: which sources this wiki takes in, and which it does not.
