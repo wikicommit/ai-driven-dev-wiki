@@ -7,13 +7,14 @@ sources:
   - type: url
     url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
     hash: sha256:c7052e34d28ddebf93de128987f6d7d06951dc48afa9ec47e137b46b756c28b7
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
   description: "The decline in a language model's ability to accurately recall information from its context as the number of tokens in the context window increases."
+reviewed_by: "joyk0117"
 ---
 
 Context rot is the decline in a language model's ability to accurately recall information from
