@@ -10,9 +10,9 @@ sources:
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "Driving a coding agent from a written task specification rather than directly from a prompt: the prompt is first turned into a specification, which is refined and optionally reviewed by a human, and only then implemented."
@@ -71,9 +71,9 @@ own, based on its internal production use rather than on independent evaluation.
 describes one implementation.
 
 ## Related Terms
-- [[DefinedTerm/vibe-coding]] — the contrasting practice of building without reviewing what the
-  model produces; the project describes its plugin as not a vibe-coding solution while noting that
-  out of the box, driven from a single prompt with no human checkpoints, it behaves like one
+- [[DefinedTerm/vibe-coding]] — the practice the project contrasts its plugin with: it describes
+  the plugin as not a vibe-coding solution while noting that out of the box, driven from a single
+  prompt with no human checkpoints, it behaves like one
 - [[DefinedTerm/subagent-driven-development]] — the lighter-weight approach the same project offers
   as a distilled version of this one
 - [[DefinedTerm/llm-as-a-judge]] — the evaluation technique used for the quality gates between

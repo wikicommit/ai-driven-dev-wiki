@@ -8,9 +8,9 @@ sources:
     url: https://simonwillison.net/2025/Mar/19/vibe-coding/
     hash: sha256:653ba52b66ad62da601ae6fd257897841726d7ac6a07029edc6d0e1c5b12188f
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "The general practice of writing software with the help of large language models, of which vibe coding is one narrow subset. Distinguished from vibe coding by whether the developer reads, tests, and can explain the code before relying on it."

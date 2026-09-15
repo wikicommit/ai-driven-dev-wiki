@@ -7,7 +7,7 @@ source:
 
 schema:
 status: partial
-last_generated_at: "2026-09-10"
+last_generated_at: '2026-09-15'
 extracted_tokens: 7033
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/effective-context-engineering-for-ai-agents.md
@@ -35,6 +35,9 @@ long-horizon work it describes just-in-time context retrieval alongside three te
 working around the context window limit: compaction, structured note-taking, and sub-agent
 architectures.
 
-The post's four listed authors — the only individuals this source names who were weighed as
-entity candidates, as the `author` values of the source-entity page — were excluded under `.wikicommit/entity-policy.md`'s
-`exclude_living_persons` rule, so `author` is recorded as plain text rather than as WikiLinks.
+## Generation Notes
+
+- "Prithvi Rajasekaran": excluded, privacy — a listed author of the post, a living individual, which `.wikicommit/entity-policy.md`'s `exclude_living_persons` switch rules out. No page exists for this entity.
+- "Ethan Dixon": excluded, privacy — a listed author of the post, a living individual, which `.wikicommit/entity-policy.md`'s `exclude_living_persons` switch rules out. No page exists for this entity.
+- "Carly Ryan": excluded, privacy — a listed author of the post, a living individual, which `.wikicommit/entity-policy.md`'s `exclude_living_persons` switch rules out. No page exists for this entity.
+- "Jeremy Hadfield": excluded, privacy — a listed author of the post, a living individual, which `.wikicommit/entity-policy.md`'s `exclude_living_persons` switch rules out. No page exists for this entity.

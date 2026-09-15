@@ -10,9 +10,9 @@ sources:
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "Dispatching a freshly launched sub-agent for each task in a larger piece of work, with review between tasks, so that every step starts from a clean context under an orchestrating main agent."

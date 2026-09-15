@@ -10,9 +10,9 @@ sources:
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "Having a separate model instance evaluate another's output against explicit rubrics and evidence, rather than accepting the output as produced — used in agent workflows as a quality gate between steps."
@@ -47,9 +47,10 @@ acceptance criteria, verification steps, review dimensions. Where the standard c
 advance, there is nothing for a judge to score against, and the pattern degrades into asking a model
 whether it likes the result.
 
-The judge's own bias is treated as a first-class concern rather than an afterthought: the kit's
-guidance on evaluating agent systems pairs LLM-as-a-Judge with multi-dimensional rubrics and bias
-mitigation. Read the strongest claims made for it with that in mind — the
+The kit's guidance on evaluating agent systems lists LLM-as-a-Judge alongside multi-dimensional
+rubrics and bias mitigation, without saying whose bias is at stake; where the kit does name a
+direction, it is the judge sub-agent that mitigates bias in the work under review. Read the
+strongest claims made for it with that in mind — the
 project states that judge-based quality gates fully eliminate cases where an agent produces
 non-working or incorrect solutions, which is its own assessment of its own tooling, based on
 internal production use rather than independent evaluation, and stronger than the surrounding
