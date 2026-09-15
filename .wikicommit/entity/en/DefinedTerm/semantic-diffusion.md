@@ -8,9 +8,9 @@ sources:
     url: https://simonwillison.net/2025/Mar/23/semantic-diffusion/
     hash: sha256:472ba908e669a42742696d92e042aca8106e1995d7e09841e4452b160c3bb490
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "The weakening of a term's definition as it spreads beyond the people who coined it. Coined by Martin Fowler in 2006 and applied here to the reception of vibe coding, whose narrow original meaning was reported as already being displaced by a looser one."

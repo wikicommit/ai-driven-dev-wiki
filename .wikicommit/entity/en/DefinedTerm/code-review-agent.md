@@ -9,9 +9,9 @@ sources:
     hash: sha256:d341905668ac335fd8b65234aab88d9e6141be72f0b9ffda8fc58381845ae5e6
     license: CC-BY-4.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "An automated bot that posts review feedback on pull requests, as distinct from a bot performing CI/CD or workflow automation. Abbreviated CRA."

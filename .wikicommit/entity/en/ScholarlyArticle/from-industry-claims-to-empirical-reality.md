@@ -9,9 +9,9 @@ sources:
     hash: sha256:d341905668ac335fd8b65234aab88d9e6141be72f0b9ffda8fc58381845ae5e6
     license: CC-BY-4.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "An empirical study of 3,109 GitHub pull requests drawn from the AIDev dataset, comparing merge outcomes between pull requests reviewed only by humans and those reviewed only by code review agents. It reports a 23.17 percentage point merge-rate gap in favour of human-only review, and links the gap to low signal-to-noise ratios in agent-generated review comments."

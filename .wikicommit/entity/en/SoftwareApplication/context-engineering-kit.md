@@ -9,9 +9,9 @@ sources:
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "A marketplace of context-engineering plugins for AI coding agents, packaging prompt patterns as installable skills, commands and sub-agents for Claude Code, Gemini CLI, Antigravity, Cursor and other tools."

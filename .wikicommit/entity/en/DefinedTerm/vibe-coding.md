@@ -11,9 +11,9 @@ sources:
     url: https://simonwillison.net/2025/Mar/23/semantic-diffusion/
     hash: sha256:472ba908e669a42742696d92e042aca8106e1995d7e09841e4452b160c3bb490
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "Building software with an LLM without reviewing the code it writes. Coined by Andrej Karpathy in early February 2025 for a deliberately unexamined, fast style of building, and argued here to be a narrow subset of AI-assisted programming rather than a synonym for it."

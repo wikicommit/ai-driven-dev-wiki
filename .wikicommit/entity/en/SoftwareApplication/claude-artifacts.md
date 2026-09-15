@@ -8,9 +8,9 @@ sources:
     url: https://simonwillison.net/2025/Mar/19/vibe-coding/
     hash: sha256:653ba52b66ad62da601ae6fd257897841726d7ac6a07029edc6d0e1c5b12188f
 review_status: pending
-generated_at: "2026-09-10"
+generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.5.0"
+generated_with: "0.6.1"
 
 properties:
   description: "One of the first widely available platforms for building software by prompting an LLM, notable for running generated code inside a locked-down sandbox that cannot reach the network."
