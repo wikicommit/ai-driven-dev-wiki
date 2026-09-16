@@ -7,3 +7,4 @@ comments: false
 ---
 
 - [[ScholarlyArticle/from-industry-claims-to-empirical-reality]]
+- [[ScholarlyArticle/vibe-coding-vs-agentic-coding]]

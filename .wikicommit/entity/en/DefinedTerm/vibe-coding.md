@@ -10,9 +10,12 @@ sources:
   - type: url
     url: https://simonwillison.net/2025/Mar/23/semantic-diffusion/
     hash: sha256:472ba908e669a42742696d92e042aca8106e1995d7e09841e4452b160c3bb490
+  - type: url
+    url: 'https://arxiv.org/pdf/2505.19443'
+    hash: sha256:6570a1ae86ae608d97b50f389a3ae52d197c066e9bb8412ba0eaea93265f7f52
 review_status: pending
-generated_at: "2026-09-15"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-16"
+generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
 properties:
@@ -85,6 +88,15 @@ The definition given here rests on one practitioner's argued position, building 
 coinage; the post is itself a response to the term being used more loosely elsewhere, so the narrow
 reading should not be taken as settled or universal usage.
 
+A 2025 academic review, [[ScholarlyArticle/vibe-coding-vs-agentic-coding]], illustrates the broader
+usage Willison describes losing ground to: it also attributes the term's coining to Karpathy, but
+defines vibe coding itself as a human-centric model in which the developer remains an active
+co-creator who reviews and refines each generated piece — a description close to ordinary,
+reviewed [[DefinedTerm/ai-assisted-programming]] rather than Karpathy's original "forgetting that
+the code even exists." The paper contrasts vibe coding with [[DefinedTerm/agentic-coding]], where
+autonomous agents plan and execute multi-step tasks with reduced human supervision.
+
 ## Related Terms
 - [[DefinedTerm/ai-assisted-programming]] — the broader practice this term is a subset of
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of
+- [[DefinedTerm/agentic-coding]] — the paradigm a 2025 academic taxonomy contrasts vibe coding with
