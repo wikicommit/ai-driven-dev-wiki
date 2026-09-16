@@ -9,13 +9,14 @@ sources:
     url: https://github.com/NeoLabHQ/context-engineering-kit
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
   description: "Having a separate model instance evaluate another's output against explicit rubrics and evidence, rather than accepting the output as produced — used in agent workflows as a quality gate between steps."
+reviewed_by: "joyk0117"
 ---
 
 LLM-as-a-Judge is the practice of having a model evaluate output rather than produce it: a separate
