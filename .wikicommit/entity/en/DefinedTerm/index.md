@@ -37,5 +37,8 @@ comments: false
 - [[DefinedTerm/sub-agent-architecture]]
 - [[DefinedTerm/subagent-driven-development]]
 - [[DefinedTerm/three-tier-boundaries]]
+- [[DefinedTerm/toolleak]]
 - [[DefinedTerm/trajectory-evaluation]]
+- [[DefinedTerm/two-channel-prompt-injection]]
 - [[DefinedTerm/vibe-coding]]
+- [[DefinedTerm/vibe-coding-development-models]]
