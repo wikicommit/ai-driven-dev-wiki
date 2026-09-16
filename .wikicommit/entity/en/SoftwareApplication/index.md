@@ -7,7 +7,9 @@ comments: false
 ---
 
 - [[SoftwareApplication/agent-skills]]
+- [[SoftwareApplication/aishelljack]]
 - [[SoftwareApplication/claude-artifacts]]
 - [[SoftwareApplication/claude-code]]
 - [[SoftwareApplication/context-engineering-kit]]
 - [[SoftwareApplication/cursor]]
+- [[SoftwareApplication/deepcode]]

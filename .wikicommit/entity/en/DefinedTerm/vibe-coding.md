@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2505.19443'
     hash: sha256:6570a1ae86ae608d97b50f389a3ae52d197c066e9bb8412ba0eaea93265f7f52
+  - type: url
+    url: 'https://arxiv.org/pdf/2510.12399'
+    hash: sha256:e7a4dc7327555d0478beeb5067576e505fb504e405921ca26c1b0f2a12f26118
 review_status: pending
 generated_at: "2026-09-16"
 generated_by: "claude-sonnet-5"
@@ -96,7 +99,21 @@ reviewed [[DefinedTerm/ai-assisted-programming]] rather than Karpathy's original
 the code even exists." The paper contrasts vibe coding with [[DefinedTerm/agentic-coding]], where
 autonomous agents plan and execute multi-step tasks with reduced human supervision.
 
+A separate 2025 survey, [[ScholarlyArticle/a-survey-of-vibe-coding]], names the same drift explicitly
+from within the broader camp: it defines vibe coding overall as validating an implementation "through
+outcome observation rather than line-by-line code comprehension," but of its own five-model
+taxonomy of vibe-coding practice ([[DefinedTerm/vibe-coding-development-models]]), it identifies only
+one — the Unconstrained Automation Model, where AI output is trusted without review — as "the
+development approach most closely aligned with the original definition of Vibe Coding." Three of its
+other four named models — Iterative Conversational Collaboration, Planning-Driven, and Test-Driven —
+involve some form of human review, upfront planning, or test-based verification that Karpathy's
+original coinage excluded. The fifth, Context-Enhanced, is not itself a review or planning practice:
+the survey describes it as an orthogonal, technical context-management capability (retrieval,
+codebase indexing) that can be layered onto any of the other four models, including the
+Unconstrained Automation Model itself.
+
 ## Related Terms
 - [[DefinedTerm/ai-assisted-programming]] — the broader practice this term is a subset of
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of
 - [[DefinedTerm/agentic-coding]] — the paradigm a 2025 academic taxonomy contrasts vibe coding with
+- [[DefinedTerm/vibe-coding-development-models]] — a five-model taxonomy of practices published under this term, only one of which the source ties to the original coinage
