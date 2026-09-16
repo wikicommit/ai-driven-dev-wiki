@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[SoftwareApplication/agent-skills]]
 - [[SoftwareApplication/claude-artifacts]]
 - [[SoftwareApplication/claude-code]]
 - [[SoftwareApplication/context-engineering-kit]]
