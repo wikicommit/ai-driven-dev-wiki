@@ -8,51 +8,71 @@ sources:
     url: https://arxiv.org/pdf/2604.03196
     hash: sha256:d341905668ac335fd8b65234aab88d9e6141be72f0b9ffda8fc58381845ae5e6
     license: CC-BY-4.0
+  - type: url
+    url: https://arxiv.org/pdf/2602.09185
+    hash: sha256:3d94ab700934f9544d412431d530fd11f6856381d3e23f9b57ac0adcd28f9989
 review_status: pending
-generated_at: "2026-09-15"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-16"
+generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
 properties:
-  description: "A dataset of pull request review activity from open-source GitHub repositories containing AI-generated code, published on Hugging Face and used as the empirical base for research on automated code review."
-  url: "https://huggingface.co/datasets/hao-li/AIDev/viewer/pr_review_comments"
+  description: "A dataset of 932,791 pull requests authored by AI coding agents (Agentic-PRs) across 116,211 GitHub repositories and 72,189 developers, with a curated 33,596-PR subset from repositories with over 100 stars enriched with review, commit, and issue data."
+  creator: ["Hao Li", "Haoxiang Zhang", "Ahmed E. Hassan"]
+  url: "https://huggingface.co/datasets/hao-li/AIDev"
   variableMeasured: ["user", "user_type", "body", "pull_request_url", "review state", "PR state", "merged_at", "pr_id", "pull_request_review_id"]
+  temporalCoverage: "../2025-08-01"
 ---
 
-AIDev is a dataset of pull request activity drawn from open-source GitHub repositories that
-contain AI-generated code. It is published on Hugging Face, and its value for research is that it
-captures both sides of the agentic pull request at once — the review comments left on a pull
-request, together with what eventually happened to that pull request. That pairing is what allows
-a study to ask whether a particular kind of reviewer is associated with code actually landing.
+AIDev is a dataset of 932,791 pull requests authored by AI coding agents ("Agentic-PRs") in
+real-world, open-source GitHub repositories, introduced in [[ScholarlyArticle/aidev]] by
+researchers at Queen's University. It spans 116,211 repositories and 72,189 developers, with a
+dataset cutoff of August 1, 2025, and aggregates PRs from five agents: OpenAI Codex, Devin, GitHub
+Copilot, Cursor, and Claude Code. A curated subset of 33,596 Agentic-PRs from 2,807 repositories
+with more than 100 GitHub stars is additionally enriched with review comments, commit-level diffs,
+issue links, and full pull-request event timelines. Its value for research is that it lets a study
+ask what happened to an agent-authored pull request — how it was reviewed and whether it was
+merged — at a scale prior controlled studies and small-scale deployments did not reach.
 
 ## Contents
 
-The dataset is organised into several linked tables. The one carrying review comments is
-`PRReviewComment`, in which each record holds the name of whoever posted the comment, a
-categorical `user_type` marking that account as either `User` or `Bot`, the comment text itself,
-and an API endpoint identifying the parent pull request. Note that the `Bot` value covers every
-automated account without distinguishing a reviewer from a build runner, so separating
-[[DefinedTerm/code-review-agent]] accounts from CI/CD ones requires manual classification.
+[[ScholarlyArticle/aidev]] groups the dataset's tables into five families. Core metadata —
+`all_pull_request` (932,791 records: title, body, agent, state, timestamps, repository, user),
+`all_repository` (116,211: name, license, language, URL, stars, forks), and `all_user` (72,189:
+login, followers, creation date) — covers the full dataset; the curated 100+-star subset repeats
+the same three tables at smaller scale (`pull_request`: 33,596, `repository`: 2,807, `user`: 1,796).
+Comments & Reviews adds `pr_comments` (39,122 discussion-style comments), `pr_reviews` (28,875
+review verdicts — approve or request changes), and `pr_review_comments` (19,450 inline code review
+comments with file-level context: path, diff hunk, timestamp) — available only for the curated
+subset. Commits & Diffs adds `pr_commits` (88,576) and `pr_commit_details` (711,923 file-level
+commit diffs). Issues & Events adds `related_issue` (4,923), `issue` (4,614), and `pr_timeline`
+(325,500 PR events such as committed, closed, merged, labeled, reviewed). An Annotation table,
+`pr_task_type` (33,596), carries an automated, GPT-based classification of each curated PR's
+purpose following the Conventional Commits categories.
 
-A `PRReview` table supplies the review state, which takes one of four values: `COMMENTED` for
-general feedback carrying no explicit decision, `APPROVED`, `CHANGES_REQUESTED`, or `DISMISSED`.
-A `PullRequest` table supplies the pull request's own state — open or closed — and a `merged_at`
-timestamp that is null where the pull request was never merged, which together make it possible
-to tell a merged pull request from an abandoned one. The tables join on `pr_id`, and comment-level
-data attaches through `pull_request_review_id`.
+[[ScholarlyArticle/from-industry-claims-to-empirical-reality]], working from the review-comment
+data described above, reads the review-comment table as carrying the name of whoever posted the
+comment, a categorical `user_type` marking that account as either `User` or `Bot`, the comment text
+itself, and an API endpoint identifying the parent pull request. Note that the `Bot` value covers
+every automated account without distinguishing a reviewer from a build runner, so separating
+[[DefinedTerm/code-review-agent]] accounts from CI/CD ones requires manual classification. That
+study also reads the review-state field as taking one of four values — `COMMENTED` for general
+feedback carrying no explicit decision, `APPROVED`, `CHANGES_REQUESTED`, or `DISMISSED` — and a
+pull request's own `merged_at` timestamp as null where the pull request was never merged, which
+together make it possible to tell a merged pull request from an abandoned one.
 
-On scale, the figure reported for the `PRReviewComment` table is 19,450 records; the same figure
-is also described as 19,450 pull requests carrying review activity, so it is safest read as the
-size of the review-comment table rather than as a confirmed count of distinct pull requests.
-Filtering that material down to pull requests with at least one review comment yields 3,177
-distinct pull requests.
+On scale, that study filters the review-comment material down to pull requests with at least one
+review comment, yielding 3,177 distinct pull requests out of the curated subset's 33,596.
 
 ## Provenance
 
-AIDev is distributed through Hugging Face under the `hao-li` namespace. Its coverage is limited
-to open-source GitHub repositories containing AI-generated code, which bounds what can be
-concluded from it: findings drawn from AIDev do not automatically extend to proprietary
-repositories, to other hosting platforms, or to projects that make no use of automated review.
+AIDev is distributed through Hugging Face under the `hao-li` namespace, and also through Zenodo,
+with example Jupyter notebooks and Google Colab links published in a companion GitHub repository.
+On Hugging Face it can be explored interactively through a "Data Studio" interface supporting
+in-browser SQL queries. Its coverage is limited to open-source GitHub repositories containing
+AI-generated code up to its August 1, 2025 cutoff, which bounds what can be concluded from it:
+findings drawn from AIDev do not automatically extend to proprietary repositories, to other hosting
+platforms, to agents outside the five it covers, or to activity after its cutoff date.
 
 ## Use
 
