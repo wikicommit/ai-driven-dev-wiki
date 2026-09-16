@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2510.12399'
     hash: sha256:e7a4dc7327555d0478beeb5067576e505fb504e405921ca26c1b0f2a12f26118
+  - type: url
+    url: 'https://arxiv.org/pdf/2603.11073'
+    hash: sha256:b27050eee67fa3ab8d502b496b64c26c1985857ac4dabac280117ba6882031d7
 review_status: pending
 generated_at: "2026-09-16"
 generated_by: "claude-sonnet-5"
@@ -117,3 +120,6 @@ Unconstrained Automation Model itself.
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of
 - [[DefinedTerm/agentic-coding]] — the paradigm a 2025 academic taxonomy contrasts vibe coding with
 - [[DefinedTerm/vibe-coding-development-models]] — a five-model taxonomy of practices published under this term, only one of which the source ties to the original coinage
+- [[ScholarlyArticle/context-before-code]] — an experience report finding vibe coding reliable for
+  scaffolding but not for architectural properties like tenant isolation and asynchronous
+  processing unless explicitly prompted, proposing [[DefinedTerm/non-delegation-zone]] for the gap

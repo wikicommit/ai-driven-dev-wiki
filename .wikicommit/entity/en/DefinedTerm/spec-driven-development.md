@@ -12,6 +12,9 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/good-spec/'
     hash: sha256:fbb1e0c078b1d920689cbc3c652ad4bf253d5b39c77f957cab7ee4e6cd1ff5fa
+  - type: url
+    url: https://arxiv.org/pdf/2602.00180
+    hash: sha256:982804fd917021d4811f4b23fc3ada9dfc07e4c91add2e07b32b2ffa9aad4253
 review_status: pending
 generated_at: "2026-09-16"
 generated_by: "claude-sonnet-5"
@@ -25,9 +28,10 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Two independent
-accounts of the practice are described here — a plugin implementation and a tool-vendor-published
-workflow — and they agree on this much while differing in the concrete mechanics below.
+implementation then proceeds from the specification and is verified against it. Three independent
+accounts of the practice are described here — a plugin implementation, a tool-vendor-published
+workflow, and a practitioner's cross-tool survey — and they agree on this much while differing in
+the concrete mechanics below, including how many levels of rigor the practice is understood to have.
 
 ## Usage
 
@@ -58,6 +62,19 @@ developer reviewing focused changes rather than large code dumps at the end. Tha
 specification, once approved, as a persistent, version-controlled artefact fed back into the agent's
 context across sessions, comparable to a team's Product Requirements Document.
 
+**A third account**, from a 2026 practitioner's survey of spec-driven development
+([[ScholarlyArticle/from-code-to-contract]]), frames SDD as a spectrum of three levels of rigor
+rather than a single practice: **spec-first**, where a specification guides only the initial
+implementation and may be left to drift once code exists; **spec-anchored**, where the specification
+is maintained alongside the code throughout its lifecycle, with automated checks — often tests
+derived from the spec — keeping the two synchronized; and **spec-as-source**, where the specification
+is the only artefact developers edit directly and code is entirely generated and regenerated from it,
+as already established in domains like Simulink-based embedded-systems development. That survey
+describes a four-phase workflow common across the tools it examines — Specify, Plan, Implement,
+Validate — with human review at each phase boundary, and names [[SoftwareApplication/github-spec-kit]],
+[[SoftwareApplication/kiro]], and [[SoftwareApplication/tessl]] as representative AI-assisted
+toolkits spanning the spectrum.
+
 ## When It Applies
 The practice trades developer time and tokens for reliability, so it applies where that trade is
 worth making. The context-engineering-kit project positions it for complex or large codebases with
@@ -84,12 +101,21 @@ validated. In that account's Plan phase specifically, a company's standardized t
 legacy-integration constraints, or compliance requirements are what the developer supplies for the
 agent to fold into the technical plan.
 
-How well established the practice is, neither source settles. Each uses the term for its own
-implementation and for the pattern that implementation embodies; the context-engineering-kit's
-reliability claims — including that its plugin produced working code in every case its team tested —
-are the project's own, based on internal production use rather than independent evaluation. The
-GitHub Spec Kit account comes from a third-party blog post citing GitHub's own published study and
-documentation of the tool, rather than from an independent evaluation of it.
+The practitioner's survey account gives its own decision framework: SDD is worth adopting for
+AI-assisted development generally, for complex requirements, for systems with multiple maintainers,
+for integration-heavy systems, for regulated domains needing traceability, and for legacy
+modernization; it considers the overhead unjustified for throwaway prototypes, solo short-lived
+projects, exploratory coding, and simple applications with obvious requirements.
+
+How well established the practice is, none of the three sources settles on their own. Each uses the
+term for its own implementation or account of the pattern; the context-engineering-kit's reliability
+claims — including that its plugin produced working code in every case its team tested — are the
+project's own, based on internal production use rather than independent evaluation. The GitHub Spec
+Kit account comes from a third-party blog post citing GitHub's own published study and documentation
+of the tool, rather than from an independent evaluation of it. The practitioner's survey is likewise
+a self-published technical report rather than a peer-reviewed study; its case studies are presented
+as illustrative examples, and the error-reduction figures it cites for human-refined specifications
+are drawn from other studies it references rather than from its own measurement.
 
 ## Related Terms
 - [[DefinedTerm/vibe-coding]] — the practice the project contrasts its plugin with: it describes
@@ -100,4 +126,7 @@ documentation of the tool, rather than from an independent evaluation of it.
 - [[DefinedTerm/llm-as-a-judge]] — the evaluation technique used for the quality gates between
   phases
 - [[BlogPosting/good-spec]] — source of the GitHub Spec Kit account of this practice
+- [[ScholarlyArticle/from-code-to-contract]] — source of the three-tier specification-rigor spectrum
+  (spec-first, spec-anchored, spec-as-source) and the Specify/Plan/Implement/Validate workflow
+  presented above
 - [[DefinedTerm/three-tier-boundaries]] — a related spec-writing pattern from the same source

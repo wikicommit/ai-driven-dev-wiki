@@ -13,3 +13,6 @@ comments: false
 - [[SoftwareApplication/context-engineering-kit]]
 - [[SoftwareApplication/cursor]]
 - [[SoftwareApplication/deepcode]]
+- [[SoftwareApplication/github-spec-kit]]
+- [[SoftwareApplication/kiro]]
+- [[SoftwareApplication/tessl]]
