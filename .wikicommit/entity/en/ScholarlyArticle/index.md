@@ -10,6 +10,7 @@ comments: false
 - [[ScholarlyArticle/agent-security-bench]]
 - [[ScholarlyArticle/agentdojo]]
 - [[ScholarlyArticle/agentic-design-patterns-system-theoretic-framework]]
+- [[ScholarlyArticle/agrail]]
 - [[ScholarlyArticle/aidev]]
 - [[ScholarlyArticle/are-ai-assisted-development-tools-immune-to-prompt-injection]]
 - [[ScholarlyArticle/context-before-code]]
