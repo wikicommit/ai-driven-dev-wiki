@@ -7,6 +7,9 @@ comments: false
 ---
 
 - [[ScholarlyArticle/a-survey-of-vibe-coding]]
+- [[ScholarlyArticle/agent-security-bench]]
+- [[ScholarlyArticle/agentdojo]]
+- [[ScholarlyArticle/agentic-design-patterns-system-theoretic-framework]]
 - [[ScholarlyArticle/aidev]]
 - [[ScholarlyArticle/are-ai-assisted-development-tools-immune-to-prompt-injection]]
 - [[ScholarlyArticle/context-before-code]]
@@ -14,6 +17,10 @@ comments: false
 - [[ScholarlyArticle/from-code-to-contract]]
 - [[ScholarlyArticle/from-industry-claims-to-empirical-reality]]
 - [[ScholarlyArticle/from-tool-orchestration-to-code-execution]]
+- [[ScholarlyArticle/landscape-of-prompt-injection-threats-in-llm-agents]]
+- [[ScholarlyArticle/magentic-ui]]
+- [[ScholarlyArticle/not-what-youve-signed-up-for]]
+- [[ScholarlyArticle/react-synergizing-reasoning-and-acting]]
 - [[ScholarlyArticle/red-teaming-coding-agents-tool-invocation]]
 - [[ScholarlyArticle/vibe-coding-vs-agentic-coding]]
 - [[ScholarlyArticle/where-do-ai-coding-agents-fail]]

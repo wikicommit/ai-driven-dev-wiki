@@ -15,4 +15,5 @@ comments: false
 - [[SoftwareApplication/deepcode]]
 - [[SoftwareApplication/github-spec-kit]]
 - [[SoftwareApplication/kiro]]
+- [[SoftwareApplication/magentic-ui]]
 - [[SoftwareApplication/tessl]]
