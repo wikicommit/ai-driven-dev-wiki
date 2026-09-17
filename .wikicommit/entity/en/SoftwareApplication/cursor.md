@@ -7,9 +7,12 @@ sources:
   - type: url
     url: https://simonwillison.net/2025/Mar/19/vibe-coding/
     hash: sha256:653ba52b66ad62da601ae6fd257897841726d7ac6a07029edc6d0e1c5b12188f
+  - type: url
+    url: 'https://addyosmani.com/blog/long-running-agents/'
+    hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
 review_status: pending
-generated_at: "2026-09-15"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-17"
+generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
 properties:
@@ -30,6 +33,10 @@ Karpathy's account of vibe coding, quoted in the same post, names Cursor Compose
 Sonnet model as the setup he was working in, and describes talking to it by voice rather than
 typing. That is his description of his own workflow at the time rather than a statement about what
 the product generally offers.
+
+A later post on long-running agents describes Cursor as also shipping background cloud agents: long-running tasks that run on Anysphere's cloud infrastructure rather than the developer's own laptop, so an eight-hour refactor or a codebase-wide migration survives a closed lid. A task can be started locally, sent to run in the cloud once it looks like it will take longer, and re-attached to later from another device; each background agent runs in its own isolated git worktree and merges its result back via pull request (see [[DefinedTerm/git-worktrees]]). The same post names Composer 2, described as Cursor's proprietary frontier coding model, which ships in Cursor 3.
+
+That post also describes the coordination system behind Cursor's production long-running agents: a Planner/Worker/Judge role split reached after two earlier coordination designs (equal-status agents sharing files with locks, then optimistic concurrency control) each ran into bottlenecks or coordination failures (see [[DefinedTerm/planner-worker-model]]). It reports that a GPT model outperformed Opus specifically for extended autonomous work, because Opus tended to stop early and take shortcuts — different models suited to different roles in the same system.
 
 ## Adoption & Ecosystem
 Willison groups Cursor with other popular vibe coding tools, which places a tool built for

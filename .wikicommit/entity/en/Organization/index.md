@@ -7,4 +7,5 @@ comments: false
 ---
 
 - [[Organization/anthropic]]
+- [[Organization/google]]
 - [[Organization/neolabhq]]
