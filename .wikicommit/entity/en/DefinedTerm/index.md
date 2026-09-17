@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[DefinedTerm/agent-hooks]]
 - [[DefinedTerm/agent-teams]]
 - [[DefinedTerm/agentic-autonomy-levels]]
 - [[DefinedTerm/agentic-coding]]
@@ -21,6 +22,7 @@ comments: false
 - [[DefinedTerm/cognitive-debt]]
 - [[DefinedTerm/cognitive-surrender]]
 - [[DefinedTerm/compaction]]
+- [[DefinedTerm/computer-use]]
 - [[DefinedTerm/conductor-and-orchestrator-modes]]
 - [[DefinedTerm/context-engineering]]
 - [[DefinedTerm/context-rot]]
@@ -28,6 +30,7 @@ comments: false
 - [[DefinedTerm/first-principles-framework]]
 - [[DefinedTerm/harness-as-a-service]]
 - [[DefinedTerm/harness-engineering]]
+- [[DefinedTerm/indirect-prompt-injection]]
 - [[DefinedTerm/just-in-time-context-retrieval]]
 - [[DefinedTerm/llm-as-a-judge]]
 - [[DefinedTerm/loop-engineering]]
@@ -39,6 +42,7 @@ comments: false
 - [[DefinedTerm/planner-worker-model]]
 - [[DefinedTerm/prompt-engineering]]
 - [[DefinedTerm/ralph-loop]]
+- [[DefinedTerm/react-prompting]]
 - [[DefinedTerm/sandboxing]]
 - [[DefinedTerm/semantic-diffusion]]
 - [[DefinedTerm/signal-to-noise-ratio]]
