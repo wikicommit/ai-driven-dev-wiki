@@ -7,14 +7,16 @@ sources:
   - type: url
     url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
     hash: sha256:c7052e34d28ddebf93de128987f6d7d06951dc48afa9ec47e137b46b756c28b7
-review_status: reviewed
-generated_at: "2026-09-15"
-generated_by: "claude-opus-5[1m]"
+  - type: url
+    url: 'https://addyosmani.com/blog/long-running-agents/'
+    hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
+review_status: pending
+generated_at: "2026-09-17"
+generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
 properties:
   description: "The practice of summarising a conversation that is nearing the context window limit and reinitiating a new context window with that summary."
-reviewed_by: "joyk0117"
 ---
 
 Compaction is the practice of taking a conversation nearing the context window limit, summarising
@@ -50,8 +52,13 @@ describes this as having launched as a feature on the Claude Developer Platform.
   critical context whose importance only becomes apparent later.
 - Established as Anthropic's own implemented practice in Claude Code and as a shipped platform
   feature, described from its engineering experience rather than as a measured result.
+- A post on long-running agents describes Anthropic as explicit that summarization-as-compaction is
+  not sufficient on its own for very long jobs: beyond ordinary compaction, Anthropic's harnesses
+  also perform full context resets, where the harness tears a session down and rebuilds it from a
+  structured handoff file — described as essentially how a human onboards a new engineer.
 
 ## Related Terms
 - [[DefinedTerm/structured-note-taking]]
 - [[DefinedTerm/sub-agent-architecture]]
 - [[DefinedTerm/context-engineering]]
+- [[DefinedTerm/long-running-agent]]
