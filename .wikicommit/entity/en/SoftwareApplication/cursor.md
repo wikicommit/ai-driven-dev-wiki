@@ -13,13 +13,18 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2508.11126'
     hash: sha256:d8a0f4c103987a46e21f37fca41b5ebfa795945e9c798921c4fdfbfc18bd9346
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.12231'
+    hash: sha256:08aa95b018a1374f9de491d626d4f394b8efec41d830ef1726a1b8db6a69d9d6
 review_status: pending
-generated_at: "2026-09-17"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-18"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A popular tool for building software with an LLM, initially intended for professional developers and carrying far fewer safety rails than sandboxed alternatives."
+  description: "A popular tool for building software with an LLM, initially intended for professional developers and carrying far fewer safety rails than sandboxed alternatives. Published by Anysphere, it is also studied as an AI IDE, with project-specific rules kept under .cursor/rules/."
+  applicationCategory: "AI IDE (per the 2026 rule-taxonomy study); IDE Assistant (per the 2025 agentic-programming survey)"
+  author: "Anysphere"
 ---
 
 Cursor appears in [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]] as a popular tool
@@ -36,6 +41,7 @@ classifies Cursor, in its own taxonomy, as an IDE Assistant that is reactive and
 multi-turn or adaptive.
 
 ## Capabilities
+
 The post's one direct characterisation is comparative: Cursor has far less in the way of safety
 rails than [[SoftwareApplication/claude-artifacts]], whose sandbox prevents unreviewed code from
 reaching the network or from causing harm outside the project.
@@ -49,9 +55,25 @@ A later post on long-running agents describes Cursor as also shipping background
 
 That post also describes the coordination system behind Cursor's production long-running agents: a Planner/Worker/Judge role split reached after two earlier coordination designs (equal-status agents sharing files with locks, then optimistic concurrency control) each ran into bottlenecks or coordination failures (see [[DefinedTerm/planner-worker-model]]). It reports that a GPT model outperformed Opus specifically for extended autonomous work, because Opus tended to stop early and take shortcuts — different models suited to different roles in the same system.
 
+[[ScholarlyArticle/rule-taxonomy-and-evolution-in-ai-ides]] treats Cursor as an
+[[DefinedTerm/ai-ide]] — an editor built with AI as a core architectural component rather than a plugin
+over an existing one — and as one of five such tools that let developers define
+[[DefinedTerm/ai-ide-rules]]. Cursor's rule files live under `.cursor/rules/`; that study also lists a
+legacy `.cursorrules` format among Cursor's rule-file locations, noting that such legacy formats were
+later superseded by the directory-based mechanism. That study records
+Cursor's release date as 6 April 2023, noting that the date corresponds to the version in which it
+transitioned to its VS Code-based architecture.
+
 ## Adoption & Ecosystem
+
 Willison groups Cursor with other popular vibe coding tools, which places a tool built for
 professionals among the ones newcomers reach for. The safety concern he raises follows from exactly
 that mismatch: the conditions he sets out for vibe coding — low stakes, care with secrets and
 private data, hard billing limits — have to be met by the person rather than by the tool when the
 tool does not enforce them.
+
+In the rule-taxonomy study's practitioner survey, Cursor was the most widely adopted AI IDE among its
+99 respondents, named by 57 — closely followed by the VS Code plus Copilot setup at 51, which that
+study counts as a plugin arrangement rather than an AI IDE. On the mining side, Cursor also accounted
+for the largest share of that study's project dataset: 46 of the 83 projects it analysed, drawn from an
+initial 18,790 candidates before keyword, rule-file and manual filtering.

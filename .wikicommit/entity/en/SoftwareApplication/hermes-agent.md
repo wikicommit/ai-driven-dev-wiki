@@ -7,6 +7,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.14228'
     hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.05608'
+    hash: sha256:0793091fcad2dc48f9eb6412001558cc2e993e5d5904e18d8fd0c943453879be
 review_status: pending
 generated_at: "2026-09-18"
 generated_by: "claude-opus-5[1m]"
@@ -15,7 +18,7 @@ generated_with: "0.6.1"
 properties:
   description: "An open-source AI agent from Nous Research that runs as a single Python process whose role is set by the entry point that launched it, fronting many messaging and IDE surfaces over one runtime and one persistence layer."
   applicationCategory: "AI agent"
-  featureList: "Single-process multi-surface runtime; centralized per-action tool approval with three modes; pluggable memory and model-provider backends; SQLite session store with full-text search; cron scheduler and webhook subscriptions; SQLite-backed Kanban work queue"
+  featureList: "Single-process multi-surface runtime; centralized per-action tool approval with three modes; pluggable memory and model-provider backends; SQLite session store with full-text search; cron scheduler and webhook subscriptions; SQLite-backed Kanban work queue; agent-created Skills, distinct from the bundled ones, which the agent writes after completing tasks and patches when it finds them insufficient"
   author: "Nous Research"
 ---
 
@@ -34,6 +37,19 @@ Five extension surfaces are described. Three sit at the same level as Claude Cod
 Context management is one auxiliary-LLM summarizer with token-budget tail protection, preceded by a tool-output prune pass; the summary carries a "reference only" preamble telling the agent that the compaction is background context rather than new instructions and that persistent memory files remain authoritative. Before injection, context files such as `AGENTS.md`, `.cursorrules` and `SOUL.md` are scanned for injection patterns and invisible Unicode, and any hit replaces the file's content with a blocked marker.
 
 Delegation goes through a `delegate_task` tool that spawns child agent instances in a thread pool. The parent blocks until children return summaries; concurrency is capped at three children by default and depth at one, leaf children cannot themselves delegate without opt-in, and children always run with persistent memory disabled so they can neither read nor write the parent's notes. Separately, a Kanban subsystem provides a SQLite-backed work queue in which multiple worker profiles claim, heartbeat and complete tasks, with stale-claim reclamation and an automatic block after two consecutive failed attempts.
+
+[[ScholarlyArticle/agentic-software-restructuring-paradigm]] reads the same framework through a
+different lens, treating it as a concrete realisation of a perception-memory-action agent architecture
+and as the most complete realisation it found of the self-evolution principle in a production system.
+What that paper singles out is a closed learning loop: after completing complex tasks the agent
+autonomously creates reusable Skills of its own — parameterized procedural modules capturing successful
+strategies, distinct from the bundled skills that are one of the five extension surfaces above — and
+those skills self-improve during use, with the agent patching a skill automatically
+when it is invoked and found lacking. That paper describes the create, use, detect-weakness, self-patch
+cycle as operating without human intervention, and takes it as the dynamic distinguishing agentic
+systems from traditional software. It also points to the framework's cross-session episodic memory,
+realised through FTS5-backed conversation search with LLM summarization, and to its subagent delegation
+as an early demonstration of multi-agent coordination in a widely deployed system.
 
 ## Adoption & Ecosystem
 
