@@ -13,8 +13,11 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/long-running-agents/'
     hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
+  - type: url
+    url: 'https://arxiv.org/pdf/2509.06216'
+    hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
 review_status: pending
-generated_at: "2026-09-17"
+generated_at: "2026-09-18"
 generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
@@ -29,6 +32,8 @@ AGENTS.md is a markdown file, conventionally placed at the root of a repository,
 Cited research summarized in the source found that a human-authored `AGENTS.md` recording genuinely non-discoverable, operationally significant facts (e.g. "use `uv` for package management") measurably changed agent behavior and improved task success, while an auto-generated file — typically a codebase overview the agent could otherwise discover by reading the repository directly — was found to add cost without improving, and in some cases while reducing, task success. The source also describes an "anchoring effect": once a technology or pattern is mentioned in the file, it stays in context on every subsequent prompt, which can bias the agent toward it even where it is no longer the current convention.
 
 A later post by the same author cites OpenAI's Codex documentation as recommending an `AGENTS.md` file to give an agent consistent expectations about which tests to run, lint rules, dependency policies, and documentation requirements — likened there to onboarding a new hire with a map of conventions before they start writing code. That post also frames updating `AGENTS.md` and related checklists as the final "retro" step of a repeatable orchestration loop, so the next run starts smarter ([[BlogPosting/your-ai-coding-agents-need-a-manager]]).
+
+[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] discusses project-level configuration files such as `CLAUDE.md`, `.clinerules`, and `AGENT.md` as an early, grassroots practice of loading "institutional knowledge" before every agent task — codifying style guides, architectural constraints, and lessons learned into a continuously improving "employee handbook" for AI teammates. It frames this practice as an early example of what it proposes formalizing as [[DefinedTerm/mentorscript]], and states the community has no consensus on what such files should contain or the appropriate level of detail, arguing that future work involves not only defining more formal languages for this purpose but also discovering best practices for these files' effective use.
 
 ## When It Applies
 

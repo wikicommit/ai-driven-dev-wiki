@@ -11,8 +11,11 @@ sources:
   - type: url
     url: https://arxiv.org/pdf/2602.09185
     hash: sha256:3d94ab700934f9544d412431d530fd11f6856381d3e23f9b57ac0adcd28f9989
+  - type: url
+    url: 'https://arxiv.org/pdf/2509.06216'
+    hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
 review_status: pending
-generated_at: "2026-09-16"
+generated_at: "2026-09-18"
 generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
@@ -83,3 +86,9 @@ review, arriving at a working set of 3,109 pull requests reviewed by actual code
 Of those, 2,456 fell into the Commented review condition, which the study used as the basis for
 its human-versus-agent comparison because pull requests reviewed solely by agents occurred
 nowhere else.
+
+[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] cites a study of 15,451
+refactoring instances across 12,256 agent-authored pull requests, drawn from AIDev, which found
+that agents frequently perform localized and consistency-oriented refactorings — such as variable
+renaming and type updates — while undertaking fewer high-level architectural changes than human
+developers.

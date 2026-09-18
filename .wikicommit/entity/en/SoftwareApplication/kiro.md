@@ -7,8 +7,11 @@ sources:
   - type: url
     url: https://arxiv.org/pdf/2602.00180
     hash: sha256:982804fd917021d4811f4b23fc3ada9dfc07e4c91add2e07b32b2ffa9aad4253
+  - type: url
+    url: 'https://arxiv.org/pdf/2509.06216'
+    hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
 review_status: pending
-generated_at: "2026-09-16"
+generated_at: "2026-09-18"
 generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
@@ -29,3 +32,8 @@ addresses more generally.
 A 2026 practitioner's survey of spec-driven development tools ([[ScholarlyArticle/from-code-to-contract]])
 categorizes Kiro, alongside [[SoftwareApplication/github-spec-kit]] and [[SoftwareApplication/tessl]],
 as one of three representative AI-assisted SDD toolkits.
+
+[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] cites Kiro as an industry
+tool already demonstrating a [[DefinedTerm/plan-do-assess-review]] pattern built around
+[[DefinedTerm/product-requirement-prompt]]s (PRPs), typically structured into five sections: Goal
+& Why, What & Success Criteria, All Needed Context, Implementation Blueprint, and Validation Loop.
