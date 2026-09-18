@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[SoftwareApplication/agent-governance-toolkit]]
 - [[SoftwareApplication/agent-skills]]
 - [[SoftwareApplication/agentclick]]
 - [[SoftwareApplication/aishelljack]]
@@ -33,6 +34,8 @@ comments: false
 - [[SoftwareApplication/hermes-agent]]
 - [[SoftwareApplication/kiro]]
 - [[SoftwareApplication/magentic-ui]]
+- [[SoftwareApplication/microsoft-agent-framework]]
+- [[SoftwareApplication/microsoft-foundry-agent-service]]
 - [[SoftwareApplication/openai-codex]]
 - [[SoftwareApplication/openclaw]]
 - [[SoftwareApplication/openspec]]
