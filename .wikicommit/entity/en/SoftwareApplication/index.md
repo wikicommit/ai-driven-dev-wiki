@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[SoftwareApplication/agent-skills]]
+- [[SoftwareApplication/agentclick]]
 - [[SoftwareApplication/aishelljack]]
 - [[SoftwareApplication/amazon-q-developer]]
 - [[SoftwareApplication/autocoderover]]
@@ -28,9 +29,11 @@ comments: false
 - [[SoftwareApplication/github-copilot-coding-agent]]
 - [[SoftwareApplication/github-spec-kit]]
 - [[SoftwareApplication/google-jules]]
+- [[SoftwareApplication/hermes-agent]]
 - [[SoftwareApplication/kiro]]
 - [[SoftwareApplication/magentic-ui]]
 - [[SoftwareApplication/openai-codex]]
+- [[SoftwareApplication/openclaw]]
 - [[SoftwareApplication/swe-agent]]
 - [[SoftwareApplication/tabnine]]
 - [[SoftwareApplication/tessl]]

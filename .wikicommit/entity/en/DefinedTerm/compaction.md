@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/long-running-agents/'
     hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.14228'
+    hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
 review_status: pending
-generated_at: "2026-09-17"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-18"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
@@ -26,6 +29,7 @@ coherence: at its core it distils the contents of a context window in a high-fid
 enabling an agent to continue with minimal performance degradation.
 
 ## Usage
+
 In [[SoftwareApplication/claude-code]], Anthropic implements compaction by passing the message
 history to the model to summarise and compress the most critical details. The model preserves
 architectural decisions, unresolved bugs and implementation details while discarding redundant
@@ -38,7 +42,30 @@ tool has been called deep in the message history, the raw result generally need 
 — and calls tool result clearing one of the safest, lightest-touch forms of compaction. It
 describes this as having launched as a feature on the Claude Developer Platform.
 
+A summarising pass is not always a single step. [[ScholarlyArticle/dive-into-claude-code]], reading
+Claude Code's source at v2.1.88, describes compaction there as a pipeline of five shapers that run
+in sequence before every model call, each more aggressive than the last: a per-tool-result budget
+that replaces oversized outputs with content references, a lightweight trim of older history
+segments, a fine-grained cache-aware compression, a read-time projection that presents a collapsed
+view while leaving the stored history intact, and finally a full model-generated summary that fires
+only when the context still exceeds the pressure threshold after the other four have run. The
+authors describe this as a lazy-degradation principle — apply the least disruptive compression
+first, escalate only when cheaper strategies prove insufficient — and note that the compaction
+output is appended rather than written over prior transcript lines, so earlier content remains
+available for reconstruction.
+
+That same study is explicit about what the graduated design costs. Five interacting layers, several
+gated by feature flags, produce behaviour users find difficult to predict, and the compression is
+largely invisible: a user has no easy way to inspect what a budget replacement, a trim or a collapse
+removed, and cache-aware behaviour makes compression decisions depend on prompt caching in ways not
+surfaced to them. The authors also relay external work reporting two further costs of
+summary-based compaction — that the summarisation step is a blocking inference stall, and that it is
+non-deterministic, with retained content fluctuating across runs on identical inputs. They contrast
+the whole approach with simpler alternatives, single-pass truncation or one summarisation step,
+which sacrifice information but are easier to reason about.
+
 ## When It Applies
+
 - Applies to long-horizon tasks where the token count exceeds the context window, and
   particularly to work requiring extensive back-and-forth; Anthropic says compaction maintains
   conversational flow for such tasks, in contrast to note-taking, which it says excels for
@@ -51,13 +78,16 @@ describes this as having launched as a feature on the Claude Developer Platform.
   to keep versus what to discard, and that overly aggressive compaction can lose subtle but
   critical context whose importance only becomes apparent later.
 - Established as Anthropic's own implemented practice in Claude Code and as a shipped platform
-  feature, described from its engineering experience rather than as a measured result.
+  feature, described from its engineering experience rather than as a measured result. The
+  five-layer account above rests on one study's reading of a single version's source, whose authors
+  caution that feature flags make builds differ.
 - A post on long-running agents describes Anthropic as explicit that summarization-as-compaction is
   not sufficient on its own for very long jobs: beyond ordinary compaction, Anthropic's harnesses
   also perform full context resets, where the harness tears a session down and rebuilds it from a
   structured handoff file — described as essentially how a human onboards a new engineer.
 
 ## Related Terms
+
 - [[DefinedTerm/structured-note-taking]]
 - [[DefinedTerm/sub-agent-architecture]]
 - [[DefinedTerm/context-engineering]]
