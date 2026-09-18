@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/long-running-agents/'
     hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
+  - type: url
+    url: 'https://arxiv.org/pdf/2508.11126'
+    hash: sha256:d8a0f4c103987a46e21f37fca41b5ebfa795945e9c798921c4fdfbfc18bd9346
 review_status: pending
 generated_at: "2026-09-17"
 generated_by: "claude-sonnet-5"
@@ -23,6 +26,14 @@ Cursor appears in [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]]
 used for [[DefinedTerm/vibe-coding]] that was not originally designed for it. Simon Willison notes
 that it was initially intended for professional developers, and treats that origin as the
 explanation for how little it constrains what generated code can do.
+
+A survey on AI agentic programming, [[ScholarlyArticle/ai-agentic-programming-survey]], describes
+Cursor as extending IDE-assistant functionality with conversational interaction, memory of previous
+edits, and structured command execution. Elsewhere in its comparative analysis, the same survey
+reports Cursor's underlying model as Claude 3.5 Sonnet or GPT-4, with a 128,000-token default
+context window and persistent memory implemented as semantic search over project history, and
+classifies Cursor, in its own taxonomy, as an IDE Assistant that is reactive and tool-using but not
+multi-turn or adaptive.
 
 ## Capabilities
 The post's one direct characterisation is comparative: Cursor has far less in the way of safety

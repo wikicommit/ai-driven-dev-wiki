@@ -7,9 +7,12 @@ sources:
   - type: url
     url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
     hash: sha256:c7052e34d28ddebf93de128987f6d7d06951dc48afa9ec47e137b46b756c28b7
-review_status: reviewed
-generated_at: "2026-09-15"
-generated_by: "claude-opus-5[1m]"
+  - type: url
+    url: 'https://arxiv.org/pdf/2509.06216'
+    hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
+review_status: pending
+generated_at: "2026-09-18"
+generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
 
 properties:
@@ -17,7 +20,6 @@ properties:
   applicationCategory: "Agentic coding tool"
   featureList: "Targeted database queries with stored results; Bash primitives including head, tail, glob and grep; CLAUDE.md context files loaded up front; message-history compaction; a to-do list for agentic note-taking"
   author: "[[Organization/anthropic]]"
-reviewed_by: "joyk0117"
 ---
 
 Claude Code is Anthropic's agentic coding solution. Anthropic uses it as the worked example for
@@ -46,3 +48,8 @@ bypasses the issues of stale indexing and complex syntax trees.
   files, which Anthropic says gives users continuity without their having to worry about context
   window limitations.
 - A to-do list, which Anthropic gives as an instance of [[DefinedTerm/structured-note-taking]].
+- An on-demand planning mode, added more recently than some rival agents, in which the agent generates a plan and awaits human review before proceeding — contrasted by [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] with Google's [[SoftwareApplication/google-jules]], which has included a planning step from its inception.
+
+## Adoption & Ecosystem
+
+[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] describes Claude Code's architecture as having shifted from a monolithic agent to a multi-agent one, spawning specialized sub-agents for specific tasks. The same paper cites it as an example of a powerful command-line agentic platform that grants developers immense control and flexibility but results in ephemeral interactions: the conversational context of planning, clarification, and refinement between the human and the agent exists only in a terminal's scroll-back buffer, with no systematic archival of the agent's reasoning or the human's guidance, making it difficult to reconstruct the evolution of design decisions or reproduce specific outcomes.
