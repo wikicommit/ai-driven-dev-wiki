@@ -9,14 +9,16 @@ sources:
     url: https://github.com/NeoLabHQ/context-engineering-kit
     hash: sha256:3a00d5fa6029f48343ba32101feda4acd0f31870b7ff74ef954be99d4e04a584
     license: GPL-3.0
-review_status: reviewed
-generated_at: "2026-09-15"
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.28791'
+    hash: sha256:0de559cacdfe9078d48a08a5f2b05d76219a579abd307e3a72ca17d1894464d0
+review_status: pending
+generated_at: "2026-09-18"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
   description: "Having a separate model instance evaluate another's output against explicit rubrics and evidence, rather than accepting the output as produced — used in agent workflows as a quality gate between steps."
-reviewed_by: "joyk0117"
 ---
 
 LLM-as-a-Judge is the practice of having a model evaluate output rather than produce it: a separate
@@ -27,6 +29,7 @@ is of how [[SoftwareApplication/context-engineering-kit]] applies the technique;
 it as drawn from published research on evaluation patterns rather than as its own invention.
 
 ## Usage
+
 The kit uses judging at two scales. As a quality gate it evaluates each planning and implementation
 step of [[DefinedTerm/spec-driven-development]] against predefined verification rubrics before the
 next step begins. As an execution primitive in
@@ -42,7 +45,15 @@ Independence is the property the arrangement depends on. The judge is described 
 sub-agent that did the work, which is what makes the verdict worth more than the producing agent's
 own confidence.
 
+[[ScholarlyArticle/from-determinism-to-delegation]] places the technique in a wider evaluation
+practice, alongside trajectory evaluation — which asks whether the agent chose a correct sequence of
+tools even when the final answer varies — and semantic similarity against golden datasets. Its argument
+for why any of this matters is that where evaluation is an afterthought in classical practice, it is
+the central artifact in agentic practice, because outputs are non-deterministic and quality has to be
+established through curated evaluation datasets, adversarial edge cases included, and automated grading.
+
 ## When It Applies
+
 It applies where the quality being checked can be written down as a rubric before the work is seen —
 acceptance criteria, verification steps, review dimensions. Where the standard cannot be stated in
 advance, there is nothing for a judge to score against, and the pattern degrades into asking a model
@@ -57,6 +68,21 @@ non-working or incorrect solutions, which is its own assessment of its own tooli
 internal production use rather than independent evaluation, and stronger than the surrounding
 material supports.
 
+An independent source is blunter about the limits. [[ScholarlyArticle/from-determinism-to-delegation]]
+states that the dominant grading mechanism is itself imperfect and that rigour requires acknowledging
+it: surveys and empirical studies document systematic biases in LLM judges — position, verbosity and
+self-preference among them — and judge choice can reorder model rankings. Using a model to grade models
+therefore introduces a circularity that calibration, reference anchoring and judge ensembling only
+partially mitigate. That paper's conclusion is that robustness must be quantified through testing,
+evaluation, verification and validation frameworks that exceed static accuracy and evaluate reaction to
+data, model and intent drift, and it lists evaluation validity among its open problems — establishing
+construct-valid, reproducible, contamination-resistant evaluations for open-ended tasks, and avoiding
+trajectory metrics that reward spurious tool sequences.
+
 ## Related Terms
+
 - [[DefinedTerm/subagent-driven-development]] — where judging is used as an execution primitive
 - [[DefinedTerm/spec-driven-development]] — where it is used as a phase gate
+- [[ScholarlyArticle/from-determinism-to-delegation]] — source of the documented judge biases and the
+  circularity caution above
+- [[DefinedTerm/trajectory-evaluation]] — the complementary technique that paper names beside it
