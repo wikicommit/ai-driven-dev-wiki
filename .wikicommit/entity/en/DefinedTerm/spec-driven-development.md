@@ -18,6 +18,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.04967'
     hash: sha256:635e6e4cd572aa410a5b7b000d0057fa763bfbaca72834a18577ce02d2ea86f0
+  - type: url
+    url: 'https://github.blog/ai-and-ml/generative-ai/spec-driven-development-using-markdown-as-a-programming-language-when-building-with-ai/'
+    hash: sha256:26b458e8ba4b8790a046f37bf816d79131b0b7612d69de3ff26ec16690387bb7
 review_status: pending
 generated_at: "2026-09-18"
 generated_by: "claude-opus-5[1m]"
@@ -31,11 +34,12 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Four independent
+implementation then proceeds from the specification and is verified against it. Five separate
 accounts of the practice are described here — a plugin implementation, a tool-vendor-published
-workflow, a practitioner's cross-tool survey, and an academic comparison of the frameworks that
-implement it — and they agree on this much while differing in the concrete mechanics below,
-including how many levels of rigor the practice is understood to have.
+workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
+implement it, and one developer's firsthand account of taking the practice to its limit — and they
+agree on this much while differing in the concrete mechanics below, including how many levels of
+rigor the practice is understood to have.
 
 ## Usage
 
@@ -94,6 +98,24 @@ dimension that discriminates between frameworks least. It also names the complem
 [[DefinedTerm/reverse-documentation-engineering]], which recovers specifications from existing systems
 instead of writing them for new ones.
 
+**A fifth account** is one developer's firsthand report rather than a framework or a survey
+([[BlogPosting/markdown-as-a-programming-language]]). Writing on the GitHub Blog, Tomas Vesely
+describes treating a Markdown file as his application's actual source code and having
+[[SoftwareApplication/github-copilot]] compile it into Go, to the point that he rarely edits or
+views the generated Go directly. His starting problem is the one the practice exists to address,
+reached from the other end: an agent driven by successive prompts loses track of the application's
+purpose and past decisions, and a custom-instructions file meant to hold that context goes stale
+because updating it duplicates what was already said in the prompt. His answer is to stop treating
+the Markdown as instructions accompanying the code and treat it as the code — user-facing
+documentation is included by reference into the specification, which that account says keeps
+documentation and implementation in sync, and a short, deliberately portable prompt file is what
+compiles it. That account describes writing the
+specification as programming in Markdown and plain English, with variables, loops and conditions,
+and reports that specifications can be linted like code: a second prompt asks the agent to optimize
+the specification for clarity, remove duplication and stick to one term per concept. It is a worked
+instance of the spec-as-source level the practitioner's survey above sets out, arrived at by
+practice rather than argued for.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -121,7 +143,7 @@ validated. In that account's Plan phase specifically, a company's standardized t
 legacy-integration constraints, or compliance requirements are what the developer supplies for the
 agent to fold into the technical plan.
 
-The framework comparison adds a risk the other three accounts do not foreground: where the
+The framework comparison is the account that foregrounds one risk most directly: where the
 specification becomes a source of truth, it has to stay aligned with the code, and drift between
 specs, plans, tasks, tests and implementation is the first of the recurring risks it maps across the
 frameworks it examined. Its proposed answer is not a practice but a research agenda — automatically
@@ -134,7 +156,15 @@ for integration-heavy systems, for regulated domains needing traceability, and f
 modernization; it considers the overhead unjustified for throwaway prototypes, solo short-lived
 projects, exploratory coding, and simple applications with obvious requirements.
 
-How well established the practice is, none of the four sources settles on their own. Each uses the
+The firsthand account adds the limits a single practitioner runs into rather than ones a framework
+anticipates. Writing the specification is reported as sometimes harder than writing the code
+directly, because it demands describing precisely what is wanted; compilation slows as the
+generated code grows, and that account's stated next step is to have the specification instruct the
+agent to split each section into its own module. Its author had not added tests at the time of
+writing, and states that testing remains essential even in spec-driven workflows, since a
+specification describes intended behaviour while tests verify it.
+
+How well established the practice is, none of the five sources settles on their own. Each uses the
 term for its own implementation or account of the pattern; the context-engineering-kit's reliability
 claims — including that its plugin produced working code in every case its team tested — are the
 project's own, based on internal production use rather than independent evaluation. The GitHub Spec
@@ -147,6 +177,9 @@ comparison is a preprint by a single author, and it is explicit that its dimensi
 author's judgement from each framework's official documentation rather than an independently validated
 measurement, assigned by a single rater with no second coder and no inter-rater reliability reported.
 It also declares a conflict of interest, one of the frameworks it scores being its own author's.
+The firsthand account is the narrowest evidence of the five: one developer's experience of a few
+months on a single personal project, published by the vendor whose coding agent it uses, and
+offered by its author as an experimental workflow rather than a recommendation.
 
 ## Related Terms
 
@@ -158,6 +191,9 @@ It also declares a conflict of interest, one of the frameworks it scores being i
 - [[DefinedTerm/llm-as-a-judge]] — the evaluation technique used for the quality gates between
   phases
 - [[BlogPosting/good-spec]] — source of the GitHub Spec Kit account of this practice
+- [[BlogPosting/markdown-as-a-programming-language]] — source of the firsthand account above, in
+  which a Markdown file is treated as the application's source code and the generated Go is rarely
+  edited directly
 - [[ScholarlyArticle/from-code-to-contract]] — source of the three-tier specification-rigor spectrum
   (spec-first, spec-anchored, spec-as-source) and the Specify/Plan/Implement/Validate workflow
   presented above

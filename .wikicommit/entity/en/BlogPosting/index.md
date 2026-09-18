@@ -17,6 +17,7 @@ comments: false
 - [[BlogPosting/implementing-effective-guardrails-for-ai-agents]]
 - [[BlogPosting/long-running-agents]]
 - [[BlogPosting/loop-engineering]]
+- [[BlogPosting/markdown-as-a-programming-language]]
 - [[BlogPosting/new-sdlc-vibe-coding]]
 - [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]]
 - [[BlogPosting/own-the-outer-loop]]
