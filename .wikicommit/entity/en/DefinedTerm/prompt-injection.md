@@ -22,6 +22,9 @@ sources:
   - type: url
     url: 'https://platform.openai.com/docs/guides/agent-builder-safety'
     hash: sha256:86e2fc5f860675a072304196ba8e912392902e82d2ffeb390665f20c928e7016
+  - type: url
+    url: 'https://simonwillison.net/2026/Jun/22/prompt-injection-as-role-confusion/'
+    hash: sha256:40d3d22f5c2d4faf24481573bef5187e757c570cd5527e5d7f9c15f5b7595991
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -230,8 +233,22 @@ principle is that untrusted data should never directly drive agent behaviour: ex
 structured fields from external input, and accept that structured outputs and isolation greatly
 reduce the risk without fully removing it.
 
+A 2026 framing shifts the explanation one level down, from how the prompt is assembled to how the
+model perceives it. Reported in [[BlogPosting/prompt-injection-as-role-confusion]], the claim is that
+models do not reliably distinguish their own privileged text — delimited by role tags such as
+`<system>`, `<think>` and `<assistant>` — from untrusted input delimited as `<user>`, and that they
+weigh a passage's *style* more heavily than the tag around it. On that account role tags are not
+failing to be respected so much as failing to be what the model keys on, which is why text written in
+the register of a model's internal reasoning can carry authority it was never given. The researchers
+quoted there report that rewriting an injection to look less like its expected format — "destyling" —
+drops average attack success across their dataset from 61% to 10%, and conclude that injection
+defence will remain a whack-a-mole game unless models achieve genuine role perception. Those figures
+are the paper's as relayed by that post; the paper is not itself held as a source here. See
+[[DefinedTerm/role-confusion]].
+
 ## Related Terms
 
+- [[DefinedTerm/role-confusion]] — the 2026 framing above, treated as a mechanism in its own right
 - [[DefinedTerm/indirect-prompt-injection]] — the variant in which the adversarial instructions are
   planted in data the application retrieves, rather than typed in by the attacker directly
 - [[DefinedTerm/tool-poisoning]] — an injection attack that hides its instructions in a tool's own

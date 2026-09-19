@@ -23,6 +23,7 @@ comments: false
 - [[SoftwareApplication/claude-agent-sdk]]
 - [[SoftwareApplication/claude-artifacts]]
 - [[SoftwareApplication/claude-code]]
+- [[SoftwareApplication/claude-code-for-web]]
 - [[SoftwareApplication/claude-managed-agents]]
 - [[SoftwareApplication/codeplan]]
 - [[SoftwareApplication/context-engineering-kit]]

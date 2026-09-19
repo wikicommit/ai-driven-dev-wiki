@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2509.06216'
     hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
+  - type: url
+    url: 'https://www.anthropic.com/engineering/claude-code-best-practices'
+    hash: sha256:9aae24f8b850a5f9c8a6f561be1fecf54f29e1ddc4658d00ecded22bccb82b82
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
@@ -49,6 +52,44 @@ bypasses the issues of stale indexing and complex syntax trees.
   window limitations.
 - A to-do list, which Anthropic gives as an instance of [[DefinedTerm/structured-note-taking]].
 - An on-demand planning mode, added more recently than some rival agents, in which the agent generates a plan and awaits human review before proceeding — contrasted by [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] with Google's [[SoftwareApplication/google-jules]], which has included a planning step from its inception.
+- A set of extension mechanisms documented as distinct choices rather than alternatives: skills
+  (`SKILL.md` files under `.claude/skills/`, loaded on demand so that domain knowledge does not
+  occupy every conversation — see [[DefinedTerm/agent-skills]]), hooks running scripts at fixed
+  points in the workflow ([[DefinedTerm/agent-hooks]]), custom subagents defined under
+  `.claude/agents/` with their own context and tool set ([[DefinedTerm/sub-agent-architecture]]),
+  MCP servers ([[DefinedTerm/model-context-protocol]]), and plugins bundling several of these.
+- Session controls for working against the context constraint: `/clear` to reset between unrelated
+  tasks, `/compact` with optional focusing instructions, and checkpoints created on every prompt that
+  starts a turn, restorable through a rewind menu. The documentation is explicit that checkpoints
+  track only changes made through the file-editing tools — changes made via Bash or external
+  processes are not captured — and that this is not a replacement for git.
+- Non-interactive operation via `claude -p "prompt"`, with plain-text, JSON and streaming-JSON output
+  formats, intended for CI pipelines, pre-commit hooks and scripted fan-out across many files.
+
+## Working Practices
+
+Anthropic's best-practices documentation organises its guidance around a single stated constraint:
+the context window holds the entire conversation — every message, every file read, every command
+output — it fills fast, and model performance degrades as it does. Most of the remaining advice is
+presented as following from that.
+
+Its first recommendation is to give the agent a check it can run — a test suite, a build exit code, a
+linter, a screenshot compared against a design — so that the loop closes without a human in it, and
+it sets out four ways to bind that check with increasing firmness: asking for it in the prompt, making
+it a session goal re-evaluated after every turn, enforcing it with a `Stop` hook, or having a separate
+subagent try to refute the result. It also recommends asking for evidence rather than an assertion of
+success, on the grounds that reviewing evidence is faster than re-running the verification.
+
+Its second is to separate exploration and planning from implementation via plan mode, while cautioning
+that planning adds overhead and should be skipped when the change could be described in one sentence.
+For CLAUDE.md it recommends brevity over completeness, offering the test "would removing this cause
+Claude to make mistakes?" and warning that a bloated file causes actual instructions to be ignored —
+with the practical diagnostic that an instruction repeatedly skipped is usually a sign the file is too
+long rather than that the rule needs restating. It names five recurring failure patterns: mixing
+unrelated tasks in one session, correcting repeatedly instead of restarting with a better prompt, an
+over-specified CLAUDE.md, trusting plausible-looking output without verification, and unscoped
+investigation that fills the context. The documentation closes by presenting all of this as starting
+points rather than rules, and advises developing intuition about when each does not apply.
 
 ## Adoption & Ecosystem
 

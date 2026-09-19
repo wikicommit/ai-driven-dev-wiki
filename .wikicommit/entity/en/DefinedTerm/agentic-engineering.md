@@ -16,6 +16,15 @@ sources:
   - type: url
     url: 'https://karpathy.bearblog.dev/sequoia-ascent-2026/'
     hash: sha256:5f0fc28c7d2ce3663820af50aba485b5ec93384a47528a92d2935967dd678dc4
+  - type: url
+    url: 'https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/'
+    hash: sha256:5887de1aff52ec544bd35326f452d4de9e1c58a331298d155e4a1c9f23c87af6
+  - type: url
+    url: 'https://simonwillison.net/2026/Feb/23/agentic-engineering-patterns/'
+    hash: sha256:2e0749860bb2041b583e646cdfe9ae5c095aa1e10ca0a52b54ac9fbcf3fcb72b
+  - type: url
+    url: 'https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/'
+    hash: sha256:ad2e62c904d9fb829eaaef58183d658acec08216dd6d714f3267f5ddf6f29b9e
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -99,6 +108,35 @@ pattern-based changes of a framework upgrade or library migration, with the deve
 tricky edge cases. His image for the relationship is a head chef and a sous chef: the agent is
 skilled, capable and fast, but it does not decide the menu.
 
+A fourth account, by Simon Willison, is the one that pins the term to a capability rather than to a
+set of habits. He uses **agentic engineering** for the practice of developing software with the
+assistance of coding agents, and defines a coding agent as one that can both write *and execute*
+code — which he treats as the load-bearing part. Code execution is what makes the practice possible
+at all: without the ability to run what it produces, anything an LLM outputs is of limited value,
+whereas with it an agent can iterate towards software that demonstrably works. His definition rests
+in turn on a definition of an [[DefinedTerm/ai-agent]] as software that runs tools in a loop to
+achieve a goal, with code execution simply being one of the tools. In the post introducing his guide
+[[CreativeWorkSeries/agentic-engineering-patterns]] he adds the property that follows from this: the
+agent can test and iterate independently of turn-by-turn guidance from its human supervisor.
+
+His answer to what is left for people to do is that the craft was never writing code in the first
+place — it was figuring out *what* code to write, navigating the dozens of possible solutions to any
+problem and their tradeoffs to find the ones that fit the circumstances at hand. The work he assigns
+to the practice is supplying agents with the tools they need, specifying problems at the right level
+of detail, and verifying and iterating on results until they are robust and credible. He also draws a
+distinction about where learning can happen: LLMs do not learn from their past mistakes, but coding
+agents can, provided the instructions and tool harnesses are deliberately updated to reflect what has
+been learned. His stated expectation is that used well, the practice lets people be more ambitious
+about what they take on, producing more and better code against more impactful problems.
+
+Willison positions the term against [[DefinedTerm/vibe-coding]] on a single scale, with vibe coding
+in its original sense — paying no attention to the code at all — at one end and professional
+engineers amplifying existing expertise at the other. He is also the source of the clearest report
+that this scale is not holding: in [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]]
+he describes the two converging in his own work as agents grow reliable enough that he no longer
+reviews every line, and frames the resulting relationship as treating an agent the way one treats
+another team's service — while noting that a team can be held accountable and an agent cannot.
+
 ## When It Applies
 
 The source frames agentic engineering as disproportionately benefiting engineers with strong existing fundamentals (system design, security patterns, performance tradeoffs), since recognizing good AI output requires already knowing what good code looks like; it assumes a supporting test suite is in place, since testing is described as the mechanism that turns an unreliable agent into a reliable system. Its stated failure mode is a junior engineer leaning on AI before building those fundamentals, risking skill atrophy — producing and shipping code without understanding or being able to debug it. As of this post, the term is presented as a fresh, actively-debated proposal rather than settled usage: Karpathy suggested it days before the post was written, after the author says the community spent months debating Willison's "vibe engineering" alternative.
@@ -130,3 +168,7 @@ produces.
 - [[DefinedTerm/four-stage-evolution-of-agentic-engineering]] — the same paper's roadmap for the field
 - [[DefinedTerm/agentic-engineer]] — a separate term, and a different question: what qualifies an AI
   agent as a software engineer, rather than what the discipline is
+- [[CreativeWorkSeries/agentic-engineering-patterns]] — a guide collecting patterns for the practice,
+  and the source of the fourth account above
+- [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] — the same author reporting the
+  contrast with vibe coding eroding in his own work
