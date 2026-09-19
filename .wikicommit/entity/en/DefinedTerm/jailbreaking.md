@@ -10,13 +10,16 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2024/Mar/5/prompt-injection-jailbreaking/'
     hash: sha256:03253e283263bfa4feaf0bb8e37840fdfebd27239d9b8c6a1b186cf5bc19d34a
+  - type: url
+    url: 'https://www.ibm.com/topics/prompt-injection'
+    hash: sha256:a266835677476a694038cea4bd96f4ae88e318fe878bc7adcc4a28c90d8f3144
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "An attempt to make a language model ignore its own guidelines or the instructions an application gave it. Simon Willison defines it narrowly as the class of attacks that try to subvert the safety filters built into the models themselves, as against prompt injection, which targets applications; Anthropic's documentation instead groups it with direct prompt injection under one threat model, in which the application's own user is the adversary."
+  description: "An attempt to make a language model ignore its own guidelines or the instructions an application gave it. Simon Willison defines it narrowly as the class of attacks that try to subvert the safety filters built into the models themselves, as against prompt injection, which targets applications; Anthropic's documentation instead groups it with direct prompt injection under one threat model, in which the application's own user is the adversary. An IBM explainer separates the two on a third basis — disguise versus disregard."
 ---
 
 Jailbreaking is an attempt to make a language model ignore its guidelines or the instructions the
@@ -82,6 +85,23 @@ in chat applications are implemented through a concatenated system prompt and ar
 vulnerable to prompt injection; sometimes a model can be jailbroken *by* prompt injection, and
 sometimes a prompt-injection defence — especially one that relies on AI to detect attacks — can be
 broken by jailbreaking techniques.
+
+A third account, an IBM explainer, separates the two on a different basis again: prompt injections
+disguise malicious instructions as benign inputs, while jailbreaking makes an LLM ignore its
+safeguards. On that reading the distinction is between concealment and refusal rather than between
+targets or adversaries. It describes system prompts as carrying not only instructions but
+safeguards — its illustration being a translation chatbot told not to translate statements
+containing profanity — so that jailbreaking means writing a prompt that convinces the model to
+disregard them, often by asking it to adopt a persona or play a game. It names "Do Anything Now", or
+DAN, as a common technique of that kind, in which the user asks the model to assume the role of an AI
+with no rules.
+
+That account also describes the dynamic around the technique as an arms race: safeguards make
+jailbreaking harder, hackers and hobbyists work on prompts to beat the latest rulesets, working
+prompts are shared online, and developers update their safeguards in response. Like the second
+account, it holds that injection and jailbreaking are ultimately two distinct techniques while
+accepting that each can enable the other — prompt injections can be used to jailbreak a model, and
+jailbreaking tactics can clear the way for a successful prompt injection.
 
 ## Related Terms
 

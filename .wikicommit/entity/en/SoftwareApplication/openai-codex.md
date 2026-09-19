@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://developer.nvidia.com/blog/mitigating-indirect-agents-md-injection-attacks-in-agentic-environments/'
     hash: sha256:12ff9c9af90eba6dbc268a3eab17b477eca5b0dc3c223d5537d795ba8b206089
+  - type: url
+    url: 'https://github.com/openai/codex'
+    hash: sha256:c8d51231646f7d628597fc35cf6f4c3b9cb2fea99dbf7d0eccd07b98dea417cd
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -48,7 +51,7 @@ instructions precisely, and can iterate on tests until they pass.
 - It cites terminal logs and test outputs so each step of a task can be traced, and states
   uncertainty or test failures explicitly rather than reporting success. OpenAI still describes
   manual review and validation of all agent-generated code as essential.
-- Its documentation recommends using an [[DefinedTerm/agents-md]] file to give the agent consistent expectations about which tests to run, lint rules, dependency policies, and documentation requirements.
+- Osmani cites OpenAI's Codex documentation as recommending an [[DefinedTerm/agents-md]] file to give the agent consistent expectations about which tests to run, lint rules, dependency policies, and documentation requirements.
 - At launch the agent ran with internet access disabled, so it could reach only the code supplied
   through connected GitHub repositories and dependencies installed by a user-provided setup
   script. OpenAI notes this describes the launch configuration and points to separate
@@ -80,3 +83,23 @@ The announcement is explicit about what the research preview could not yet do: n
 for frontend work, no way to course-correct the agent while it works, and the latency of
 delegating to a remote agent rather than editing interactively. The version of that page read
 here carries a later notice stating the launch post is outdated.
+
+## Codex CLI and the Current Product Split
+
+OpenAI's `openai/codex` repository is the home of **Codex CLI**, which it describes as a coding
+agent from OpenAI that runs locally on the user's computer, licensed Apache-2.0. The repository is
+the CLI, and it points three other surfaces elsewhere: an IDE integration for VS Code, Cursor and
+Windsurf; a desktop app reached with `codex app`; and **Codex Web**, the cloud-based agent, at
+chatgpt.com/codex. The cloud agent described in the launch announcement above is that last one, not
+the CLI documented here.
+
+Installation is by a shell installer (`curl -fsSL https://chatgpt.com/codex/install.sh | sh` on Mac
+and Linux, a PowerShell equivalent on Windows), or through npm as `@openai/codex` or Homebrew as the
+`codex` cask, or by downloading a platform binary from a GitHub Release. The standalone installers
+download from `releases.openai.com/codex` by default and fall back to GitHub Releases when a metadata
+or asset download is unavailable, with `CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false` forcing the
+GitHub Releases path.
+
+On authentication the repository states a preference rather than just an option: signing in with a
+ChatGPT account is the recommended route, using Codex as part of a Plus, Pro, Business, Edu or
+Enterprise plan; an API key also works but requires additional setup.

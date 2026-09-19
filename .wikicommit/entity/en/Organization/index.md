@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[Organization/anthropic]]
+- [[Organization/github]]
 - [[Organization/google]]
 - [[Organization/neolabhq]]
 - [[Organization/nvidia]]

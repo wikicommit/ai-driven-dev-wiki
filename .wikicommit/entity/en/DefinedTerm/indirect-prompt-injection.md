@@ -19,6 +19,9 @@ sources:
   - type: url
     url: 'https://developer.nvidia.com/blog/mitigating-indirect-agents-md-injection-attacks-in-agentic-environments/'
     hash: sha256:12ff9c9af90eba6dbc268a3eab17b477eca5b0dc3c223d5537d795ba8b206089
+  - type: url
+    url: 'https://www.ibm.com/topics/prompt-injection'
+    hash: sha256:a266835677476a694038cea4bd96f4ae88e318fe878bc7adcc4a28c90d8f3144
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -85,6 +88,18 @@ Claude to check whether an instruction really came from the user before acting.
 
 A fifth account narrows the vector to a coding agent's own configuration files. An NVIDIA AI Red Team report describes a malicious dependency writing an [[DefinedTerm/agents-md]] file during a build, so that instructions reach the agent with the standing of project configuration rather than as retrieved content. What distinguishes this case from the retrieved-document form above is where the injected text sits in the agent's trust model: an instruction file is something the agent is built to obey, so the attack needs no concealment from the model and instead concealed itself from the human reviewer, chaining a second injection through a source comment addressed to the model that would summarize the pull request. Its precondition is correspondingly stronger — the attacker must already have code execution in the build environment — and the affected vendor concluded on that basis that it did not materially raise risk beyond a compromised dependency. See [[DefinedTerm/indirect-agents-md-injection]].
 
+A sixth account, a general IBM explainer on prompt injection, adds two things to the picture above
+rather than restating it. It contributes a non-textual vector — noting that malicious prompts do not
+have to be written in plain text and can be embedded in images the model scans — and a worked chain
+in which the injected instruction propagates: researchers are reported to have designed a worm
+spreading through AI-powered virtual assistants, in which a malicious prompt arrives by email,
+induces the assistant asked to summarize it to send sensitive data to the attackers, and further
+directs the assistant to forward the malicious prompt to other contacts. Its own framing example is
+the simpler retrieved-content case, an attacker posting a prompt to a forum telling models to direct
+their users to a phishing site, so that an assistant asked to summarize the discussion relays that
+instruction to an unsuspecting user. That source classifies the technique as one of two types of
+prompt injection, against [[DefinedTerm/direct-prompt-injection]].
+
 ## Related Terms
 
 [[ScholarlyArticle/not-what-youve-signed-up-for]], [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]], [[DefinedTerm/two-channel-prompt-injection]], [[DefinedTerm/tool-poisoning]], [[DefinedTerm/indirect-agents-md-injection]], [[DefinedTerm/guardrails]], [[DefinedTerm/jailbreaking]]
@@ -92,3 +107,4 @@ A fifth account narrows the vector to a coding agent's own configuration files. 
 - [[ScholarlyArticle/from-determinism-to-delegation]] — source of the measured tool-integrated attack
   rate and the agent-side defences above
 - [[DefinedTerm/supervised-agency-spectrum]] — the graduated-oversight framing those defences sit in
+- [[DefinedTerm/direct-prompt-injection]] — the other of the two types the sixth account divides the attack into

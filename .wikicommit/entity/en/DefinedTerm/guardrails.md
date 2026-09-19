@@ -13,20 +13,23 @@ sources:
   - type: url
     url: 'https://dev.to/aws/ai-agent-guardrails-rules-that-llms-cannot-bypass-596d'
     hash: sha256:d321340a9dfb2556bc45605cd43311d6f886dd3c139f618c6380e18345aa7a1a
+  - type: url
+    url: 'https://github.com/NVIDIA-NeMo/Guardrails'
+    hash: sha256:5e355c13851c1bcdbfecb01c03581fb7ca7d93a287620f15481e621963cc9832
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A term used at three different layers for the controls placed around an AI agent — organizational access controls, approval gates and audit trails; application-level classifiers screening what reaches and leaves the model; and deterministic framework-level rules evaluated before a tool call runs. The sources here do not share one definition, and none of the three is the agreed one."
+  description: "A term used at four different layers for the controls placed around an AI agent — organizational access controls, approval gates and audit trails; application-level classifiers screening what reaches and leaves the model; deterministic framework-level rules evaluated before a tool call runs; and a programmable layer interposed between application code and the model, carrying its own configuration language. The sources here do not share one definition, and none of them is the agreed one."
 ---
 
 Guardrails are the policies, controls and mechanisms placed around an AI agent to constrain what it is permitted to do. The word is used at several layers and the sources here do not share one definition of it, so no single formulation below should be read as the agreed one.
 
 One account, set out in [[BlogPosting/implementing-effective-guardrails-for-ai-agents]], is organizational and specific to software delivery: on it, guardrails are a comprehensive framework of policies, controls, and monitoring mechanisms that govern how AI agents interact with a development environment, and the concept is described there as extending beyond traditional security controls — ensuring AI systems operate safely and effectively while complying with organizational policies and regulatory requirements, as agents take on sensitive operations such as autonomous code generation and automated infrastructure management that traditionally required human oversight.
 
-That is the first of three accounts, and they approach the word from different ends and are worth keeping apart. The first is organizational, describing the access controls, approval gates and audit trails an enterprise places around an agent's actions. A second is application-level, describing the classifiers and filters a developer places around an agent's inputs and outputs. A third is framework-level and deterministic, placing rules in code that runs outside the model and decides whether a tool call may execute at all. All use the same word for the same purpose — constraining what an agent can do — but they operate at different layers and none subsumes the others.
+That is the first of four accounts, and they approach the word from different ends and are worth keeping apart. The first is organizational, describing the access controls, approval gates and audit trails an enterprise places around an agent's actions. A second is application-level, describing the classifiers and filters a developer places around an agent's inputs and outputs. A third is framework-level and deterministic, placing rules in code that runs outside the model and decides whether a tool call may execute at all. A fourth is a toolkit layer interposed between application code and the model, in which rails are declared in configuration and a purpose-built language rather than written as application logic. All use the same word for the same purpose — constraining what an agent can do — but they operate at different layers and none subsumes the others.
 
 ## Usage
 
@@ -47,6 +50,22 @@ The same guide gives a three-step heuristic for building them: focus first on da
 That guide's last guardrail is not a filter at all: it treats planning for [[DefinedTerm/human-in-the-loop]] intervention as a critical safeguard, naming two triggers — exceeding failure thresholds, and high-risk actions that are sensitive, irreversible or high-stakes.
 
 A third account places guardrails lower still, in the agent framework itself rather than in a classifier or an organizational process. On this framing, described in [[BlogPosting/ai-agent-guardrails-rules-that-llms-cannot-bypass]], a guardrail expressed as prose — in a system prompt or a tool's docstring — is input the model interprets and re-decides on every call, so it constrains nothing reliably; that post's example is an agent that confirms a booking without the payment its tool docstring requires, and reports success. The guardrail it proposes instead is a deterministic rule evaluated by a pre-execution interceptor, which cancels the call before the tool runs and returns the violation to the model as the result. What distinguishes this sense from the classifier-based one above is not the layer alone but the kind of decision: these rules are boolean predicates over a tool call's parameters rather than probabilistic judgements about content, and the post reports zero false positives and zero false negatives across its three demonstration scenarios. That determinism is bounded by what has been written down — the post states that a rule must be explicitly defined for each operation to be protected, so an operation nobody wrote a rule for is not covered. See [[DefinedTerm/neurosymbolic-validation]] for the pattern and [[DefinedTerm/agent-hooks]] for the interception mechanism it relies on.
+
+A fourth account comes from a toolkit rather than a framework or a policy document, and its
+distinguishing move is to place the guardrails *between the application code and the LLM* as a layer
+of their own. [[SoftwareApplication/nemo-guardrails]] calls these **programmable guardrails**, or
+rails, and defines them as specific ways of controlling a model's output — its examples being not
+talking about politics, responding in a particular way to specific requests, following a predefined
+dialog path, using a particular language style, and extracting structured data. What this account
+adds to the three above is a taxonomy by position in the request rather than by organizational
+layer: input rails, which may reject or alter user input; dialog rails, which influence how the model
+is prompted and may substitute a predefined response; retrieval rails, which reject or alter
+retrieved chunks in a RAG pipeline; execution rails, which apply to the input and output of tools;
+and output rails, which may reject or alter what the model produced. Rails are declared in a
+configuration folder — YAML naming the active flows, plus definitions written in
+[[DefinedTerm/colang]] — rather than expressed as prose in a prompt, which places this account
+closer to the deterministic third one than to the classifier-based second, while still admitting
+model-based checks such as self-checking facts among its configured flows.
 
 ## Related Terms
 

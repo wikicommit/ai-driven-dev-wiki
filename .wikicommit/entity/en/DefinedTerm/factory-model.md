@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/factory-model/'
     hash: sha256:5c88d875dc4b49c7cdcb8bc777758f860985d09734d623a7d4b1817af75e9a35
+  - type: url
+    url: 'https://github.com/langchain-ai/open-swe'
+    hash: sha256:b404a7534d6291d6cf852031e7a8d7ee3facfa37c0dfa55f5abe310cde60e19d
 review_status: pending
-generated_at: "2026-09-17"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
@@ -21,6 +24,16 @@ The factory model is Addy Osmani's mental model for agentic software development
 ## Usage
 
 Osmani extends the factory analogy on several points he treats as holding directly: a factory has quality control, has process documentation, has inputs that must be precisely specified or the output comes out wrong, and stalls when its environment is unreliable. He reports that inside teams that have adopted the model aggressively, a substantial portion of merged pull requests now originate from agents running autonomously in cloud environments, presenting this as production reality rather than theory. He connects the model to public remarks from Cursor, quoting it as saying "the developer's job is becoming building the system that builds the software, the factory, not just the product" and "reviewing ideas is a lot more fun than reviewing code."
+
+The "software factory" framing is also used as a product's own self-description, independently of
+Osmani's account. LangChain describes [[SoftwareApplication/open-swe]] as an open-source software
+factory and states its purpose as turning engineering work into a repeatable system, with a **loop**
+it draws explicitly: issues, conversations, pull requests and schedules feed planning and
+investigation, which feeds implementation in an isolated sandbox, which feeds validation and
+delivery of a pull request, which feeds review, CI and feedback — and follow-up work returns to
+planning. That is a narrower and more mechanical statement than Osmani's mental model: it names a
+single agent system's own control flow rather than a way for a developer to think about directing
+many agents.
 
 ## When It Applies
 
