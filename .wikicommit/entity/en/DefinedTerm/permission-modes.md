@@ -7,6 +7,9 @@ sources:
   - type: url
     url: 'https://docs.claude.com/en/api/agent-sdk/permissions'
     hash: sha256:c4534377b28cb19c1b4d96673f98b2d47028ae3535bb6eda233c73d3933d9f61
+  - type: url
+    url: 'https://www.anthropic.com/engineering/claude-code-best-practices'
+    hash: sha256:9aae24f8b850a5f9c8a6f561be1fecf54f29e1ddc4658d00ecded22bccb82b82
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -44,6 +47,24 @@ a subagent unless the parent itself runs in it — the stated reason being that 
 different system prompts and less constrained behavior, so inheriting it would grant them full
 autonomous system access.
 
+Where the SDK documentation presents the modes as a list of equal options, the Claude Code
+best-practices documentation describes which one a session actually starts in, and treats that as a
+plan-dependent default rather than a user choice. On Pro, Max and Team plans, **auto mode** is the
+built-in starting mode for interactive terminal and VS Code sessions; on other plans it is **Manual
+mode**. The two are characterised by who does the reviewing. In Manual mode the agent asks before
+anything that might modify the system — file writes, Bash commands, MCP tools — which the
+documentation itself calls safe but tedious, observing that by the tenth approval a user is clicking
+through rather than reviewing (compare [[DefinedTerm/approval-fatigue]]). In auto mode a separate
+classifier model reviews most actions instead of the user and blocks only what looks risky, with
+three categories named: scope escalation, unknown infrastructure, and hostile-content-driven actions.
+
+Two tools are documented as cutting the interruptions in Manual mode while applying in auto mode as
+well: permission allowlists, pre-approving specific tools known to be safe, and
+[[DefinedTerm/sandboxing]], enabling OS-level isolation of filesystem and network so the agent can
+work more freely within defined boundaries. The same documentation notes a behavioural difference
+between interactive and non-interactive use of the classifier mode: when it repeatedly blocks actions
+in a non-interactive run, the run is not stopped, and a documented fallback applies instead.
+
 ## When It Applies
 
 The concept applies to harnesses where tool permissions are evaluated outside the model, and it
@@ -55,8 +76,11 @@ Its documented misuse is treating a mode as a constraint rather than a default: 
 not narrow `bypassPermissions`, because unlisted tools match no allow rule and are approved by the
 mode itself. To put a tool out of reach the documentation directs the reader to a deny rule instead.
 
-How well-established it is: this is one vendor's documented design for its own SDK, and the mode
-names above are that SDK's vocabulary rather than an industry-wide standard.
+How well-established it is: this is one vendor's documented design for its own SDK and its own coding
+tool, and the mode names above are that vendor's vocabulary rather than an industry-wide standard.
+The second source adds a further caveat of its own kind — which mode a session starts in there is
+tied to the user's subscription plan, so the starting posture is a commercial decision as much as a
+safety one.
 
 ## Related Terms
 

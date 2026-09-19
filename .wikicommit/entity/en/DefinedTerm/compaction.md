@@ -13,8 +13,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.14228'
     hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
+  - type: url
+    url: 'https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents'
+    hash: sha256:26ce4c203cbb030f31253f1eb174b46b2c0203c9b44576aa4654b89b4d7be777
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -85,6 +88,15 @@ which sacrifice information but are easier to reason about.
   not sufficient on its own for very long jobs: beyond ordinary compaction, Anthropic's harnesses
   also perform full context resets, where the harness tears a session down and rebuilds it from a
   structured handoff file — described as essentially how a human onboards a new engineer.
+- Anthropic states the same limitation firsthand in
+  [[BlogPosting/effective-harnesses-for-long-running-agents]], and names the mechanism behind it:
+  compaction *doesn't always pass perfectly clear instructions to the next agent*. Its reported
+  evidence is that a frontier model running on the [[SoftwareApplication/claude-agent-sdk]] in a loop
+  across multiple context windows, with compaction available, still fell short of building a
+  production-quality web app from a high-level prompt — and that the resulting half-implemented,
+  undocumented features left the next session guessing at what had happened. The remedy it describes
+  is not better compaction but durable artifacts outside the context window: a progress log, a git
+  history, and a structured feature list (see [[DefinedTerm/initializer-agent]]).
 
 ## Related Terms
 

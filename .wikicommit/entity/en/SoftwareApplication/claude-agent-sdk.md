@@ -7,6 +7,9 @@ sources:
   - type: url
     url: 'https://docs.claude.com/en/api/agent-sdk/permissions'
     hash: sha256:c4534377b28cb19c1b4d96673f98b2d47028ae3535bb6eda233c73d3933d9f61
+  - type: url
+    url: 'https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents'
+    hash: sha256:26ce4c203cbb030f31253f1eb174b46b2c0203c9b44576aa4654b89b4d7be777
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -73,3 +76,17 @@ documentation notes several behaviors as requiring particular minimum versions o
 [[SoftwareApplication/claude-code]], which is the runtime the SDK's permission behavior is described
 against. For the underlying safety posture, see [[DefinedTerm/deny-first-permission-evaluation]] and
 [[DefinedTerm/permission-modes]].
+
+A second Anthropic source describes the SDK from the opposite end — not what it restricts, but what
+it is capable of and where that capability runs out.
+[[BlogPosting/effective-harnesses-for-long-running-agents]] characterises it as a powerful,
+general-purpose agent harness adept at coding as well as at other tasks needing a model to use tools
+to gather context, plan and execute, with context-management capabilities including
+[[DefinedTerm/compaction]] that in principle let an agent work usefully for an arbitrarily long time.
+It then reports that this is not sufficient in practice: a frontier model running on the SDK in a
+loop across multiple context windows still fell short of building a production-quality web app from a
+high-level prompt, because compaction does not always pass clear enough instructions to the next
+session. What the post adds on top of the SDK is therefore not SDK functionality but prompt and
+artifact discipline — a differently-prompted first session and a durable progress file, git history
+and feature list (see [[DefinedTerm/initializer-agent]]). Accompanying code examples are published as
+a quickstart.

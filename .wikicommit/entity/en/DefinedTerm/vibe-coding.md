@@ -22,6 +22,15 @@ sources:
   - type: url
     url: 'https://www.andrewconnell.com/articles/vibe-coding-vs-agentic-engineering/'
     hash: sha256:7e8c13f25dd70015f9995dcbf564e7a460760543e3cd12d89b9175dcdf1bf151
+  - type: url
+    url: 'https://simonwillison.net/2026/Feb/23/agentic-engineering-patterns/'
+    hash: sha256:2e0749860bb2041b583e646cdfe9ae5c095aa1e10ca0a52b54ac9fbcf3fcb72b
+  - type: url
+    url: 'https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/'
+    hash: sha256:5887de1aff52ec544bd35326f452d4de9e1c58a331298d155e4a1c9f23c87af6
+  - type: url
+    url: 'https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/'
+    hash: sha256:ad2e62c904d9fb829eaaef58183d658acec08216dd6d714f3267f5ddf6f29b9e
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -68,6 +77,28 @@ settle on definitions: he said he uses "vibe coding" for the occasions when he f
 the "I have no idea what I'm doing" image, citing an iOS app he had built the night before, but that
 in practice he rarely goes full out vibe coding — more often he still looks at the code, adds
 complexity slowly, tries to learn over time how the pieces work, and asks clarifying questions.
+
+By 2026 Willison was still holding the narrow reading, and had begun stating it as settled
+vocabulary rather than as an argument. Introducing his guide
+[[CreativeWorkSeries/agentic-engineering-patterns]] in February 2026, he glosses vibe coding by its
+original definition as coding where you pay no attention to the code at all, and adds an
+observation about who is doing it: the term is today often associated with non-programmers using
+LLMs to write code. The guide's opening chapter restates the purpose the narrow reading serves —
+that a term is needed for unreviewed, prototype-quality LLM-generated code, to distinguish it from
+code the author has brought up to a production-ready standard — and repeats that extending the term
+to cover any LLM-assisted code production is a mistake. It also dates the coinage against the
+tooling, noting that it arrived roughly three weeks before Claude Code's original release.
+
+What changed in 2026 was not the definition but the author's report of his own conformity to it. In
+[[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] he describes the two categories
+blurring in his own work: as coding agents became more reliable he stopped reviewing every line they
+write, including for production-level work, which by his own operational test moves that work toward
+the side of the line he had marked as irresponsible for software other people use. His account of why
+it is nonetheless defensible is an analogy to depending on another team's service — read the
+documentation, use it, investigate the implementation only when it misbehaves — and he states the
+analogy's limit himself: a team carries accountability and professional reputation, and a coding
+agent carries neither. He names the risk in the drift as an element of the normalization of deviance,
+each correct unmonitored result raising the chance of misplaced trust later.
 
 A practitioner account from 2026 keeps the narrow reading and puts it to a different use: deciding
 what to hand to an AI at all. Andrew Connell defines vibe coding as a development approach in which
@@ -164,3 +195,7 @@ understand the code, you can't debug it, extend it, or explain it to your team.
 - [[ScholarlyArticle/context-before-code]] — an experience report finding vibe coding reliable for
   scaffolding but not for architectural properties like tenant isolation and asynchronous
   processing unless explicitly prompted, proposing [[DefinedTerm/non-delegation-zone]] for the gap
+- [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] — the same author reporting the
+  boundary eroding from the disciplined side of it
+- [[DefinedTerm/verification-debt]] — what accumulates when the review step the narrow definition
+  turns on is skipped
