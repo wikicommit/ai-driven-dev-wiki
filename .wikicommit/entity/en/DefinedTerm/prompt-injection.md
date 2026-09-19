@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2023/May/2/prompt-injection-explained/'
     hash: sha256:0d92bc59d6b47bea9a692f7ac853d8e13f2857879ab57db58c2e47b4e30fc1d3
+  - type: url
+    url: 'https://developer.nvidia.com/blog/securing-llm-systems-against-prompt-injection/'
+    hash: sha256:3586be2459ba07a9385bba9fe13f4902a44075110ce0e0594535f80200bc5848
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -25,7 +28,7 @@ the application's developer wrote and overrides it. Simon Willison states that s
 correction rather than a nuance, and calls it crucially important: this is not an attack against
 the AI models themselves, but against what developers build on top of them.
 
-The two sources here do not agree on that point. Preamble, which reported the vulnerability to
+The first two accounts here do not agree on that point. Preamble, which reported the vulnerability to
 OpenAI in 2022, describes it at the level of the model: on its account a user could issue commands
 through a natural-language based prompt and so override the guardrails inherent to GPT-3. It
 originally referred to it as **command injection**, citing the similarities to traditional SQL
@@ -95,6 +98,25 @@ application someone wants cannot be safely built yet. Asked what the wider field
 it, he answers that security engineering normally has solutions to write up and spread, that here
 there are none yet, and that raising awareness is for the moment the only thing on offer.
 
+A third account, from the NVIDIA AI Red Team, locates the danger in what is built
+around the model, while grounding it in a property it attributes to the models themselves. Contrary to standard security
+practice, it argues, the control and data planes are not separable when working with LLMs: a single
+prompt contains both, and the technique exploits that to insert control where data is expected. On
+that reading the danger is proportional to what the model's output is wired into — its three worked
+cases are [[SoftwareApplication/langchain]] chains that turn model output into a call to a Python
+interpreter, an HTTP endpoint or a database, yielding remote code execution, server-side request
+forgery and SQL injection respectively. Its minimal illustration is the same shape as the second
+account's: a shoe-shop chatbot prompt followed by an "IGNORE ALL PREVIOUS INSTRUCTIONS" payload.
+
+Its recommendation follows from treating the output rather than the input as the thing to defend:
+every LLM production should be treated as potentially malicious and under the control of anyone who
+can get text into the model's input, inspected and sanitized before anything downstream parses it,
+with external calls strictly parameterized and made at the lowest privilege of any entity that
+contributed to the prompt. Like the second account it reaches a pessimistic conclusion about
+elimination — describing such attacks as common and not effectively mitigable — but where that
+account offers awareness, this one offers a design posture. See
+[[DefinedTerm/control-data-plane-confusion]].
+
 ## Related Terms
 
 - [[DefinedTerm/indirect-prompt-injection]] — the variant in which the adversarial instructions are
@@ -108,3 +130,6 @@ there are none yet, and that raising awareness is for the moment the only thing 
 - [[DefinedTerm/dual-llm-pattern]] — the mitigation proposed in the second source
 - [[DefinedTerm/jailbreaking]] — a distinct attack class; that page carries two framings of how
   sharply it is separated from this one
+- [[DefinedTerm/control-data-plane-confusion]] — the third account's structural explanation for why
+  this class of attack resists elimination
+- [[SoftwareApplication/langchain]] — the library whose chains that account used as worked cases

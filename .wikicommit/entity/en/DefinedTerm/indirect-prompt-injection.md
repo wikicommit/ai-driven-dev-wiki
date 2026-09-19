@@ -2,7 +2,7 @@
 title: "Indirect Prompt Injection"
 type: "schema:DefinedTerm"
 lang: en
-tags: []
+tags: [agents, agent-safety, security, prompt-injection]
 sources:
   - type: url
     url: 'https://arxiv.org/abs/2302.12173'
@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks'
     hash: sha256:cccb2171881ac7e3fdad07195764b42fff863153b2b262af3fd66a5ff5c7779c
+  - type: url
+    url: 'https://developer.nvidia.com/blog/mitigating-indirect-agents-md-injection-attacks-in-agentic-environments/'
+    hash: sha256:12ff9c9af90eba6dbc268a3eab17b477eca5b0dc3c223d5537d795ba8b206089
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -80,9 +83,11 @@ attempts. It also states that Anthropic runs additional classifiers over what th
 browser use tools return, scanning screenshots and page text for potential injections and steering
 Claude to check whether an instruction really came from the user before acting.
 
+A fifth account narrows the vector to a coding agent's own configuration files. An NVIDIA AI Red Team report describes a malicious dependency writing an [[DefinedTerm/agents-md]] file during a build, so that instructions reach the agent with the standing of project configuration rather than as retrieved content. What distinguishes this case from the retrieved-document form above is where the injected text sits in the agent's trust model: an instruction file is something the agent is built to obey, so the attack needs no concealment from the model and instead concealed itself from the human reviewer, chaining a second injection through a source comment addressed to the model that would summarize the pull request. Its precondition is correspondingly stronger — the attacker must already have code execution in the build environment — and the affected vendor concluded on that basis that it did not materially raise risk beyond a compromised dependency. See [[DefinedTerm/indirect-agents-md-injection]].
+
 ## Related Terms
 
-[[ScholarlyArticle/not-what-youve-signed-up-for]], [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]], [[DefinedTerm/two-channel-prompt-injection]], [[DefinedTerm/tool-poisoning]], [[DefinedTerm/guardrails]], [[DefinedTerm/jailbreaking]]
+[[ScholarlyArticle/not-what-youve-signed-up-for]], [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]], [[DefinedTerm/two-channel-prompt-injection]], [[DefinedTerm/tool-poisoning]], [[DefinedTerm/indirect-agents-md-injection]], [[DefinedTerm/guardrails]], [[DefinedTerm/jailbreaking]]
 
 - [[ScholarlyArticle/from-determinism-to-delegation]] — source of the measured tool-integrated attack
   rate and the agent-side defences above
