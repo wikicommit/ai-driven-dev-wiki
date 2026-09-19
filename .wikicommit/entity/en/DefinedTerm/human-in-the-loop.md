@@ -13,16 +13,19 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.16520'
     hash: sha256:2601c1408563f747b2ac732af43342b6d4d14231aace9b4a2e0aa4d33ba3f674
+  - type: url
+    url: 'https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf'
+    hash: sha256:9d619ed7dd7cb94569658ca3de72615ef792761e6e4147e36c45edf2f945bbf9
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is."
+  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task."
 ---
 
-Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for three distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, and a structured review surface through which a person inspects and edits what the agent proposes.
+Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for four distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, and an escalation path the agent takes when it cannot complete a task on its own.
 
 ## Usage
 
@@ -32,6 +35,14 @@ A later post on long-running agents uses the same term for a different pattern: 
 
 [[ScholarlyArticle/agentclick]] adds a third emphasis: that whether a human is nominally in the loop matters less than what the interface lets them actually do. Its authors argue that terminal output interleaves reasoning traces, tool logs and proposed actions in a single stream, so it is hard to identify what requires review; that feedback is cumbersome because users must type free-form corrections even for small local edits; and that consequential actions are presented as opaque events or binary prompts, leaving little room for targeted inspection or modification. Their response, [[SoftwareApplication/agentclick]], is a review layer whose stated aim is to improve collaboration rather than merely gate execution: the user can approve, edit directly, delete content, adjust constraints or request a targeted rewrite at the level of the artifact under review, which those authors argue matters most when an agent's output is largely correct but needs a localized change. They also describe review as a channel for preference capture, with reason-tagged edits written to a memory file the agent reads in later runs, so a correction shapes future behaviour rather than serving as a one-off override.
 
+[[TechArticle/a-practical-guide-to-building-agents]] arrives at the term from a fourth direction, as
+the last item in its treatment of [[DefinedTerm/guardrails]]. There, human intervention is a
+mechanism that lets an agent gracefully transfer control when it cannot complete a task — escalating
+to a human agent in customer service, or handing control back to the user in the case of a coding
+agent. OpenAI presents it as especially important early in deployment, where it helps identify
+failures, uncover edge cases and establish an evaluation cycle, and frames it as a way to improve an
+agent's real-world performance without compromising the user experience.
+
 ## When It Applies
 
 The real-time sense applies to work where taste and judgment dominate and the agent lacks context a person must supply as it goes — architecture decisions, tricky refactors, ambiguous requirements, nuanced product calls — and assumes a developer is available to actively pair with the agent rather than fire off a task and return to it later.
@@ -40,6 +51,13 @@ The delegated-approval sense applies to a long-running, otherwise-autonomous age
 
 The artifact-review sense assumes an agent that can be made to submit proposals and wait for an outcome before acting, and a surface other than the terminal on which to render them. The AgentClick authors argue the barriers they identify fall hardest on non-expert users, and become sharper when agents run on remote or headless infrastructure where the terminal is not merely a poor collaboration medium but often an inaccessible one. That work is a demo paper whose three walkthroughs its own authors present as capability illustrations rather than a controlled user study, so the claimed benefits are demonstrated rather than measured.
 
+The escalation sense is defined by its triggers rather than by a phase of work. OpenAI names two:
+exceeding failure thresholds — limits set on agent retries or actions, such as failing to understand
+a customer's intent after multiple attempts — and high-risk actions that are sensitive, irreversible
+or high-stakes, its examples being cancelling user orders, authorizing large refunds and making
+payments. It presents the second trigger as a standing requirement until confidence in the agent's
+reliability grows, rather than as a permanent property of those actions.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]], [[DefinedTerm/guardrails]], [[TechArticle/a-practical-guide-to-building-agents]]

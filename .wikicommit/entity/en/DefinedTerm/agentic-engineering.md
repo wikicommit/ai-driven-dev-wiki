@@ -10,8 +10,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.05608'
     hash: sha256:0793091fcad2dc48f9eb6412001558cc2e993e5d5904e18d8fd0c943453879be
+  - type: url
+    url: 'https://www.andrewconnell.com/articles/vibe-coding-vs-agentic-engineering/'
+    hash: sha256:7e8c13f25dd70015f9995dcbf564e7a460760543e3cd12d89b9175dcdf1bf151
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -49,6 +52,23 @@ programmer-defined to model-adaptive, and evolution from manual refactoring to s
 names the new human differentiators as intent articulation, architectural oversight, quality
 calibration and ethical governance.
 
+A third account, by Andrew Connell, states the term as a one-sentence definition and then spends
+its length on the contrast: agentic engineering is the practice of using AI-powered coding agents
+as force multipliers under your direction, while you retain full responsibility for architecture,
+code quality, and engineering judgment. That matches the disciplined-practice sense above rather
+than the field-level one, and it is reached from the other side — the piece is framed as an
+argument about what [[DefinedTerm/vibe-coding]] is not, with the two set out in a table whose rows
+are who it is for, whether the code is reviewed, risk level, best use cases, where engineering
+judgment sits, and whether maintainability is a priority.
+
+The work Connell assigns to agents is the monotonous and tedious part rather than the design. His
+four examples are breaking a long, hard-to-read file into smaller modules; generating initial test
+coverage and edge cases, especially before a large refactor; having an agent review a pull request
+for bugs, security issues and inconsistencies before teammates see it; and the repetitive,
+pattern-based changes of a framework upgrade or library migration, with the developer taking the
+tricky edge cases. His image for the relationship is a head chef and a sous chef: the agent is
+skilled, capable and fast, but it does not decide the menu.
+
 ## When It Applies
 
 The source frames agentic engineering as disproportionately benefiting engineers with strong existing fundamentals (system design, security patterns, performance tradeoffs), since recognizing good AI output requires already knowing what good code looks like; it assumes a supporting test suite is in place, since testing is described as the mechanism that turns an unreliable agent into a reliable system. Its stated failure mode is a junior engineer leaning on AI before building those fundamentals, risking skill atrophy — producing and shipping code without understanding or being able to debug it. As of this post, the term is presented as a fresh, actively-debated proposal rather than settled usage: Karpathy suggested it days before the post was written, after the author says the community spent months debating Willison's "vibe engineering" alternative.
@@ -61,6 +81,14 @@ as an augmentation paradigm but that fully autonomous software development remai
 research challenge. That paper is a position paper synthesising other work rather than reporting
 measurements of its own, and the nine-dimension contrast it draws is presented as an analytical
 framing.
+
+Connell's conditions are close to the first account's and stated as an argument for learning the
+practice rather than as limits on it. He holds that the approach is the natural next step in a
+line of tools developers have always adopted — he names IntelliSense, integrated documentation
+and compile-time checks — and that a developer who wants to stay relevant needs to understand
+these tools and how to use them effectively. His stated entry point is deliberately small: take
+one tedious task from the current sprint, hand it to a coding agent, and review every line it
+produces.
 
 ## Related Terms
 

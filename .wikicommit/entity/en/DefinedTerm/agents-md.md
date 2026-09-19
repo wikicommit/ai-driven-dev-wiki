@@ -16,9 +16,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2509.06216'
     hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
+  - type: url
+    url: 'https://openai.com/index/introducing-codex/'
+    hash: sha256:2eb8d6fdb2ff536487274af973fe01fefa7c639f4f5ae546a6739e3e516ba93c
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
@@ -41,6 +44,25 @@ The source frames a good `AGENTS.md` as a living record of codebase friction rat
 
 A later post on long-running agents gives the same file a further design principle for a developer running long or overnight coding jobs: treat `AGENTS.md` like a pilot's checklist, kept short, with every line earned by a real prior failure. It separately describes Anthropic's own scientific-computing agents using `CLAUDE.md` in a comparable role, as a living plan the agent itself edits as it learns over a multi-day run, paired with a `CHANGELOG.md` acting as portable lab notes (see [[DefinedTerm/ralph-loop]]).
 
+The most explicit statement of how such a file is actually interpreted comes from the vendor side.
+OpenAI published the codex-1 system message as an appendix to [[BlogPosting/introducing-codex]], and
+a section of it is an `AGENTS.md` spec written as rules the agent follows. It tells the agent that
+these files can appear anywhere in the container's filesystem — typical locations being the root,
+the home directory, and various places inside git repositories, so they need not live in a repo at
+all; that a file's scope is the entire directory tree rooted at the folder containing it, and that
+for every file touched in the final patch the agent must obey any `AGENTS.md` whose scope includes
+it; that instructions about code style, structure and naming apply only within that scope unless
+the file says otherwise; that a more deeply nested file takes precedence where instructions
+conflict; and that direct system, developer or user instructions in the prompt outrank the file.
+Two further provisions are about what the file can ask for rather than where it applies: any
+programmatic checks it specifies must all be run, with a best effort to confirm they pass, after
+all code changes and even for changes as simple as documentation; and instructions it gives about
+pull-request messages are to be respected. OpenAI describes publishing the system message so that
+developers can understand the model's default behaviour and tailor Codex to their own workflows,
+and gives skipping those tests when short on time as an example of such a change — so the
+precedence rule is presented as something a user can lean on, not only a conflict-resolution
+detail.
+
 ## Related Terms
 
-[[DefinedTerm/harness-engineering]], [[DefinedTerm/agentic-context-engineering]], [[DefinedTerm/ralph-loop]]
+[[DefinedTerm/harness-engineering]], [[DefinedTerm/agentic-context-engineering]], [[DefinedTerm/ralph-loop]], [[SoftwareApplication/openai-codex]]

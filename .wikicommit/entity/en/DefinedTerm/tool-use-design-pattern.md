@@ -14,6 +14,9 @@ sources:
   - type: url
     url: 'https://blog.dagworks.io/p/agentic-design-pattern-1-tool-calling'
     hash: sha256:f5276fdca09410e46b0e304c27f4f41294afee574a8aae025568b5534898ad22
+  - type: url
+    url: 'https://leehanchung.github.io/blogs/2024/05/09/tools-for-llms/'
+    hash: sha256:8ef12294dde175a73b84aebfc72fd77dc2272d9cbae8e71e34c79396b3dddc5a
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -36,9 +39,10 @@ database lookups to external APIs and cloud services.
 
 ## Usage
 
-Three published accounts of the pattern are described here — a cloud vendor's architectural pattern
-catalogue, a vendor-published teaching course, and a framework vendor's engineering blog post — and
-they agree on the mechanism while differing in what they emphasize around it.
+Four published accounts of the pattern are described here — a cloud vendor's architectural pattern
+catalogue, a vendor-published teaching course, a framework vendor's engineering blog post, and an
+independent practitioner's survey of the research and the vendor APIs — and they agree on the
+mechanism while differing in what they emphasize around it.
 
 **AWS Prescriptive Guidance** presents it as an architecture pattern named *tool-based agents for
 calling functions*, and sets out a five-step control flow: the agent receives a natural-language
@@ -112,10 +116,42 @@ by Python's `inspect` module and formatted into the type that provider expects, 
 means adding a function. It recommends including a fallback
 tool that lets the model answer from its own knowledge, and — modelling the flow as a state machine in
 [[SoftwareApplication/burr]] — argues for one action per tool rather than a single dispatching action,
-so that every available tool is visible in the application graph. It is also the only one of the three
+so that every available tool is visible in the application graph. It is also the only one of the four
 to report the pattern misbehaving: the model was finicky about choosing a tool, sometimes declining to
 choose one and sometimes losing track of the instructions, and reasonable behaviour came from prompt
 engineering iterated against the framework's own debugging UI.
+
+**An independent practitioner's post** by Han Lee approaches the pattern from two directions at
+once: what earlier research proposed, and what the model vendors actually shipped. Its starting
+premise is that language models suffer from a lack of access to current or proprietary
+information, a lack of ability to reason or plan, and hallucination, and that other mechanisms are
+therefore needed to provide tools to language models as agents. Lee summarises the research
+lineage without dwelling on it: a pre-ChatGPT proposal to augment a language model with external
+expert modules, neural ones being other language models and symbolic ones callables such as a
+calculator, a currency converter or an API call, reached through a generated input adapter, contemporaneous efforts to give models web browsing and Python
+interpreters, and post-ChatGPT work both on training a model to use tools such as calculators and
+search engines and on having it retrieve from a large set of tools rather than a fixed few.
+
+Where that post is most concrete is in comparing what the vendors converged on. It sets out
+OpenAI's `tools` parameter, added to the Chat Completion API in June 2023, as the baseline: a list
+of function specifications naming the function, describing it, and declaring its parameters as a
+JSON Schema object with required fields, existing so the model can generate arguments that adhere
+to the specification. It then reads the others as the same schema with different key names —
+Google's Gemini Pro (announced November 2023) uses `functionDeclarations` and omits the tool
+`type`; Anthropic's tool-calling beta (April 2024) renames `parameters` to `input_schema`; and
+Cohere's (April 2024) renames it to `parameter_definitions`. LangChain added generic support
+across models in the same month, exposing it either through a `@tool` decorator or by extending a
+`BaseTool` class. Lee's point in laying them side by side is that the schema is essentially
+settled, and that what actually determines quality is the descriptions: they are the prompts the
+model uses to work out how to generate the best input parameters.
+
+Its conclusion is a definition — a tool for a language model is a callable (a function, an API, a
+SQL query) carrying a name, a description, and a clearly defined input JSON schema — and a
+correction of a common way of speaking about it. On Lee's account the LLM does not use tools at
+all: it only generates the input parameters, and it is the developer's responsibility to call the
+tool with them and append the result to the conversation history for the model to produce the
+final output. That restates, from outside any vendor, the same division of labour the AWS and
+Microsoft accounts describe from inside one.
 
 ## Related Terms
 
