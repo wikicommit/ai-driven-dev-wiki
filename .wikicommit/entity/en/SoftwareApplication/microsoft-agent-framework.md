@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://github.com/microsoft/agent-framework/blob/main/docs/decisions/0024-prompt-injection-defense.md'
     hash: sha256:51eb7a8188be72cbaed8c44f9f3fb847df2aaacf057d21f16ab59e9312c5d6d9
+  - type: url
+    url: 'https://learn.microsoft.com/en-us/agent-framework/workflows/human-in-the-loop'
+    hash: sha256:c8d4c0ec859c61f78664fbc60f846dfd583f0efa4b93d0d0c42cffa2dcdce9f8
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -18,7 +21,7 @@ generated_with: "0.6.1"
 properties:
   description: "An open-source Microsoft framework for building AI agents, in which an ordinary function becomes a callable tool through a decorator and the framework generates the schema and manages the exchange between the model and the application's code."
   applicationCategory: "AI agent framework"
-  featureList: "Decorator-based tool definition, automatic schema generation, model-to-code call handling, prebuilt File Search and Code Interpreter tools, a FunctionMiddleware pipeline"
+  featureList: "Decorator-based tool definition, automatic schema generation, model-to-code call handling, prebuilt File Search and Code Interpreter tools, a FunctionMiddleware pipeline, workflows built from executors and edges, typed request/response ports that pause a workflow for external input, tool approval in agent orchestrations, checkpoints that preserve pending requests"
   author: "Microsoft"
 ---
 
@@ -40,6 +43,32 @@ is then run against a natural-language request.
 
 Beyond functions the developer writes, the framework provides access to prebuilt tools — File
 Search and Code Interpreter are the two the course names — through its `FoundryChatClient`.
+
+Above individual agents the framework has a workflow system, in which units of work called
+executors are wired together with edges through a builder. Microsoft's documentation describes
+[[DefinedTerm/human-in-the-loop]] in that system as a consequence of a more general capability
+rather than a feature of its own: an executor can send a request out of the workflow and wait for
+the answer, which covers a human operator as one case of an external system among others. The
+channel for this is a typed request port. When a request reaches it the workflow pauses and emits
+an event carrying the request's details; an external system subscribes to those events, produces a
+response, and hands it back, and the framework routes it to the executor that asked. The same
+mechanism is offered in the framework's C#, Python and Go surfaces, with Python letting an executor
+issue the request directly and register a response handler whose type annotations the framework
+matches incoming responses against.
+
+Tool approval reuses that machinery rather than adding another. Where agents run under one of the
+prebuilt orchestrations, a tool marked as needing approval pauses the workflow and emits the same
+event, differing only in that the payload is an approval request rather than a request type the
+developer defined. The documentation is explicit about the limits of this: sequential, concurrent
+and group-chat orchestrations do not stop for free-form user input on their own, so a workflow that
+needs a conversation between steps has to pair them with a request port in a custom workflow. The
+handoff orchestration is the exception, being interactive by default — when an agent answers
+without handing off to another agent, control returns to the user for the next input.
+
+Waiting also survives being checkpointed. Pending requests are stored as part of a checkpoint's
+state and re-emitted when it is restored, and a run can be resumed from a checkpoint with the
+responses supplied in the same call, so [[DefinedTerm/checkpoint-and-resume]] and an outstanding
+approval do not have to be handled as separate concerns.
 
 ## Adoption & Ecosystem
 

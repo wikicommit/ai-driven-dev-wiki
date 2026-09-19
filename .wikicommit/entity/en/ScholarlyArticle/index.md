@@ -32,6 +32,7 @@ comments: false
 - [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]]
 - [[ScholarlyArticle/landscape-of-prompt-injection-threats-in-llm-agents]]
 - [[ScholarlyArticle/magentic-ui]]
+- [[ScholarlyArticle/measuring-impact-early-2025-ai-developer-productivity]]
 - [[ScholarlyArticle/not-what-youve-signed-up-for]]
 - [[ScholarlyArticle/proof-of-guardrail-in-ai-agents]]
 - [[ScholarlyArticle/react-synergizing-reasoning-and-acting]]

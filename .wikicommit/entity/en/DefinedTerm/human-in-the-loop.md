@@ -16,16 +16,19 @@ sources:
   - type: url
     url: 'https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf'
     hash: sha256:9d619ed7dd7cb94569658ca3de72615ef792761e6e4147e36c45edf2f945bbf9
+  - type: url
+    url: 'https://hoop.dev/blog/human-in-the-loop-approval-in-ai-coding-agents-explained'
+    hash: sha256:d47e37ed6d4309cb36f68927dfc4477de6d95bb29a757d4457974ee26a438f58
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task."
+  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task; a fifth moves the gate out of the agent altogether, into a network gateway that holds the credential and will not forward the agent's request until a reviewer consents."
 ---
 
-Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for four distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, and an escalation path the agent takes when it cannot complete a task on its own.
+Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for five distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, and an enforcement point placed in the network path between the agent and the system it is acting on.
 
 ## Usage
 
@@ -43,6 +46,18 @@ agent. OpenAI presents it as especially important early in deployment, where it 
 failures, uncover edge cases and establish an evaluation cycle, and frames it as a way to improve an
 agent's real-world performance without compromising the user experience.
 
+A fifth position is that the gate belongs neither in the agent nor in the review tooling but in the
+data path between them. The vendor hoop.dev argues that an agent authenticating directly against a
+Git server, container registry or CI/CD orchestrator gives identity verification but no point at
+which a policy can pause, inspect or require a human decision, and that the operation is then
+recorded only in the target's logs, if at all — and that a post-hoc pull-request review arrives too late, because the
+artifact already exists in version control and may have exposed a secret or triggered downstream
+jobs before anyone looks. Its answer is a Layer 7 gateway that receives the request, inspects the
+payload at the protocol level, routes it to an authorized reviewer where policy demands, and
+forwards it only on consent — recording the session and the decision as it goes. That argument
+appears in a post promoting the vendor's own [[SoftwareApplication/hoop-dev]] gateway, so the
+framing and the product are not separable here.
+
 ## When It Applies
 
 The real-time sense applies to work where taste and judgment dominate and the agent lacks context a person must supply as it goes — architecture decisions, tricky refactors, ambiguous requirements, nuanced product calls — and assumes a developer is available to actively pair with the agent rather than fire off a task and return to it later.
@@ -57,6 +72,15 @@ a customer's intent after multiple attempts — and high-risk actions that are s
 or high-stakes, its examples being cancelling user orders, authorizing large refunds and making
 payments. It presents the second trigger as a standing requirement until confidence in the agent's
 reliability grows, rather than as a permanent property of those actions.
+
+The enforcement-point sense assumes the agent's traffic can be routed through a proxy that reads the
+protocol it speaks — the vendor names Git, HTTP and "the relevant API" — and that the gateway,
+rather than the agent, can hold the credential for the target service, which the vendor presents as
+reducing the risk of credential leakage. What it relocates is not when the human is asked but where
+the asking is enforced: the vendor's argument is that direct agent-to-target access offers no point
+in the data path at which policy can pause, inspect or require a decision. It is also the sense
+whose payoff is stated in audit terms — session logs, a record of who approved each change, and the
+stored masked diff, exportable for compliance reporting — rather than in development terms.
 
 ## Related Terms
 

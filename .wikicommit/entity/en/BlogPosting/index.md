@@ -44,6 +44,7 @@ comments: false
 - [[BlogPosting/prompt-injection-attacks-against-gpt-3]]
 - [[BlogPosting/securing-llm-systems-against-prompt-injection]]
 - [[BlogPosting/self-improving-agents]]
+- [[BlogPosting/sequoia-ascent-2026-summary]]
 - [[BlogPosting/spec-driven-development-with-ai-open-source-toolkit]]
 - [[BlogPosting/stop-using-init-for-agents-md]]
 - [[BlogPosting/your-ai-coding-agents-need-a-manager]]
