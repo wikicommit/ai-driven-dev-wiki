@@ -13,8 +13,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.28791'
     hash: sha256:0de559cacdfe9078d48a08a5f2b05d76219a579abd307e3a72ca17d1894464d0
+  - type: url
+    url: 'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks'
+    hash: sha256:cccb2171881ac7e3fdad07195764b42fff863153b2b262af3fd66a5ff5c7779c
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -50,9 +53,36 @@ destructive actions. It lists security under agency among its open problems, des
 immature and calling for further formalization of provenance, capability scoping and verifiable
 guardrails.
 
+A fourth account comes from the vendor side. Anthropic's platform documentation treats indirect
+prompt injection as one of two threat models an application must defend against, and defines it by
+who the adversary is: the user is trusted, and it is the *third-party content* the model reads on
+that user's behalf — the body of an inbound email, a fetched web page, OCR output from an uploaded
+file, the result of a tool call — that an attacker may have influenced. It sets this against
+jailbreaks and direct prompt injection, where the application's own user is the adversary (see
+[[DefinedTerm/jailbreaking]]).
+
+The mitigations it gives follow from structuring the application so the model can reliably tell
+untrusted content from the application's own instructions. Third-party content should be delivered
+only inside `tool_result` blocks and never in system prompts or plain user text blocks, on the
+stated grounds that Claude is trained to treat instructions appearing inside tool results with
+appropriate skepticism; the tool's description or the result's structure should say what the
+content is and where it came from, so the model can calibrate how much to trust any embedded
+directives; and the system prompt should state outright that tool, document and search results are
+untrusted data that must never override it or the user's request. It recommends JSON-encoding
+untrusted strings rather than concatenating them into free-form text, since JSON escaping gives
+unambiguous delimiters an attacker cannot close a quote or tag to break out of. The converse also
+holds on that account: because tool-result content is treated as untrusted, a developer's own
+instructions placed there may be ignored or flagged, and belong in a following user turn instead.
+Beyond the message structure it names least privilege over the data and actions the model can
+reach, screening each tool's raw output through a small classifier before returning it, and
+red-teaming the workflow with documents and tool outputs that deliberately contain injection
+attempts. It also states that Anthropic runs additional classifiers over what the computer use and
+browser use tools return, scanning screenshots and page text for potential injections and steering
+Claude to check whether an instruction really came from the user before acting.
+
 ## Related Terms
 
-[[ScholarlyArticle/not-what-youve-signed-up-for]], [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]], [[DefinedTerm/two-channel-prompt-injection]], [[DefinedTerm/tool-poisoning]], [[DefinedTerm/guardrails]]
+[[ScholarlyArticle/not-what-youve-signed-up-for]], [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]], [[DefinedTerm/two-channel-prompt-injection]], [[DefinedTerm/tool-poisoning]], [[DefinedTerm/guardrails]], [[DefinedTerm/jailbreaking]]
 
 - [[ScholarlyArticle/from-determinism-to-delegation]] — source of the measured tool-integrated attack
   rate and the agent-side defences above

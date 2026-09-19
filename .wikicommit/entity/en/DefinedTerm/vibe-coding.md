@@ -19,9 +19,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2603.11073'
     hash: sha256:b27050eee67fa3ab8d502b496b64c26c1985857ac4dabac280117ba6882031d7
+  - type: url
+    url: 'https://www.andrewconnell.com/articles/vibe-coding-vs-agentic-engineering/'
+    hash: sha256:7e8c13f25dd70015f9995dcbf564e7a460760543e3cd12d89b9175dcdf1bf151
 review_status: pending
-generated_at: "2026-09-16"
-generated_by: "claude-sonnet-5"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
@@ -65,6 +68,24 @@ settle on definitions: he said he uses "vibe coding" for the occasions when he f
 the "I have no idea what I'm doing" image, citing an iOS app he had built the night before, but that
 in practice he rarely goes full out vibe coding — more often he still looks at the code, adds
 complexity slowly, tries to learn over time how the pieces work, and asks clarifying questions.
+
+A practitioner account from 2026 keeps the narrow reading and puts it to a different use: deciding
+what to hand to an AI at all. Andrew Connell defines vibe coding as a development approach in which
+you have natural-language conversations with an AI and let it build an application for you without
+reviewing the generated code, and attributes the term to a February 2025 tweet by Andrej Karpathy.
+His summary of the difference from [[DefinedTerm/agentic-engineering]] is about ownership: vibe
+coding delegates code ownership to the AI, while agentic engineering keeps the developer's
+engineering judgment in the driver's seat.
+
+Where that account is unusual is in what it says vibe coding is *good* for. Connell holds that it
+works well for low-risk tasks — his examples are collecting data on a form and processing inbound
+support tickets — and for anything that does not take autonomous actions without a human in the
+loop, where security is not a critical concern, and where nobody has to maintain the result over
+time. He then makes a second, positive case that does not depend on risk at all: that vibe coding
+is valuable precisely for people who are not engineers, letting product managers, marketers and
+other stakeholders express a prototype in natural language rather than arriving with a
+requirements document, and letting a team "vibe up" a prototype with a customer to reach alignment
+before any production code is written.
 
 ## When It Applies
 Willison sets out the conditions under which he considers vibe coding acceptable, addressed
@@ -115,7 +136,27 @@ the survey describes it as an orthogonal, technical context-management capabilit
 codebase indexing) that can be layered onto any of the other four models, including the
 Unconstrained Automation Model itself.
 
+Connell's conditions overlap Willison's on risk but add two of his own, both about what an AI
+cannot be relied on to weigh. The first is cost: he argues these tools write working code without
+optimizing for operational constraints unless told to, his example being code that fetches
+Microsoft Graph data in a per-user loop rather than batching, which can exceed throttling limits
+within hours of a production deployment or burn through a metered quota in a week. The second he
+calls the "just because you can" problem — an AI assistant may propose a technically working
+solution that the platform vendor does not support, his example being a SharePoint Framework
+application customizer that rearranges the DOM on modern SharePoint pages, which he says Microsoft
+explicitly does not support and which could silently void support for an entire tenant. On his
+account both are the kind of judgment call a practising engineer would make and vibe coding
+cannot.
+
+The maintainability objection he raises is of the same shape. Once a solution is rolled out widely,
+someone has to understand it to change or fix it, and he argues an LLM asked to analyse the
+codebase later will be missing the original context from its creation that the code does not fully
+reflect — adding that, at least today, a model cannot hold an application past a certain size in
+its context window. His conclusion is the plainest version of the narrow reading: if you don't
+understand the code, you can't debug it, extend it, or explain it to your team.
+
 ## Related Terms
+- [[DefinedTerm/agentic-engineering]] — the disciplined counterpart one source contrasts it with
 - [[DefinedTerm/ai-assisted-programming]] — the broader practice this term is a subset of
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of
 - [[DefinedTerm/agentic-coding]] — the paradigm a 2025 academic taxonomy contrasts vibe coding with

@@ -37,6 +37,7 @@ comments: false
 - [[SoftwareApplication/magentic-ui]]
 - [[SoftwareApplication/microsoft-agent-framework]]
 - [[SoftwareApplication/microsoft-foundry-agent-service]]
+- [[SoftwareApplication/openai-agents-sdk]]
 - [[SoftwareApplication/openai-codex]]
 - [[SoftwareApplication/openclaw]]
 - [[SoftwareApplication/openspec]]
