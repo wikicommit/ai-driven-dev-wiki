@@ -22,16 +22,32 @@ sources:
   - type: url
     url: 'https://developer.nvidia.com/blog/mitigating-indirect-agents-md-injection-attacks-in-agentic-environments/'
     hash: sha256:12ff9c9af90eba6dbc268a3eab17b477eca5b0dc3c223d5537d795ba8b206089
+  - type: url
+    url: 'https://github.com/agentsmd/agents.md'
+    hash: sha256:0ee1b448835cb629994773e13324b6175ac210907c372308c45f2d1313aaec43
+  - type: url
+    url: 'https://github.blog/news-insights/company-news/welcome-home-agents/'
+    hash: sha256:3d6ec841322ac0387923d4793d10946b52ad17fdca90ec22708b55bf57feced1
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A markdown file, conventionally at a repository's root, injected into an AI coding agent's context on every turn to record project conventions and non-obvious facts the agent cannot discover by reading the code itself."
+  description: "A markdown file, conventionally at a repository's root, injected into an AI coding agent's context on every turn: an open format giving a dedicated, predictable place for the project context and instructions an agent should work from. One widely cited argument holds that only facts an agent cannot discover by reading the code itself earn a line in it."
 ---
 
 AGENTS.md is a markdown file, conventionally placed at the root of a repository, that gets loaded into an AI coding agent's context on every prompt to convey project-specific conventions and constraints. Common coding agents can auto-generate one via an `/init`-style command, which scans a codebase and produces a description of its directory structure, tech stack, and testing conventions.
+
+The format's own project describes it in one line as "a simple, open format for guiding coding
+agents", and glosses it as a README for agents: a dedicated, predictable place to provide context
+and instructions to help AI coding agents work on a project. It is published from the
+`agentsmd/agents.md` repository under an MIT license, alongside a website at <https://agents.md/>
+explaining the project's goals, and the repository carries a technical charter. The minimal example
+the project ships is a plain Markdown file with three `##` sections — dev environment tips, testing
+instructions, and pull-request instructions — whose contents are concrete commands and conventions
+(which package manager command to use, where the CI plan lives, a required title format, checks to
+run before committing) rather than prose about the codebase.
 
 ## Usage
 
@@ -39,13 +55,19 @@ Cited research summarized in the source found that a human-authored `AGENTS.md` 
 
 Another post by the same author cites OpenAI's Codex documentation as recommending an `AGENTS.md` file to give an agent consistent expectations about which tests to run, lint rules, dependency policies, and documentation requirements — likened there to onboarding a new hire with a map of conventions before they start writing code. That post also frames updating `AGENTS.md` and related checklists as the final "retro" step of a repeatable orchestration loop, so the next run starts smarter ([[BlogPosting/your-ai-coding-agents-need-a-manager]]).
 
+GitHub adopted the file as one configuration surface for custom agents in VS Code, announced
+alongside [[SoftwareApplication/agent-hq]] (see [[BlogPosting/introducing-agent-hq]]). It describes
+`AGENTS.md` files there as source-controlled documents for setting clear rules and guardrails —
+its examples being "prefer this logger" and "use table-driven tests for all handlers" — and states
+the point as shaping Copilot's behaviour without re-prompting it every time.
+
 [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] discusses project-level configuration files such as `CLAUDE.md`, `.clinerules`, and `AGENT.md` as an early, grassroots practice of loading "institutional knowledge" before every agent task — codifying style guides, architectural constraints, and lessons learned into a continuously improving "employee handbook" for AI teammates. It frames this practice as an early example of what it proposes formalizing as [[DefinedTerm/mentorscript]], and states the community has no consensus on what such files should contain or the appropriate level of detail, arguing that future work involves not only defining more formal languages for this purpose but also discovering best practices for these files' effective use.
 
 ## When It Applies
 
 The source frames a good `AGENTS.md` as a living record of codebase friction rather than a permanent configuration: a line is added when an agent repeatedly makes the same mistake, and removed once the underlying problem (a confusing directory structure, a build pipeline that should catch something automatically) has been fixed instead. It states the practical filter as: if the agent could discover a fact by reading the code, it doesn't belong in the file. The source also treats a single, static, repository-root file as a structural limitation for any codebase past a certain complexity, since a flat instruction set cannot condition its content on what kind of task is being run, and proposes a hierarchy of directory- or module-scoped files, automatically maintained, as the intended replacement. It further describes a more elaborate three-layer version of this idea (a minimal routing file, task-scoped skill files, and a maintenance subagent), noting that no major coding agent yet exposes the lifecycle hooks needed to build that fuller architecture cleanly.
 
-A later post on long-running agents gives the same file a further design principle for a developer running long or overnight coding jobs: treat `AGENTS.md` like a pilot's checklist, kept short, with every line earned by a real prior failure. It separately describes Anthropic's own scientific-computing agents using `CLAUDE.md` in a comparable role, as a living plan the agent itself edits as it learns over a multi-day run, paired with a `CHANGELOG.md` acting as portable lab notes (see [[DefinedTerm/ralph-loop]]).
+A later post on long-running agents gives the same file a further design principle for a developer running long or overnight coding jobs: treat `AGENTS.md` like a pilot's checklist, kept short, with every line earned by a real prior failure. It separately describes Anthropic's own scientific-computing agents using `CLAUDE.md` in a comparable role, as a living plan the agent itself edits as it learns, paired with a `CHANGELOG.md` acting as portable lab notes (see [[DefinedTerm/ralph-loop]]).
 
 The most explicit statement of how such a file is actually interpreted comes from the vendor side.
 OpenAI published the codex-1 system message as an appendix to [[BlogPosting/introducing-codex]], and

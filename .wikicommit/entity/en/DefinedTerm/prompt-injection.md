@@ -13,13 +13,19 @@ sources:
   - type: url
     url: 'https://developer.nvidia.com/blog/securing-llm-systems-against-prompt-injection/'
     hash: sha256:3586be2459ba07a9385bba9fe13f4902a44075110ce0e0594535f80200bc5848
+  - type: url
+    url: 'https://simonwillison.net/2022/Sep/12/prompt-injection/'
+    hash: sha256:2d2b741596804f79993a763d44b45e8307bef3e18b62aa98912d397b49a1fa23
+  - type: url
+    url: 'https://www.ibm.com/topics/prompt-injection'
+    hash: sha256:a266835677476a694038cea4bd96f4ae88e318fe878bc7adcc4a28c90d8f3144
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "An attack against applications built on top of large language models, in which untrusted natural-language input is joined to the trusted prompt an application's developer wrote and overrides it. Preamble reports disclosing the underlying vulnerability to OpenAI in May 2022 under the name command injection, describing it at the level of GPT-3 itself; the talk that explains it as an application-level attack is by Simon Willison, whom Preamble credits with supplying the name."
+  description: "An attack against applications built on top of large language models, in which untrusted natural-language input is joined to the trusted prompt an application's developer wrote and overrides it. The name was proposed by Simon Willison in a post of 12 September 2022; Preamble reports having disclosed the underlying vulnerability to OpenAI in May 2022 under the name command injection, describing it at the level of GPT-3 itself. IBM records it as the top entry on the OWASP Top 10 for LLM Applications."
 ---
 
 Prompt injection is an attack against applications that have been built on top of large language
@@ -48,6 +54,31 @@ The name the field settled on came from outside that disclosure. Preamble record
 Willison. The two facts are worth keeping apart: on Preamble's account the company discovered and
 disclosed the vulnerability, while the name by which it is now known was supplied later by someone
 else.
+
+The post that supplied it is available here directly as
+[[BlogPosting/prompt-injection-attacks-against-gpt-3]], dated 12 September 2022. It takes a set of
+examples posted the previous day — a GPT-3 translation prompt defeated by input instructing the
+model to ignore its directions and answer "Haha pwned!!" — and argues that this is not merely an
+interesting academic trick but a form of security exploit, proposing that the obvious name for it
+should be prompt injection. Its account of why the vulnerability exists is an account of how the
+applications were built: the way the API is used, it observes, is to assemble prompts by
+concatenating strings together, so a translation service is built by gluing user input onto a
+pre-written instruction. That post also demonstrates that instructions written to anticipate the
+attack do not stop it — a prompt warning the model that the text may contain directions designed to
+trick it, and that it is imperative not to listen, still returns the injected output.
+
+A fourth account, an explainer published by IBM, defines prompt injection as a cyberattack against
+large language models in which attackers disguise malicious inputs as legitimate prompts. Its
+explanation of the root cause is structural and agrees with the first-hand accounts above while
+stating the mechanism in terms of types: LLM applications do not clearly distinguish between
+developer instructions and user inputs because both take the same form — strings of natural-language
+text — so the model cannot tell them apart on the basis of data type, and relies instead on its
+training and on the prompts themselves. On that account, input crafted to look enough like a system
+prompt displaces the developer's instructions. IBM situates the practice of writing system prompts
+in instruction fine-tuning, which is what lets developers direct an LLM application in natural
+language rather than in code, and notes that prompt injection is not inherently illegal — only when
+used for illicit ends — with legitimate researchers using the same techniques to probe model
+capabilities and security gaps.
 
 Preamble describes the vulnerability as unresolved rather than historical. It reports that prompt
 injections continue to affect generative AI and LLM products through both **direct** and
@@ -117,6 +148,47 @@ elimination — describing such attacks as common and not effectively mitigable 
 account offers awareness, this one offers a design posture. See
 [[DefinedTerm/control-data-plane-confusion]].
 
+That explainer is also where this page's account of consequences and countermeasures comes from. It
+records prompt injection as the number one security vulnerability on the OWASP Top 10 for LLM
+Applications, and stresses that the attacks require little technical knowledge — quoting Chenta Lee,
+Chief Architect of Threat Intelligence for IBM Security, to the effect that attackers no longer need
+Go, JavaScript or Python to create malicious code, but need only understand how to command and
+prompt an LLM in English. The common effects it lists are prompt leaks (see
+[[DefinedTerm/prompt-leaking]]), remote code execution where the application connects to plugins
+that run code, data theft such as coaxing a customer service chatbot into revealing account details,
+misinformation campaigns that skew results as chatbots are integrated into search, and malware
+transmission — its example being researchers' design of a worm that reaches a victim by email,
+induces the assistant summarizing it to send sensitive data to the attackers, and directs the
+assistant to forward the malicious prompt onward to other contacts.
+
+On mitigation, that account reaches the same pessimistic conclusion as the others while explaining
+it in its own terms: many non-LLM applications avoid injection by treating developer instructions
+and user inputs as separate kinds of object with different rules, and this separation is not
+feasible for applications that accept both as natural-language strings. It reports that
+organizations experimenting with using AI to detect malicious inputs find that even trained
+injection detectors are themselves susceptible to injection. The four measures it offers are
+accordingly framed as risk reduction rather than elimination: general security practices such as
+avoiding phishing emails and suspicious sites; input validation filters that compare inputs against
+known injections, with the acknowledged costs that new prompts evade them and benign inputs are
+wrongly blocked; least privilege, which does not prevent injection but limits the damage; and
+[[DefinedTerm/human-in-the-loop]] verification before an application acts, which it treats as good
+practice with any LLM given that hallucinations do not require an attack at all.
+
+The same source sets out a short timeline of the vulnerability's disclosure, which lines up with
+the accounts above on dates while differing on one detail: researchers at Preamble discovering, on
+3 May 2022, that the model was susceptible to prompt injections and confidentially reporting the
+flaw to OpenAI; Riley Goodside independently discovering the vulnerability and posting about it
+publicly on 11 September 2022, bringing it to public attention for the first time and prompting
+users to find that other LLM bots were susceptible too; Simon Willison formally defining and naming
+the vulnerability on 12 September 2022; and Preamble declassifying its report on 22 September 2022.
+Its final entry, dating the first description of indirect prompt injection, is not restated here:
+that document is not among this page's sources.
+
+The two sources name different models for that first entry. The IBM timeline says the researchers
+found that **ChatGPT** was susceptible, while Preamble's own account — whose subject is that
+disclosure — describes the vulnerability at the level of **GPT-3**, which is the reading this page
+follows above. The disagreement is recorded rather than resolved.
+
 ## Related Terms
 
 - [[DefinedTerm/indirect-prompt-injection]] — the variant in which the adversarial instructions are
@@ -128,8 +200,11 @@ account offers awareness, this one offers a design posture. See
 - [[DefinedTerm/guardrails]] — the policy and control frameworks placed around AI agents, a broader
   sense of the word than the model-inherent guardrails the first source describes
 - [[DefinedTerm/dual-llm-pattern]] — the mitigation proposed in the second source
-- [[DefinedTerm/jailbreaking]] — a distinct attack class; that page carries two framings of how
+- [[DefinedTerm/jailbreaking]] — a distinct attack class; that page carries three framings of how
   sharply it is separated from this one
 - [[DefinedTerm/control-data-plane-confusion]] — the third account's structural explanation for why
   this class of attack resists elimination
 - [[SoftwareApplication/langchain]] — the library whose chains that account used as worked cases
+- [[BlogPosting/prompt-injection-attacks-against-gpt-3]] — the post that proposed the name
+- [[DefinedTerm/direct-prompt-injection]] — the variant in which the attacker supplies the input directly
+- [[DefinedTerm/prompt-leaking]] — one of the effects listed in the fourth account
