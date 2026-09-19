@@ -11,8 +11,11 @@ sources:
   - type: url
     url: 'https://microsoft.github.io/ai-agents-for-beginners/04-tool-use/'
     hash: sha256:71a0416f774296d3c63b62963e0d749c00171e54c528c1541b44d90949d22ab2
+  - type: url
+    url: 'https://blog.dagworks.io/p/agentic-design-pattern-1-tool-calling'
+    hash: sha256:f5276fdca09410e46b0e304c27f4f41294afee574a8aae025568b5534898ad22
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -33,9 +36,9 @@ database lookups to external APIs and cloud services.
 
 ## Usage
 
-Two published accounts of the pattern are described here — a cloud vendor's architectural pattern
-catalogue and a vendor-published teaching course — and they agree on the mechanism while differing
-in what they emphasize around it.
+Three published accounts of the pattern are described here — a cloud vendor's architectural pattern
+catalogue, a vendor-published teaching course, and a framework vendor's engineering blog post — and
+they agree on the mechanism while differing in what they emphasize around it.
 
 **AWS Prescriptive Guidance** presents it as an architecture pattern named *tool-based agents for
 calling functions*, and sets out a five-step control flow: the agent receives a natural-language
@@ -85,9 +88,40 @@ a decorator and the framework serializes it into the schema sent to the model, a
 [[SoftwareApplication/microsoft-foundry-agent-service]], where tool calling is handled server-side
 and tools are combined into a toolset.
 
+**A framework vendor's blog post** ([[BlogPosting/agentic-design-pattern-tool-calling]]) spends most
+of its length on the vocabulary before any mechanism, judging the distinction between "tool",
+"function" and "structured output" to be made more complex than it is. Its answer is that a tool and
+a function are synonyms: for an agent built in code, the simplest way to do something on a user's
+behalf is to call a function, and "tool" is the higher-level word for the same thing — which that
+account offers as the reason the phrase is "tool call", merging "function call" with "tool use". It
+observes that the industry has yet to align on one word, with major model providers naming the same
+feature differently in their own APIs and documentation.
+
+It separates structured outputs from the pattern on a different axis. What a model returns when it
+picks a tool is JSON naming the tool and its arguments, and that JSON-producing behaviour can be
+co-opted to get a fully structured response with no tool behind it at all — which that account
+presents as a way to generalize beyond any one provider's tool-calling API. It also states the
+reframing the pattern asks of the developer in plain terms: because current models are largely closed
+off from the internet, the question to put to the model is not what the weather is but how to
+determine it given that X, Y and Z can be done, the model's strength being to determine intent and say
+what to do rather than to execute it.
+
+On implementation, that account treats the pattern as a thin layer over whatever provider API supports
+tool calling, though its worked example assumes one provider throughout: function signatures are read
+by Python's `inspect` module and formatted into the type that provider expects, so that adding a tool
+means adding a function. It recommends including a fallback
+tool that lets the model answer from its own knowledge, and — modelling the flow as a state machine in
+[[SoftwareApplication/burr]] — argues for one action per tool rather than a single dispatching action,
+so that every available tool is visible in the application graph. It is also the only one of the three
+to report the pattern misbehaving: the model was finicky about choosing a tool, sometimes declining to
+choose one and sometimes losing track of the instructions, and reasonable behaviour came from prompt
+engineering iterated against the framework's own debugging UI.
+
 ## Related Terms
 
 - [[DefinedTerm/model-context-protocol]]
 - [[DefinedTerm/agentic-coding]]
 - [[DefinedTerm/tool-poisoning]]
 - [[DefinedTerm/two-channel-prompt-injection]]
+- [[SoftwareApplication/burr]]
+- [[BlogPosting/agentic-design-pattern-tool-calling]]

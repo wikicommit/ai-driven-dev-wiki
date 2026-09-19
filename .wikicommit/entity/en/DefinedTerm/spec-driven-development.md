@@ -21,8 +21,11 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/generative-ai/spec-driven-development-using-markdown-as-a-programming-language-when-building-with-ai/'
     hash: sha256:26b458e8ba4b8790a046f37bf816d79131b0b7612d69de3ff26ec16690387bb7
+  - type: url
+    url: 'https://arxiv.org/pdf/2608.30572'
+    hash: sha256:c0eb1ba213f36e53531516aecba8c4127b4017c1605a1fac8aba65de8f96ce7d
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -34,12 +37,12 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Five separate
-accounts of the practice are described here — a plugin implementation, a tool-vendor-published
-workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
-implement it, and one developer's firsthand account of taking the practice to its limit — and they
-agree on this much while differing in the concrete mechanics below, including how many levels of
-rigor the practice is understood to have.
+implementation then proceeds from the specification and is verified against it. Six separate
+accounts of the practice are described here — a plugin implementation, a third-party account of a
+tool vendor's workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
+implement it, one developer's firsthand account of taking the practice to its limit, and a report on
+teaching it to undergraduates — and they agree on this much while differing in the concrete mechanics
+below, including how many levels of rigor the practice is understood to have.
 
 ## Usage
 
@@ -116,6 +119,22 @@ the specification for clarity, remove duplication and stick to one term per conc
 instance of the spec-as-source level the practitioner's survey above sets out, arrived at by
 practice rather than argued for.
 
+**A sixth account** comes from a report on introducing the practice into a university team-development
+course ([[ScholarlyArticle/sdd-in-software-development-pbl]]). It situates the practice's emergence in
+tool-vendor documentation, and summarizes the workflow that documentation sets out: agents executing
+requirements analysis, design and implementation planning in sequence, generating a `requirements.md`,
+a `design.md` and a `tasks.md` as they go, with developers continuously verifying those documents at
+each step to keep them aligned with their intent. On that account the distinguishing feature of the practice is that agents
+work from structured specification documents rather than ambiguous natural-language instructions, and
+that those documents state architectural patterns, coding conventions, security requirements and
+testing strategies explicitly, which the agent then treats as constraints. It notes that many agents,
+[[SoftwareApplication/github-copilot]] among them, pick up such workflows and project rules from
+Markdown custom-instruction files — a `copilot-instructions.md` in that course's case. Its own
+adaptation collapses requirements analysis and design into a single investigation phase, on the
+reasoning that this generalizes the workflow to feature additions and debugging rather than only new
+requirements, and adds an explicit review phase in which agent and developer confirm the implementation
+matches the specification.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -164,12 +183,13 @@ agent to split each section into its own module. Its author had not added tests 
 writing, and states that testing remains essential even in spec-driven workflows, since a
 specification describes intended behaviour while tests verify it.
 
-How well established the practice is, none of the five sources settles on their own. Each uses the
+How well established the practice is, none of the six sources settles on their own. Each uses the
 term for its own implementation or account of the pattern; the context-engineering-kit's reliability
 claims — including that its plugin produced working code in every case its team tested — are the
 project's own, based on internal production use rather than independent evaluation. The GitHub Spec
-Kit account comes from a third-party blog post citing GitHub's own published study and documentation
-of the tool, rather than from an independent evaluation of it. The practitioner's survey is likewise
+Kit account comes from a third-party blog post drawing on the tool's own documentation and on a
+separate GitHub analysis of agent instruction files, rather than from an independent evaluation of
+Spec Kit itself. The practitioner's survey is likewise
 a self-published technical report rather than a peer-reviewed study; its case studies are presented
 as illustrative examples, and the error-reduction figures it cites for human-refined specifications
 are drawn from other studies it references rather than from its own measurement. The framework
@@ -177,7 +197,9 @@ comparison is a preprint by a single author, and it is explicit that its dimensi
 author's judgement from each framework's official documentation rather than an independently validated
 measurement, assigned by a single rater with no second coder and no inter-rater reliability reported.
 It also declares a conflict of interest, one of the frameworks it scores being its own author's.
-The firsthand account is the narrowest evidence of the five: one developer's experience of a few
+The sixth account is an implementation report on a single university course with four teams, so what
+it says is a description of one adaptation of the practice rather than an evaluation of the practice
+in general. The firsthand account is the narrowest evidence of the six: one developer's experience of a few
 months on a single personal project, published by the vendor whose coding agent it uses, and
 offered by its author as an experimental workflow rather than a recommendation.
 
@@ -197,10 +219,13 @@ offered by its author as an experimental workflow rather than a recommendation.
 - [[ScholarlyArticle/from-code-to-contract]] — source of the three-tier specification-rigor spectrum
   (spec-first, spec-anchored, spec-as-source) and the Specify/Plan/Implement/Validate workflow
   presented above
-- [[DefinedTerm/three-tier-boundaries]] — a related spec-writing pattern from the same source
+- [[DefinedTerm/three-tier-boundaries]] — a related spec-writing pattern set out in the good-spec
+  post above, not in the survey
 - [[ScholarlyArticle/from-prompt-to-process]] — source of the fourth account above, comparing the
   frameworks that implement this practice
 - [[DefinedTerm/six-dimension-process-taxonomy]] — the instrument that comparison uses, under which
   specification is the field's least discriminating dimension
 - [[DefinedTerm/reverse-documentation-engineering]] — the inverse direction, recovering specifications
   from legacy code rather than writing them for new work
+- [[ScholarlyArticle/sdd-in-software-development-pbl]] — source of the sixth account above, reporting
+  on teaching the practice in an undergraduate team-development course

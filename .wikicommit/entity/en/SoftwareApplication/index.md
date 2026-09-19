@@ -13,6 +13,7 @@ comments: false
 - [[SoftwareApplication/amazon-q-developer]]
 - [[SoftwareApplication/autocoderover]]
 - [[SoftwareApplication/bmad]]
+- [[SoftwareApplication/burr]]
 - [[SoftwareApplication/camel]]
 - [[SoftwareApplication/chatdev]]
 - [[SoftwareApplication/claude-artifacts]]
