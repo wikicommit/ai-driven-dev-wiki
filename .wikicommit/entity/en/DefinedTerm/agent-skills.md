@@ -10,13 +10,19 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/closing-the-knowledge-gap-with-agent-skills/'
     hash: sha256:99da78c38e52825287d818db6e10f2cf2d633b7e9479102298bccb809800d651
+  - type: url
+    url: 'https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills'
+    hash: sha256:e884d6fd1fe5becb8f432c99a20cf8b36e39d087e507037696b411e11d077ef5
+  - type: url
+    url: 'https://www.anthropic.com/news/skills'
+    hash: sha256:d9203771b21f47f29f2864693735d485c5abe5e9b35eed91551ec1cbcc4099c2
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
-  description: "A format, documented by Anthropic for Claude, for extending an agent with domain expertise: a directory holding a SKILL.md file of instructions plus optional scripts and reference material, loaded in stages so that an unused skill costs only its name and description in context."
+  description: "A format, documented by Anthropic for Claude and since published as an open standard, for extending an agent with domain expertise: a directory holding a SKILL.md file of instructions plus optional scripts and reference material, loaded in stages so that an unused skill costs only its name and description in context."
 ---
 
 Agent Skills is a format, documented by Anthropic for Claude, for packaging modular capabilities
@@ -31,6 +37,17 @@ conversation-level instructions for one-off tasks, whereas Skills are reusable, 
 resources that load on demand, so the same guidance does not have to be repeated across
 conversations. The stated benefits are specializing the model for domain-specific tasks, creating
 guidance once rather than repeating it, and composing several Skills for multistep tasks.
+
+Anthropic's own engineering account of the format ([[BlogPosting/equipping-agents-for-the-real-world-with-agent-skills]])
+places it as a response to capability rather than to deficiency: once general-purpose agents can
+operate full computing environments, the open question becomes how to equip them with domain
+expertise composably, scalably and portably. That account offers an analogy — building a skill
+resembles assembling an onboarding guide for a new hire — and argues that the alternative it
+displaces is building a separately engineered agent for each use case. A note added to that post on December 18, 2025
+records that Agent Skills has since been published as an open standard for cross-platform portability.
+The product announcement ([[BlogPosting/introducing-agent-skills]]) carries its own note of the same
+date recording two further additions alongside that one: organization-wide management for skills, and a
+directory featuring partner-built skills.
 
 As Anthropic documents it for Claude, the format is filesystem-based by design: Skills exist as
 directories in Claude's virtual machine environment, and Claude interacts with them using ordinary
@@ -57,13 +74,56 @@ consequence is that many Skills can be installed without a context penalty, and 
 bundle extensive material — comprehensive API documentation, large datasets — that is never charged
 against context unless used.
 
+The vendor's engineering post works the arrangement through a concrete case: the PDF skill behind
+Claude's document-editing abilities. Its `SKILL.md` refers to two further bundled files,
+`reference.md` and `forms.md`, and the post's stated reason for moving the form-filling instructions
+into `forms.md` is to keep the core of the skill lean, on the expectation that the model reads that
+file only when actually filling a form. The same skill bundles a Python script that reads a PDF and
+extracts its form fields, which the model can run without either the script or the PDF entering
+context — an arrangement the post justifies on two grounds, that generating tokens to perform an
+operation code already does is far more expensive, and that many applications need the determinism
+only code provides.
+
+For authoring, that post recommends starting from evaluation — running agents on representative
+tasks to find where they struggle, then building skills incrementally against those observed gaps
+rather than anticipating what will be needed. It advises splitting a `SKILL.md` into separate
+referenced files once the file has become unwieldy, adding that where contexts are mutually exclusive
+or rarely used together, keeping those paths separate reduces token usage; and it notes that bundled code serves as
+both executable tool and documentation, so a skill should make clear which of the two a given script
+is. It singles out `name` and `description` for particular attention, on the grounds that these are
+what the model uses to decide whether to trigger the skill at all. Its final suggestion is to have
+the model itself capture successful approaches and recurring mistakes into a skill as work proceeds,
+and to ask it to self-reflect when it goes off track.
+
 Availability differs across the vendor's products. On the API, Skills require the code execution
 tool and are selected by a `skill_id` in the container parameter, with pre-built document Skills for
 PowerPoint, Excel, Word and PDF, and custom Skills uploaded through a Skills API and shared across a
 workspace. In [[SoftwareApplication/claude-code]] custom Skills are filesystem-based and need no
 upload, placed in a personal or project directory, while the pre-built document Skills are not
 available there. On claude.ai both kinds work, with custom Skills uploaded as zip files and
-individual to each user rather than centrally managed.
+individual to each user rather than centrally managed: the
+documentation states they are not shared organization-wide and cannot be centrally managed by admins,
+and that claude.ai does not support centralized admin management or org-wide distribution of custom
+Skills. That sits unreconciled against the product announcement's December 2025 note recording that
+organization-wide management for skills has been added; the two sources say different things and
+neither dates itself against the other. The engineering post states that at
+publication the format was supported across Claude.ai, Claude Code, the
+[[SoftwareApplication/claude-agent-sdk]] and the Claude Developer Platform.
+
+The product announcement fills in how each surface is reached. In Claude apps the format is stated as
+available to Pro, Max, Team and Enterprise users, with Team and Enterprise admins having to enable it
+organization-wide first; invocation is automatic rather than manually selected, and the announcement says
+skills appear in Claude's chain of thought as it works. On the Developer Platform, Skills can be added to
+Messages API requests, a `/v1/skills` endpoint gives programmatic control over custom skill versioning
+and management, and Skills are stated to require the Code Execution Tool beta, described as providing the
+secure environment they need to run. In Claude Code they are installed via plugins from the
+`anthropics/skills` marketplace or manually by placing them in `~/.claude/skills`, and shared with a team
+through version control.
+
+Authoring is supported by a skill of its own. The announcement describes a `skill-creator` skill that
+gives interactive guidance — asking about the workflow, generating the folder structure, formatting the
+`SKILL.md` file and bundling the resources — with no manual file editing required. That is the format
+applied to itself: the procedural knowledge for writing a skill is packaged as a skill.
 
 ## When It Applies
 
@@ -76,10 +136,17 @@ The documentation is direct about the security assumption the format carries: Sk
 only from trusted sources, because they give the model new capabilities through instructions and
 code, and a malicious Skill can direct the model to invoke tools or execute code in ways that do not
 match its stated purpose. It advises auditing every bundled file, singles out Skills that fetch data
-from external URLs as particularly risky since fetched content may itself carry instructions, and
+from external URLs as particularly risky since fetched content may itself contain malicious
+instructions, and
 recommends treating installation like installing software. Enterprise organizations are offered
 content scanning for custom Skills uploaded through claude.ai and Claude Cowork; the documentation
-notes it does not cover Skills uploaded through the Skills API or the Console.
+notes it does not cover Skills uploaded through the Skills API or the Console. The engineering post
+gives the same advice in its own terms, warning that a malicious skill may introduce vulnerabilities
+in the environment where it is used, exfiltrate data, or direct the model to unintended actions, and
+asking that a skill from a less-trusted source be read through before use with attention to its code
+dependencies, its bundled resources such as images or scripts, and any instruction connecting to
+untrusted external network sources. Both accounts propose manual audit rather than any mechanism the
+format itself supplies.
 
 ## Evidence and Limitations
 
@@ -90,7 +157,12 @@ reasoning support and much less for older ones — a result Google reads as skil
 depending on the model's reasoning ability rather than on the skill alone. The method and figures
 are on [[BlogPosting/closing-the-knowledge-gap-with-agent-skills]].
 
-Two limitations are named by the same authors. They say they know from Vercel's work that direct
+Anthropic's own engineering post reports no evaluation or measurement of the format. Its claim that
+the context bundled into a skill is effectively unbounded is an architectural argument about what a
+filesystem-backed agent need not read, not a measured result, and its account of the format's
+benefits is the designer's own.
+
+Two limitations are named by the Google authors. They say they know from Vercel's work that direct
 instruction through [[DefinedTerm/agents-md]] can be more effective than using skills, and that they
 are therefore exploring other routes to supplying live SDK knowledge, such as MCP servers for
 documentation. The Vercel evaluation itself is not among this wiki's sources, so what is recorded
@@ -99,6 +171,10 @@ The second is maintenance: Google states there is no good skill update story bey
 update manually, and warns this could in the long term leave stale skill information in users'
 workspaces, doing more harm than good. That concern cuts against the purpose the format is being put
 to here, since a mechanism adopted to keep an agent current can itself go out of date in place.
+
+Anthropic states two directions as intentions rather than shipped behaviour: exploring how Skills can
+complement [[DefinedTerm/model-context-protocol]] servers by teaching agents workflows that involve
+external tools, and enabling agents to create, edit and evaluate Skills on their own.
 
 ## Related Terms
 

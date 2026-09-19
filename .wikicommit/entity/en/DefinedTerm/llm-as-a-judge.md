@@ -12,8 +12,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.28791'
     hash: sha256:0de559cacdfe9078d48a08a5f2b05d76219a579abd307e3a72ca17d1894464d0
+  - type: url
+    url: 'https://www.anthropic.com/engineering/multi-agent-research-system'
+    hash: sha256:9d24a3bfa582cdeb35b5470314362e43ded1cceb6659830329c69fe72147a2e4
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
@@ -51,6 +54,29 @@ tools even when the final answer varies — and semantic similarity against gold
 for why any of this matters is that where evaluation is an afterthought in classical practice, it is
 the central artifact in agentic practice, because outputs are non-deterministic and quality has to be
 established through curated evaluation datasets, adversarial edge cases included, and automated grading.
+
+A second account, from a production system rather than a toolkit,
+[[BlogPosting/how-we-built-our-multi-agent-research-system]], describes what Anthropic's Research team
+graded and how. Its reason for reaching for a judge at all is that research outputs are free-form text
+that rarely has a single correct answer, so they resist programmatic evaluation. Its rubric had five
+criteria — factual accuracy (do claims match sources?), citation accuracy (do the cited sources match
+the claims?), completeness (are all requested aspects covered?), source quality (were primary sources
+preferred over lower-quality secondary ones?) and tool efficiency (were the right tools used a
+reasonable number of times?).
+
+That team's reported finding about judge *structure* runs against the intuition that more judges are
+better. It experimented with multiple judges evaluating separate components and found that a single
+LLM call with a single prompt, emitting a score from 0.0 to 1.0 together with a pass-fail grade, was
+the most consistent and aligned with human judgement. The approach is described as especially
+effective where a test case does have a clear answer, so the judge is checking correctness rather than
+forming an opinion — which is the same precondition the rubric requirement below states.
+
+The same post is explicit that the technique does not stand alone. It reports human testers catching
+what the automated evaluation missed, including a consistent tendency in early agents to choose
+SEO-optimized content farms over authoritative but less highly-ranked sources such as academic PDFs or
+personal blogs; the team resolved it by adding source quality heuristics to the research agents'
+prompts. Its general position is that manual testing remains essential even where automated evaluation
+is in place, because people testing agents find edge cases evals miss.
 
 ## When It Applies
 

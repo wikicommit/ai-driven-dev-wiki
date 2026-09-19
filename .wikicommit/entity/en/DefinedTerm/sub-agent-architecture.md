@@ -11,6 +11,9 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/claude-code-best-practices'
     hash: sha256:9aae24f8b850a5f9c8a6f561be1fecf54f29e1ddc4658d00ecded22bccb82b82
+  - type: url
+    url: 'https://www.anthropic.com/engineering/multi-agent-research-system'
+    hash: sha256:9d24a3bfa582cdeb35b5470314362e43ded1cceb6659830329c69fe72147a2e4
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -27,6 +30,7 @@ as one of three techniques for working around context window limitations on long
 alongside [[DefinedTerm/compaction]] and [[DefinedTerm/structured-note-taking]].
 
 ## Usage
+
 The sub-agents perform the deep technical work, or use tools to find relevant information. Each
 might explore extensively — Anthropic puts it at tens of thousands of tokens or more — but returns
 only a condensed, distilled summary of its work, which it gives as often 1,000 to 2,000 tokens.
@@ -54,7 +58,26 @@ over-engineering — extra abstraction layers, defensive code, and tests for cas
 so the recommended mitigation is to instruct the reviewer to flag only gaps affecting correctness or
 stated requirements, and to treat the rest as optional.
 
+A third account, [[BlogPosting/how-we-built-our-multi-agent-research-system]], describes the same
+arrangement as it was actually shipped, and names it an **orchestrator-worker pattern**. A lead agent
+analyses the user's query, develops a strategy and spawns subagents to explore different aspects
+simultaneously; the subagents act as intelligent filters, iteratively using search tools and returning
+findings the lead agent synthesises before deciding whether more research is needed. Two details of
+that production system are specific to running it at length rather than to the pattern's shape: the
+lead agent saves its plan to memory because a context window exceeding 200,000 tokens is truncated,
+and a separate CitationAgent processes the documents and the draft report at the end to locate where
+citations belong. That post contrasts the whole arrangement with Retrieval Augmented Generation's
+static retrieval — fetching the chunks most similar to a query — in favour of a multi-step search that
+adapts as findings arrive.
+
+That account also gives an explanation for why the pattern works that is about capacity rather than
+cleverness. On the BrowseComp evaluation the team reports three factors explaining 95% of performance
+variance, with token usage alone explaining 80% and number of tool calls and model choice the other
+two — which it reads as validating an architecture that distributes work across separate context
+windows to add parallel reasoning capacity.
+
 ## When It Applies
+
 - Applies to complex research and analysis where parallel exploration pays dividends. Anthropic
   sets this against compaction, which it recommends for tasks requiring extensive back-and-forth,
   and note-taking, which it recommends for iterative development with clear milestones.
@@ -62,10 +85,31 @@ stated requirements, and to treat the rest as optional.
   with fresh context windows, together with the convention that each returns a distilled summary
   rather than its full working context.
 - Anthropic reports that the pattern showed a substantial improvement over single-agent systems on
-  complex research tasks. The basis for that comparison is not stated alongside the claim, so the
-  size of the improvement and the tasks it was measured on are not established here.
+  complex research tasks. Its Research engineering post puts a figure and a configuration to that
+  claim: a system with Claude Opus 4 as lead agent and Claude Sonnet 4 subagents outperformed
+  single-agent Claude Opus 4 by 90.2% on the team's internal research eval, which is described as
+  excelling especially on breadth-first queries pursuing several independent directions at once. The
+  worked example given is identifying all the board members of the companies in the Information
+  Technology S&P 500, which the single-agent system failed to answer through slow sequential searches.
+  The particular eval behind that figure is not described, so its difficulty and coverage cannot be
+  checked from here.
+- Costs tokens in proportion to the capacity it adds. The same post reports that agents typically use
+  about 4× the tokens of a chat interaction and multi-agent systems about 15×, so the arrangement needs
+  tasks valuable enough to pay for the performance.
+- Does not fit every domain. That post names as poor fits today those requiring all agents to share the
+  same context or involving many dependencies between them, and most coding tasks specifically — on the
+  grounds that they involve fewer truly parallelizable subtasks than research, and that agents are not
+  yet good at coordinating and delegating to each other in real time.
+- Carries a coordination cost that has to be prompted away rather than assumed. Early versions of that
+  system are reported spawning 50 subagents for simple queries and duplicating each other's work when
+  task descriptions were vague, which the team addressed with explicit effort-scaling rules and detailed
+  delegation instructions rather than with architectural changes.
+- A stated limitation of that implementation is synchronous execution: the lead agent waits for each set
+  of subagents to finish, which simplifies coordination but means it cannot steer them mid-flight,
+  subagents cannot coordinate with one another, and a single slow subagent blocks the system.
 
 ## Related Terms
+
 - [[DefinedTerm/compaction]]
 - [[DefinedTerm/structured-note-taking]]
 - [[DefinedTerm/context-engineering]]

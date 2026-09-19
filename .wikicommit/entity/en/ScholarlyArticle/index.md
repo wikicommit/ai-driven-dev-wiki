@@ -11,6 +11,7 @@ comments: false
 - [[ScholarlyArticle/agentclick]]
 - [[ScholarlyArticle/agentdojo]]
 - [[ScholarlyArticle/agentic-agile-v]]
+- [[ScholarlyArticle/agentic-coding-and-persistent-returns-to-expertise]]
 - [[ScholarlyArticle/agentic-design-patterns-system-theoretic-framework]]
 - [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]]
 - [[ScholarlyArticle/agentic-software-restructuring-paradigm]]

@@ -17,6 +17,9 @@ sources:
   - type: url
     url: 'https://leehanchung.github.io/blogs/2024/05/09/tools-for-llms/'
     hash: sha256:8ef12294dde175a73b84aebfc72fd77dc2272d9cbae8e71e34c79396b3dddc5a
+  - type: url
+    url: 'https://www.anthropic.com/engineering/writing-tools-for-agents'
+    hash: sha256:7541e4e46d675b2aed1175d9291d45d75f493ae908aea2afc77b29c615a324ea
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -39,7 +42,7 @@ database lookups to external APIs and cloud services.
 
 ## Usage
 
-Four published accounts of the pattern are described here — a cloud vendor's architectural pattern
+Four published accounts of the mechanism are described here — a cloud vendor's architectural pattern
 catalogue, a vendor-published teaching course, a framework vendor's engineering blog post, and an
 independent practitioner's survey of the research and the vendor APIs — and they agree on the
 mechanism while differing in what they emphasize around it.
@@ -153,8 +156,47 @@ tool with them and append the result to the conversation history for the model t
 final output. That restates, from outside any vendor, the same division of labour the AWS and
 Microsoft accounts describe from inside one.
 
+## Designing Tools for Agents
+
+A fifth account, [[BlogPosting/writing-effective-tools-for-agents]], takes the mechanism above as
+given and asks what follows for how tools should be designed. Its starting claim is that a tool is a
+different kind of artifact from a function: conventional software establishes a contract between
+deterministic systems, where the same call fetches the same thing the same way every time, whereas a
+tool is a contract between a deterministic system and a non-deterministic agent, which may call the
+tool, answer from general knowledge, ask a clarifying question first, or fail to grasp how to use it.
+The stated consequence is that tools and MCP servers should not be written the way functions and APIs
+are written for other developers or systems — they need designing for agents instead.
+
+Four design positions follow from that. **Do not simply wrap existing endpoints**: more tools are said
+not to always lead to better outcomes, and the reason given is that agents have different affordances from
+traditional software — an agent has limited context, so a tool that returns every record forces it to
+read through irrelevant ones, where the natural move is to skip to the relevant one. The recommendation
+is a few thoughtful tools aimed at high-impact workflows, consolidating several underlying operations
+where a workflow is frequently chained. **Namespace them** (see [[DefinedTerm/tool-namespacing]]) so an
+agent with hundreds of tools can tell them apart. **Return only high-signal context**, preferring fields
+that inform an agent's next action over low-level technical identifiers; the authors report that merely
+resolving arbitrary alphanumeric UUIDs into semantically meaningful language, or even a 0-indexed ID
+scheme, significantly improved Claude's precision on retrieval tasks by reducing hallucinations, and they
+suggest a response-format parameter letting the agent choose concise or detailed output. **Bound the
+response size**, with pagination, filtering and truncation on sensible defaults — the post states that
+Claude Code restricts tool responses to 25,000 tokens by default — and treat truncation messages and
+error text as places to steer the agent toward more token-efficient strategies rather than as opaque
+codes.
+
+That account converges with the independent practitioner survey above on which part matters most.
+Where that survey concludes that the schema is essentially settled and the descriptions are what
+determine quality, this post names prompt-engineering the tool descriptions and specs as one of the most
+effective methods available, recommends writing them as one would brief a new hire — making implicit
+context explicit — and reports Claude Sonnet 3.5 reaching state-of-the-art performance on
+[[Dataset/swe-bench-verified]] after precise refinements to tool descriptions. Its method for getting
+there is an evaluation loop rather than judgment: build evaluation tasks from realistic work, run them
+as simple agentic loops, and read the resulting transcripts — a discipline the post reports applying to
+Anthropic's own internal tools, with held-out test sets showing gains beyond expert implementations
+written either by its researchers or by Claude.
+
 ## Related Terms
 
+- [[DefinedTerm/tool-namespacing]]
 - [[DefinedTerm/model-context-protocol]]
 - [[DefinedTerm/agentic-coding]]
 - [[DefinedTerm/tool-poisoning]]

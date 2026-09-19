@@ -22,6 +22,9 @@ sources:
   - type: url
     url: 'https://www.ibm.com/topics/prompt-injection'
     hash: sha256:a266835677476a694038cea4bd96f4ae88e318fe878bc7adcc4a28c90d8f3144
+  - type: url
+    url: 'https://www.anthropic.com/research/prompt-injection-defenses'
+    hash: sha256:a0696c23a0c6a65b1581eb7fa746dbecd592b1177f016f52481cf3d09d18ab4f
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -99,6 +102,34 @@ the simpler retrieved-content case, an attacker posting a prompt to a forum tell
 their users to a phishing site, so that an assistant asked to summarize the discussion relays that
 instruction to an unsuspecting user. That source classifies the technique as one of two types of
 prompt injection, against [[DefinedTerm/direct-prompt-injection]].
+
+## Browser Use as an Amplifier
+
+One vendor account singles out browser agents as the setting where this class of attack is hardest to
+contain. [[BlogPosting/mitigating-prompt-injections-in-browser-use]] gives two reasons, and both are
+properties of the deployment rather than of the model. The attack surface is vast — every webpage,
+embedded document, advertisement and dynamically loaded script is a possible carrier. And the action
+space is wide: a browser agent can navigate to URLs, fill forms, click buttons and download files, so an
+attacker who gains influence over its behaviour has a great deal to work with.
+
+Its worked example is an agent asked to read recent emails and draft replies to meeting requests, where
+one email carries instructions in white text — invisible to the reader, processed by the agent —
+directing it to forward any message containing the word "confidential" to an external address first.
+
+The defences that post describes sit at three layers, all on the provider's side. The model is trained
+against the attack directly, by reinforcement learning on prompt injections embedded in simulated web
+content, rewarded for refusing malicious instructions even when they are written to look authoritative
+or urgent. Classifiers scan all untrusted content entering the context window, across carriers including
+hidden text, manipulated images and deceptive UI elements, and adjust the model's behaviour on
+detection. And an internal red team probes the agent continuously, on the stated grounds that human
+researchers consistently outperform automated systems at finding creative attack vectors, alongside
+participation in external arena-style challenges.
+
+The reported result is a 1% attack success rate against an internal adaptive "Best-of-N" attacker given
+100 attempts per environment — measured within that vendor's own methodology, with the benchmark and
+attack corpus not published. The post's own gloss is the part worth carrying: a 1% success rate still
+represents meaningful risk, no browser agent is immune, and the figures are offered to show progress
+rather than resolution.
 
 ## Related Terms
 
