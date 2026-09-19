@@ -19,6 +19,9 @@ sources:
   - type: url
     url: 'https://www.ibm.com/topics/prompt-injection'
     hash: sha256:a266835677476a694038cea4bd96f4ae88e318fe878bc7adcc4a28c90d8f3144
+  - type: url
+    url: 'https://platform.openai.com/docs/guides/agent-builder-safety'
+    hash: sha256:86e2fc5f860675a072304196ba8e912392902e82d2ffeb390665f20c928e7016
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -188,6 +191,44 @@ The two sources name different models for that first entry. The IBM timeline say
 found that **ChatGPT** was susceptible, while Preamble's own account — whose subject is that
 disclosure — describes the vulnerability at the level of **GPT-3**, which is the reading this page
 follows above. The disagreement is recorded rather than resolved.
+
+OpenAI's safety guidance for Agent Builder, its node-based product for building multi-agent
+workflows, gives the risk a working definition for the people building them and sets out what it
+asks them to do about it. The advice is scoped to that product — which OpenAI says it is
+deprecating, with shutdown scheduled for 30 November 2026 — but most of it is stated as a property
+of how models handle untrusted text rather than of the builder. It describes a prompt
+injection as untrusted text or data entering an AI system whose malicious contents attempt to
+override the instructions given to the model, with ends that include exfiltrating private data
+through downstream tool calls, taking misaligned actions, or otherwise changing behaviour in an
+unintended way; its worked example is a data-lookup agent tricked into sending raw customer records
+instead of the summary it was meant to produce. Alongside it the documentation names a second,
+adjacent failure with no attacker behind it at all — a model sending more data to a connected MCP
+server than the user expected — and states plainly that guardrails give better control over what
+enters the context but not full control over what the model chooses to share.
+
+The mitigations it recommends are mostly about restricting what untrusted input can reach and what
+shape it can take. Because developer messages take precedence over user and assistant messages,
+untrusted input must not be interpolated into them: passing it through user messages instead limits
+its influence, and the documentation calls this especially important where user input feeds
+sensitive tools or privileged contexts. Defining structured outputs between workflow nodes — enums,
+fixed schemas, required field names — is offered on the same logic, that injections rely on the
+model freely generating text that propagates downstream, so removing the freeform channel removes
+the smuggling route. The remaining advice is to strengthen prompts with documented policies and
+worked examples for the cases an agent might get wrong, to configure GPT-5 or GPT-5-mini at the agent node, the
+models it names as more disciplined about following developer instructions and more robust against
+jailbreaks and indirect injection, to keep tool approvals on
+for MCP tools so a person confirms every operation, reads and writes alike, to sanitize inputs with built-in
+[[DefinedTerm/guardrails]] nodes that redact personally identifiable information and detect
+jailbreak attempts, and to run evaluations and trace grading so that decisions, tool calls and reasoning
+steps can be scored after the fact.
+
+What OpenAI does not claim is that this adds up to a solution. It says the guardrail components are
+not foolproof on their own, describes them as a first wave of protection, and states that even with
+every mitigation applied agents can still make mistakes or be tricked — so the residual advice is
+to be careful about what access an agent is given in the first place. Its summary of the design
+principle is that untrusted data should never directly drive agent behaviour: extract only specific
+structured fields from external input, and accept that structured outputs and isolation greatly
+reduce the risk without fully removing it.
 
 ## Related Terms
 

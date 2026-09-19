@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://www.andrewconnell.com/articles/vibe-coding-vs-agentic-engineering/'
     hash: sha256:7e8c13f25dd70015f9995dcbf564e7a460760543e3cd12d89b9175dcdf1bf151
+  - type: url
+    url: 'https://karpathy.bearblog.dev/sequoia-ascent-2026/'
+    hash: sha256:5f0fc28c7d2ce3663820af50aba485b5ec93384a47528a92d2935967dd678dc4
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -25,6 +28,33 @@ properties:
 Agentic engineering is a term for a disciplined style of AI-agent-assisted software development in which a human writes a plan or spec before prompting, directs an AI agent on well-scoped tasks, reviews its output with the same rigor applied to a human teammate's pull request, tests relentlessly, and remains responsible for the resulting system's architecture, correctness, and long-term maintainability. Andrej Karpathy suggested the term in early February 2026, and Addy Osmani adopted it in this post as the name for that disciplined practice — distinct from "vibe coding," which keeps its original meaning (Karpathy's own year-earlier coinage for a deliberately reckless, unreviewed AI-driven workflow) rather than being retired, and from Simon Willison's earlier proposal for the same disciplined endpoint, "vibe engineering."
 
 ## Usage
+
+Karpathy's own account of what he means by the term comes from a fireside chat he gave at Sequoia
+Ascent 2026, written up in [[BlogPosting/sequoia-ascent-2026-summary]]. He puts it beside vibe
+coding as a pair of opposite moves: vibe coding raises the floor, letting almost anyone build
+software by describing what they want, while agentic engineering extrapolates the ceiling. He
+calls it an engineering discipline because the problem it names is coordination — agents are
+fallible and stochastic but extremely powerful, and the question is how to use them to go faster
+without lowering the quality bar. Responsibility does not move: on his account you are still
+answerable for your software and are not permitted to introduce vulnerabilities because you were
+vibe coding. He is explicit that vibe coding is fine for prototypes and personal tools and that
+agentic engineering is what serious teams need, and he expects the ceiling to be high — the old
+"10x engineer" figure, he argues, understates how far someone who is very good at this can go.
+
+What the practice consists of, in his telling, is designing specs, supervising plans, inspecting
+diffs, writing tests, building evaluation loops, managing permissions, isolating worktrees and
+preserving quality — rather than accepting generated code. He locates the human contribution in
+judgment rather than recall: agents remember which keyword a tensor library uses, while the person
+has to understand storage, views, memory copies, invariants, identity and security boundaries. His
+worked example is a payment bug in one of his own projects, where the agent matched purchases to
+accounts by email address across two services whose emails can differ; the code was plausible and
+the system design was wrong, and catching it required knowing to insist on a persistent user ID.
+He also argues the practice should change hiring, replacing small coding puzzles with something
+closer to the work: build a substantial project with agents, deploy it, secure it, and then have
+adversarial agents try to break it.
+
+The write-up's prose was produced by a model from the event's transcript and then checked by
+Karpathy, so the wording above is a rendering of what he said rather than a verbatim record of it.
 
 The term is proposed to stop "vibe coding" being applied to two fundamentally different activities: its original reckless-prototyping sense, and disciplined, agent-assisted development with human oversight. Agentic engineering is the name Osmani now prefers for that disciplined endpoint — the same endpoint he had previously called "AI-assisted engineering" and that Willison had proposed calling "vibe engineering" — contrasted against vibe coding's reckless end of the spectrum: vibe coding involves no code review and targets fast prototypes, while agentic engineering means AI handles the implementation under the human's ownership of architecture, quality, and correctness. In practice, the source describes it as: starting with a written plan or spec before prompting; directing an agent on a well-scoped task and reviewing its output at the rigor of a human PR; testing relentlessly, since a solid test suite is what lets an agent iterate to a trustworthy result rather than declaring broken code "done"; and the human continuing to own documentation, version control, CI, and production monitoring.
 

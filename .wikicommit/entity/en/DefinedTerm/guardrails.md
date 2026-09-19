@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://github.com/NVIDIA-NeMo/Guardrails'
     hash: sha256:5e355c13851c1bcdbfecb01c03581fb7ca7d93a287620f15481e621963cc9832
+  - type: url
+    url: 'https://platform.openai.com/docs/guides/agent-builder-safety'
+    hash: sha256:86e2fc5f860675a072304196ba8e912392902e82d2ffeb390665f20c928e7016
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -29,7 +32,7 @@ Guardrails are the policies, controls and mechanisms placed around an AI agent t
 
 One account, set out in [[BlogPosting/implementing-effective-guardrails-for-ai-agents]], is organizational and specific to software delivery: on it, guardrails are a comprehensive framework of policies, controls, and monitoring mechanisms that govern how AI agents interact with a development environment, and the concept is described there as extending beyond traditional security controls — ensuring AI systems operate safely and effectively while complying with organizational policies and regulatory requirements, as agents take on sensitive operations such as autonomous code generation and automated infrastructure management that traditionally required human oversight.
 
-That is the first of four accounts, and they approach the word from different ends and are worth keeping apart. The first is organizational, describing the access controls, approval gates and audit trails an enterprise places around an agent's actions. A second is application-level, describing the classifiers and filters a developer places around an agent's inputs and outputs. A third is framework-level and deterministic, placing rules in code that runs outside the model and decides whether a tool call may execute at all. A fourth is a toolkit layer interposed between application code and the model, in which rails are declared in configuration and a purpose-built language rather than written as application logic. All use the same word for the same purpose — constraining what an agent can do — but they operate at different layers and none subsumes the others.
+That is the first of four accounts, and they approach the word from different ends and are worth keeping apart. The first is organizational, describing the access controls, approval gates and audit trails an enterprise places around an agent's actions. A second is application-level, describing the classifiers and filters a developer places around an agent's inputs and outputs. A third is framework-level and deterministic, placing rules in code that runs outside the model and decides whether a tool call may execute at all. A fourth is a toolkit layer interposed between application code and the model, in which rails are declared in configuration and a purpose-built language rather than written as application logic. All use the same word for the same purpose — constraining what an agent can do — but they operate at different layers and none subsumes the others. A fifth source, taken up at the end of the next section, adds no fifth layer: it restates the application-level sense in a narrower, product-specific form.
 
 ## Usage
 
@@ -66,6 +69,22 @@ configuration folder — YAML naming the active flows, plus definitions written 
 [[DefinedTerm/colang]] — rather than expressed as prose in a prompt, which places this account
 closer to the deterministic third one than to the classifier-based second, while still admitting
 model-based checks such as self-checking facts among its configured flows.
+
+OpenAI's safety guidance for Agent Builder, its node-based product for building multi-agent
+workflows, returns to the
+application-level sense in a narrower form — and is notable less for what it adds to the taxonomy
+than for how modestly it scopes the claim. There a guardrail is a node placed in a workflow to
+sanitize incoming input, the two jobs named being redacting personally identifiable information
+and detecting jailbreak attempts, and the same page says those nodes alone are not foolproof,
+calling them an effective first wave of protection. It also draws the boundary differently from the account
+above: where OpenAI's own earlier guide counts human intervention among its guardrail types, this
+page keeps tool approval in a section of its own, asking that approvals stay on when MCP tools are
+in use — through a dedicated approval node, so a person confirms every operation, reads included. Combining these
+techniques, it says, significantly reduces the risks of [[DefinedTerm/prompt-injection]], malicious
+tool use and unexpected agent behaviour — while stating separately that structured outputs and
+isolation greatly reduce but do not fully remove the risk, and that even with these mitigations an
+agent can still make mistakes or be tricked. That guidance is tied to a product OpenAI says it is
+deprecating, with shutdown scheduled for 30 November 2026.
 
 ## Related Terms
 
