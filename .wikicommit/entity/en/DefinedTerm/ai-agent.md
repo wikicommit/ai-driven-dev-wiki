@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/'
     hash: sha256:5887de1aff52ec544bd35326f452d4de9e1c58a331298d155e4a1c9f23c87af6
+  - type: url
+    url: 'https://www.anthropic.com/research/building-effective-agents'
+    hash: sha256:611504eb30423330be060ed8f00e432a0adcb417f992b2cfb5cbf9ccd8d511bf
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -68,6 +71,34 @@ despite the name, do not. It also names OpenAI as the largest single source of c
 that the company's CEO describes agents as systems that do work independently, that its "ChatGPT
 agent" feature is a browser automation system, and that only its Agents SDK closely matches the
 tools-in-a-loop idea.
+
+### The vendor's own distinction
+
+[[BlogPosting/building-effective-agents]] is Anthropic's earlier and longer treatment of the same
+territory, published in December 2024, before the May 2025 remark above. It approaches the definitional
+problem by not settling it. Anthropic notes that customers
+define "agent" in several ways — some meaning fully autonomous systems operating independently over
+extended periods, others meaning prescriptive implementations following predefined workflows — and
+rather than choosing, it groups all the variations under **agentic systems** and draws an architectural
+line inside that category. **Workflows** are systems where LLMs and tools are orchestrated through
+predefined code paths; **agents** are systems where LLMs dynamically direct their own processes and tool
+usage, keeping control over how they accomplish a task.
+
+The line is therefore drawn at who decides the path, not at how capable or autonomous the system is,
+and it is what lets the post attach different advice to each side: workflows for predictability and consistency on
+well-defined tasks, agents where flexibility and model-driven decision-making are needed at scale.
+
+The post's description of an agent in operation matches the loop formulation closely. An agent begins
+from a human command or an interactive discussion, then plans and operates independently, possibly
+returning to the human for information or judgement; during execution it is described as crucial that
+the agent gain "ground truth" from the environment at each step — tool call results, code execution — to
+assess its progress. Anthropic states the implementation plainly: agents are "typically just LLMs using
+tools based on environmental feedback in a loop", which is the same shape as the definition above, with
+the environment supplying what keeps the loop honest.
+
+Where it adds something the loop formulation leaves open is termination. A task often ends on
+completion, but the post describes it as also common to include stopping conditions such as a maximum
+number of iterations to maintain control — a bound from outside, alongside the goal that bounds it from within.
 
 ## When It Applies
 

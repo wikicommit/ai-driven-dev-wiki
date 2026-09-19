@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://platform.openai.com/docs/guides/tools-computer-use'
     hash: sha256:b981146b951cbe05f5084f9bf92ce301183dfed2c810a242adaab76293df9394
+  - type: url
+    url: 'https://www.anthropic.com/news/building-safeguards-for-claude'
+    hash: sha256:6a49d6c32820761dc21bf0f49ae31d6b9fbf8fca45f239601c5fb33ac418abf1
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -41,6 +44,19 @@ Because a computer-use agent takes real actions inside a real screen environment
 
 *Bound and verify the run.* OpenAI recommends step, time, or cost limits, support for cancellation, and checking the actual outcome in the application rather than relying on the model's final answer. Google's parallel recommendations are sanitizing user-supplied text before it reaches the prompt and logging prompts, screenshots, and executed actions for later audit. Google additionally documents its Gemini implementation as a Preview capability that "may contain errors and security vulnerabilities" and recommends against using it for critical decisions, sensitive data, or actions where serious errors cannot be corrected.
 
+A third vendor account adds what happened before one of these capabilities shipped rather than how to
+use it. [[BlogPosting/building-safeguards-for-claude]] reports that Anthropic's pre-launch evaluation of
+its computer use tool determined the capability could augment spam generation and distribution, and that
+in response — prior to launch — it developed new detection methods and enforcement mechanisms, including
+the option to disable the tool for accounts showing signs of misuse, along with new protections for
+users against prompt injection. The vendor-side controls above are therefore not the whole of what
+governs a computer-use deployment: some of it is enforced in the provider's own serving path, outside
+the developer's configuration (see [[DefinedTerm/guardrails]]).
+
+That account is also evidence for the risk framing the two implementation guides assert. Where they
+recommend sandboxing and treating the screen as untrusted on general principle, this one reports a
+specific misuse pathway found by testing the capability before release, and a shipped response to it.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/agent-hooks]], [[DefinedTerm/indirect-prompt-injection]], [[DefinedTerm/human-in-the-loop]]
+[[DefinedTerm/guardrails]], [[DefinedTerm/sandboxing]], [[DefinedTerm/agent-hooks]], [[DefinedTerm/indirect-prompt-injection]], [[DefinedTerm/human-in-the-loop]]

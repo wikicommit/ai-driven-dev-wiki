@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents'
     hash: sha256:26ce4c203cbb030f31253f1eb174b46b2c0203c9b44576aa4654b89b4d7be777
+  - type: url
+    url: 'https://www.anthropic.com/engineering/harness-design-long-running-apps'
+    hash: sha256:47a08ad7125c953a6a359d169a11e61245c1d5329e47cb7057f496aaaef42b2a
 review_status: pending
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
@@ -98,9 +101,28 @@ which sacrifice information but are easier to reason about.
   is not better compaction but durable artifacts outside the context window: a progress log, a git
   history, and a structured feature list (see [[DefinedTerm/initializer-agent]]).
 
+- A later Anthropic engineering post,
+  [[BlogPosting/harness-design-for-long-running-application-development]], draws the boundary between
+  compaction and a full [[DefinedTerm/context-reset]] in terms of what each buys. Compaction summarises
+  earlier parts of the conversation in place so the same agent can keep going on a shortened history,
+  which preserves continuity but does not give the agent a clean slate; a reset clears the window
+  entirely and starts a fresh agent, at the cost of the handoff artifact having to carry enough state
+  for the work to be picked up cleanly.
+- That distinction is load-bearing for one failure mode in particular. The same post reports that
+  because compaction leaves the same agent running, [[DefinedTerm/context-anxiety]] — wrapping up work
+  prematurely on approaching what the model believes is its context limit — can persist through it. It
+  states that Claude Sonnet 4.5 exhibited this strongly enough that compaction alone was not sufficient
+  for strong long-task performance, which made context resets essential to that harness's design, and
+  that Claude Opus 4.5 largely removed the behaviour on its own, allowing a later harness to drop resets
+  entirely and run as one continuous session with the
+  [[SoftwareApplication/claude-agent-sdk]]'s automatic compaction handling context growth. Compaction's
+  sufficiency is therefore reported as depending on the model, not on the technique alone.
+
 ## Related Terms
 
 - [[DefinedTerm/structured-note-taking]]
 - [[DefinedTerm/sub-agent-architecture]]
 - [[DefinedTerm/context-engineering]]
 - [[DefinedTerm/long-running-agent]]
+- [[DefinedTerm/context-reset]]
+- [[DefinedTerm/context-anxiety]]
