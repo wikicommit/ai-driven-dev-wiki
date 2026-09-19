@@ -10,6 +10,8 @@ comments: false
 - [[BlogPosting/agent-skills]]
 - [[BlogPosting/agentic-autonomy-levels]]
 - [[BlogPosting/agentic-code-review]]
+- [[BlogPosting/agentic-design-pattern-tool-calling]]
+- [[BlogPosting/build-with-jules]]
 - [[BlogPosting/code-agent-orchestra]]
 - [[BlogPosting/effective-context-engineering-for-ai-agents]]
 - [[BlogPosting/factory-model]]
