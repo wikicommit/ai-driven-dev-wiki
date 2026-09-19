@@ -2,15 +2,15 @@
 title: "Trustworthiness Dimensions"
 type: "schema:DefinedTerm"
 lang: en
-tags: []
+tags: [agents, agentic-engineering, evaluation, governance]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.06310'
     hash: sha256:46f38f583fd26c851dbe000e63a827534bfc88506117ab3f9d5423e0303e5cd8
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
-generated_with: "0.6.1"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "A multidimensional trustworthiness framework for AI software engineers, proposed by Aleti, Hoda, Ray, and Chen in [[ScholarlyArticle/trustworthy-ai-software-engineers]], spanning technical quality, transparency and accountability, epistemic humility, and societal and ethical alignment."

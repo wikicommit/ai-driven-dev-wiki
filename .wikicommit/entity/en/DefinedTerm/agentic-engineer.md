@@ -2,7 +2,7 @@
 title: "Agentic Engineer"
 type: "schema:DefinedTerm"
 lang: en
-tags: []
+tags: [agents, terminology, human-oversight]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.06310'
@@ -11,9 +11,9 @@ sources:
     url: 'https://arxiv.org/pdf/2606.28791'
     hash: sha256:0de559cacdfe9078d48a08a5f2b05d76219a579abd307e3a72ca17d1894464d0
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "A working definition, proposed by Aleti, Hoda, Ray, and Chen in [[ScholarlyArticle/trustworthy-ai-software-engineers]], for what qualifies an AI agent as an AI software engineer: it must handle software engineering tasks beyond coding, demonstrate agency through planning and tool use, be collaborative within human-AI teams, and respect human values, constraints, and ethical accountability."
@@ -51,8 +51,9 @@ ladder, from executing deterministic commands via generative assistants at Level
 asynchronous integration code and configuring vector databases, to constructing multi-agent state loops
 and evaluation pipelines at mid-levels, and leading ISO/IEC 42001 and NIST AI RMF audits and governing
 model portfolios at the top. It decomposes competency into technical skills, soft skills, knowledge and
-abilities, and argues that curricula should prioritise problem definition, system design and
-debugging/evaluation over code authoring. It marks one common claim as unsettled: that senior engineers
+abilities, and reports that educators increasingly argue curricula should prioritise problem definition,
+system design and debugging/evaluation over code authoring — a stance it notes is consistent with its own
+evidence that value migrates toward oversight. It marks one common claim as unsettled: that senior engineers
 adapt more readily is, it states, a hypothesis rather than a settled finding, and the controlled
 evidence on which cohorts benefit is mixed — a lab experiment and three field experiments report
 substantial gains, largest for less experienced developers, while a randomized controlled trial of 16

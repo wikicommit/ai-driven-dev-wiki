@@ -2,15 +2,15 @@
 title: "Code Review as Runtime Monitoring"
 type: "schema:DefinedTerm"
 lang: en
-tags: []
+tags: [agents, code-review, human-oversight]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.06310'
     hash: sha256:46f38f583fd26c851dbe000e63a827534bfc88506117ab3f9d5423e0303e5cd8
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
-generated_with: "0.6.1"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "A proposal by Aleti, Hoda, Ray, and Chen in [[ScholarlyArticle/trustworthy-ai-software-engineers]] to extend code review in human-AI software engineering teams beyond pre-merge inspection into a continuous, runtime activity, in which deployed code is treated as provisional and AI agents monitor its behaviour in production."

@@ -2,15 +2,15 @@
 title: "Trustworthy AI Software Engineers"
 type: "schema:ScholarlyArticle"
 lang: en
-tags: []
+tags: [agents, agentic-engineering, human-oversight, governance]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.06310'
     hash: sha256:46f38f583fd26c851dbe000e63a827534bfc88506117ab3f9d5423e0303e5cd8
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
-generated_with: "0.6.1"
+generated_at: "2026-09-19"
+generated_by: "claude-opus-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "A 2026 vision paper arguing that AI software engineers should be evaluated as participants in human-AI software engineering teams, proposing a working definition of an 'agentic engineer' and a multidimensional framework for trustworthiness, and introducing evidence-centric inspection as a way to make that trustworthiness practically inspectable."
