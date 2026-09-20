@@ -28,6 +28,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.08224'
     hash: sha256:3d6692b679c69f74f38b4515cebbbd196a2a08273d14166866ba9d19bf479ea8
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.18747'
+    hash: sha256:b1035aaed7f12c5fa8504dac7f47c2e10dda381065834be2cea784c2f758fb1f
 review_status: pending
 generated_at: "2026-09-20"
 generated_by: "claude-opus-5"
@@ -165,6 +168,59 @@ The review also reads the convergence of structurally similar harnesses across p
 different lineages as analytically significant: evidence, it argues, that these dimensions are
 structural requirements of externalized agency rather than incidental implementation choices.
 
+## Agentic Harness Engineering
+
+[[ScholarlyArticle/code-as-agent-harness]] gives the discipline a name of its own — Agentic Harness
+Engineering — and defines it by contrast with its two neighbours: where prompt engineering changes
+instructions and context engineering changes what evidence is presented to the model, Agentic Harness
+Engineering treats the operating environment itself as the object of analysis. The survey's inventory
+of that environment is correspondingly broad: tool schemas, planning artefacts, memory policies,
+retrieval strategies, sandbox configuration, verification sensors, permission tiers, routing rules,
+multi-agent workflows and human-review gates. Its argument for why this is the right unit of analysis
+is diagnostic — many observed failures in code agents arise from missing repository context, brittle
+tool interfaces, weak validators, excessive token cost, poor retry policies or mismatched permission
+boundaries rather than from model generation.
+
+The survey reads existing work as three complementary strands: automatic synthesis of code harnesses,
+formulating harness design as an optimisation problem over model-facing infrastructure, and
+observability-driven diagnosis of where the agent loop fails and which component should change.
+
+Its stated substrate for all three is **deep telemetry** — structured traces connecting model
+decisions, harness actions, environment states and outcomes. The contrast drawn is with a shallow log
+that records only the final answer or a pass/fail result; deep telemetry records prompts and retrieved
+context, token usage and cost, model and tool latency, tool arguments, permission requests, edited
+files, sandbox snapshots, command outputs, test results, stack traces, lint warnings, branch decisions,
+rejected alternatives, human interventions and the final task outcome. What this buys, on the survey's
+account, is that harness revision becomes comparative diagnosis rather than anecdotal debugging: the
+signals are linked to concrete artefacts, so they can be replayed and compared across harness versions.
+
+The survey proposes an **Evolution Agent** as the meta-level agent that acts on that telemetry. Unlike
+a task agent, which edits the target repository, the Evolution Agent edits the operating conditions
+under which later task agents work — its output may be a revised prompt template, a retrieval policy, a
+more precise tool schema, an added validator, a changed permission rule, a workflow-topology adjustment
+or a new regression test. Its loop has five stages: observe trajectories, diagnose failure modes by
+attributing cost, latency, invalid actions, test failures or permission denials to specific components,
+propose candidate revisions, evaluate the revised harness on held-out tasks or replayed traces, and
+promote only changes that improve reliability, cost or safety without regressing previously solved cases.
+
+The survey is explicit that this must not be confused with unconstrained self-modification, and argues
+for **governed harness mutation**: candidate changes evaluated inside sandboxes, compared against fixed
+regression suites, and recorded with auditable rationales, with human approval required before
+activating any change that alters permission boundaries, network access, credential handling,
+deployment behaviour or human-review requirements. Its framing is that the Evolution Agent is itself
+subject to the same [[DefinedTerm/plan-execute-verify-loop]] as the agents it governs.
+
+As an open problem the survey states the harder question plainly: automated harness evolution is not
+itself the difficulty — whether a harness can improve itself without overfitting, weakening safety,
+increasing cost, hiding failures or regressing on rare but important tasks is. Its proposed discipline
+is to treat every harness mutation like a code change to a safety-critical runtime, carrying a change
+contract that states which component is modified, which failure mode it targets, what improvement it
+predicts, which invariants it must preserve, which evaluation can falsify it, and how it can be rolled
+back. The examples it gives of why this matters are all cases where a metric improves while something
+else degrades: a new retrieval policy that raises benchmark accuracy while increasing hallucinated
+evidence, a new tool schema that reduces token cost while weakening permission boundaries, a new
+verifier that improves pass rate by accepting underspecified solutions.
+
 ## When It Applies
 
 The practice treats an agent's mistakes as permanent signals rather than isolated incidents: a specific observed failure is encoded as a rule, a hook, or a check, and a rule is only removed once a more capable model has made it redundant — so a harness is described as shaped by its own failure history rather than something that can be downloaded ready-made. It applies where an agent is expected to work with some autonomy over multiple steps. Osmani's post also describes a way of over-applying the mindset, in a point it credits to Anthropic's own write-up: treating harness components as permanent rather than revisiting them as models improve, since a component that once compensated for a model limitation can become dead weight once that limitation is gone.
@@ -188,4 +244,4 @@ The term and its "agent = model + harness" formulation are attributed by Osmani'
 
 ## Related Terms
 
-[[DefinedTerm/ralph-loop]], [[DefinedTerm/harness-as-a-service]], [[DefinedTerm/context-rot]], [[DefinedTerm/compaction]], [[DefinedTerm/agents-md]], [[DefinedTerm/behavioral-evaluation]], [[DefinedTerm/initializer-agent]], [[DefinedTerm/ai-coding-agent]], [[DefinedTerm/context-reset]], [[DefinedTerm/context-anxiety]], [[DefinedTerm/guardrails]], [[DefinedTerm/externalization]], [[DefinedTerm/agent-scaffold]]
+[[DefinedTerm/ralph-loop]], [[DefinedTerm/harness-as-a-service]], [[DefinedTerm/context-rot]], [[DefinedTerm/compaction]], [[DefinedTerm/agents-md]], [[DefinedTerm/behavioral-evaluation]], [[DefinedTerm/initializer-agent]], [[DefinedTerm/ai-coding-agent]], [[DefinedTerm/context-reset]], [[DefinedTerm/context-anxiety]], [[DefinedTerm/guardrails]], [[DefinedTerm/externalization]], [[DefinedTerm/agent-scaffold]], [[DefinedTerm/agent-harness]], [[DefinedTerm/plan-execute-verify-loop]]

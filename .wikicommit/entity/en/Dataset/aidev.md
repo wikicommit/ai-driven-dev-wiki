@@ -14,10 +14,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2509.06216'
     hash: sha256:e5099cc3ed705ea5b891ef76e6da268494f7bb38bede48a7d37ea2f1b0888e66
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.02273'
+    hash: sha256:730f6134755c88620fbdf3f7484bce3b65c3370345ef9ce8ff858915d757ac84
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-sonnet-5"
-generated_with: "0.6.1"
+generated_at: "2026-09-20"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "A dataset of 932,791 pull requests authored by AI coding agents (Agentic-PRs) across 116,211 GitHub repositories and 72,189 developers, with a curated 33,596-PR subset from repositories with over 100 stars enriched with review, commit, and issue data."
@@ -53,6 +56,15 @@ commit diffs). Issues & Events adds `related_issue` (4,923), `issue` (4,614), an
 `pr_task_type` (33,596), carries an automated, GPT-based classification of each curated PR's
 purpose following the Conventional Commits categories.
 
+Beyond the agent-authored material, [[ScholarlyArticle/these-arent-the-reviews-youre-looking-for]]
+describes AIDev as also providing a stratified sample of human-authored pull requests, constructed
+to match the characteristics of the AI-generated ones — which is what makes a like-for-like
+comparison between the two author types possible within the same repositories. That study reports
+the dataset as carrying metadata identifying agentic versus human authorship, and as including full
+review activity for the repositories containing agent-authored PRs, while review records for
+repositories reached only through the human-authored side had to be retrieved separately through
+the GitHub REST API.
+
 [[ScholarlyArticle/from-industry-claims-to-empirical-reality]], working from the review-comment
 data described above, reads the review-comment table as carrying the name of whoever posted the
 comment, a categorical `user_type` marking that account as either `User` or `Bot`, the comment text
@@ -77,6 +89,15 @@ AI-generated code up to its August 1, 2025 cutoff, which bounds what can be conc
 findings drawn from AIDev do not automatically extend to proprietary repositories, to other hosting
 platforms, to agents outside the five it covers, or to activity after its cutoff date.
 
+Authorship labelling is not perfectly clean, and at least one study has found it necessary to
+correct before use. [[ScholarlyArticle/these-arent-the-reviews-youre-looking-for]] reports that some
+pull requests labelled human-authored were in fact created by automated agents, and removed 1,044
+of them after a two-step filtering procedure — first matching a "[bot]" pattern in the username,
+then matching AI-related keywords in the PR body — with every match manually inspected. The same
+study reports that some automated review mechanisms appear under the account type `User` rather
+than `Bot`, and removed 588 misclassified human-authored comments from the agent-authored side and
+539 from the human-authored side.
+
 ## Use
 
 [[ScholarlyArticle/from-industry-claims-to-empirical-reality]] used AIDev to compare merge
@@ -87,8 +108,14 @@ Of those, 2,456 fell into the Commented review condition, which the study used a
 its human-versus-agent comparison because pull requests reviewed solely by agents occurred
 nowhere else.
 
-[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] cites a study of 15,451
-refactoring instances across 12,256 agent-authored pull requests, drawn from AIDev, which found
-that agents frequently perform localized and consistency-oriented refactorings — such as variable
-renaming and type updates — while undertaking fewer high-level architectural changes than human
-developers.
+[[ScholarlyArticle/these-arent-the-reviews-youre-looking-for]] used AIDev to characterise human
+review activity on agent-authored pull requests and to compare it against human-authored ones in
+the same repositories. It reports that 61.38% of the 33,596 agent-authored PRs in popular
+repositories received no recorded review, that 71.58% of the 39,122 review comments on them were
+authored by agents, and that [[DefinedTerm/agent-steering]] accounted for 25.92% of human review
+comments on agent-authored PRs against 1.63% on human-authored ones.
+
+[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] refers to separate empirical
+work on refactoring in agent-authored pull requests drawn from AIDev, reporting that agents
+frequently perform localized and consistency-oriented refactorings while undertaking fewer
+high-level architectural changes than human developers.
