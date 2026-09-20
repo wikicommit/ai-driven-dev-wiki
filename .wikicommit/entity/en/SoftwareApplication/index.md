@@ -62,6 +62,7 @@ comments: false
 - [[SoftwareApplication/openai-agents-sdk]]
 - [[SoftwareApplication/openai-codex]]
 - [[SoftwareApplication/openclaw]]
+- [[SoftwareApplication/openhands]]
 - [[SoftwareApplication/openspec]]
 - [[SoftwareApplication/plandex]]
 - [[SoftwareApplication/port]]
