@@ -16,10 +16,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/research/building-effective-agents'
     hash: sha256:611504eb30423330be060ed8f00e432a0adcb417f992b2cfb5cbf9ccd8d511bf
+  - type: url
+    url: 'https://arxiv.org/pdf/2408.02479'
+    hash: sha256:69e3a7c17da563fb19e960cd8533593e4c71f9a2152f67ca1199377629babed0
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-20"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "An LLM that runs tools in a loop to achieve a goal. The 'tools in a loop' half is the formulation Anthropic settled on; the closing 'to achieve a goal' is Simon Willison's own addition, supplying the stopping condition that keeps the loop bounded."
@@ -100,6 +103,35 @@ Where it adds something the loop formulation leaves open is termination. A task 
 completion, but the post describes it as also common to include stopping conditions such as a maximum
 number of iterations to maintain control — a bound from outside, alongside the goal that bounds it from within.
 
+### A research-literature checklist
+
+[[ScholarlyArticle/from-llms-to-llm-based-agents-for-software-engineering]] approaches the same
+definitional problem from the research side, and reports that no comprehensive and widely accepted
+definition yet specifies the exact capabilities an LLM must exhibit to be considered an LLM-based
+agent, particularly within software engineering. Rather than settle on a sentence, that survey
+synthesises criteria from mainstream definitions and from first-half-2024 literature and offers six
+of them, treating an architecture as an agent when it meets most:
+
+1. The LLM serves as the brain — the centre of information processing and the generation of thought.
+2. The framework possesses decision-making and planning abilities, not only the language understanding
+   and generation capabilities of the LLM.
+3. Where tools are available, the model can autonomously decide when and which tools to use and
+   integrate the results into its predictions.
+4. The model can select the optimal solution from among several homogeneous results.
+5. The model can handle multiple interactions and maintain contextual understanding.
+6. The model has autonomous learning capabilities and adaptability.
+
+The survey treats the first four as fundamental to a basic level of agency and the last two as more
+advanced behaviours that are beneficial but not strictly necessary for an initial classification,
+which it presents as giving flexibility while preserving rigour. It then applies the list as a
+working test: a self-improvement framework whose decision-making and planning are confined to code
+generation and improvement, with no overall planning and a completely fixed execution sequence, is
+classified as an advanced LLM application rather than an agent, while a multi-role collaboration
+framework is classified as an agent on the strength of its role distribution, self-improvement
+ability and autonomous decision-making even though it lacks external tool integration. The two
+judgements show where the survey puts the line: on whether the control flow is the model's to
+decide, not on how elaborate the surrounding scaffolding is.
+
 ## When It Applies
 
 The definition is offered as a working convention among technical implementers, not as a settled
@@ -120,4 +152,4 @@ Compare [[DefinedTerm/semantic-diffusion]].
 
 ## Related Terms
 
-[[DefinedTerm/ai-coding-agent]], [[DefinedTerm/augmented-llm]], [[DefinedTerm/sub-agent-architecture]], [[DefinedTerm/agentic-coding]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/semantic-diffusion]], [[BlogPosting/agent-definition-useful-jargon]]
+[[DefinedTerm/ai-coding-agent]], [[DefinedTerm/augmented-llm]], [[DefinedTerm/sub-agent-architecture]], [[DefinedTerm/agentic-coding]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/semantic-diffusion]], [[BlogPosting/agent-definition-useful-jargon]], [[ScholarlyArticle/from-llms-to-llm-based-agents-for-software-engineering]]

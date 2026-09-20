@@ -21,3 +21,4 @@ comments: false
 - [[Dataset/swe-bench-pro]]
 - [[Dataset/swe-bench-verified]]
 - [[Dataset/swe-chat]]
+- [[Dataset/swe-compass]]
