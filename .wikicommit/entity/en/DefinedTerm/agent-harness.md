@@ -2,21 +2,26 @@
 title: "Agent Harness"
 type: "schema:DefinedTerm"
 lang: en
-tags: [agent-architecture, agent-tooling, verification, agent-state]
+tags: [agent-architecture, agent-tooling, verification, agent-state, benchmarking]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.18747'
     hash: sha256:b1035aaed7f12c5fa8504dac7f47c2e10dda381065834be2cea784c2f758fb1f
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.17799'
+    hash: sha256:98d0e3aebf3d1c5ab551f46a6c1f719389e820d2be1490bfefd669d87c107e69
 review_status: pending
 generated_at: "2026-09-20"
 generated_by: "claude-opus-5"
 generated_with: "0.7.0"
 
 properties:
-  description: "The policy-governed system around a language model that grounds its outputs in external execution, persistent state and verifiable feedback, turning a stateless model into a functional agent."
+  description: "The policy-governed system around a language model that grounds its outputs in external execution, persistent state and verifiable feedback, turning a stateless model into a functional agent. In the vocabulary of Gorinova et al., it is the inner of two orchestration levels — one model working with tools towards a single task — as distinguished from the system harness that decomposes goals and dispatches tasks to it."
 ---
 
 An agent harness is what turns a stateless language model into a functional agent, by grounding its outputs in external execution, persistent state and verifiable feedback. [[ScholarlyArticle/code-as-agent-harness]] frames the central design question for any harness as a question about medium — what connects the model to its task environment — and argues that code is the answer, because code is executable, inspectable and stateful in ways natural language is not. On that account these are not properties of code as a notation but the properties that make it function as a harness interface: executability means the harness can verify what the model intended, inspectability means failures can be diagnosed and fed back, and statefulness means the agent's interaction history is not lost between steps.
+
+[[ScholarlyArticle/coding-benchmarks-are-misaligned-with-agentic-software-engineering]] uses the term more narrowly, as one of two levels of orchestration. There, an agent harness is a language model interacting with tools, working towards a single task, with some system prompt and context to draw on; the [[DefinedTerm/system-harness]] is the outer layer that turns higher-level goals into concrete tasks, dispatches each to one or more agent harnesses, manages the environment they act on and routes their outputs through feedback. On that reading most artefacts described as "coding agents" — the paper names Claude Code, Codex, Cursor Agent, SWE-Agent and OpenHands among them — are agent harnesses in this sense. The same paper treats an agent harness as a configurable executor composed of model, prompt, tools and loop, which the surrounding system harness may tune or treat as a black box.
 
 ## Usage
 
@@ -30,8 +35,11 @@ The survey also treats the harness as a safety governor rather than only a conte
 
 A further argument the survey makes about safety is that human-in-the-loop control should become durable harness state rather than an occasional prompt interruption: each approval, rejection, policy exception or reviewer correction should update the harness's permission rules, escalation policy, verification criteria and future memory retrieval, and high-stakes approvals should be auditable state transitions recording what was proposed, what evidence was shown, what risks were surfaced, who decided and what responsibility boundary changed. The authors call this executable accountability.
 
+Gorinova et al. use the agent harness as an argument about measurement: because the harness is part of what a benchmark actually scores, a leaderboard entry naming only a model is under-specified. They reproduce Terminal-Bench entries for a single fixed model across several agent harnesses in which accuracy ranges from roughly 58% to roughly 80%, and argue that since the model is fixed the spread cannot be explained as a difference in model capability — it shows that prompt, tool interface, action loop, environment handling, retry behaviour and terminal conventions are part of the measured object. They add that a model may have been trained or tuned under particular tool-use conventions, so a harness can be well or poorly matched to a model before any task-specific reasoning begins.
+
 ## Related Terms
 
+- [[DefinedTerm/system-harness]]
 - [[DefinedTerm/harness-engineering]]
 - [[DefinedTerm/plan-execute-verify-loop]]
 - [[DefinedTerm/agent-scaffold]]
