@@ -19,10 +19,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/harness-design-long-running-apps'
     hash: sha256:47a08ad7125c953a6a359d169a11e61245c1d5329e47cb7057f496aaaef42b2a
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.03515'
+    hash: sha256:5afdaed7652dc3b8c3833fd90b9e8d54cd5d758f847d5d80b3aee353a3cb3acd
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-20"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "The practice of summarising a conversation that is nearing the context window limit and reinitiating a new context window with that summary."
@@ -118,6 +121,27 @@ which sacrifice information but are easier to reason about.
   [[SoftwareApplication/claude-agent-sdk]]'s automatic compaction handling context growth. Compaction's
   sufficiency is therefore reported as depending on the model, not on the technique alone.
 
+- Compaction is one design choice among several, and
+  [[ScholarlyArticle/inside-the-scaffold]] reports it as the dimension on which open-source coding
+  agents diverge most widely — seven distinct strategies across the 13 scaffolds it analysed, from no
+  management at all to compaction the model itself requests. It sorts these into two philosophies.
+  *Prevention* agents bound context growth structurally, by scoping messages per unit of work,
+  capping search rounds and truncating results, or limiting trajectory depth; *cure* agents let
+  context grow and compress it when a token threshold is reached. Prevention avoids summarisation
+  cost and information loss, but requires the scaffold to anticipate how context will grow.
+- The strategies that paper distinguishes between those poles are rule-based truncation (keeping the
+  first and last N observations and eliding the rest), structural isolation, token-based selective
+  inclusion within a budget, scaffold-triggered model summarisation, summarisation followed by a
+  verification turn that checks whether critical information was lost, and model-initiated
+  compaction, where a tool lets the model decide when to compact rather than the scaffold. It
+  observes that one agent avoids the problem altogether by making every model call single-turn with
+  no conversation history, so that fitting the work into context becomes a prompt-construction
+  problem rather than a runtime one.
+- The same paper places compaction among its *diverging* dimensions rather than its converging ones,
+  and reads that divergence as genuine uncertainty rather than noise: balancing information
+  preservation against token cost has an optimum that depends on task length, model capability and
+  cost tolerance, which it says no single strategy resolves.
+
 ## Related Terms
 
 - [[DefinedTerm/structured-note-taking]]
@@ -126,3 +150,4 @@ which sacrifice information but are easier to reason about.
 - [[DefinedTerm/long-running-agent]]
 - [[DefinedTerm/context-reset]]
 - [[DefinedTerm/context-anxiety]]
+- [[DefinedTerm/agent-scaffold]]
