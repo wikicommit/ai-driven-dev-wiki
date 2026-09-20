@@ -19,16 +19,19 @@ sources:
   - type: url
     url: 'https://hoop.dev/blog/human-in-the-loop-approval-in-ai-coding-agents-explained'
     hash: sha256:d47e37ed6d4309cb36f68927dfc4477de6d95bb29a757d4457974ee26a438f58
+  - type: url
+    url: 'https://www.port.io/blog/human-in-the-loop-for-ai-coding-agents'
+    hash: sha256:766abcbeb6946c92580399d54cd8330c0edeb8fda6e8e61aefb36579d744524c
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-20"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
-  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task; a fifth moves the gate out of the agent altogether, into a network gateway that holds the credential and will not forward the agent's request until a reviewer consents."
+  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task; a fifth moves the gate out of the agent altogether, into a network gateway that holds the credential and will not forward the agent's request until a reviewer consents; and a sixth reframes the question, arguing that once agents act in production the thing to decide is not whether a human is in the loop but what pulls the human in."
 ---
 
-Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for five distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, and an enforcement point placed in the network path between the agent and the system it is acting on.
+Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for six distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, an enforcement point placed in the network path between the agent and the system it is acting on, and a selection mechanism that decides which actions pull a human in at all.
 
 ## Usage
 
@@ -58,6 +61,21 @@ forwards it only on consent — recording the session and the decision as it goe
 appears in a post promoting the vendor's own [[SoftwareApplication/hoop-dev]] gateway, so the
 framing and the product are not separable here.
 
+A sixth position keeps the definition and changes the question. Port's
+[[BlogPosting/do-you-really-need-a-human-in-every-loop]] gives the term a narrow working
+definition — an oversight model in which agents do the work but cannot make irreversible
+changes without a human's approval — and then argues that the phrase gets treated as a single
+setting to turn on when it is really a pattern that has been shifting underfoot. Reviewing every
+output was enough while agents only proposed changes; once they deploy services, restart workloads
+and resolve incidents, reviewing every action does not scale, so what matters is no longer whether
+a human is in the loop but what pulls the human in. Its answer is two kinds of guardrail that
+decide in opposite ways: a [[DefinedTerm/rule-based-gate]], a deterministic condition written in
+advance that fires the same way every time, and a [[DefinedTerm/risk-based-gate]], in which an
+agent scores the specific action against live context and a human is pulled in only above a set
+threshold. The test for choosing between them is whether the decision is a lookup or a judgment.
+That argument appears in a post recommending the vendor's own [[SoftwareApplication/port]]
+platform, so as with the fifth position the framing and the product are not separable here.
+
 ## When It Applies
 
 The real-time sense applies to work where taste and judgment dominate and the agent lacks context a person must supply as it goes — architecture decisions, tricky refactors, ambiguous requirements, nuanced product calls — and assumes a developer is available to actively pair with the agent rather than fire off a task and return to it later.
@@ -82,6 +100,17 @@ in the data path at which policy can pause, inspect or require a decision. It is
 whose payoff is stated in audit terms — session logs, a record of who approved each change, and the
 stored masked diff, exportable for compliance reporting — rather than in development terms.
 
+The selection sense assumes that agents are already taking real, state-changing actions rather than
+only proposing them — its stated failure case is a team that keeps gating only code merges and pull
+requests, which Port reports half the room still doing when it surveyed engineering leaders at one
+of its meetups. Both of its gates assume a live, connected view of the organisation's systems to
+read from: the post's own summary is that a rule with no real data to check is a guess and a risk
+score over thin context hides a bad guess behind a number, so a gate reading stale or partial
+context makes confident, wrong calls. The risk-based half additionally assumes a threshold that
+will be tuned over time, tracing of every decision including what the model scored and on what
+context, and a fallback to blocking human review when the model is unsure. Its claims are the
+vendor's own and are not accompanied by measurements.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]], [[DefinedTerm/guardrails]], [[TechArticle/a-practical-guide-to-building-agents]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]], [[DefinedTerm/guardrails]], [[TechArticle/a-practical-guide-to-building-agents]], [[DefinedTerm/rule-based-gate]], [[DefinedTerm/risk-based-gate]]

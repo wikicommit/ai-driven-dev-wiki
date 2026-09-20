@@ -2,7 +2,7 @@
 title: "OpenClaw"
 type: "schema:SoftwareApplication"
 lang: en
-tags: [agents, agent-architecture]
+tags: [agents, agent-architecture, governance, agent-safety]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2603.05786'
@@ -10,10 +10,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.14228'
     hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
+  - type: url
+    url: 'https://www.imda.gov.sg/-/media/imda/files/about/emerging-tech-and-research/artificial-intelligence/mgf-for-agentic-ai.pdf'
+    hash: sha256:ade20c2fa2aedf4f9ea3efe129e8b2ed3cc7823b414e766050586231d956645e
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-20"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "An open-source, local-first AI assistant gateway that connects messaging surfaces to an embedded agent runtime, executing tools and communicating on behalf of the developer, with a manifest-first plugin system and a structured long-term memory subsystem."
@@ -45,6 +48,33 @@ Memory is handled as its own subsystem rather than as a by-product of context ma
 The architectural study contrasts OpenClaw's security model with per-action approval systems: it assumes a single trusted operator per gateway instance, and begins with identity and access control — direct-message pairing codes, sender allowlists and gateway authentication — rather than per-action safety classification. Tool policy uses configurable allow and deny lists per agent rather than a centralized classifier. Sandboxing is available as an opt-in feature with multiple backends and configurable scope, but is not active by default, and the project's security documentation explicitly states that hostile multi-tenant isolation on a shared gateway is not a supported security boundary.
 
 Multi-agent behaviour is split into two separate concerns. A single gateway can host multiple fully isolated agents, each with its own workspace, authentication profiles, session store and model configuration, routed to channels or senders by deterministic binding rules. Separately, within a single agent, background runs can be spawned with configurable nesting depth and thread-bound sessions. The study notes that the project's own vision explicitly rejects agent-hierarchy frameworks as a default architecture.
+
+[[TechArticle/model-ai-governance-framework-for-agentic-ai]] describes it more briefly, as an
+open-source AI agent platform that acts as an autonomous personal assistant through common chat
+interfaces such as Telegram and Slack, automating everyday tasks such as compiling research,
+handling customer enquiries or debugging code. That framework's own application of its four
+dimensions to OpenClaw deployments states that the platform was launched with limited security
+controls and that deploying it safely is non-trivial, listing as concerns its lack of maturity and
+hardening, access control and authentication gaps, exposure of sensitive data, supply chain risks
+from third-party skills, and memory poisoning risks. IMDA reports drawing on the practical
+experience of GovTech, CSA, Grab and Microsoft in reaching that assessment.
+
+Its recommendations for deploying OpenClaw and similar agents responsibly are stated as avoidances
+and enforcement points rather than as configuration values. Under bounding risk upfront: do not
+deploy it as-is in mission-critical environments, including systems handling sensitive data or
+financial transactions; do not create a single all-powerful agent with unrestricted access, using
+instead multiple agents with narrow, clearly defined rules; and do not install it on primary work
+or personal devices containing sensitive data with unrestricted access to files and applications.
+Under human accountability: set the level of agent autonomy by a risk-based assessment of data
+sensitivity and task criticality, and enforce human approval through system-level controls where
+possible rather than prompt-layer guardrails, which the framework says may be bypassed or
+"forgotten". Under technical controls: review and tighten OpenClaw configurations, which it
+characterises as permissive by default — restricting messaging channel access and using dedicated
+identities and credentials for the agent — verify before deployment that safety controls and
+[[DefinedTerm/human-in-the-loop]] work as intended by attempting disallowed actions, and after
+deployment ensure all agent actions are logged and attributable and avoid leaving the agent
+unsupervised for extended periods. Under end-user responsibility: provide personnel training on
+autonomous agent risks and on the user's own responsibility to prevent careless misuse.
 
 ## Adoption & Ecosystem
 

@@ -40,6 +40,7 @@ comments: false
 - [[ScholarlyArticle/red-teaming-coding-agents-tool-invocation]]
 - [[ScholarlyArticle/rule-taxonomy-and-evolution-in-ai-ides]]
 - [[ScholarlyArticle/sdd-in-software-development-pbl]]
+- [[ScholarlyArticle/struq]]
 - [[ScholarlyArticle/testing-rest-apis-as-llm-tools]]
 - [[ScholarlyArticle/toward-agentic-software-engineering-beyond-code]]
 - [[ScholarlyArticle/trustworthy-ai-software-engineers]]
