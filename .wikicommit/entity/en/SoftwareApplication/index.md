@@ -25,6 +25,7 @@ comments: false
 - [[SoftwareApplication/claude-code]]
 - [[SoftwareApplication/claude-code-for-web]]
 - [[SoftwareApplication/claude-managed-agents]]
+- [[SoftwareApplication/codeactagent]]
 - [[SoftwareApplication/codebuddy]]
 - [[SoftwareApplication/codeplan]]
 - [[SoftwareApplication/context-engineering-kit]]
