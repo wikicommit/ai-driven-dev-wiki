@@ -7,13 +7,14 @@ sources:
   - type: url
     url: 'https://openai.com/index/designing-agents-to-resist-prompt-injection/'
     hash: sha256:a6abdf1b681484a9400a9cdf6ae01a404d4dba8657ede15473b45bfd66d74271
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
   description: "OpenAI's named mitigation against data exfiltration by a manipulated assistant: a mechanism that detects when information the assistant learned during a conversation would be transmitted to a third party, and either shows the user what would be sent and asks for confirmation, or blocks it and tells the agent to find another way."
+reviewed_by: "joyk0117"
 ---
 
 Safe Url is a mitigation described by OpenAI in
