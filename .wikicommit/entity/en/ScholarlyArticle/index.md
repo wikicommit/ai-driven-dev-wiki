@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[ScholarlyArticle/a-survey-of-vibe-coding]]
+- [[ScholarlyArticle/a-survey-on-evaluation-of-llm-based-agents]]
 - [[ScholarlyArticle/agent-security-bench]]
 - [[ScholarlyArticle/agentclick]]
 - [[ScholarlyArticle/agentdojo]]
@@ -20,6 +21,7 @@ comments: false
 - [[ScholarlyArticle/ai-writes-faster-than-humans-can-review]]
 - [[ScholarlyArticle/aidev]]
 - [[ScholarlyArticle/are-ai-assisted-development-tools-immune-to-prompt-injection]]
+- [[ScholarlyArticle/chain-of-thought-prompting-elicits-reasoning-in-large-language-models]]
 - [[ScholarlyArticle/cheap-code-costly-judgment]]
 - [[ScholarlyArticle/context-before-code]]
 - [[ScholarlyArticle/deepcode-open-agentic-coding]]
