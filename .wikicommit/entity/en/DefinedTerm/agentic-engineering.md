@@ -25,10 +25,13 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/'
     hash: sha256:ad2e62c904d9fb829eaaef58183d658acec08216dd6d714f3267f5ddf6f29b9e
+  - type: url
+    url: 'https://www.langchain.com/blog/agentic-engineering-redefining-software-engineering'
+    hash: sha256:5799c63ef9d6f2d03dd3a460a970c8adca733f9ac55a80be400ce5edb58db2fe
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-20"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "A term for disciplined, AI-agent-assisted software development with continued human oversight — planning and specifying before prompting, reviewing every diff, testing relentlessly, and owning the resulting system — proposed by Andrej Karpathy and adopted by Addy Osmani as the name for that disciplined practice, distinct from vibe coding (which keeps its original, reckless meaning) and from Simon Willison's 'vibe engineering' proposal for the same disciplined endpoint."
@@ -80,6 +83,28 @@ unified observability layer — to drive software through the entire delivery pi
 to generate code faster. The paper's own argument is that this expands software engineering rather than
 replacing it, since the agent is itself software, and that building, deploying and governing agent
 systems is the discipline's next frontier.
+
+Read directly, the LangChain post that account quotes is narrower than a definition of a field.
+[[BlogPosting/agentic-engineering-swarms-of-ai-agents]], a guest post by two Cisco engineers,
+proposes a specific reference architecture: loosely coupled Worker Agents, described as the digital
+counterparts of individual contributors, which interpret intent, gather context from source
+repositories, issue trackers and logs, execute through tools, coding agents or sub-agents, validate
+outcomes and report plans, actions and results upward; and a Leader Agent, the digital analogue of
+a project leader, which supplies a shared prompt and workflow library, a common tool gateway,
+long-term memory for the swarm, global observability, and orchestration of *when* and *how* agents
+act rather than only what they produce. Those authors place the arrangement explicitly above AI
+coding agents rather than against them — Codex-class models are described as embedded *within*
+Worker Agents as reasoning or code-generation engines, on the argument that coding agents excel at
+translating intent into code inside a bounded, user-driven loop but are limited in their ability to
+orchestrate cross-team workflows. Their pilot reports two separate gains. Across 20+ debugging
+workflows they measure a 93% reduction in time-to-root-cause against historical debug times, with
+several cross-team investigations completing in under five minutes of coordinated agent execution.
+Across 15+ development workflows they measure over a 65% reduction in execution time, and it is
+that second figure they attribute not to faster code generation — which they say AI coding agents
+already perform well — but to compressing downstream functional testing after PR merge, noting that
+the PR review process itself then became the bottleneck. Those measurements are the authors' own,
+of their own deployment, against baselines their engineering teams curated from historical evidence
+at an internal bootcamp.
 
 That paper contrasts the two practices across nine dimensions: the core artifact moves from static
 source code to a dynamic agent system, the control centre from the human engineer to the LLM reasoning
@@ -172,3 +197,5 @@ produces.
   and the source of the fourth account above
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] — the same author reporting the
   contrast with vibe coding eroding in his own work
+- [[BlogPosting/agentic-engineering-swarms-of-ai-agents]] — the LangChain post the field-level
+  account quotes, read here directly
