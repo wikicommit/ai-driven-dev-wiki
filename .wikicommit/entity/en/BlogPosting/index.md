@@ -54,6 +54,7 @@ comments: false
 - [[BlogPosting/meet-jules-tools]]
 - [[BlogPosting/mitigating-indirect-agents-md-injection-attacks]]
 - [[BlogPosting/mitigating-prompt-injections-in-browser-use]]
+- [[BlogPosting/more-than-just-code-review]]
 - [[BlogPosting/new-sdlc-vibe-coding]]
 - [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]]
 - [[BlogPosting/own-the-outer-loop]]
