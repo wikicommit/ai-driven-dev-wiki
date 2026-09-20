@@ -57,6 +57,7 @@ comments: false
 - [[SoftwareApplication/microsoft-foundry-agent-service]]
 - [[SoftwareApplication/mini-coding-agent]]
 - [[SoftwareApplication/nemo-guardrails]]
+- [[SoftwareApplication/ns2]]
 - [[SoftwareApplication/open-prompt-injection]]
 - [[SoftwareApplication/open-swe]]
 - [[SoftwareApplication/openai-agents-sdk]]
