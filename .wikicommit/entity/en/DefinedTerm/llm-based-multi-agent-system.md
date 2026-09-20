@@ -7,6 +7,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2404.04834'
     hash: sha256:6218f286c191d560d4502ad7a112fbddc108bc1c0bfceeb18951631a6bbdba35
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.16321'
+    hash: sha256:02c42f738d81b8f2a6bc252e03f97ca3cafdfaffe66254423044bcd252353cbb
 review_status: pending
 generated_at: "2026-09-20"
 generated_by: "claude-opus-5"
@@ -47,6 +50,30 @@ are argued to enable autonomous problem-solving, to improve robustness through c
 decision-making, and to scale to complex systems by adding agents and reallocating tasks. The same
 paper contrasts the arrangement with the Mixture of Experts paradigm, where specialized components
 are dynamically activated by a gating mechanism but do not communicate with one another.
+
+[[ScholarlyArticle/llm-based-multi-agent-systems-for-code-generation]] approaches the same subject
+from the evidence side rather than the architectural one, reviewing 114 academic and grey-literature
+studies on code generation specifically. It finds that the stated reasons for adopting such systems
+fall into nine categories, led by performance enhancement (12 of 114 studies, 10.5%) and by handling
+complex tasks through decomposition into smaller coordinated sub-tasks (9 studies, 7.9%). Its authors
+read that distribution as positioning multi-agent architectures mainly as a technical mechanism for
+accuracy, efficiency and workflow coordination, with adaptability and autonomous execution appearing
+less often and still emerging rather than central.
+
+The same review records what goes wrong. Correctness and reliability is its largest challenge
+category, reported by 26 studies (22.81%), led by hallucinations, low accuracy and orchestration
+failure; the solutions it reports against orchestration failure are structured and schema-based
+communication protocols that replace unrestricted natural-language exchange with well-defined
+machine-readable message formats, together with explicit assignment of responsibility for individual
+files, services or processes to prevent conflicts and non-terminating interactions. Its other
+challenge categories are security and privacy risk, computational and resource constraints, context
+and memory limitations, benchmark challenges, verification challenges and prompt design challenges.
+
+On the models that drive these systems, that review counts 83 instances of LLM usage across its
+corpus, 57 closed-source and 26 open-source, with OpenAI's GPT series accounting for 43 and Meta's
+Llama the most common open-source choice at 17. It notes that the reliance on proprietary platforms
+may raise concerns about data privacy, security and dependency, while open-source alternatives offer
+deployment control, cost efficiency and improved data privacy.
 
 ## Related Terms
 - [[DefinedTerm/ai-agent]]

@@ -7,6 +7,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2512.22256'
     hash: sha256:9a5a75e55b1a5f5818704198234c0c775aeeaaf8ae884348416af572766c9cd2
+  - type: url
+    url: 'https://arxiv.org/pdf/2601.11655'
+    hash: sha256:cbedafca04b35cddb49e45fd2b158a2fc521a51a9ea5da37f4059553ec41b806
 review_status: pending
 generated_at: "2026-09-20"
 generated_by: "claude-opus-5"
@@ -57,8 +60,37 @@ generation, and generated reproduction tests are widely used to filter and reran
 correct localization does not guarantee a correct patch and weak reproduction tests may accept
 patches that are plausible yet behaviourally incorrect.
 
+[[ScholarlyArticle/advances-and-frontiers-of-llm-based-issue-resolution]] gives the task a formal
+statement rather than a phase decomposition, and the two are compatible. An instance is written as
+`I = (D, C, T)` — an issue description, a codebase and corresponding tests — of which only `D` and
+`C` are observable during resolution, alongside an environment `E` that can be explored; a method is
+expected to produce a patch `P = M(D, C, E)`, which is applied and then evaluated by running `T`.
+The aggregate metric that survey uses is the **Resolved Rate**, the mean of per-instance binary
+outcomes over a dataset.
+
+That survey organises the methods literature into training-free and training-based halves.
+Training-free methods are grouped by framework (single-agent, multi-agent and fixed-workflow
+designs), by plug-and-play module (tools for repository interaction, memory for experience
+accumulation) and by inference-time scaling, which uses search or parallelisation to raise success
+rates without changing model parameters; training-based methods split into supervised fine-tuning
+and reinforcement learning. Its own statistics report [[SoftwareApplication/openhands]] as the most
+prevalent scaffold for reinforcement-learning rollouts, followed by workflow-based methods — notably
+[[DefinedTerm/agentless]] and two-stage workflows — with environment-native frameworks such as
+R2E-Gym and SWE-Gym also frequently adopted because they align with training data.
+
+The same survey is pointed about the task's evidence base. It reports that agent success rates are
+frequently inflated by solution leakage, ambiguous issue descriptions and weak test suites that fail
+to catch incorrect patches, and that because manual cleanup is too costly and inconsistent at scale
+the field is shifting toward automated validation using model-based consensus to separate valid fixes
+from false positives. Among the open problems it names are the absence of efficiency-aware
+evaluation — resolve rates are measured while API cost and inference time are not, obscuring the
+computational and economic burden of high-performing methods — and the reliance on outcome-level
+rewards, typically a binary test pass or fail, which it argues makes credit assignment ambiguous
+across the many action steps a multi-turn task requires.
+
 ## Related Terms
 
 - [[DefinedTerm/ai-coding-agent]] — the kind of system the task is now predominantly attempted with
 - [[DefinedTerm/repository-level-coding]] — the broader setting the task operates in
 - [[Dataset/swe-bench]] — the benchmark whose introducing paper the survey credits with pioneering the task
+- [[ScholarlyArticle/advances-and-frontiers-of-llm-based-issue-resolution]] — a survey of the task's data, methods and analysis literature

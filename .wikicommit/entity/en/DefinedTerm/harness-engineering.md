@@ -25,10 +25,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/research/trustworthy-agents'
     hash: sha256:7b2800e6840e79dc817c3f2b89dba0aad5a79482b920ffc7c6ff72b1b9f967c9
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.08224'
+    hash: sha256:3d6692b679c69f74f38b4515cebbbd196a2a08273d14166866ba9d19bf479ea8
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-20"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "The discipline of treating the scaffolding built around an AI model — prompts, tools, context policies, hooks, sandboxes, feedback loops — as a real engineering artifact, rather than treating model choice as the main lever on agent behavior."
@@ -117,6 +120,51 @@ handled reliably on its own, and for those the evaluator became unnecessary over
 draws is that an evaluator is worth its cost when the task sits beyond what the current model does
 reliably solo.
 
+[[ScholarlyArticle/externalization-in-llm-agents]] gives the term a definitional rather than a
+practitioner framing, and pushes it further than "everything around the model": on its account a
+harness is not an implementation convenience layered on a capable model but the **designed cognitive
+environment** within which externalized modules become jointly effective. Agency, that review argues,
+is not located in the model alone — it emerges from the coupling of the model with the environment
+that organises its cognition into action. It is careful that the concept is still consolidating, and
+presents its characterisation as a synthesis of recurring patterns in current systems rather than a
+closed definition.
+
+That review decomposes harness design into six recurring analytical dimensions, grouped under three
+operational surfaces it calls Permission, Control and Observability. They are offered as a framework
+for comparing harness architectures rather than as an implementation checklist, and none of the six
+is itself a form of [[DefinedTerm/externalization]] — they are the coordinative infrastructure that
+makes memory, skills and protocols function as one system.
+
+- **Agent loop and control flow** — the temporal backbone, plus governance over termination,
+  recursion and resource consumption. The review argues that step counts, recursion depth limits,
+  cost ceilings and timeouts are not secondary safety measures but define the operational envelope
+  within which reasoning unfolds: a well-tuned loop makes an agent more reliable not by making the
+  model smarter but by bounding the space of possible execution paths.
+- **Sandboxing and execution isolation** — which it reads as a cognitive boundary rather than only a
+  security fence, on the grounds that removing irrelevant state and restricting dangerous actions
+  changes what the model must reason about.
+- **Human oversight and approval gates** — with three common patterns, pre-execution approval,
+  post-execution review, and escalation triggers that let an agent run autonomously until a risk
+  signal is detected. On this account autonomy is a configurable parameter of the harness rather than
+  a binary property of the agent, adjustable per task, per tool and per organisational policy.
+- **Observability and structured feedback** — which it calls the mechanism by which a harness learns
+  from its own operation, because without structured traces the loops connecting execution outcomes
+  back to the modules that produced them cannot operate, leaving the harness a static scaffold rather
+  than an adaptive system.
+- **Configuration, permissions and policy encoding** — described as externalized governance:
+  constraints that would otherwise sit in prompts or post-hoc filtering are encoded as declarative
+  rules the harness enforces at runtime, stratified across user, project and organisation scopes so
+  the same base agent can run under different policy regimes without changing the model or its
+  skill artifacts.
+- **Context budget management** — treated as a coordination problem no single module can solve, since
+  memory retrieval, skill loading, protocol schemas, tool descriptions and the model's own reasoning
+  traces compete for the same finite allocation, and the right split depends on the phase of
+  execution.
+
+The review also reads the convergence of structurally similar harnesses across products with
+different lineages as analytically significant: evidence, it argues, that these dimensions are
+structural requirements of externalized agency rather than incidental implementation choices.
+
 ## When It Applies
 
 The practice treats an agent's mistakes as permanent signals rather than isolated incidents: a specific observed failure is encoded as a rule, a hook, or a check, and a rule is only removed once a more capable model has made it redundant — so a harness is described as shaped by its own failure history rather than something that can be downloaded ready-made. It applies where an agent is expected to work with some autonomy over multiple steps. Osmani's post also describes a way of over-applying the mindset, in a point it credits to Anthropic's own write-up: treating harness components as permanent rather than revisiting them as models improve, since a component that once compensated for a model limitation can become dead weight once that limitation is gone.
@@ -140,4 +188,4 @@ The term and its "agent = model + harness" formulation are attributed by Osmani'
 
 ## Related Terms
 
-[[DefinedTerm/ralph-loop]], [[DefinedTerm/harness-as-a-service]], [[DefinedTerm/context-rot]], [[DefinedTerm/compaction]], [[DefinedTerm/agents-md]], [[DefinedTerm/behavioral-evaluation]], [[DefinedTerm/initializer-agent]], [[DefinedTerm/ai-coding-agent]], [[DefinedTerm/context-reset]], [[DefinedTerm/context-anxiety]], [[DefinedTerm/guardrails]]
+[[DefinedTerm/ralph-loop]], [[DefinedTerm/harness-as-a-service]], [[DefinedTerm/context-rot]], [[DefinedTerm/compaction]], [[DefinedTerm/agents-md]], [[DefinedTerm/behavioral-evaluation]], [[DefinedTerm/initializer-agent]], [[DefinedTerm/ai-coding-agent]], [[DefinedTerm/context-reset]], [[DefinedTerm/context-anxiety]], [[DefinedTerm/guardrails]], [[DefinedTerm/externalization]], [[DefinedTerm/agent-scaffold]]
