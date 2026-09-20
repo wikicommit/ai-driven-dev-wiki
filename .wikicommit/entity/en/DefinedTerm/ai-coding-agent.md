@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/'
     hash: sha256:a8be3f0926e2b75d77e83036446bf575cf49b7dff42641018af0909da9d387eb
+  - type: url
+    url: 'https://arxiv.org/pdf/2508.00083'
+    hash: sha256:fa7359ad66622d19e4c575d652a495d4060c511a03ad122023b745174eada4d4
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-20"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "Software powered by a large language model that takes autonomous actions on a codebase: reading files, writing or editing code, executing commands, and iterating on the results. A second account fixes the defining line more narrowly at code execution — an agent that can both write and run code."
@@ -62,6 +65,33 @@ loop is most of what it takes to build a coding agent, a simple tool loop is ach
 dozen lines on top of an existing API, and it is a *good* tool loop — not the basic mechanics — that
 represents the real work.
 
+## How the Research Literature Frames It
+
+[[ScholarlyArticle/a-survey-on-code-generation-with-llm-based-agents]] reaches the same category from
+the research side and names it a **code generation agent**, characterising it by three features that
+it says distinguish such agents from earlier code generation techniques. The first is *autonomy*: the
+ability to independently manage the entire workflow, from task decomposition through coding to
+debugging, where traditional code generation models assist a human developer passively through code
+completion or function generation. The second is an *expanded task scope*: earlier research typically
+involved tasks with clear boundaries and well-defined specifications, such as completing a line from
+context or generating a function body from a signature, whereas an agent can cover most of software
+development — handling ambiguous requirements, implementing entire projects, testing and refactoring,
+and optimising iteratively on real-time feedback. The third is an *enhancement of engineering
+practicality*: a shift of research emphasis away from algorithmic accuracy and toward engineering
+implementation — agent reliability, complex workflow management, and efficient invocation of external
+tools — which that survey describes as moving the problem into territory closer to classical software
+engineering.
+
+The survey draws the line between a language model and an agent architecturally rather than by
+capability. A model's operation is a single, passive response process that lacks active planning,
+state maintenance or continuous interaction with an environment; an agent builds a dynamic workflow
+with autonomy, interactivity and iterativity, with the model serving as the reasoning engine that
+decides the next action from the current environmental state. That framing puts the same weight on
+the loop that the practitioner accounts above do, and adds the claim that what has changed is not
+only what the software can do but which part of the job a person is left holding: the survey
+describes the developer's role as moving to task definer, process supervisor and final result
+reviewer.
+
 ## Related Terms
 
 The first source names this term alongside [[DefinedTerm/tool-use]], [[DefinedTerm/plan-act-observe-loop]], [[DefinedTerm/guardrails]], [[DefinedTerm/human-in-the-loop]], and [[DefinedTerm/agentic-engineering]] as related glossary entries, without defining any of them.
@@ -69,3 +99,4 @@ The first source names this term alongside [[DefinedTerm/tool-use]], [[DefinedTe
 - [[DefinedTerm/ai-agent]] — the general category this specialises
 - [[DefinedTerm/harness-engineering]] — the discipline of building the scaffolding described above
 - [[DefinedTerm/chat-templated-prompt]], [[DefinedTerm/token-caching]] — two mechanisms the internals account turns on
+- [[ScholarlyArticle/a-survey-on-code-generation-with-llm-based-agents]] — the academic survey whose framing is summarised above
