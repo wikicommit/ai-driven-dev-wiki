@@ -8,4 +8,5 @@ comments: false
 
 - [[Book/agentic-software-engineering]]
 - [[Book/beyond-vibe-coding]]
+- [[Book/hello-agents]]
 - [[Book/leading-effective-engineering-teams]]

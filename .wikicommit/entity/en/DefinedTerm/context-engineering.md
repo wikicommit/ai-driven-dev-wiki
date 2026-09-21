@@ -13,21 +13,24 @@ sources:
   - type: url
     url: 'https://developers.cyberagent.co.jp/blog/archives/62110/'
     hash: sha256:63c389aa849ff61307fb6c1aeae2debc609bb205fea277d3393d798eacf874da
+  - type: url
+    url: 'https://github.blog/ai-and-ml/github-copilot/how-to-build-reliable-ai-workflows-with-agentic-primitives-and-context-engineering/'
+    hash: sha256:f4175892bf17116173c4ae2a309b3b81b227800f09d53afa3ad1ade536e02a2d
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Two vendor accounts of it coexist in this wiki's sources — one framing it as the natural progression of prompt engineering, the other stressing a fundamental difference from it — and a third, from a team describing its own practice, approaches the same problem as a question of which tacit knowledge has to be written down for an agent to find."
+  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Four accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; and a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository."
 ---
 
 Context engineering is the practice of curating and dynamically managing what information
-occupies a large language model's context window during inference. Two of this wiki's sources
-define the term, each in its own words and each writing about its own practice. They agree on
-the problem and on the substantive contrast — a static written prompt against a dynamically
-assembled context — and differ in emphasis on how the term stands to prompt engineering, and in
-what kind of thing they say it is.
+occupies a large language model's context window during inference. Four of this wiki's sources
+bear on the term, each writing about its own practice; the two treated first below are the ones
+that set out to define it. They agree on the problem and on the substantive contrast — a static
+written prompt against a dynamically assembled context — and differ in emphasis on how the term
+stands to prompt engineering, and in what kind of thing they say it is.
 
 Anthropic — writing as a model provider rather than a cloud vendor — defines it as the set of
 strategies for curating and maintaining the optimal set of tokens available during inference,
@@ -58,6 +61,7 @@ Anthropic's account does not organize that way. Neither post engages the other's
 AWS's does build throughout on Anthropic's models.
 
 ## Usage
+
 The term applies to agents that operate over multiple turns of inference and longer time
 horizons. Anthropic describes an agent running in a loop as generating more and more data that
 could be relevant to the next turn, information that must then be cyclically refined, and
@@ -118,7 +122,28 @@ measuring it, and it is not derived from anything the other two accounts here se
 does not use the term "context engineering" for any of this — the connection to this page's
 subject is the wiki's, not the author's.
 
+A fourth account uses the term for a layer in a larger framework rather than for a discipline of
+its own. [[BlogPosting/how-to-build-reliable-ai-workflows-with-agentic-primitives-and-context-engineering]]
+defines context engineering as ensuring AI agents always focus on the right information, and
+states the problem it addresses in terms of attention rather than of knowledge: even good prompts
+and primitives fail when faced with irrelevant context or when competing for limited model
+attention. Its stated reason is that models, like people, have finite memory and can be forgetful,
+so being strategic about what is supplied preserves context window space and improves reliability.
+Where the accounts above give strategies or an architecture, this one gives file conventions. Its
+five named techniques are session splitting — separate agent sessions for planning, implementation
+and testing, on the stated grounds that a fresh context window is better for complex tasks —
+`.instructions.md` files scoped by an `applyTo` frontmatter pattern so that only relevant
+instructions load, `.memory.md` files carrying project knowledge and decisions across sessions,
+`.context.md` helper files for faster retrieval, and `.chatmode.md` files used to hold the model's
+attention on one domain and prevent cross-domain interference. What distinguishes it from the
+others here is that most of the curation is expressed as files in the repository rather than as a
+decision made at each turn, which places it closer to the written-knowledge account above than to
+either vendor's — though not all five are of that kind: session splitting is a per-run choice, and
+`.memory.md` accumulates during the work rather than being settled beforehand. It reports no evaluation, and the file
+types it relies on are those of the same author's [[DefinedTerm/agent-primitives]] proposal.
+
 ## When It Applies
+
 - Applies once an agent operates over multiple turns, where the whole context state rather than
   the prompt alone determines behaviour. Anthropic notes that in the early days of building with
   LLMs, prompting was the biggest component of the work, because most use cases outside everyday
@@ -138,7 +163,7 @@ subject is the wiki's, not the author's.
   laundry list of edge cases is stuffed into a prompt in place of canonical examples. Anthropic's
   stated remedy is to start from a minimal prompt on the best available model and add
   instructions and examples in response to failure modes found in testing.
-- None of the three accounts is an independent evaluation; each is written by a party describing
+- None of the four accounts is an independent evaluation; each is written by a party describing
   its own practice.
   Anthropic's is drawn from building agents and working alongside its customers; it observes that
   smarter models require less prescriptive engineering, and gives "do the simplest thing that
@@ -157,9 +182,16 @@ subject is the wiki's, not the author's.
   during ordinary work, that the agent did not know something. Its stated failure mode is that an
   agent given a specification with a hole implements the hole: it writes the general case, and that
   gap reaches production code as written.
+- The file-convention sense assumes an agent that reads instruction files from the repository at
+  all, and that the scoping mechanism works — its whole economy rests on an `applyTo` pattern
+  keeping an instruction file out of contexts it does not belong in. Its named misapplication is
+  one massive instruction file that applies everywhere, which the account presents as the thing
+  modular files exist to replace.
 
 ## Related Terms
+
 - [[DefinedTerm/prompt-engineering]]
+- [[DefinedTerm/agent-primitives]]
 - [[DefinedTerm/context-rot]]
 - [[DefinedTerm/attention-budget]]
 - [[DefinedTerm/just-in-time-context-retrieval]]
