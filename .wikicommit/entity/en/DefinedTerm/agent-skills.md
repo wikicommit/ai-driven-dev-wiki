@@ -19,6 +19,9 @@ sources:
   - type: url
     url: 'https://engineering.mercari.com/en/blog/entry/20260427-mercari-pm-agent-design-automating-the-pm-workflow-with-claude-code-skills-and-mcp/'
     hash: sha256:f446b9545db9ce2a51b98a91bfe525a706f8f22bd2381f38543f927626b9b58a
+  - type: url
+    url: 'https://engineering.zalando.com/posts/2026/08/agentic-engineering-at-zalando-a-snapshot.html'
+    hash: sha256:33171882bb4809ae93923b09f4e1fe6315bf6de5690393243df5a995118678bc
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
@@ -148,6 +151,24 @@ fabricated, alongside an instruction barring the agent from inferring completene
 explicit confirmation from the user allows progression to the next step. The author's summary is
 that designing a skill is close to writing a behaviour specification, and that clearly defining what
 the model must *not* do improves accuracy more directly than commands do.
+
+A second practitioner account describes the format used as shared organizational infrastructure
+rather than by an individual author. [[BlogPosting/agentic-engineering-at-zalando-a-snapshot]]
+reports a centralized skill collection at [[Organization/zalando]], grouped into plugins and
+addressing common tasks or concerns across disciplines — the post names data, engineering,
+frontend and SRE — and across programming languages. It states that migration skills, which guide
+teams in adopting new platform tools or infrastructure practices such as multi-arch builds, are a
+widely popular type. Distribution is by managed configuration settings or a CLI command that
+installs the needed symlinks, which the post attributes to some agents not supporting plugin
+marketplaces.
+
+What that account adds beyond distribution mechanics is a second-order effect it attributes to
+encouraging broad contribution: the collection became a way to discover and disseminate best
+practices across the organization, on questions such as validating plugin syntax in CI/CD
+pipelines and where the separation between skills and scripts should fall — the post's example is
+where OAuth token generation belongs. Teams writing their own skills are said to use the
+collection as a reference and inspiration. These are the author's own observations of one
+organization's practice, with no evaluation reported.
 
 Authoring is supported by a skill of its own. The announcement describes a `skill-creator` skill that
 gives interactive guidance — asking about the workflow, generating the folder structure, formatting the
