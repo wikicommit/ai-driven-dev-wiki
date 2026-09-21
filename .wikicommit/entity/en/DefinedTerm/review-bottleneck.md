@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2607.01904'
     hash: sha256:ac81932d187a0f04216eab577aedce77c1d9ea1291614c3259c025f94361d3b2
+  - type: url
+    url: 'https://developers.cyberagent.co.jp/blog/archives/60882/'
+    hash: sha256:7997cccac08ed6a2731d85a3012e81cea6de4b141192497c171f97de0740feb1
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "The downstream congestion that follows when AI accelerates code authoring while human review capacity stays fixed, so surplus work accumulates at the review stage rather than being removed."
@@ -30,6 +33,24 @@ The organization-level counterpart is that the aggregate queue never actually de
 
 Coarse quality proxies did not move: merge rates stayed essentially flat and revert rates, if anything, declined. The paper is careful about how far that goes, noting that merge and revert are short-horizon measures that miss defects, incidents and maintainability, and reading them as evidence against an acute quality collapse rather than a clean bill of health. It names what its own data cannot see — what a machine reviewer misses, and what developers stop learning as review moves off them — as open questions.
 
+A practitioner account of the same constraint, from a different vantage, is
+[[BlogPosting/redesigning-code-review-for-the-ai-era]]. There a team that adopted coding agents
+saw its commit count roughly double, and states the asymmetry directly: a matching doubling of the
+hours engineers spend reviewing is hard to arrange, so without a change to the flow, falling code
+quality is what the post says follows. It adds a reason of its own for why the load is worse than the
+volume suggests — that faults in AI-generated code are harder for a human to spot, which raises
+the cost of each review rather than only their number — and identifies reviewer load as the
+bottleneck on the productivity the agents were adopted for.
+
+What that account contributes beyond the study is the response rather than the measurement. Its
+team's answer is to attack both terms of the ratio: raise the quality of pull requests before they
+reach a human, through written guidelines and a [[DefinedTerm/testing-skyscraper]] testing
+strategy, and speed up the reviewing that remains, through AI reviewers and standardized agent
+skills. It reports its backend team's test-to-code line ratio rising from 78.6% to 112.6% over six months.
+That is one team's experience rather than a measured comparison, and it should be read as such
+next to the study above; it is notable here mainly because it converges on the same diagnosis
+from inside one organization rather than across many.
+
 ## Related Terms
 
-[[DefinedTerm/ai-mandate]], [[DefinedTerm/code-review-agent]], [[DefinedTerm/verification-debt]], [[DefinedTerm/signal-to-noise-ratio]], [[DefinedTerm/code-review-as-runtime-monitoring]]
+[[DefinedTerm/ai-mandate]], [[DefinedTerm/code-review-agent]], [[DefinedTerm/verification-debt]], [[DefinedTerm/signal-to-noise-ratio]], [[DefinedTerm/code-review-as-runtime-monitoring]], [[DefinedTerm/ai-final-gatekeeper]]

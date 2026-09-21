@@ -83,6 +83,7 @@ comments: false
 - [[ScholarlyArticle/swe-bench-can-language-models-resolve-real-world-github-issues]]
 - [[ScholarlyArticle/swe-bench-pro-can-ai-agents-solve-long-horizon-software-engineering-tasks]]
 - [[ScholarlyArticle/swe-compass-towards-unified-evaluation-of-agentic-coding-abilities]]
+- [[ScholarlyArticle/swe-review]]
 - [[ScholarlyArticle/tertiary-review-of-llm-based-code-generating-tasks]]
 - [[ScholarlyArticle/testing-rest-apis-as-llm-tools]]
 - [[ScholarlyArticle/the-impact-of-llms-on-code-review-process]]

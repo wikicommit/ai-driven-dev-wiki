@@ -6,10 +6,12 @@ review_status: reviewed
 comments: false
 ---
 
+- [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
 - [[BlogPosting/agent-definition-useful-jargon]]
 - [[BlogPosting/agent-harness-engineering]]
 - [[BlogPosting/agent-pull-requests-how-to-review-them]]
 - [[BlogPosting/agent-skills]]
+- [[BlogPosting/agentic-ai-infrastructure-context-engineering]]
 - [[BlogPosting/agentic-autonomy-levels]]
 - [[BlogPosting/agentic-code-review]]
 - [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]]
@@ -27,6 +29,7 @@ comments: false
 - [[BlogPosting/building-effective-agents]]
 - [[BlogPosting/building-safeguards-for-claude]]
 - [[BlogPosting/claude-code-for-web-async-coding-agent]]
+- [[BlogPosting/claude-code-token-saving-guide]]
 - [[BlogPosting/closing-the-knowledge-gap-with-agent-skills]]
 - [[BlogPosting/code-agent-orchestra]]
 - [[BlogPosting/comprehension-debt-the-hidden-cost-of-ai-generated-code]]
@@ -64,6 +67,7 @@ comments: false
 - [[BlogPosting/prompt-injection-and-jailbreaking-are-not-the-same-thing]]
 - [[BlogPosting/prompt-injection-as-role-confusion]]
 - [[BlogPosting/prompt-injection-attacks-against-gpt-3]]
+- [[BlogPosting/redesigning-code-review-for-the-ai-era]]
 - [[BlogPosting/securing-llm-systems-against-prompt-injection]]
 - [[BlogPosting/self-improving-agents]]
 - [[BlogPosting/sequoia-ascent-2026-summary]]
