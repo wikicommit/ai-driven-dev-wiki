@@ -7,3 +7,4 @@ comments: false
 ---
 
 - [[CreativeWorkSeries/agentic-engineering-patterns]]
+- [[CreativeWorkSeries/self-harness]]

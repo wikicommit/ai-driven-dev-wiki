@@ -31,9 +31,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.18747'
     hash: sha256:b1035aaed7f12c5fa8504dac7f47c2e10dda381065834be2cea784c2f758fb1f
+  - type: url
+    url: 'https://github.com/datawhalechina/self-harness'
+    hash: sha256:1cbe56dd3adc95cae9abae32a6356996fc03b56f4bdeb88b44cae256d918dd66
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-21"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -62,6 +65,17 @@ for harness engineering stated from the security side rather than the behaviour 
 ## Usage
 
 The term is applied to coding agents such as Claude Code, Cursor, Codex, Aider, and Cline. Addy Osmani's post argues that the behaviour a user experiences from these agents is dominated by what the harness does even where the model underneath is the same, and observes that set side by side they look more like each other than their underlying models do — the models differ while the harness patterns converge. The practice covers concrete components including the filesystem and Git for durable state, bash and code execution as the general-purpose action mechanism, sandboxes for safe execution, memory files (e.g. `AGENTS.md`) for continual learning across sessions, techniques for mitigating context rot (compaction, tool-call offloading, progressive disclosure of skills), long-horizon execution patterns (the Ralph Loop, planning, planner/evaluator splits), and hooks that enforce rules deterministically rather than relying on a model to remember them.
+
+A Chinese-language open tutorial, [[CreativeWorkSeries/self-harness]], takes the same three terms as
+a developmental sequence rather than a contrast, and makes that sequence its organising thesis:
+prompt engineering first, then [[DefinedTerm/context-engineering]] as dynamic information
+management, and finally harness engineering at the system level. Its theory section is stated as
+covering why the field evolves step by step into harness engineering, and a chapter is given over to
+the evolution of the three. How far that case is actually made is not visible from the material held
+here, which is the repository's own overview rather than the chapters; the tutorial also carries an
+alpha notice saying its content may contain errors or gaps. Its accompanying implementation,
+[[SoftwareApplication/minimaster]], builds a harness around a three-tier planner/executor/validator
+loop with separately held per-role memory.
 
 ## Evaluating a Harness
 
