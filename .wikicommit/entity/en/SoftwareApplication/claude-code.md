@@ -16,8 +16,11 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.14228'
     hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
+  - type: url
+    url: 'https://baoyu.io/blog/2026-04-06/claude-code-token-optimization'
+    hash: sha256:287e81a37d9c6dc213f594b3dd3f401600e6fe71f7d49622f3492c33f13b0a75
 review_status: pending
-generated_at: "2026-09-20"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -142,6 +145,34 @@ unrelated tasks in one session, correcting repeatedly instead of restarting with
 over-specified CLAUDE.md, trusting plausible-looking output without verification, and unscoped
 investigation that fills the context. The documentation closes by presenting all of this as starting
 points rather than rules, and advises developing intuition about when each does not apply.
+
+### Session and context configuration
+
+[[BlogPosting/claude-code-token-saving-guide]] describes a second set of practices, organised not
+around what the agent should be asked to do but around how a session's input is assembled and
+billed. Its starting point is that a session carries a large unchanging prefix — system
+instructions, tool definitions, CLAUDE.md and project configuration, which that post puts at
+roughly 50,000 tokens — and that [[DefinedTerm/token-caching]] covers it only while the session
+stays active. That post reports a one-hour cache window for the main agent against five minutes
+for a subagent, and that caches are held separately per model, so switching model mid-session
+rebuilds from nothing.
+
+Several controls follow from that. The post reports two environment settings in
+`~/.claude/settings.json`, `CLAUDE_CODE_DISABLE_1M_CONTEXT` to turn the 1M context window off and
+`CLAUDE_CODE_AUTO_COMPACT_WINDOW` to set the threshold at which the session compacts, and
+recommends keeping the larger window while compacting conservatively rather than choosing between
+them. Separately, at the project level rather than the user-global one, it reports `permissions.deny`
+in `.claude/settings.json` as a way to keep whole paths — `node_modules`, build output, large data
+files — out of file discovery, search results and direct reads, on the grounds that an agent will
+otherwise spend turns re-reading irrelevant files even when given an explicit path. Two smaller mechanics it records: HTML comments in CLAUDE.md are stripped before the
+file is injected, so maintainer notes cost nothing, and skills load when invoked rather than being
+held in context, which is why it recommends moving situational instructions out of CLAUDE.md and
+into them — with the caveat, which it states in the same breath, that more skills is not better,
+since loading many skills and agents is itself a hidden drain.
+
+These are a practitioner's account relaying vendor statements and community reports rather than
+documentation, and the post itself notes that the consumption behaviour prompting the advice was
+still under investigation at the time of writing.
 
 ## Adoption & Ecosystem
 
