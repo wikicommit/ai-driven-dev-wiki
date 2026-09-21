@@ -10,13 +10,16 @@ sources:
   - type: url
     url: 'https://www.langchain.com/blog/agentic-engineering-redefining-software-engineering'
     hash: sha256:5799c63ef9d6f2d03dd3a460a970c8adca733f9ac55a80be400ce5edb58db2fe
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/multi-agent/'
+    hash: sha256:644e8c22de6fd778cefa3c3c44647eee3beb025a3fb81617e0411c473018e2c9
 review_status: pending
-generated_at: "2026-09-20"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "A standard defining how agents communicate with each other, listed as the agent-to-agent counterpart to the Model Context Protocol's agent-to-tool role."
+  description: "A standard defining how agents communicate with each other, listed as the agent-to-agent counterpart to the Model Context Protocol's agent-to-tool role. A further source describes it as Google-led and reports a 2026 update introducing an agent directory."
 ---
 
 The Agent2Agent Protocol, abbreviated A2A, is a standard defining how agents communicate with each
@@ -43,6 +46,22 @@ through an [[DefinedTerm/model-context-protocol]] wrapper. Its authors found the
 they wanted to integrate had no native A2A capability, and built an MCP adapter tool to route
 requests from that coding agent to the worker agent — an arrangement they say makes the system
 IDE-agnostic.
+
+A third source reports where the protocol has got to and names what it is being paired with. A
+chapter of Jimmy Song's online handbook 智能体构建指南 describes A2A as Google-led and states that a
+2026 update introduced an agent directory, which it presents as making agent discovery and invocation
+across organisations and across frameworks possible. It also reports that a mainstream Python agent
+framework was the first to gain native A2A support. That chapter names release dates and a version number
+for both of those events in passing; they are not restated here, because the announcements behind
+them are not among this page's sources.
+
+The framing that chapter puts on the result is a two-protocol stack it says the industry is settling
+into: **MCP connects tools, A2A connects agents** — the first answering how an agent reaches an
+external capability, the second how agents interoperate with one another, and the two together
+forming the protocol base of a [[DefinedTerm/llm-based-multi-agent-system]]. In its 2026 summary
+table it lists MCP as having become the de facto standard and A2A as Google-led, with the agent
+directory as its distinguishing addition. Those are stated there as assessments of where the
+ecosystem stands, not as measured findings.
 
 ## Related Terms
 

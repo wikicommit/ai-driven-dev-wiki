@@ -60,6 +60,7 @@ comments: false
 - [[BlogPosting/introducing-agent-hq]]
 - [[BlogPosting/introducing-agent-skills]]
 - [[BlogPosting/introducing-codex]]
+- [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]]
 - [[BlogPosting/long-running-agents]]
 - [[BlogPosting/loop-engineering]]
 - [[BlogPosting/making-ai-do-t-wada-style-tdd]]

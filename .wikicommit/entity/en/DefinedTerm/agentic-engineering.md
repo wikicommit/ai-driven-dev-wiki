@@ -28,8 +28,11 @@ sources:
   - type: url
     url: 'https://www.langchain.com/blog/agentic-engineering-redefining-software-engineering'
     hash: sha256:5799c63ef9d6f2d03dd3a460a970c8adca733f9ac55a80be400ce5edb58db2fe
+  - type: url
+    url: 'https://jonghoonpark.com/2026/03/29/agentic-engineering'
+    hash: sha256:92fea29c2779ce511435e3c79aeb42f9b33855c8f3a1f24849a1c6993534b024
 review_status: pending
-generated_at: "2026-09-20"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -162,6 +165,37 @@ he describes the two converging in his own work as agents grow reliable enough t
 reviews every line, and frames the resulting relationship as treating an agent the way one treats
 another team's service — while noting that a team can be held accountable and an agent cannot.
 
+A fifth account is a practitioner's report rather than a definition, and it is the only one here
+written from outside the English-language discussion.
+[[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]] places the author's own experience of
+releasing a community site with a coding agent under this term rather than under
+[[DefinedTerm/vibe-coding]], and glosses the two halves of the name: **agentic**, meaning the
+developer manages and supervises agents that write the code instead of writing it themselves, and
+**engineering**, meaning the process demands expertise that has to be learned and developed. It dates
+the pair of terms a year apart, attributing both to Karpathy — vibe coding in early February 2025 and
+agentic engineering in early February 2026 — and follows that with an unattributed block quote, which
+its placement reads as his: that strict supervision and verification of where an LLM agent is heading
+are required so that the benefits of using one do not come at the cost of software quality.
+
+What that account adds beyond the definition is three positions reached by working this way. The
+first is about the resource being conserved: it argues against economising on tokens, on the grounds
+that the interruption of a developer's cognitive flow costs more than the tokens saved, and reports
+the author upgrading to a $100-a-month plan as an investment rather than an expense. The second
+follows from it and is stated as a change of stance — treating the agent as an entity that reasons
+about and solves problems rather than as a code generator, handing it error logs and failing tests
+whole instead of taking the debugging back, with the developer's role that of a director who supplies
+the right context and makes the final call. The third is that test code is what makes agent-written
+code trustworthy, and that what tests should defend extends past logic to architecture, a minimum
+coverage threshold, and static analysis in the test pipeline; the account's reason is that test
+results are among the clearest ways to communicate a team's intended direction to an agent, more
+explicit than documentation and acting as a guardrail without narrowing its options too far.
+
+Its closing position is where responsibility sits. AI is said to cover about 80% of the work, with
+the remaining detail and the accountability for the result left to people: an agent can supply many
+answers, but choosing the one that fits a particular service's context is something only a developer
+who has been through it can do, and AI takes no responsibility. That account is one developer's
+experience of one project, written up from a talk with the aid of AI and reporting no measurement.
+
 ## When It Applies
 
 The source frames agentic engineering as disproportionately benefiting engineers with strong existing fundamentals (system design, security patterns, performance tradeoffs), since recognizing good AI output requires already knowing what good code looks like; it assumes a supporting test suite is in place, since testing is described as the mechanism that turns an unreliable agent into a reliable system. Its stated failure mode is a junior engineer leaning on AI before building those fundamentals, risking skill atrophy — producing and shipping code without understanding or being able to debug it. As of this post, the term is presented as a fresh, actively-debated proposal rather than settled usage: Karpathy suggested it days before the post was written, after the author says the community spent months debating Willison's "vibe engineering" alternative.
@@ -199,3 +233,5 @@ produces.
   contrast with vibe coding eroding in his own work
 - [[BlogPosting/agentic-engineering-swarms-of-ai-agents]] — the LangChain post the field-level
   account quotes, read here directly
+- [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]] — source of the fifth account
+  above, a practitioner's report of releasing a product this way

@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://learn.microsoft.com/en-us/agent-framework/workflows/human-in-the-loop'
     hash: sha256:c8d4c0ec859c61f78664fbc60f846dfd583f0efa4b93d0d0c42cffa2dcdce9f8
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/multi-agent/'
+    hash: sha256:644e8c22de6fd778cefa3c3c44647eee3beb025a3fb81617e0411c473018e2c9
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "An open-source Microsoft framework for building AI agents, in which an ordinary function becomes a callable tool through a decorator and the framework generates the schema and manages the exchange between the model and the application's code."
@@ -98,3 +101,15 @@ result metadata (see [[DefinedTerm/model-context-protocol]]).
 The framework appears in the course as one of two Microsoft routes to implementing tool use, the
 other being [[SoftwareApplication/microsoft-foundry-agent-service]]; the course provides worked
 samples in both Python and .NET.
+
+Where the framework came from is recorded by a fourth source. A chapter of Jimmy Song's online
+handbook 智能体构建指南 states that **Microsoft merged [[SoftwareApplication/autogen]] with Semantic
+Kernel into Microsoft Agent Framework in 2025**, ending the period in which the company maintained
+two parallel multi-agent frameworks. That chapter reads the merger as a marker of a wider
+consolidation: the field moving from competing on features to converging on a small number of
+projects teams are willing to depend on, rather than migrating repeatedly between experimental ones.
+In its 2026 summary of the ecosystem it lists Microsoft Agent Framework as Microsoft's unified
+multi-agent framework and the product of that merger, alongside [[SoftwareApplication/langgraph]],
+[[SoftwareApplication/openai-agents-sdk]], [[SoftwareApplication/crewai]] and
+[[SoftwareApplication/openhands]]. Nothing in the sources held here states what happened to AutoGen's
+or Semantic Kernel's own APIs in the merge.
