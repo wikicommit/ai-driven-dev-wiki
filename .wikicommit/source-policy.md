@@ -30,6 +30,27 @@ wikicommit:
   # rewrite the line first — a flow list and a block entry cannot be mixed, and
   # a syntax error here would take exclude_domains down with it.
   rejected:
+    - url: https://www.lycorp.co.jp/ja/story/20260707/ai_transformation.html
+      reason: 企業広報コンテンツで技術的な一次記述ではなく、全文転載の懸念もあるため
+      date: "2026-09-21"
+    - url: https://pages.awscloud.com/rs/112-TZM-766/images/1-SoftwareDevelopmentWithAIAgent_rev.pdf
+      reason: マーケティング配信基盤上の営業寄りホワイトペーパーで、配布条件が明示されていないため
+      date: "2026-09-21"
+    - url: https://github.com/bojieli/ai-agent-book
+      reason: 商業出版物の全文公開リポジトリで、ライセンス（CC-BY-NC 等の可能性）が未確認のため
+      date: "2026-09-21"
+    - url: https://cloud.tencent.com/developer/article/2656230
+      reason: 開発者コミュニティへの転載記事で、原著者・初出が確認できず一次情報か判別できないため
+      date: "2026-09-21"
+    - url: https://copilot.tencent.com/docs/plugin/
+      reason: ベンダー製品ドキュメントで、source-policy が除外する製品訴求と地続きのため
+      date: "2026-09-21"
+    - url: https://www.sap.com/germany/resources/what-is-agentic-development
+      reason: ベンダーの集客・解説ページで、source-policy が除外する製品マーケティングに該当するため
+      date: "2026-09-21"
+    - url: https://baoyu.io/translations/2026-04-04/components-of-a-coding-agent
+      reason: 英語記事の翻訳（二次的著作物）で、原著の権利者が別にいるため原文を優先する
+      date: "2026-09-21"
 ---
 Prioritize primary sources: blog posts and official documentation from practitioners and vendors
 (Anthropic, Google, GitHub, independent developer blogs), open-source toolkits, and papers.
