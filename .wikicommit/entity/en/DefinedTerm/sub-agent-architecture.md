@@ -14,10 +14,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/multi-agent-research-system'
     hash: sha256:9d24a3bfa582cdeb35b5470314362e43ded1cceb6659830329c69fe72147a2e4
+  - type: url
+    url: 'https://developers.cyberagent.co.jp/blog/archives/62110/'
+    hash: sha256:63c389aa849ff61307fb6c1aeae2debc609bb205fea277d3393d798eacf874da
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "An arrangement in which specialised sub-agents handle focused tasks with clean context windows while a main agent coordinates from a high-level plan."
@@ -76,6 +79,28 @@ variance, with token usage alone explaining 80% and number of tool calls and mod
 two — which it reads as validating an architecture that distributes work across separate context
 windows to add parallel reasoning capacity.
 
+A fourth account comes from the adopting side rather than the vendor side, and applies the pattern
+to ordinary product development rather than research.
+[[BlogPosting/two-engineers-ai-driven-product-development]] describes a two-engineer team running
+37 Skills and 24 SubAgents, where a Skill defines expertise or required behaviour — what order to
+do things in, what the quality bar is, what to do on failure — and a SubAgent is a specialist agent
+for one area that may itself use Skills. A main agent uses a Skill to orchestrate the SubAgents, and
+the composition is per phase rather than per query: three SubAgents for business requirements
+(analyzer, generator, validator), seven across technical design and task splitting, and a further
+set for implementation selected by language, plus two reviewers run in parallel.
+
+Its answer to why not give one agent the whole job is the same context argument stated from
+practice: one agent doing everything makes its context balloon and performance drop, whereas
+splitting into specialists stabilizes output quality — and adds a second, operational reason none
+of the vendor accounts gives *as a rationale for the architecture*, that a phase which fails can be
+redone on its own rather than the whole run. (Anthropic does treat mid-run recovery elsewhere, as a
+property its system was built to have rather than as a reason to split the work.) That post also supplies a concrete mechanism for keeping subagents independent — a formulation
+it credits to an earlier piece rather than claiming as its own: each task file is written to be
+self-contained, carrying its own schema, API spec and full Given-When-Then test items so
+implementation never has to consult the design document. Its stated
+reason is that separate sessions implement these tasks in parallel, so inter-task context
+dependency must be zero — the file, rather than a conversation, is the interface between agents.
+
 ## When It Applies
 
 - Applies to complex research and analysis where parallel exploration pays dividends. Anthropic
@@ -100,6 +125,21 @@ windows to add parallel reasoning capacity.
   same context or involving many dependencies between them, and most coding tasks specifically — on the
   grounds that they involve fewer truly parallelizable subtasks than research, and that agents are not
   yet good at coordinating and delegating to each other in real time.
+- The adopting account above is a direct counterweight to that last point, and the two are worth
+  reading together rather than reconciling. It reports running the pattern across a coding pipeline
+  from requirements definition through pull-request review — release remains on its own future-work
+  list — and sustaining three to four tasks in parallel, having removed the dependency Anthropic
+  names by making each task file self-contained and isolating each run in its own `git worktree` and
+  session — so the coordination *between* the parallel task streams is settled in advance, when the
+  tasks are written, rather than negotiated at run time. Within a single task run, coordination is
+  still real-time and central: an orchestrator Skill picks the specialist SubAgent the task calls
+  for, launches it, judges the result and re-delegates fixes. What that setup relocates is therefore
+  the inter-task dependency, not agent-to-agent coordination as such. Neither side of this is
+  measured: the adopting team reports its own arrangement with no evaluation behind the
+  parallel-coding claim, and the vendor's domain-fit limitation is a general statement its post
+  makes without an eval behind it either — unlike the figures elsewhere in the same post. So what
+  the adopting account establishes is that the limitation is contingent on how tasks are cut, not
+  that it is wrong.
 - Carries a coordination cost that has to be prompted away rather than assumed. Early versions of that
   system are reported spawning 50 subagents for simple queries and duplicating each other's work when
   task descriptions were vague, which the team addressed with explicit effort-scaling rules and detailed

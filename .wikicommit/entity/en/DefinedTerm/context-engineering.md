@@ -10,13 +10,16 @@ sources:
   - type: url
     url: 'https://aws.amazon.com/cn/blogs/china/agentic-ai-infrastructure-practice-series-nine-context-engineering/'
     hash: sha256:1ea97ed3d4e23cb29114ffee329716c05e979b914a7a52d5b181bf258202267f
+  - type: url
+    url: 'https://developers.cyberagent.co.jp/blog/archives/62110/'
+    hash: sha256:63c389aa849ff61307fb6c1aeae2debc609bb205fea277d3393d798eacf874da
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Two vendor accounts of it coexist in this wiki's sources: one framing it as the natural progression of prompt engineering, the other stressing a fundamental difference from it and presenting context engineering as addressing its limitations."
+  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Two vendor accounts of it coexist in this wiki's sources — one framing it as the natural progression of prompt engineering, the other stressing a fundamental difference from it — and a third, from a team describing its own practice, approaches the same problem as a question of which tacit knowledge has to be written down for an agent to find."
 ---
 
 Context engineering is the practice of curating and dynamically managing what information
@@ -92,6 +95,29 @@ decide, from the current user input, the task goal and the model's state, whethe
 which compression strategy to use, what to discard, what to store as memory, and when to backfill
 memory.
 
+A third account approaches the same territory from neither strategies nor architecture but from
+what a team has to write down. [[BlogPosting/two-engineers-ai-driven-product-development]] starts
+from the observation that an agent believes only what is written and acts on it faithfully, so
+knowledge a team shares tacitly — a partner's business rules, constraints buried in existing code,
+what that team counts as good code — is treated by the agent as nonexistent. Its named hazard is
+specific: a gap in a specification is implemented as a gap, because an agent told to "award the
+user points" writes the general case where a human would recall that one named company caps it at 500.
+The post notes that a clarifying-question loop is a partial safety net at best, since information
+absent from the specification cannot be asked about.
+
+Its response is to place tacit knowledge in the codebase as five layers the agent works down:
+product context (domain rules and business constraints), coding conventions (principles with
+explicit priorities), quality standards (golden files — worked examples of what a good output looks
+like), references (implementation and test patterns held per module), and workflow (Skill and
+SubAgent definitions determining when each applies). The author's stated claim for the arrangement
+is that an agent traversing it top-down can take in that information the way a new human team
+member would, and their recommendation is a standing cycle — noticing during daily work that the AI does
+not know something, then writing it down — which they name as the surest way to raise how much use
+an agent is. The five-layer arrangement is one team's own convention, reported with nothing
+measuring it, and it is not derived from anything the other two accounts here set out. That post
+does not use the term "context engineering" for any of this — the connection to this page's
+subject is the wiki's, not the author's.
+
 ## When It Applies
 - Applies once an agent operates over multiple turns, where the whole context state rather than
   the prompt alone determines behaviour. Anthropic notes that in the early days of building with
@@ -112,7 +138,8 @@ memory.
   laundry list of edge cases is stuffed into a prompt in place of canonical examples. Anthropic's
   stated remedy is to start from a minimal prompt on the best available model and add
   instructions and examples in response to failure modes found in testing.
-- Neither account is an independent evaluation; each vendor is writing about its own practice.
+- None of the three accounts is an independent evaluation; each is written by a party describing
+  its own practice.
   Anthropic's is drawn from building agents and working alongside its customers; it observes that
   smarter models require less prescriptive engineering, and gives "do the simplest thing that
   works" as its standing advice for teams building agents on Claude. AWS's is drawn from its own
@@ -120,7 +147,16 @@ memory.
   specifically, cached tokens priced 90% below standard input tokens, and a claim that in stable
   agent workflows cache hit rates *can* exceed 90% and overall inference cost *can* fall by 80%.
   These are vendor-reported figures about one product, stated as what is achievable and without a
-  methodology or head-to-head baseline, not measurements of context engineering in general.
+  methodology or head-to-head baseline, not measurements of context engineering in general. The
+  third account attaches no figures to the tacit-knowledge layering itself; the numbers it does
+  give — requirements work cut from several hours to roughly 10–20 minutes, 37 Skills and 24
+  SubAgents built, two engineers matching the previous six-person team's output — are
+  self-reported results for that team's workflow as a whole, not measurements of this practice.
+- The written-knowledge sense assumes there is someone to notice the gaps and keep writing them
+  down. Its cost is ongoing rather than one-off — the practice it describes is a cycle of spotting,
+  during ordinary work, that the agent did not know something. Its stated failure mode is that an
+  agent given a specification with a hole implements the hole: it writes the general case, and that
+  gap reaches production code as written.
 
 ## Related Terms
 - [[DefinedTerm/prompt-engineering]]
