@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[ScholarlyArticle/4d-are-bridging-the-attribution-gap]]
 - [[ScholarlyArticle/a-survey-of-vibe-coding]]
 - [[ScholarlyArticle/a-survey-on-code-generation-with-llm-based-agents]]
 - [[ScholarlyArticle/a-survey-on-evaluation-of-llm-based-agents]]
@@ -23,6 +24,7 @@ comments: false
 - [[ScholarlyArticle/agentless-demystifying-llm-based-software-engineering-agents]]
 - [[ScholarlyArticle/agrail]]
 - [[ScholarlyArticle/ai-agentic-programming-survey]]
+- [[ScholarlyArticle/ai-to-ai-code-reviews-of-github-pull-requests]]
 - [[ScholarlyArticle/ai-writes-faster-than-humans-can-review]]
 - [[ScholarlyArticle/aidev]]
 - [[ScholarlyArticle/are-ai-assisted-development-tools-immune-to-prompt-injection]]
@@ -49,6 +51,7 @@ comments: false
 - [[ScholarlyArticle/from-llms-to-llm-based-agents-for-software-engineering]]
 - [[ScholarlyArticle/from-prompt-to-process]]
 - [[ScholarlyArticle/from-tool-orchestration-to-code-execution]]
+- [[ScholarlyArticle/grounding-ai-agents-in-contracts]]
 - [[ScholarlyArticle/how-coding-agents-fail-their-users]]
 - [[ScholarlyArticle/how-do-ai-coding-agents-contribute-to-software-development]]
 - [[ScholarlyArticle/human-ai-experience-in-integrated-development-environments]]
