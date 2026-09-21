@@ -31,10 +31,16 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/'
     hash: sha256:ad2e62c904d9fb829eaaef58183d658acec08216dd6d714f3267f5ddf6f29b9e
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
+    hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
+  - type: url
+    url: 'https://jonghoonpark.com/2026/03/29/agentic-engineering'
+    hash: sha256:92fea29c2779ce511435e3c79aeb42f9b33855c8f3a1f24849a1c6993534b024
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "Building software with an LLM without reviewing the code it writes. Coined by Andrej Karpathy in early February 2025 for a deliberately unexamined, fast style of building, and argued here to be a narrow subset of AI-assisted programming rather than a synonym for it."
@@ -52,6 +58,7 @@ that it is already being stretched to cover every form of
 responsible AI-assisted work looks like.
 
 ## Usage
+
 The term marks a boundary in how software is produced, not a particular tool or workflow. The same
 model and editor can be used either way, and what decides the label is whether the resulting code
 is read and understood before it is relied on. On Willison's account, code that an LLM wrote but
@@ -118,7 +125,32 @@ other stakeholders express a prototype in natural language rather than arriving 
 requirements document, and letting a team "vibe up" a prototype with a customer to reach alignment
 before any production code is written.
 
+Two further accounts use the term as the starting point of a transition rather than as a category to
+defend. Both draw their own boundary at whether the work can be controlled and verified — a
+criterion that overlaps the narrow reading's code-review test without being the same one.
+
+A chapter of Jimmy Song's online handbook 智能体构建指南 treats vibe coding as a stage in a progression
+of programming paradigms — tool-assisted development in the IDE era, collaborative creation in the AI
+programming era, and fluid co-creation in the vibe coding era, where human and AI share one context
+and one semantic space. Its argument is that the stage is unstable at team scale, and it names three
+problems: context drift, where the AI forgets business boundaries; uncontrollable results, with wide
+variance in code quality and security; and no standard for collaboration between human, AI and tools.
+Its question is therefore whether the "vibe" can be given engineering constraints, and its answer is
+[[DefinedTerm/spec-driven-development]] — turning atmosphere into structure so that collaboration
+becomes controllable and verifiable. The account is unusually explicit that what changes is the whole
+development paradigm and not merely the way code is written.
+
+A Korean practitioner account reaches the same boundary from experience.
+[[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]] reports that working with an agent on
+a real product felt closer to a fight than to vibes — its author recalls repeatedly asking the agent
+why it was doing what it had been told not to — and concludes that the reality is the domain of
+engineering rather than of vibes, since a tool delivers value only once its output can be controlled
+and verified. That account places its own practice under [[DefinedTerm/agentic-engineering]] for that
+reason, and attributes the pair of terms to Karpathy a year apart, the first in early February 2025
+and the second in early February 2026.
+
 ## When It Applies
+
 Willison sets out the conditions under which he considers vibe coding acceptable, addressed
 explicitly to people new to building software:
 
@@ -187,6 +219,7 @@ its context window. His conclusion is the plainest version of the narrow reading
 understand the code, you can't debug it, extend it, or explain it to your team.
 
 ## Related Terms
+
 - [[DefinedTerm/agentic-engineering]] — the disciplined counterpart one source contrasts it with
 - [[DefinedTerm/ai-assisted-programming]] — the broader practice this term is a subset of
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of

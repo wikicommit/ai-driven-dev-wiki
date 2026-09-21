@@ -16,17 +16,20 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/github-copilot/how-to-build-reliable-ai-workflows-with-agentic-primitives-and-context-engineering/'
     hash: sha256:f4175892bf17116173c4ae2a309b3b81b227800f09d53afa3ad1ade536e02a2d
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/context/overview/'
+    hash: sha256:f8e2752a1acfb50932f79278c2d01a48144d0a2169965cfa644161eb58799c23
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Four accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; and a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository."
+  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Five accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository; and a fifth that begins by separating the persisted session record from the payload assembled before each inference, and frames the practice as building a pipeline between them."
 ---
 
 Context engineering is the practice of curating and dynamically managing what information
-occupies a large language model's context window during inference. Four of this wiki's sources
+occupies a large language model's context window during inference. Five of this wiki's sources
 bear on the term, each writing about its own practice; the two treated first below are the ones
 that set out to define it. They agree on the problem and on the substantive contrast — a static
 written prompt against a dynamically assembled context — and differ in emphasis on how the term
@@ -142,6 +145,34 @@ either vendor's — though not all five are of that kind: session splitting is a
 `.memory.md` accumulates during the work rather than being settled beforehand. It reports no evaluation, and the file
 types it relies on are those of the same author's [[DefinedTerm/agent-primitives]] proposal.
 
+A fifth account contributes a distinction the other four leave implicit, and treats it as
+prerequisite to everything else. A chapter of Jimmy Song's online handbook 智能体构建指南 opens by
+separating **Session** from **Context**: a Session is the complete, persisted record of an
+interaction, kept for audit, replay, analysis and memory extraction, whose goal is to lose nothing; a
+Context is the payload constructed dynamically before each inference, the model's working set, whose
+goal is to carry only what is relevant. The two coincide in a short conversation and separate quickly
+in long ones, multi-turn tasks and agents.
+
+Conflating them, that account argues, produces two engineering consequences directly. Performance
+and quality degrade, because irrelevant information is not background but noise that interferes with
+the model's reasoning and selection. And cost and scaling go out of control, because a Session grows without
+bound while the context window has a hard ceiling — so feeding the whole history in makes the system
+unscalable. The conclusion it draws is the same one Anthropic's account reaches from the other
+direction, stated as an architectural requirement rather than as advice: the object of the practice
+is not to hand the model more but to build a controllable **Context Construction Pipeline** that
+selects, compresses, reorders and validates, producing the minimum sufficient set of information for
+the task at hand. Everything the chapter goes on to treat — agents as the control plane, query
+augmentation, retrieval, chunking, memory tiers, and tools reached through
+[[DefinedTerm/model-context-protocol]] — is presented as components and governance mechanisms of that
+one pipeline rather than as separate subjects.
+
+Its own gloss on how the term stands to prompt engineering is closer to AWS's than to Anthropic's:
+prompt engineering controls how the model thinks, context engineering controls what world it thinks
+in, and the model is otherwise an isolated reasoning engine that knows nothing of the outside world,
+remembers only what is in its temporary window, and cannot reach real-time data or past experience.
+The chapter is marked as a draft and reports no evaluation; like the four accounts above it is a
+practitioner writing about the practice rather than measuring it.
+
 ## When It Applies
 
 - Applies once an agent operates over multiple turns, where the whole context state rather than
@@ -163,7 +194,7 @@ types it relies on are those of the same author's [[DefinedTerm/agent-primitives
   laundry list of edge cases is stuffed into a prompt in place of canonical examples. Anthropic's
   stated remedy is to start from a minimal prompt on the best available model and add
   instructions and examples in response to failure modes found in testing.
-- None of the four accounts is an independent evaluation; each is written by a party describing
+- None of the five accounts is an independent evaluation; each is written by a party describing
   its own practice.
   Anthropic's is drawn from building agents and working alongside its customers; it observes that
   smarter models require less prescriptive engineering, and gives "do the simplest thing that

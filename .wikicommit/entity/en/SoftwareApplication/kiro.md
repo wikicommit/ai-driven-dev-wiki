@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.12231'
     hash: sha256:08aa95b018a1374f9de491d626d4f394b8efec41d830ef1726a1b8db6a69d9d6
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
+    hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "Amazon's agentic AI development tool, which guides users through requirements, design, and task-creation stages before any code generation begins."
@@ -38,7 +41,7 @@ addresses more generally.
 as one of five that let developers define [[DefinedTerm/ai-ide-rules]]. Kiro is the one that calls the
 mechanism something else: its rules are **Steering**, kept under `.kiro/steering/`, and by default it
 generates three files there — `product.md`, `tech.md` and `structure.md` — which users may add to. That
-study records Kiro's release date as 14 July 2025, per its official changelog. It excluded `product.md`
+study records Kiro's release date as 14 July 2025, per its official changelog.  It excluded `product.md`
 from its own analysis on the grounds that the file documents business requirements and product features
 rather than the development constraints the study was about.
 
@@ -47,6 +50,12 @@ rather than the development constraints the study was about.
 A 2026 practitioner's survey of spec-driven development tools ([[ScholarlyArticle/from-code-to-contract]])
 categorizes Kiro, alongside [[SoftwareApplication/github-spec-kit]] and [[SoftwareApplication/tessl]],
 as one of three representative AI-assisted SDD toolkits.
+
+A chapter of Jimmy Song's online handbook 智能体构建指南 lists Kiro first among the representative
+implementations of the practice, describing it as a standalone AI IDE from AWS, available in preview
+from July 2025, whose flow runs Requirements → Design → Tasks. Its assessment of the tool is the sharpest of
+the accounts held here and is stated there as a judgement with nothing measured behind it: it calls
+the arrangement intuitive but cumbersome, and suited to one-off tasks.
 
 [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] cites Kiro as an industry
 tool already demonstrating a [[DefinedTerm/plan-do-assess-review]] pattern built around

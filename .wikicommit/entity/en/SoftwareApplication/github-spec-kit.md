@@ -16,10 +16,13 @@ sources:
   - type: url
     url: 'https://github.com/github/spec-kit'
     hash: sha256:43e53abd453112137f25876eef80951cf1caabd0b9b88260dc5c527de383c731
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
+    hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "An open-source toolkit that gives AI coding agents structured processes, reusable templates and documented outcomes. Its core process is spec-driven development, run as a sequence of human-gated agent skills; bug fixing and idea assessment ship as separate opt-in extensions."
@@ -127,3 +130,12 @@ handed to `/speckit-specify` if the idea is to be built.
 Customization is layered: extensions add capabilities, presets adapt existing behaviour, workflows
 automate steps, and bundles package a role-based setup, with project-local overrides for one-off
 template changes. The toolkit is MIT licensed.
+
+A chapter of Jimmy Song's online handbook 智能体构建指南, surveying representative implementations of
+[[DefinedTerm/spec-driven-development]], describes Spec Kit as GitHub's CLI suite and singles out
+**Constitution** as its core concept — a document defining the project's architectural principles,
+which that account places ahead of the phases above, giving a flow of Constitution → Specify → Plan →
+Tasks. Its assessment is that the toolkit remains spec-first in orientation while supplying teams with
+a templated structure to collaborate within, stated there as a judgement with nothing measured behind
+it. It is the only source held here that treats the Constitution step as the tool's defining
+feature.

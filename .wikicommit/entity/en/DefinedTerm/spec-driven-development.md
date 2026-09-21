@@ -30,6 +30,9 @@ sources:
   - type: url
     url: 'https://github.com/engineering4ai/awesome-spec-driven-development'
     hash: sha256:d33ae69c11c61977c4977af54bf7816fa95b5478abcf591af455b4a4693cdf9e
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
+    hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
@@ -43,12 +46,13 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Seven separate
+implementation then proceeds from the specification and is verified against it. Eight separate
 accounts of the practice are described here — a plugin implementation, a third-party account of a
 tool vendor's workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
 implement it, one developer's firsthand account of taking the practice to its limit, a report on
-teaching it to undergraduates, and an industrial-research case study that pushes the specification
-toward formal notation — and they agree on this much while differing in the concrete mechanics
+teaching it to undergraduates, an industrial-research case study that pushes the specification
+toward formal notation, and a Chinese-language handbook chapter that treats the practice as a
+question of system determinism — and they agree on this much while differing in the concrete mechanics
 below, including how many levels of rigor the practice is understood to have.
 
 ## Usage
@@ -173,6 +177,41 @@ documentation — sits at the level of generality the accounts above share. Each
 and a sentence, so it is evidence of how the tooling has spread and how practitioners categorise it,
 not of how any particular tool works.
 
+**An eighth account** is a chapter of Jimmy Song's online handbook 智能体构建指南, and what is
+distinctive in it is that it makes accuracy a question of system determinism. Its definition is
+close to the others' — a structured specification as the single source of truth driving design,
+implementation, testing and deployment, written in natural language or structured Markdown as an
+executable contract stating what the software should do and why — and it positions SDD against TDD
+and BDD by saying it moves the vantage point further forward still, settling what and why before
+implementation is entered at all. Where it differs is in what it says accuracy depends on: *high
+accuracy is not the model's cleverness but the system's determinism*, reached by constraining the
+model with rules, feeding it through context, and reusing experience as workflows.
+
+That account puts figures on when the practice is worth it, offered as evaluation criteria rather
+than as measurements: it holds that a code-generation system with a success rate below 50% costs more
+in rework than it returns in productivity, and gives target values of at least 90% of output
+compiling and running directly, at least 85% passing automated tests, and at most 10% needing manual
+repair — with a task type becoming a production capability rather than an experiment once it holds
+above 90%. Its account of the automated pipeline is the familiar Specify → Plan → Tasks → Implement →
+Deploy loop, with build, static analysis and test suites acting as the verification oracle and
+failures fed back so the model re-plans and retries until the correctness conditions hold.
+
+Two framings in it are not in the accounts above. The first is a three-layer protocol stack it says
+turns AI from a point assistant into a member of the system:
+[[DefinedTerm/model-context-protocol]] defining how the AI interacts with tools,
+[[DefinedTerm/agent2agent-protocol]] letting agents collaborate, and AG-UI establishing real-time
+visible interaction between user and agent. The second is an adoption principle it calls **AI First
+in Non-Business Domain**: start where tasks are high-frequency, already have clear rules and are
+decoupled from core business — its examples are retiring A/B experiments, configuration cleanup and
+security fixes — and expand to business innovation only after automation is working in that
+controlled range. It names the same problems others do as the reason — context drift, uncontrollable
+results, no standard for collaboration between human, AI and tools — but answers them with a
+sequencing rule rather than with gates or artefact rigor.
+
+This chapter is a section of an online handbook rather than a study, and states no evaluation of its
+own; its accuracy targets and its adoption principle are given as positions rather
+than as measured findings.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -233,7 +272,8 @@ reports an attention limit rather than a conceptual one: past a few pages, the m
 omitted parts of the specification during generation, which its authors read as an argument for
 decomposing longer specifications.
 
-How well established the practice is, none of the seven accounts settles on their own. Each uses the
+How well established the practice is, none of these accounts settles on their own. The seven treated
+in this paragraph each use the
 term for its own implementation or account of the pattern; the context-engineering-kit's reliability
 claims — including that its plugin produced working code in every case its team tested — are the
 project's own, based on internal production use rather than independent evaluation. The GitHub Spec
@@ -249,7 +289,7 @@ measurement, assigned by a single rater with no second coder and no inter-rater 
 It also declares a conflict of interest, one of the frameworks it scores being its own author's.
 The sixth account is an implementation report on a single university course with four teams, so what
 it says is a description of one adaptation of the practice rather than an evaluation of the practice
-in general. The firsthand account is the narrowest evidence of the seven: one developer's experience of a few
+in general. The firsthand account is the narrowest evidence of those seven: one developer's experience of a few
 months on a single personal project, published by the vendor whose coding agent it uses, and
 offered by its author as an experimental workflow rather than a recommendation. The seventh is an
 industrial-research case study reporting one team's experience on a single simulation program, with its
@@ -284,3 +324,5 @@ timing comparison drawn from the authors' own two attempts rather than from a co
 - [[ScholarlyArticle/enhancing-formal-software-specification-with-artificial-intelligence]] — source of
   the seventh account above, in which the specification is written in natural language augmented with
   mathematical notation and reviewed by the model before any code is generated
+- [[SoftwareApplication/agentscript]] — one of the implementations the eighth account lists, in
+  which the agent's own plan is emitted as code rather than as prose

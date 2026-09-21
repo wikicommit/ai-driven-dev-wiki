@@ -2,7 +2,7 @@
 title: "Qoder"
 type: "schema:SoftwareApplication"
 lang: en
-tags: [agents, coding-tools]
+tags: [agents, coding-tools, spec-driven-development]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.12231'
@@ -10,13 +10,19 @@ sources:
   - type: url
     url: 'https://help.aliyun.com/zh/lingma/user-guide/agent'
     hash: sha256:ff93705ed5a254225f79b1ecef3ff91af0315b170a60a603e666e00fab589c61
+  - type: url
+    url: 'https://help.aliyun.com/zh/lingma/user-guide/tools'
+    hash: sha256:27b9d11864d2f74ffe6990bd1e8d2b4ad8bad43c4735bf75e5d9387db5beda31
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
+    hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "An AI IDE from Alibaba whose rule files live under `.qoder/rules/`, one of five such tools examined in a 2026 mining and survey study of AI IDE rules. Alibaba Cloud separately documents a product it calls Qoder CN, whose relationship to this one the sources held here do not establish."
+  description: "An AI IDE from Alibaba whose rule files live under `.qoder/rules/`, one of five such tools examined in a 2026 mining and survey study of AI IDE rules. Alibaba Cloud separately documents a product it calls Qoder CN, and a third source describes a Qoder built for spec-driven development; the relationship between these accounts the sources held here do not establish."
   applicationCategory: "AI IDE"
   author: "Alibaba"
 ---
@@ -53,6 +59,29 @@ the project, file modification, error retrieval and terminal execution, and that
 asking the developer to confirm or intervene. And it says the agent decides on, writes and runs
 terminal commands as part of carrying out a task.
 
+A separate page of the same guide enumerates those tools by name, grouped by what they are for. The
+inventory it gives is:
+
+- **Retrieval** — `search_codebase` (semantic search over the current project), `search_file`,
+  `grep_code`, `search_symbol`, `list_dir`, `web_search` (stated to need no API key),
+  `fetch_content` (retrieving the content at a URL), `search_memory` and `fetch_rules`.
+- **File editing** — `edit_file`, `read_file`, `delete_file` and `create_file`, which the guide says
+  the agent uses to make changes across several files in a project.
+- **Terminal execution** — `run_in_terminal` and `get_terminal_output`, with commands written from
+  what has happened so far in the task.
+- **Problem retrieval** — `get_problems`, which reads the code problems shown in the IDE's Problems
+  pane.
+- **Memory** — `update_memory`, invoked either when a developer asks for something to be remembered
+  or when the tool judges that something should be retained automatically.
+- **To-do planning** — `add_tasks` and `update_tasks`, which the guide ties to the agent planning for
+  itself: it breaks pending work into to-do items and then revises the execution path as it goes.
+
+That page also states that MCP services are supported and freely configurable by the developer,
+which is consistent with the agent page's account of MCP tools below. Two small inconsistencies in
+the table are worth noting rather than smoothing over: the heading "终端执行" (terminal execution)
+appears twice, the second time over the to-do planning rows, and the `update_tasks` row has its
+description in the name column.
+
 On confirmation the guide describes two gates. Terminal commands, it says, are by default presented
 for confirmation before each run, with Run sending the command to the IDE's terminal window and
 Cancel skipping it and returning to the agent, which then plans its next step from that feedback;
@@ -73,6 +102,21 @@ Note that the guide describes what is being configured as a plugin, with command
 IDE's terminal window — which is a different shape from the standalone AI IDE the study above
 describes Qoder as being. That is a further reason not to treat the two accounts as describing one
 product.
+
+## A third account, in a spec-driven-development survey
+
+A chapter of Jimmy Song's online handbook 智能体构建指南, surveying representative implementations of
+[[DefinedTerm/spec-driven-development]], lists a **Qoder** among them and describes it as an AI
+programming assistant designed specifically for SDD scenarios, built on the idea of specification as
+code. On that account it supports writing specifications in structured Markdown, generates project
+structure, code and test cases from them, and helps the developer refine and evolve a specification
+over successive rounds of conversation; it is said to integrate LLM, code generation, testing and
+deployment capabilities, and to suit team collaboration and complex engineering work.
+
+That chapter gives no URL, vendor or version for the tool it is describing, so whether it means the
+AI IDE above, the plugin Alibaba Cloud documents as Qoder CN, or something else again is not
+established by anything held here. It is recorded as a third account under the same name rather than
+merged into either of the two above.
 
 ## Adoption & Ecosystem
 

@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.16321'
     hash: sha256:02c42f738d81b8f2a6bc252e03f97ca3cafdfaffe66254423044bcd252353cbb
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/multi-agent/'
+    hash: sha256:644e8c22de6fd778cefa3c3c44647eee3beb025a3fb81617e0411c473018e2c9
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-21"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -75,7 +78,50 @@ Llama the most common open-source choice at 17. It notes that the reliance on pr
 may raise concerns about data privacy, security and dependency, while open-source alternatives offer
 deployment control, cost efficiency and improved data privacy.
 
+A third source approaches the same subject as an operations handbook rather than as architecture or
+evidence. A chapter of Jimmy Song's online handbook 智能体构建指南 sets out four concerns it treats as
+the practical content of building such a system, and its standing caution is against
+over-engineering: a framework supplies mechanism, but coordination overhead can cancel out the gains
+from specialisation, and where a task is sequential and tightly coupled, or a single well-designed
+agent with better prompt engineering would do, a complex framework is only unnecessary cost.
+
+**Role separation.** The roles it names are Planner (decomposing the task and setting strategy),
+Worker (carrying out a sub-task, possibly as a domain specialist), Reviewer (checking and improving
+results) and Orchestrator (dispatching work and making the final decision), with the boundaries drawn
+so that responsibility does not overlap. It notes that [[SoftwareApplication/crewai]] carries this in
+configuration as `role` and `goal` attributes per agent, and that
+[[SoftwareApplication/langgraph]]'s Supervisor pattern realises the Orchestrator as an agent routing
+requests to sub-agents.
+
+**Consensus and arbitration.** Where agents disagree, it names three strategies: majority or ranked
+voting, as in [[SoftwareApplication/autogen]]'s debate arrangement where solver agents argue over
+rounds and an aggregator settles the final round by majority; confidence-weighted voting across
+several models, which it attributes to the ReConcile framework; and trust-value routing, in which an
+agent's weight is adjusted from its past performance so that more reliable agents' opinions carry
+further.
+
+**Tracing.** Its recommendation is a unique trace ID per agent interaction, tying logs and call
+context together, on top of whatever state the framework already persists — LangGraph's graph state,
+CrewAI's Flow States. It notes each framework's own observability facility (CrewAI's Tracing &
+Observability, LangGraph's LangSmith integration) and suggests callbacks to emit each agent's
+decision detail into one log.
+
+**Containment.** Because multi-agent runs generate excess calls and cost, it names per-agent or
+per-workflow token and call quotas, budget monitoring that terminates or degrades past a threshold,
+retry limits and circuit breaking, and input filtering — noting that the last has to be implemented
+by the user in open-source frameworks.
+
+That chapter also states a limit it says none of the six frameworks it compares resolves: efficient
+**context transfer between agents**. The available approaches are to share everything, which is slow
+and expensive, or to share summaries, which lose detail; selective, semantic transfer is what would
+decide a multi-agent system's economics, and it argues teams should choose a framework knowing that
+the framework does not solve it. Its warnings about over-engineering run the same way — coordination
+overhead can cancel out the gains from specialisation, and structure added to compensate for a
+current model's limits should be built so it can be removed when a better model arrives. These are stated there as
+positions, with nothing measured behind them.
+
 ## Related Terms
+
 - [[DefinedTerm/ai-agent]]
 - [[DefinedTerm/agent-teams]]
 - [[DefinedTerm/sub-agent-architecture]]

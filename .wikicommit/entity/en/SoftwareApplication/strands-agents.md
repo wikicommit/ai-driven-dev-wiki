@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://aws.amazon.com/cn/blogs/china/agentic-ai-infrastructure-practice-series-nine-context-engineering/'
     hash: sha256:1ea97ed3d4e23cb29114ffee329716c05e979b914a7a52d5b181bf258202267f
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/multi-agent/'
+    hash: sha256:644e8c22de6fd778cefa3c3c44647eee3beb025a3fb81617e0411c473018e2c9
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
@@ -40,4 +43,13 @@ The second is conversation management, the framework's answer to a [[DefinedTerm
 
 The framework appears in the first source as the vehicle for a [[DefinedTerm/neurosymbolic-validation]] pattern, in which deterministic business rules are evaluated in a hook and enforced before a tool executes rather than stated to the model in a prompt or docstring. Its hook mechanism is one implementation of the interception point described under [[DefinedTerm/agent-hooks]]; equivalents in other agent frameworks are named alongside it as LangGraph node guards and AutoGen reply functions. That account comes from a single post published under the AWS organization, which uses the framework rather than documenting it, so it establishes the hook API used in that example and little else about the project.
 
-[[BlogPosting/agentic-ai-infrastructure-context-engineering]] places it at the agent-framework layer of AWS's context-engineering stack, between Amazon Bedrock beneath it and [[SoftwareApplication/amazon-bedrock-agentcore]] above, and describes its memory management integrating with AgentCore Memory through those same hooks. That post also contrasts the two: AgentCore Memory is presented as suiting enterprise deployment and strict compliance, while third-party memory services such as Mem0.ai reached through Strands Agents are presented as suiting rapid prototyping and flexible customization. Both sources for this page are published by AWS, one on a community platform and one on the company's own blog, so nothing here is an independent assessment of the framework.
+[[BlogPosting/agentic-ai-infrastructure-context-engineering]] places it at the agent-framework layer of AWS's context-engineering stack, between Amazon Bedrock beneath it and [[SoftwareApplication/amazon-bedrock-agentcore]] above, and describes its memory management integrating with AgentCore Memory through those same hooks. That post also contrasts the two: AgentCore Memory is presented as suiting enterprise deployment and strict compliance, while third-party memory services such as Mem0.ai reached through Strands Agents are presented as suiting rapid prototyping and flexible customization.
+
+A third source places the framework rather than documenting it. A chapter of Jimmy Song's online
+handbook 智能体构建指南, comparing six agent coordination frameworks, characterises AWS Strands as
+taking a **model-driven** approach — the model handles planning and execution — requiring minimal
+code, supporting MCP natively, and enabling multi-agent collaboration through the
+[[DefinedTerm/agent2agent-protocol]]. Its stated best use there is production-ready agents on AWS.
+That chapter gives no figure or measurement in support of its account of Strands. All three sources
+for this page describe a framework AWS publishes, two of them published by AWS itself, so none of
+them is an independent assessment.

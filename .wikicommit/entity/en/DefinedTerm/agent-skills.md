@@ -22,6 +22,9 @@ sources:
   - type: url
     url: 'https://engineering.zalando.com/posts/2026/08/agentic-engineering-at-zalando-a-snapshot.html'
     hash: sha256:33171882bb4809ae93923b09f4e1fe6315bf6de5690393243df5a995118678bc
+  - type: url
+    url: 'https://jonghoonpark.com/2026/03/29/agentic-engineering'
+    hash: sha256:92fea29c2779ce511435e3c79aeb42f9b33855c8f3a1f24849a1c6993534b024
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
@@ -174,6 +177,19 @@ Authoring is supported by a skill of its own. The announcement describes a `skil
 gives interactive guidance — asking about the workflow, generating the folder structure, formatting the
 `SKILL.md` file and bundling the resources — with no manual file editing required. That is the format
 applied to itself: the procedural knowledge for writing a skill is packaged as a skill.
+
+A third practitioner account is the smallest scale the format appears at here — one developer rather
+than a team or an organization. [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]]
+reports templating repeated prompts as Skills once retyping them became tedious, its example being a
+standing request to analyse uncommitted changes and write tests for them, and says what such a skill
+is, is not a mere prompt but an engineer's know-how transplanted into coding conventions.
+Its second use is of a skill someone else wrote: the author, a backend developer, ran a third-party
+SEO skill against their own site to produce a list of improvement points, then handed that list back
+to the agent to apply against the source, repeating the loop about once a week. The observation drawn
+is that the format helps most in a domain that is not one's own — which is the knowledge-gap argument
+Google's account makes about fast-moving SDKs, reached here from the direction of a developer's own
+expertise rather than a model's training cutoff. That account reports no evaluation and does not
+identify which harness feature set it is describing beyond naming Claude Code as the agent.
 
 ## When It Applies
 
