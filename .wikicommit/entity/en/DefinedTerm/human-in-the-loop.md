@@ -22,16 +22,19 @@ sources:
   - type: url
     url: 'https://www.port.io/blog/human-in-the-loop-for-ai-coding-agents'
     hash: sha256:766abcbeb6946c92580399d54cd8330c0edeb8fda6e8e61aefb36579d744524c
+  - type: url
+    url: 'https://developers.cyberagent.co.jp/blog/archives/62639/'
+    hash: sha256:8fe61a90b7d83235354ba7e66eb8068f7329ab03406aa10fc3725f34ee02cadc
 review_status: pending
-generated_at: "2026-09-20"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow — used by Addy Osmani both for a developer actively pairing with an agent in real time, and, in a later post, for an asynchronous approval gate that pauses a long-running agent mid-task until a human responds; a third line of work argues that how proposals are surfaced for review determines how effective that involvement actually is, and a fourth treats it as an escalation path an agent takes when it cannot finish a task; a fifth moves the gate out of the agent altogether, into a network gateway that holds the credential and will not forward the agent's request until a reviewer consents; and a sixth reframes the question, arguing that once agents act in production the thing to decide is not whether a human is in the loop but what pulls the human in."
+  description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run unsupervised. This wiki's sources use the one term for seven distinct patterns: real-time pairing, an asynchronous approval gate inside a long run, a structured review surface for inspecting and editing proposals, an escalation path an agent takes when it cannot finish, a network gateway that holds the credential and forwards a request only on consent, a selection mechanism deciding which actions pull a human in at all, and a ratification step in which the AI proposes candidates and only a human decides which become team norms."
 ---
 
-Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for six distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, an enforcement point placed in the network path between the agent and the system it is acting on, and a selection mechanism that decides which actions pull a human in at all.
+Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for seven distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, an enforcement point placed in the network path between the agent and the system it is acting on, a selection mechanism that decides which actions pull a human in at all, and a ratification step in which the AI proposes and the human alone decides what becomes a standing rule.
 
 ## Usage
 
@@ -76,6 +79,20 @@ threshold. The test for choosing between them is whether the decision is a looku
 That argument appears in a post recommending the vendor's own [[SoftwareApplication/port]]
 platform, so as with the fifth position the framing and the product are not separable here.
 
+A seventh position moves the gate off the agent's actions entirely and onto the rules the agent
+will later be judged by. In [[BlogPosting/automating-coding-guidelines-with-ai]], a CyberAgent
+team has an AI harvest pull-request review comments into coding-guideline candidates and present
+them as a pull request, where a person decides which are adopted. Its author's stated reason for
+inserting the human is that a coding guideline is not a summary but a team norm, so "something
+plausible-looking is written here" is not good enough. The specific hazard named is that review
+comments can depend heavily on the context of the moment — circumstances particular to that
+repository, the release priorities at the time, an implementation allowed as an exception, a
+trade-off taken deliberately — and that an AI finalizing candidates without that context risks
+leaving wrong guidelines standing. The division the post draws is therefore by role rather than
+by risk: the AI is assigned the job of producing candidates, the human the job of deciding
+whether one stands as a norm, which the author argues keeps speed while holding the validity of
+the judgment.
+
 ## When It Applies
 
 The real-time sense applies to work where taste and judgment dominate and the agent lacks context a person must supply as it goes — architecture decisions, tricky refactors, ambiguous requirements, nuanced product calls — and assumes a developer is available to actively pair with the agent rather than fire off a task and return to it later.
@@ -111,6 +128,18 @@ will be tuned over time, tracing of every decision including what the model scor
 context, and a fallback to blocking human review when the model is unsure. Its claims are the
 vendor's own and are not accompanied by measurements.
 
+The ratification sense is the one whose output is a rule rather than an action, so what it gates
+differs from the rest: the decision is taken in batches, over a window of past review comments —
+seven days by default in the CyberAgent workflow, on whatever schedule the calling repository
+sets — rather than at the moment an agent wants to act. What it assumes is that the candidates
+arrive in a form a person can rule on cheaply, which that implementation supplies as a pull
+request listing each candidate with a priority, background and citation alongside an exclude
+checkbox. Its stated failure mode is the one it was built to avoid rather than one
+observed: a wrong guideline, adopted because the context that made a comment situational was not
+visible at the point of decision. The reported effects — team perspectives beginning to show up
+in AI review findings, human review shifting toward specification validity and business logic —
+are the author's early observations of a recently introduced mechanism, with no measurement given.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]], [[DefinedTerm/guardrails]], [[TechArticle/a-practical-guide-to-building-agents]], [[DefinedTerm/rule-based-gate]], [[DefinedTerm/risk-based-gate]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/checkpoint-and-resume]], [[DefinedTerm/long-running-agent]], [[DefinedTerm/approval-fatigue]], [[DefinedTerm/guardrails]], [[TechArticle/a-practical-guide-to-building-agents]], [[DefinedTerm/rule-based-gate]], [[DefinedTerm/risk-based-gate]], [[DefinedTerm/agentic-code-review]]

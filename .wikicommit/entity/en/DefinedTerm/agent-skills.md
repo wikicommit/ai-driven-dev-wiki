@@ -16,10 +16,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/news/skills'
     hash: sha256:d9203771b21f47f29f2864693735d485c5abe5e9b35eed91551ec1cbcc4099c2
+  - type: url
+    url: 'https://engineering.mercari.com/en/blog/entry/20260427-mercari-pm-agent-design-automating-the-pm-workflow-with-claude-code-skills-and-mcp/'
+    hash: sha256:f446b9545db9ce2a51b98a91bfe525a706f8f22bd2381f38543f927626b9b58a
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "A format, documented by Anthropic for Claude and since published as an open standard, for extending an agent with domain expertise: a directory holding a SKILL.md file of instructions plus optional scripts and reference material, loaded in stages so that an unused skill costs only its name and description in context."
@@ -120,6 +123,32 @@ secure environment they need to run. In Claude Code they are installed via plugi
 `anthropics/skills` marketplace or manually by placing them in `~/.claude/skills`, and shared with a team
 through version control.
 
+A practitioner account reaches the same structural advice from the other direction, and is the only
+source here that reports testing it. [[BlogPosting/mercari-pm-agent-design]] describes building a
+skill that carries a product manager's workflow end to end, and reports first consolidating all
+definitions into a single `SKILL.md` and then finding, through scoring by a separate evaluation
+skill, that the longer the file, the worse the output accuracy became. The author's response was to
+separate the behaviour definition — what to do and in what order — from reference data and
+templates held in a `references/` directory, and reports that this structural change alone produced
+a clear improvement in score. The post frames this as applying separation of concerns from software
+engineering to prompt design, and relates the underlying problem to the phenomenon often called
+"Lost in the Middle", in which models fail to attend properly to information in the middle of a long
+context. It also notes writing `SKILL.md` in English on the grounds that English instructions tend
+to produce higher accuracy with Claude. What that account adds to the vendor's advice above is not a
+different rule but a reason to follow it: the vendor recommends splitting a file once it has become
+unwieldy, while this author reports measuring the cost of not doing so.
+
+That post's other design claims concern what a skill's instructions should forbid rather than how
+they are filed. Its stated position is that the most dangerous risk in embedding an LLM in a
+business workflow is plausible but unfounded output — a model producing reasonable-looking numbers
+where no data exists — and that this cannot be solved by telling the model not to lie: the skill
+must specify how to behave when it recognizes missing data. The rules it uses are that unconfirmed
+data must be labelled "Not provided" or "To be validated" and that numbers and sources must never be
+fabricated, alongside an instruction barring the agent from inferring completeness, so that only
+explicit confirmation from the user allows progression to the next step. The author's summary is
+that designing a skill is close to writing a behaviour specification, and that clearly defining what
+the model must *not* do improves accuracy more directly than commands do.
+
 Authoring is supported by a skill of its own. The announcement describes a `skill-creator` skill that
 gives interactive guidance — asking about the workflow, generating the folder structure, formatting the
 `SKILL.md` file and bundling the resources — with no manual file editing required. That is the format
@@ -156,6 +185,15 @@ code-generation prompts, finding that it raised results markedly for its newer m
 reasoning support and much less for older ones — a result Google reads as skills working, but
 depending on the model's reasoning ability rather than on the skill alone. The method and figures
 are on [[BlogPosting/closing-the-knowledge-gap-with-agent-skills]].
+
+The Mercari account above is the only source here reporting an evaluation of a skill's own
+*structure* rather than of what a skill adds. Its method is worth the caveat: the scores come from
+an evaluation skill the same author wrote, run against a dataset the same author assembled from real
+improvement topics, against criteria — understanding accuracy, spec specificity, feasibility, UX
+validity — the same author defined before implementing. The post gives no figures, describing the
+improvement as clear rather than quantifying it, and reports the author's own reasoning about why a
+shorter file scored better rather than an experiment isolating that variable. Defining the criteria
+first is itself presented as a method, which the post calls Prompt TDD.
 
 Anthropic's own engineering post reports no evaluation or measurement of the format. Its claim that
 the context bundled into a skill is effectively unbounded is an architectural argument about what a

@@ -9,6 +9,7 @@ comments: false
 - [[DefinedTerm/4d-are]]
 - [[DefinedTerm/action-selector-pattern]]
 - [[DefinedTerm/action-space]]
+- [[DefinedTerm/agent-as-a-judge]]
 - [[DefinedTerm/agent-as-a-service]]
 - [[DefinedTerm/agent-command-environment]]
 - [[DefinedTerm/agent-computer-interface]]
