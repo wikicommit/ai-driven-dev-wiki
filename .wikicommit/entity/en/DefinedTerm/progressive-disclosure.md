@@ -10,13 +10,16 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills'
     hash: sha256:e884d6fd1fe5becb8f432c99a20cf8b36e39d087e507037696b411e11d077ef5
+  - type: url
+    url: 'https://arxiv.org/pdf/2603.05344'
+    hash: sha256:29a5dfd46c7505affc599f6922ebba2f67d01e7f3a343df5347a42f435a08edc
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
-  description: "A context-management strategy in which an agent loads information in stages as it is needed rather than all at once, so that material which is never used costs nothing. In Anthropic's Agent Skills it is realised as three levels: always-loaded metadata, instructions loaded on trigger, and bundled resources read only on demand."
+  description: "A context-management strategy in which an agent loads information in stages as it is needed rather than all at once, so that material which is never used costs nothing. It is realised as a cheap always-loaded index over expensive content fetched on demand — three levels of metadata, instructions and bundled resources in Anthropic's Agent Skills, and keyword-searched tool discovery for external tools in OpenDev."
 ---
 
 Progressive disclosure is the practice of having an agent load information in stages as it becomes
@@ -78,9 +81,36 @@ and adds that where contexts are mutually exclusive or rarely used together, kee
 separate reduces token usage. Size prompts the division; which material is needed together guides
 where it falls.
 
-How well-established it is: the account available here is one vendor's documentation and engineering
-writing about its own format, where the term names a specific three-level arrangement with stated token
-costs. No measurement of the strategy's effect is reported in either.
+How well-established it is: two independent accounts are available here, and they differ in kind. One
+vendor's documentation and engineering writing about its own format supplies the three-level
+arrangement and its stated token budgets but reports no measurement of the strategy's effect. The
+OpenDev report supplies the measurement and no such staged format, and is itself a single system's
+design report written by its author rather than a controlled comparison. Neither account is a
+general evaluation of the strategy.
+
+## Another Realisation
+
+The strategy is not tied to a document format.
+[[ScholarlyArticle/building-effective-ai-coding-agents-for-the-terminal]] applies the same staging to
+an agent's *tools*, and reports a figure for it. That report frames the problem in tokens: a system
+with a hundred external tools whose schemas average two hundred tokens spends twenty thousand tokens
+on tool definitions alone, so including every schema is wasteful while excluding external tools
+limits what the agent can do. [[SoftwareApplication/opendev]]'s answer is lazy discovery — the
+context starts with zero external tool schemas, and the agent calls a `search_tools` tool that scores
+registered tool names and descriptions against a keyword query and returns matches, whose schemas
+then enter subsequent calls. Three detail levels let the agent choose how much context to spend on
+the answer, and invoking a tool by its qualified name discovers it without a prior search. The report
+states that eagerly including every external schema had consumed up to 40% of the context before the
+first user message, and that lazy discovery brought that baseline to under 5%, growing only as
+capabilities are actually used.
+
+That report applies the same two-phase treatment to its own skills — a metadata index of name,
+description and trigger conditions at startup, with full content loaded only on invocation — and
+generalises the pattern as a lesson, that eager loading fails at scale and the answer in both cases
+is to load metadata indexes at startup and defer full content to the point of use. The trade it names
+is the one implicit in the documented format as well: discovery costs an extra round trip, which pays
+off for workflows using few of the available items and accumulates, though bounded, for workflows
+using many.
 
 ## Related Terms
 
