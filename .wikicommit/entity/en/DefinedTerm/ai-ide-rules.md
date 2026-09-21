@@ -8,10 +8,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.12231'
     hash: sha256:08aa95b018a1374f9de491d626d4f394b8efec41d830ef1726a1b8db6a69d9d6
+  - type: url
+    url: 'https://help.aliyun.com/zh/lingma/user-guide/rules'
+    hash: sha256:4051f161bcd8ab57343564b88d1aff932c5ef2b0c29c555e78ae09c2e0e27901
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "Textual instructions kept in files inside a project that an AI IDE automatically injects into the model's context, so that project-specific constraints, conventions and architectural guidelines persist across interactions instead of being retyped each time."
@@ -32,6 +35,10 @@ usually Markdown. The location differs by tool: `.cursor/rules/` for [[SoftwareA
 `.kiro/steering/` for [[SoftwareApplication/kiro]], which calls its version of the mechanism Steering
 and generates three files there by default. Cursor and Windsurf both began with single-file formats
 (`.cursorrules`, `.windsurfrules`) that were later superseded by directory-based management.
+
+Alibaba Cloud publishes a user guide for a product it calls 通义灵码 (Lingma), which gives that
+product's rule directory as `.lingma/rules`; the study above records `.qoder/rules/` for
+[[SoftwareApplication/qoder]]. Both paths are recorded here as each document gives them.
 
 ## Usage
 
@@ -72,6 +79,25 @@ Context Enrichment, while 77.78% of surveyed developers name Correction as a pri
 the study reads as negativity bias. Even when correcting, developers mostly add: 68.75% of corrections
 were performed as additions rather than edits to the existing text.
 
+**A second axis: when a rule fires.** The taxonomy above sorts rules by what they are about. Alibaba
+Cloud's guide for Lingma sorts them instead by how they are triggered, and defines four types on
+that basis. A **Manual** rule takes effect only when the developer pulls it in by name in the chat
+box. A **Model Decision** rule carries a description of the situations it is written for, and — in agent
+mode, or once tool use is enabled in chat — the model decides for itself whether to apply it; the
+examples given are a rule meant to bite when generating unit tests, or when writing comments. An **Always** rule applies to every request in chat and inline chat, and
+is where the documentation puts project-wide conventions: coding style, preferred formats, a default
+answering role. A **Specific Files** rule is scoped by comma-separated glob patterns, so it reaches
+whatever files match — one language, or one directory. This is a single vendor's product design
+rather than a cross-tool finding, but it names a distinction the content taxonomy above leaves
+implicit: when a rule applies is configured separately from what it says.
+
+The same documentation states the mechanics it imposes. A single rule file is capped at 10,000
+characters and is truncated past that. Rules must be written in natural language; images and links
+are not parsed. Because the files sit in the project directory they travel with the repository
+through Git like any other file, and the documented way to keep them to one developer is to add the
+directory to `.gitignore`. Where a rule and the assistant's memory conflict, it states that the rule
+takes precedence.
+
 ## When It Applies
 
 Rules apply where a project has conventions an assistant would otherwise have to be told each session,
@@ -96,6 +122,16 @@ can come to contain contradictions; the study recommends periodically consolidat
 Compliance also decays: it peaks at the commit that introduces a rule and falls back toward 65% over
 the following commits, which the study attributes to rule staleness and to the context window growing
 more complex as business code and conversation accumulate.
+
+Alibaba Cloud's authoring advice in that same guide comes from the vendor rather than from measurement, and
+addresses a different question: not which rules repay the context they cost, but how to write one a
+model will follow. It asks for rules that are concise, specific and clear, on the grounds that overly
+long or ambiguous ones confuse the assistant; for structure — bullets, numbered lists and Markdown
+rather than long paragraphs, which it says are easier for the model to take in; for worked examples
+of good code, which it describes as a great help in conveying intent; and for iteration, writing a
+rule and then testing it through actual generation and questions before refining it. That last point
+sits alongside the study's finding that rule files are in practice built up by refinement after
+observed behaviour rather than specified in advance.
 
 The evidence base is one mixed-methods study, and two of its own caveats matter here. Under external
 validity it notes that its projects are predominantly TypeScript web development, built — per its own

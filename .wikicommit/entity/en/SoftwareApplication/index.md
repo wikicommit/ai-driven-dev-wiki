@@ -68,6 +68,7 @@ comments: false
 - [[SoftwareApplication/microsoft-agent-framework]]
 - [[SoftwareApplication/microsoft-foundry-agent-service]]
 - [[SoftwareApplication/mini-coding-agent]]
+- [[SoftwareApplication/minimaster]]
 - [[SoftwareApplication/nemo-guardrails]]
 - [[SoftwareApplication/ns2]]
 - [[SoftwareApplication/open-code-review]]

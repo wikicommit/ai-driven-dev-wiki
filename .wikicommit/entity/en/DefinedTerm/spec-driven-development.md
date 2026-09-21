@@ -27,6 +27,9 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2601.09745'
     hash: sha256:23e2c28644cabf41082562927407902546dd2d7860f1147ba3e4da97c7ca1f9d
+  - type: url
+    url: 'https://github.com/engineering4ai/awesome-spec-driven-development'
+    hash: sha256:d33ae69c11c61977c4977af54bf7816fa95b5478abcf591af455b4a4693cdf9e
 review_status: pending
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
@@ -152,6 +155,24 @@ describes permitting the model to work in the manner of this practice on the sur
 formalizing the problem in intermediate Markdown files before implementing — and reports that doing so
 made visible which decisions the model had taken about elements outside the business logic.
 
+**A curated index** of the practice's tooling, *Awesome Spec-Driven Development*, maintained on GitHub
+by Engineering4AI, is worth less for any single entry than for the shape it gives the ecosystem. It
+sorts projects into introductions, standards, specification tools, development frameworks, IDE and
+editor integrations, MCP servers, workflow management and related lists. Those categories separate
+questions the practice's own literature tends to run together. Its Standards section holds
+[[DefinedTerm/agents-md]], which it describes as a Markdown-based format for specifying agent
+behaviour, alongside [[DefinedTerm/first-principles-framework]], which it describes instead as a
+rigorous framework for modelling systems, methods and knowledge with auditable assurance levels.
+Separate from those sit the tools that author a specification ([[SoftwareApplication/github-spec-kit]],
+[[SoftwareApplication/openspec]]), the frameworks that wrap a whole development workflow around one
+([[SoftwareApplication/bmad]]), the IDE and editor integrations that build the practice into the
+editor ([[SoftwareApplication/kiro]]), and the boards and orchestrators under workflow management that
+track work spanning several specifications at once. Its own one-line gloss on the practice — comprehensive specifications created before implementation begins,
+which it says improves alignment between requirements and delivery, code quality, testing and
+documentation — sits at the level of generality the accounts above share. Each entry in it is a name
+and a sentence, so it is evidence of how the tooling has spread and how practitioners categorise it,
+not of how any particular tool works.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -212,7 +233,7 @@ reports an attention limit rather than a conceptual one: past a few pages, the m
 omitted parts of the specification during generation, which its authors read as an argument for
 decomposing longer specifications.
 
-How well established the practice is, none of the seven sources settles on their own. Each uses the
+How well established the practice is, none of the seven accounts settles on their own. Each uses the
 term for its own implementation or account of the pattern; the context-engineering-kit's reliability
 claims — including that its plugin produced working code in every case its team tested — are the
 project's own, based on internal production use rather than independent evaluation. The GitHub Spec
