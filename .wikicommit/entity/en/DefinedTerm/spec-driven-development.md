@@ -24,10 +24,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2608.30572'
     hash: sha256:c0eb1ba213f36e53531516aecba8c4127b4017c1605a1fac8aba65de8f96ce7d
+  - type: url
+    url: 'https://arxiv.org/pdf/2601.09745'
+    hash: sha256:23e2c28644cabf41082562927407902546dd2d7860f1147ba3e4da97c7ca1f9d
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "Driving a coding agent from a written task specification rather than directly from a prompt: the prompt is first turned into a specification, which is refined and optionally reviewed by a human, and only then implemented."
@@ -37,11 +40,12 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Six separate
+implementation then proceeds from the specification and is verified against it. Seven separate
 accounts of the practice are described here — a plugin implementation, a third-party account of a
 tool vendor's workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
-implement it, one developer's firsthand account of taking the practice to its limit, and a report on
-teaching it to undergraduates — and they agree on this much while differing in the concrete mechanics
+implement it, one developer's firsthand account of taking the practice to its limit, a report on
+teaching it to undergraduates, and an industrial-research case study that pushes the specification
+toward formal notation — and they agree on this much while differing in the concrete mechanics
 below, including how many levels of rigor the practice is understood to have.
 
 ## Usage
@@ -135,6 +139,19 @@ reasoning that this generalizes the workflow to feature additions and debugging 
 requirements, and adds an explicit review phase in which agent and developer confirm the implementation
 matches the specification.
 
+**A seventh account** comes from an IBM Research case study
+([[ScholarlyArticle/enhancing-formal-software-specification-with-artificial-intelligence]]) that pushes
+the specification toward formal notation rather than toward tooling. Its authors write the
+specification as natural language augmented with lightweight mathematical notation in LaTeX, treating
+it as an intermediate representation between informal requirements and fully formal specification
+languages, and have the model review it for ambiguities and inconsistencies before any code is
+generated. That account reports the review-before-generation ordering as the source of its gain: the
+same program specified this way took about a sixth of the time of correcting an implementation
+iteratively from its execution results, and was correct on the first generation attempt. It also
+describes permitting the model to work in the manner of this practice on the surrounding program —
+formalizing the problem in intermediate Markdown files before implementing — and reports that doing so
+made visible which decisions the model had taken about elements outside the business logic.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -183,7 +200,19 @@ agent to split each section into its own module. Its author had not added tests 
 writing, and states that testing remains essential even in spec-driven workflows, since a
 specification describes intended behaviour while tests verify it.
 
-How well established the practice is, none of the six sources settles on their own. Each uses the
+The IBM Research case study contributes a boundary of a different kind: which parts of the program the
+specification must pin down. Its authors argue that a system analyst has to separate what the model may
+modify from what it must preserve — peripheral elements such as a user interface can be left to the
+model, while anything touching business logic should come back to the analyst for confirmation,
+particularly where the intention is ambiguous. They demonstrate the cost of getting that line wrong by
+summarizing their own precise specification into loose prose and regenerating from it, and report that
+the reconstruction dropped or corrupted several things the original had fixed, among them the notion of
+separate organizations, the ordering of events, and a bound on one actor's budget. That account also
+reports an attention limit rather than a conceptual one: past a few pages, the model occasionally
+omitted parts of the specification during generation, which its authors read as an argument for
+decomposing longer specifications.
+
+How well established the practice is, none of the seven sources settles on their own. Each uses the
 term for its own implementation or account of the pattern; the context-engineering-kit's reliability
 claims — including that its plugin produced working code in every case its team tested — are the
 project's own, based on internal production use rather than independent evaluation. The GitHub Spec
@@ -199,9 +228,11 @@ measurement, assigned by a single rater with no second coder and no inter-rater 
 It also declares a conflict of interest, one of the frameworks it scores being its own author's.
 The sixth account is an implementation report on a single university course with four teams, so what
 it says is a description of one adaptation of the practice rather than an evaluation of the practice
-in general. The firsthand account is the narrowest evidence of the six: one developer's experience of a few
+in general. The firsthand account is the narrowest evidence of the seven: one developer's experience of a few
 months on a single personal project, published by the vendor whose coding agent it uses, and
-offered by its author as an experimental workflow rather than a recommendation.
+offered by its author as an experimental workflow rather than a recommendation. The seventh is an
+industrial-research case study reporting one team's experience on a single simulation program, with its
+timing comparison drawn from the authors' own two attempts rather than from a controlled study.
 
 ## Related Terms
 
@@ -229,3 +260,6 @@ offered by its author as an experimental workflow rather than a recommendation.
   from legacy code rather than writing them for new work
 - [[ScholarlyArticle/sdd-in-software-development-pbl]] — source of the sixth account above, reporting
   on teaching the practice in an undergraduate team-development course
+- [[ScholarlyArticle/enhancing-formal-software-specification-with-artificial-intelligence]] — source of
+  the seventh account above, in which the specification is written in natural language augmented with
+  mathematical notation and reviewed by the model before any code is generated
