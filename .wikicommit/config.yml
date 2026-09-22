@@ -1,7 +1,7 @@
 wikicommit_version: "0.7.0"
 
 translation:
-  targets: []
+  targets: [ja]
   primary_lang: en
 
 # What this wiki is about — used to skip entities unrelated to the subject when a
