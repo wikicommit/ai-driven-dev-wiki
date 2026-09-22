@@ -16,4 +16,5 @@ comments: false
 - [[Organization/nvidia]]
 - [[Organization/openai]]
 - [[Organization/qodo]]
+- [[Organization/strongdm]]
 - [[Organization/zalando]]

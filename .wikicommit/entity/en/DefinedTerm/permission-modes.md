@@ -2,7 +2,7 @@
 title: "Permission Modes"
 type: "schema:DefinedTerm"
 lang: en
-tags: [agent-safety, human-oversight, agent-tooling]
+tags: [agent-safety, human-oversight, agent-tooling, prompt-injection]
 sources:
   - type: url
     url: 'https://docs.claude.com/en/api/agent-sdk/permissions'
@@ -10,10 +10,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/claude-code-best-practices'
     hash: sha256:9aae24f8b850a5f9c8a6f561be1fecf54f29e1ddc4658d00ecded22bccb82b82
+  - type: url
+    url: 'https://simonwillison.net/2026/Jul/21/cat-and-thariq/'
+    hash: sha256:a27deba3b2ae555c7354fa9733173cb7efc80237fc406cc7f265170dc8a99b5b
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-22"
+generated_by: "claude-opus-5"
+generated_with: "0.7.0"
 
 properties:
   description: "A session-wide setting that determines an agent's baseline handling of tool requests matching no explicit rule — from denying everything that would prompt, through auto-accepting file edits, to bypassing checks. It sets the default, not the ceiling: deny and ask rules are documented as applying regardless of the mode."
@@ -65,6 +68,27 @@ work more freely within defined boundaries. The same documentation notes a behav
 between interactive and non-interactive use of the classifier mode: when it repeatedly blocks actions
 in a non-interactive run, the run is not stopped, and a documented fallback applies instead.
 
+### How the classifier mode works, as its makers describe it
+
+Two members of the Claude Code team gave a fuller mental model of auto mode in conversation, relayed
+in [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]. On their account
+the classifier is a Sonnet model, and what it judges is not the tool call alone but the call
+*together with* the context of the conversation — the user's own instruction included. That is what
+they present as the mode's distinctive property: permissions that depend on the request. Their
+illustration is that one would not grant a coding agent standing permission to push to a remote, but
+that saying "push this to GitHub" should permit it and saying "don't push" should cause it to be
+denied — and they report the second case arising often in practice, where the agent proposes
+something helpful and the mode surfaces it because the user had ruled it out.
+
+They also describe it as complementing rather than duplicating OS-level isolation. Sandboxing, on
+their account, has so many edge cases that following them deterministically is hard; so when
+something needs to escape the sandbox — a network request is the example given — the classifier can
+inspect that request and judge whether it makes sense before allowing it. More generally, one of
+them states that the mode interacts with any permission prompt the user would otherwise have seen.
+Two adjacent mechanisms are mentioned in the same discussion: trusted devices for users of remote
+control, and credential injection, in which a proxy inserts credentials into the agent's outbound
+requests so that they are usable by the agent without being accessible to it.
+
 ## When It Applies
 
 The concept applies to harnesses where tool permissions are evaluated outside the model, and it
@@ -81,6 +105,22 @@ tool, and the mode names above are that vendor's vocabulary rather than an indus
 The second source adds a further caveat of its own kind — which mode a session starts in there is
 tied to the user's subscription plan, so the starting posture is a commercial decision as much as a
 safety one.
+
+The strongest claims made for the classifier mode are the vendor's own, made by its team in the
+conversation cited above rather than in documentation, and the interviewer challenged one of them on
+the spot. They report almost everyone inside the company using auto mode and call it the best way to
+do long-running work in Claude Code safely; they cite thousands of evals, evals run across every
+internal user, and multiple commissioned red teams building adversarial environments with prompt
+injections and malicious inputs, stating that every issue those teams found has been mitigated. They
+decline the stronger version explicitly — it does not catch 100% of things, which they say would be
+far too strong a claim — and pitch the comparison instead as relative: for the risk categories they
+care about, notably [[DefinedTerm/prompt-injection]] and data exfiltration, they claim the risk is
+far lower than that of the average human reviewer. They said the supporting evals would be published,
+and none had been at the time that conversation was relayed, so the basis for these figures is not
+independently checkable from here. One further detail of provenance: they date internal
+use to January, well before it reached the public, and they give this mode as the foundation that makes their Slack-resident agent
+[[SoftwareApplication/claude-tag]] viable at all, since an agent reading a channel anyone can post
+into is exposed to prompt injection by construction.
 
 ## Related Terms
 
