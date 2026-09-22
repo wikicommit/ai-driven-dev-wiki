@@ -16,9 +16,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2508.00083'
     hash: sha256:fa7359ad66622d19e4c575d652a495d4060c511a03ad122023b745174eada4d4
+  - type: url
+    url: 'https://simonwillison.net/2025/Dec/18/code-proven-to-work/'
+    hash: sha256:da102830a9ee0a59c820635f7725af37d08e9758f677e5bc4d7b6c87b5280f39
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-22"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -34,6 +37,8 @@ The defining property is autonomy: the agent operates in a loop, taking actions 
 Coding agents are described as the foundation that agentic engineering is built on: without them, AI assistance is limited to autocomplete-style suggestions, whereas with them, whole tasks can be delegated and returned as working code. The quality of what an agent produces is described as depending heavily on the context it is given — clear specs, scaffolding, and guardrails — with agentic engineering named as the discipline of supplying that direction effectively.
 
 In practice, this takes several shapes: a single-task agent that implements one described feature or fix end-to-end for a human to review; multi-agent setups where several agents work on different parts of a codebase at once; and background agents that run asynchronously on tasks like PR review or dependency updates while a person works on something else.
+
+A further account adds a normative point about how the category should be used. Because a coding agent can execute the code it writes, it can be held to demonstrating that its changes work, and [[BlogPosting/your-job-is-to-deliver-code-you-have-proven-to-work]] argues that mastering these tools means getting them to do exactly that — exercising a change manually as they go, and building automated tests that will keep it working afterwards. On that account the distinction between manual and automated testing largely collapses for an agent, since both are things it performs rather than observes. The same post reports that agents need very little encouragement to write tests, will extend a suite that already exists without being told to, and reuse the patterns they find in it — from which it draws the practical recommendation to keep test code well organised and populated with the patterns you want reproduced.
 
 ## How One Is Built
 
