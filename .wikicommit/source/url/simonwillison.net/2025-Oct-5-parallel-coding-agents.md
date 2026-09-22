@@ -6,10 +6,11 @@ source:
   license:
 
 schema:
-status: pending
-last_generated_at:
+status: partial
+last_generated_at: "2026-09-22"
 extracted_tokens: 2910
-generated_pages: []
+generated_pages:
+  - .wikicommit/entity/en/BlogPosting/embracing-the-parallel-coding-agent-lifestyle.md
 failed_pages: []
 ---
 

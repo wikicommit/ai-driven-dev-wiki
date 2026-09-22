@@ -6,10 +6,11 @@ source:
   license:
 
 schema:
-status: pending
-last_generated_at:
+status: partial
+last_generated_at: "2026-09-22"
 extracted_tokens: 7464
-generated_pages: []
+generated_pages:
+  - .wikicommit/entity/en/BlogPosting/2025-output-retrospective.md
 failed_pages: []
 ---
 

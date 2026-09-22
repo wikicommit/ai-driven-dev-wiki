@@ -6,10 +6,13 @@ source:
   license:
 
 schema:
-status: pending
-last_generated_at:
+status: partial
+last_generated_at: "2026-09-22"
 extracted_tokens: 13229
-generated_pages: []
+generated_pages:
+  - .wikicommit/entity/en/BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team.md
+  - .wikicommit/entity/en/SoftwareApplication/claude-tag.md
+  - .wikicommit/entity/en/DefinedTerm/permission-modes.md
 failed_pages: []
 ---
 

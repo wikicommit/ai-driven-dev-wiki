@@ -6,10 +6,16 @@ source:
   license:
 
 schema:
-status: pending
-last_generated_at:
+status: partial
+last_generated_at: "2026-09-22"
 extracted_tokens: 3356
-generated_pages: []
+generated_pages:
+  - .wikicommit/entity/en/BlogPosting/how-strongdms-ai-team-build-serious-software-without-even-looking-at-the-code.md
+  - .wikicommit/entity/en/DefinedTerm/software-factory.md
+  - .wikicommit/entity/en/DefinedTerm/digital-twin-universe.md
+  - .wikicommit/entity/en/Organization/strongdm.md
+  - .wikicommit/entity/en/SoftwareApplication/attractor.md
+  - .wikicommit/entity/en/SoftwareApplication/cxdb.md
 failed_pages: []
 ---
 

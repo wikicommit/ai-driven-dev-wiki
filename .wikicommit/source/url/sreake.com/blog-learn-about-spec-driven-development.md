@@ -6,10 +6,12 @@ source:
   license:
 
 schema:
-status: pending
-last_generated_at:
+status: partial
+last_generated_at: "2026-09-22"
 extracted_tokens: 4007
-generated_pages: []
+generated_pages:
+  - .wikicommit/entity/en/BlogPosting/introduction-to-cc-sdd.md
+  - .wikicommit/entity/en/SoftwareApplication/cc-sdd.md
 failed_pages: []
 ---
 
