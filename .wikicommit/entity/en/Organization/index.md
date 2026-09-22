@@ -14,5 +14,6 @@ comments: false
 - [[Organization/mercari]]
 - [[Organization/neolabhq]]
 - [[Organization/nvidia]]
+- [[Organization/openai]]
 - [[Organization/qodo]]
 - [[Organization/zalando]]
