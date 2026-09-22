@@ -11,8 +11,11 @@ sources:
   - type: url
     url: 'https://help.aliyun.com/zh/lingma/user-guide/rules'
     hash: sha256:4051f161bcd8ab57343564b88d1aff932c5ef2b0c29c555e78ae09c2e0e27901
+  - type: url
+    url: 'https://techblog.zozo.com/entry/verify-ai-agent-coding-rules-with-archunit'
+    hash: sha256:24dfa5099ece90e3a7f95765c99bee45ad8dc9ddd142924e79cb91050675908c
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -117,6 +120,30 @@ abstract requirements that are hard to state precisely in a prompt, where vague-
 can trigger over-defensive model behaviour or hallucinated false positives. Its advice is to convert
 them into concrete code patterns, or to rely on static analysis instead.
 
+One team's account, in [[BlogPosting/verify-ai-agent-coding-rules-with-archunit]], carries that last
+piece of advice through. Having found that compliance rested on whoever happened to review the
+generated code — a load they argue rises with the volume an agent produces until review cannot keep
+up — they compiled the rules expressible in terms of package structure and relationships between
+classes into architecture tests that run at build time, and made the job that runs them a required
+check before a pull request can merge. Two of the things they report are about how rules are written
+rather than how they are checked. They rewrote each rule to stand alone rather than cross-reference
+the others, on the premise that the reader is the agent, which re-reads the rules on every
+implementation and review so that each reference hop is another place to misread; the duplication
+they expected from this did not, on their account, noticeably appear. And they separated background
+explanation from enforceable constraints into different directories, on the grounds that when both
+sit in one document there is no telling which statements are candidates for verification — after
+which each rule document states which of its own constraints are already machine-checked and which
+still rest on review, so the boundary of the guarantee is legible from the document alone.
+
+That account also records two costs. The rule document, the test and the code are separate files that
+drift apart, so an exception written into one has to be written into the other by hand — which they
+currently handle with a note telling whoever adds an exception to update the test, while observing
+that this is still something a person has to read and act on. And rules turned out to travel badly:
+a plan to distribute them to other repositories was abandoned when almost no team took up another's,
+which they attribute — as their own retrospective inference rather than a measurement — to fewer
+rules being genuinely portable than expected, and to the standing cost of keeping an imported rule
+consistent with its test and the local code.
+
 A third failure mode is accumulation. Because corrections arrive as additions, rule files grow long and
 can come to contain contradictions; the study recommends periodically consolidating and pruning.
 Compliance also decays: it peaks at the commit that introduces a rule and falls back toward 65% over
@@ -147,3 +174,5 @@ check, which leaves them dominated by statically verifiable categories.
 - [[DefinedTerm/agents-md]] — a comparable context-file convention, not tied to one IDE
 - [[DefinedTerm/context-engineering]] — the broader practice this mechanism is one instrument of
 - [[DefinedTerm/prompt-engineering]] — what rules amount to a persistent form of
+- [[BlogPosting/verify-ai-agent-coding-rules-with-archunit]] — one team's account of compiling the
+  enforceable part of its rules into build-time tests

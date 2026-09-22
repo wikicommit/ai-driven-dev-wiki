@@ -19,8 +19,11 @@ sources:
   - type: url
     url: 'https://baoyu.io/blog/2026-04-06/claude-code-token-optimization'
     hash: sha256:287e81a37d9c6dc213f594b3dd3f401600e6fe71f7d49622f3492c33f13b0a75
+  - type: url
+    url: 'https://www.anthropic.com/engineering/april-23-postmortem'
+    hash: sha256:269dd6e147333715b02167db5eedbc394fe254ceebed15d9cf7f2a05a25c87f5
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -173,6 +176,47 @@ since loading many skills and agents is itself a hidden drain.
 These are a practitioner's account relaying vendor statements and community reports rather than
 documentation, and the post itself notes that the consumption behaviour prompting the advice was
 still under investigation at the time of writing.
+
+### Effort defaults and their revision
+
+[[BlogPosting/update-on-recent-claude-code-quality-reports]] describes how
+[[DefinedTerm/reasoning-effort]] is set here: effort levels are calibrated per model as points
+along the test-time-compute curve, the product layer picks one of them as its default and sends it
+to the Messages API as the effort parameter, and `/effort` exposes the rest. That post is
+Anthropic's postmortem on a month of reports that Claude had got worse, which it traces to three
+unrelated changes rather than one regression, all resolved as of April 20, 2026 in version 2.1.116.
+The three are stated as having affected Claude Code, the Claude Agent SDK and Claude Cowork, with
+the API unaffected; what follows is the part of that account that bears on Claude Code.
+
+The effort default is the first of the three. It was lowered from `high` to `medium` on March 4,
+2026 to address occasional thinking times long enough to make the interface appear frozen, and
+reverted on April 7 after user feedback, with defaults thereafter stated as `xhigh` for Opus 4.7
+and `high` for every other model. Anthropic reports having first tried notices, an inline effort
+selector and the reinstatement of ultrathink, and that most users stayed on the default anyway.
+
+The second is a defect Anthropic places at the intersection of Claude Code's context management,
+the Anthropic API and extended thinking. An optimization shipped on March 26 was meant to clear old thinking once from sessions idle for more than an hour, reducing the cost
+of resuming them; the implementation instead cleared it on every turn for the rest of the session,
+so the agent continued working with progressively less memory of why it had chosen what it had.
+Anthropic reports this surfaced as forgetfulness, repetition and odd tool choices, that the
+resulting cache misses are its best explanation for separate reports of usage limits draining
+faster than expected, and that it was fixed on April 10 in version 2.1.101. Its own account of why
+it took over a week to find is worth recording alongside the architecture above: the change passed
+multiple human and automated code reviews, unit and end-to-end tests, automated verification and
+dogfooding, and two unrelated changes made the issue hard to reproduce at first — an internal-only
+server-side experiment on message queuing, and an orthogonal change in how thinking is displayed,
+which Anthropic says suppressed the bug in most CLI sessions.
+
+The third is a system prompt instruction limiting text between tool calls to 25 words and final
+responses to 100, added on April 16 to curb Opus 4.7's verbosity. It cleared weeks of internal
+testing before release; when more ablations were run during the investigation against a broader set
+of evaluations, one of those evaluations showed a 3% drop for both Opus 4.6 and 4.7, and the
+instruction was reverted on April 20. The
+process commitments Anthropic attaches — a broad per-model eval suite for every system prompt
+change, continued ablations, tooling to review and audit prompt changes, a CLAUDE.md rule gating
+model-specific changes to the model they target, and soak periods with gradual rollouts for
+anything that could trade against intelligence — are stated as applying to Claude Code's own
+development.
 
 ## Adoption & Ecosystem
 

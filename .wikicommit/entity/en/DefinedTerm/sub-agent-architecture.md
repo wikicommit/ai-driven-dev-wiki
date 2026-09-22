@@ -17,8 +17,11 @@ sources:
   - type: url
     url: 'https://developers.cyberagent.co.jp/blog/archives/62110/'
     hash: sha256:63c389aa849ff61307fb6c1aeae2debc609bb205fea277d3393d798eacf874da
+  - type: url
+    url: 'https://zenn.dev/globis/articles/d0c73d2b176ba5'
+    hash: sha256:d007e48e9860eef6953063dd12b23e8be1cf1576ddabcc4574d8a292c21d4357
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -100,6 +103,19 @@ self-contained, carrying its own schema, API spec and full Given-When-Then test 
 implementation never has to consult the design document. Its stated
 reason is that separate sessions implement these tasks in parallel, so inter-task context
 dependency must be zero — the file, rather than a conversation, is the interface between agents.
+
+A fifth account is narrower than the others and concerns how a sub-agent comes to be chosen at all.
+[[BlogPosting/growing-ai-code-review-with-single-responsibility]] describes a team defining each
+sub-agent as a Markdown file — a name, a `description` and a model setting in the front matter, the
+system prompt in the body — and reports that the orchestrating agent picks which one to run by reading
+those `description` fields. On that account trigger conditions are not configured anywhere separate
+from the description — they are written into it, as an explicit list of the file patterns that should
+select this sub-agent — so writing the description concretely *is* the dispatch mechanism, and an
+abstract description is given as the cause of both missed and spurious invocations.
+The team reports having the model write each description from the sub-agent's own system prompt, while
+treating whether it is then invoked as intended as a separate question settled empirically — by
+creating test pull requests — since a clear file-pattern trigger is easy for the orchestrator to judge
+and other cases are not.
 
 ## When It Applies
 

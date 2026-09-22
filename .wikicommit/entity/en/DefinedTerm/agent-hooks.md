@@ -16,10 +16,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/claude-code-best-practices'
     hash: sha256:9aae24f8b850a5f9c8a6f561be1fecf54f29e1ddc4658d00ecded22bccb82b82
+  - type: url
+    url: 'https://toss.tech/article/52631'
+    hash: sha256:8e01a448bd2676b5a47e3ed4d8360ee248c40091ecec973ede57f55edea8cba1
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "A mechanism that lets a developer run custom logic — an external script, an HTTP callback, or an in-process framework callback — immediately before or after an AI agent executes a tool call, so the call can be approved, blocked, or followed up on."
@@ -42,11 +45,31 @@ Claude Code's two decision mechanisms are documented in that post as alternative
 Anthropic's own Claude Code documentation states the same enforcement argument in one line —
 CLAUDE.md instructions are advisory, hooks are deterministic and guarantee the action happens — and
 adds a use the accounts above do not cover: gating when a turn is allowed to *end*. A `Stop` hook
-runs a check as a script and blocks the turn from finishing until it passes, which turns a test suite
-or build into a condition the agent cannot declare itself done without satisfying. The documentation
-records the ceiling on that as well: Claude Code overrides the hook and ends the turn after eight
-consecutive blocks, so the mechanism bounds an agent rather than trapping it in a loop. The same
+runs a check as a script and, in that documentation's words, blocks the turn from ending until it
+passes — putting a test suite or build between the agent and declaring itself done. How firm that
+is depends on which of this page's sources is asked:
+[[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]] cautions that a blocked `Stop`
+feeds the reason back to the model and asks it to continue, and calls it a strong nudge rather than
+an absolute guarantee. The documentation also records a ceiling: Claude Code overrides the hook and
+ends the turn after eight consecutive blocks. The same
 documentation notes that hooks can be written by the agent itself on request.
+
+A use that neither decides nor blocks anything is described in
+[[BlogPosting/making-ai-follow-team-rules]], where hooks carry team coding conventions into the
+agent rather than policing its tool calls. The plugin that post describes,
+[[SoftwareApplication/pfmls-stylepack]], hooks two moments inside the agent loop: immediately after
+the agent writes a file, where it reads that file's body and injects at most two matching
+convention rules as text, and again as the agent tries to finish, where it reads the whole change
+as a `git diff` and injects at most four. It hooks session start as well, though for a different
+job — injecting team-wide context chosen by the repository's language environment, and pulling the
+current rules from a central repository in the background. The text injected at the second point says of itself that it is a reminder to review
+rather than a hard failure, and the agent decides what to do with it. That post's argument for the
+placement is positional rather than about enforcement: rules supplied once at the start of a
+session stop being applied as the session lengthens, which it attributes to
+[[DefinedTerm/lost-in-the-middle]], so the rule is re-supplied next to the code it applies to. It
+also reports a constraint that follows from hooking every file write — the hook has to return
+immediately, so rule selection is done with filename patterns and regular expressions, an earlier
+model-based relevance check having cost about ten seconds per request.
 
 ## When It Applies
 
@@ -58,4 +81,4 @@ The post also argues against over-use on cost grounds — hooks run inside the a
 
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]]
