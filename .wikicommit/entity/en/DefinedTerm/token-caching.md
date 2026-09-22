@@ -10,8 +10,11 @@ sources:
   - type: url
     url: 'https://baoyu.io/blog/2026-04-06/claude-code-token-optimization'
     hash: sha256:287e81a37d9c6dc213f594b3dd3f401600e6fe71f7d49622f3492c33f13b0a75
+  - type: url
+    url: 'https://www.anthropic.com/engineering/april-23-postmortem'
+    hash: sha256:269dd6e147333715b02167db5eedbc394fe254ceebed15d9cf7f2a05a25c87f5
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -67,6 +70,23 @@ tenfold ratio, the one-hour and five-minute windows, the 50,000-token floor — 
 practitioner post relaying vendor statements and community reports rather than from a measurement it
 performed, and the post itself notes the vendor was still investigating the consumption behaviour
 users were reporting.
+
+A third source shows the same mechanism failing from the other direction, where the cache misses
+are a symptom rather than a cost decision.
+[[BlogPosting/update-on-recent-claude-code-quality-reports]] describes an optimization in
+[[SoftwareApplication/claude-code]] that was meant to exploit an eviction that had already
+happened: a session idle for more than an hour would be a cache miss anyway, so clearing old
+thinking from it once would cut the uncached tokens sent on resume. A bug made it clear that
+history on every turn for the rest of the session instead, and because each request then dropped
+thinking blocks that the previous one had contained, the prefix kept changing and the requests kept
+missing. Anthropic gives that as its best explanation for separate user reports that usage limits
+were draining faster than expected.
+
+What this adds to the picture above is that prefix stability is not only a billing optimization a
+harness chooses to pursue — it is a property that other changes can silently break. The prefix-only
+exact matching described above is what turns a per-turn modification of earlier content into a
+per-turn full-price rebuild, and the cost is invisible in the way a latency regression is not: the
+agent kept working, and what users noticed first was consumption.
 
 ## Related Terms
 

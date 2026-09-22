@@ -8,10 +8,13 @@ sources:
     url: https://arxiv.org/pdf/2604.03196
     hash: sha256:d341905668ac335fd8b65234aab88d9e6141be72f0b9ffda8fc58381845ae5e6
     license: CC-BY-4.0
+  - type: url
+    url: 'https://zenn.dev/globis/articles/d0c73d2b176ba5'
+    hash: sha256:d007e48e9860eef6953063dd12b23e8be1cf1576ddabcc4574d8a292c21d4357
 review_status: pending
-generated_at: "2026-09-15"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "An automated bot that posts review feedback on pull requests, as distinct from a bot performing CI/CD or workflow automation. Abbreviated CRA."
@@ -56,6 +59,24 @@ Individual CRAs vary widely in the quality of what they produce. That study iden
 distinct CRAs across the abandoned pull requests it examined, and reported that 12 of them
 averaged below 60% signal. It notes that the number of pull requests an agent reviews is no guide
 to how useful its comments are.
+
+A practitioner account arrives at the same narrowing independently, and reports what it was for. It
+was published before that study and does not cite it, so what the two share is a conclusion rather
+than a lineage. [[BlogPosting/growing-ai-code-review-with-single-responsibility]] records a team whose
+general-purpose reviewer produced enough off-target comments that colleagues began ignoring its
+output, and whose response was to split the one reviewer into many — one per review concern, each
+carrying only the context that concern needs, which the post frames as the single responsibility
+principle applied to the reviewer. Its examples are narrow in the way that study recommends: one agent
+looks for test patterns that make a suite flaky, another for pagination queries whose ordering is not
+unique.
+
+Two details of that account bear on the category rather than on the team. The first is the failure
+mode it names: low-signal output does not merely waste a reader's time, it costs the reviewer its
+audience, which is a different kind of loss from the merge-rate gap measured above. The second is
+where the narrowness came from — the team reports feeding its own past failures back in as detection
+patterns, so that fixing a defect and extending the reviewer became one act, and reports reaching for
+an LLM reviewer specifically on a class of defect a static-analysis rule had proved too awkward to
+express.
 
 ## Related Terms
 

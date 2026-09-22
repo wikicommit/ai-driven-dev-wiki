@@ -33,8 +33,11 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
     hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
+  - type: url
+    url: 'https://zenn.dev/genda_jp/articles/f71d3ed7d4d7e8'
+    hash: sha256:3b930434d815794b112529193eb4b0eb5224288334a07ea828aa21c4e620cc28
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -46,14 +49,15 @@ Spec-driven development is the practice of putting a written specification betwe
 prompt and an agent's implementation, so that what the agent builds from is a reviewed artefact
 rather than the original request. The prompt is first turned into a specification; that
 specification is analysed and refined, and can be corrected by a human before anything is built;
-implementation then proceeds from the specification and is verified against it. Eight separate
+implementation then proceeds from the specification and is verified against it. Nine separate
 accounts of the practice are described here — a plugin implementation, a third-party account of a
 tool vendor's workflow, a practitioner's cross-tool survey, an academic comparison of the frameworks that
 implement it, one developer's firsthand account of taking the practice to its limit, a report on
 teaching it to undergraduates, an industrial-research case study that pushes the specification
-toward formal notation, and a Chinese-language handbook chapter that treats the practice as a
-question of system determinism — and they agree on this much while differing in the concrete mechanics
-below, including how many levels of rigor the practice is understood to have.
+toward formal notation, a Chinese-language handbook chapter that treats the practice as a
+question of system determinism, and a post that sets the practice against the standing instruction
+files an agent reads every session — and they agree on this much while differing in the concrete
+mechanics below.
 
 ## Usage
 
@@ -211,6 +215,26 @@ sequencing rule rather than with gates or artefact rigor.
 This chapter is a section of an online handbook rather than a study, and states no evaluation of its
 own; its accuracy targets and its adoption principle are given as positions rather
 than as measured findings.
+
+A further account approaches the practice from outside it, asking how a feature specification relates
+to the standing instruction files an agent reads at the start of every session.
+[[BlogPosting/division-of-labor-in-ai-instruction-files]] sets the two side by side and finds the same
+commitments underneath — write before implementing, hold machine-readable and human-readable content
+together, give the agent persistent context to consult, constrain syntax to reduce ambiguity, and fix
+decisions in a known place — while separating them by time axis. On that post's reading a
+specification scoped to a single feature is created for it, consumed by it, and archived once the
+feature is done, whereas files such as [[DefinedTerm/agents-md]] and [[DefinedTerm/design-md]]
+describe standing norms that are maintained and grow. That is a characterisation of the
+feature-scoped spec's lifecycle in the tools it names, and sits alongside rather than displaces the
+accounts above in which an approved specification is kept as a versioned artefact and fed back into
+later sessions.
+
+Its example of syntax constraining ambiguity is Kiro's use of EARS notation — Easy Approach to
+Requirements Syntax — which it describes as a writing convention that shapes a requirement into one
+of five fixed templates. The connection it proposes between the two kinds of file
+is that a feature spec could reference a design token defined in a standing `DESIGN.md` instead of
+restating it, which it offers as a way to avoid maintaining the same norm in two places. It states that this is not yet a
+widely established practice.
 
 ## When It Applies
 

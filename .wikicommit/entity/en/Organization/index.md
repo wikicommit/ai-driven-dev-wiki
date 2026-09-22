@@ -18,3 +18,4 @@ comments: false
 - [[Organization/qodo]]
 - [[Organization/strongdm]]
 - [[Organization/zalando]]
+- [[Organization/zozo]]

@@ -37,8 +37,11 @@ sources:
   - type: url
     url: 'https://engineering.mercari.com/en/blog/entry/20251030-taming-agents-in-the-mercari-web-monorepo/'
     hash: sha256:2be25eae3259d1a99d5bcb659f731c2564ffe64e94c6bf0ad803148e7fb2a464
+  - type: url
+    url: 'https://zenn.dev/genda_jp/articles/f71d3ed7d4d7e8'
+    hash: sha256:3b930434d815794b112529193eb4b0eb5224288334a07ea828aa21c4e620cc28
 review_status: pending
-generated_at: "2026-09-21"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
@@ -63,6 +66,17 @@ run before committing) rather than prose about the codebase.
 One adopter's account fills in how the file came to carry the name it has. [[BlogPosting/taming-agents-in-the-mercari-web-monorepo]] records a team finding the standard at a point when it was `AGENT.md`, singular — described there as an RFC proposed by Sourcegraph through its AmpCode project — and consolidating its existing Cursor and Claude rules into one such file, while the rest of the team wondered about that RFC's longevity. The post then reports that OpenAI secured the agents.md domain, which it describes as the only thing that had been holding the standard back from the plural wording, and which was also the filename OpenAI's own Codex had already been using. It credits OpenAI's backing with the standard gaining much more traction among the tools that team used, and the team adopted the pluralized form as its single source of truth. This is one team's account of what it observed as an adopter, not a participant's account of how the standard was designed, and the announcements it refers to are not themselves among this wiki's sources.
 
 That post also describes a practical consequence of adopting it in a codebase that already had per-tool rule files: `CLAUDE.md` and many other rule files simply became symlinks to the main one, so the pre-existing formats kept working without the content being maintained twice.
+
+A later account adds where the standard ended up.
+[[BlogPosting/division-of-labor-in-ai-instruction-files]] names Sourcegraph's Amp team as its starting
+point — agreeing with the adopter account above on where it began — and describes it as since being
+promoted jointly by OpenAI, Google, Cursor, Factory and others, before being donated to the Linux
+Foundation in December 2025. So the question that adopter account leaves open, whether one vendor's
+RFC would last, was answered by moving the standard out of any single vendor's hands. That
+post also gives the symlink arrangement as the format project's own recommended pattern rather than
+one team's expedient: because Claude Code reads `CLAUDE.md` and not `AGENTS.md`, the recommendation is
+to make `AGENTS.md` the real file and `CLAUDE.md` a symlink to it. It characterises `CLAUDE.md` as
+simply the Claude-specific `AGENTS.md`.
 
 ## Usage
 

@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.14228'
     hash: sha256:c6ebed0a2e24b61491efe18f003cf6d6c018a671a732b3d6e331a5fe195a0e9d
+  - type: url
+    url: 'https://zenn.dev/team_zenn/articles/ai-agent-security'
+    hash: sha256:2be721cd73612dfe7c91c26ac50fcee96d54da09dcbaa9bd625325d049417502
 review_status: pending
-generated_at: "2026-09-18"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "The pattern in which users habitually approve an agent's permission prompts without careful review, making interactive confirmation behaviorally unreliable as a sole safety mechanism."
@@ -23,6 +26,16 @@ Approval fatigue is the pattern in which the people supervising an AI agent come
 The term is used to argue for a particular architectural conclusion: that a system must maintain safety independently of human vigilance, because users approve without careful review. In the analysis of Claude Code it is given as the motivation for deny-first evaluation, blanket-deny pre-filtering and [[DefinedTerm/sandboxing]] as layers that operate regardless of user attentiveness, and for the choice to restructure the problem rather than add more warnings — defining boundaries within which the agent can work freely instead of asking for per-action approvals that users stop reviewing once habituated.
 
 The same source relays two further measurements from other publications it cites. Longitudinal usage data shows auto-approve rates rising from roughly 20% at fewer than 50 sessions to over 40% by 750 sessions, alongside substantial increases in session duration; the paper quotes that study's description of the result as autonomy that is “co-constructed by the model, the user, and the product”, and adds its own reading that the gradient is navigated not by deliberate mode selection but by gradual habituation. Separately it reports that sandboxing reduced the frequency of permission prompts by an estimated 84%, which it characterizes as reframing the problem as a human-factors concern: the architectural response to unreliable human approval is to reduce the number of decisions humans must make.
+
+[[BlogPosting/ai-coding-agent-speed-and-safety-2026]] states the same mechanism from practice rather
+than from measurement, and turns it into a configuration rule. Its formulation is that once the number
+of approvals gets too high, people start approving without looking at what they are approving, so
+security falls rather than rises. What it takes from that is a configuration recommendation that runs
+the opposite way to the obvious one: curate both the allow and the deny list first, then work in the
+mode that auto-approves edits, adding unobjectionable operations to the auto-approval list
+deliberately so that the prompts which remain are ones worth reading — rather than prompting more. It pairs the same reasoning with [[DefinedTerm/sandboxing]], recommending the setting that
+auto-allows shell commands on the grounds that they are sandboxed, and relays from the vendor's own
+engineering write-up that sandboxing cut the number of permission prompts substantially.
 
 ## Related Terms
 

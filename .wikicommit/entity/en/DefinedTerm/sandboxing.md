@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2025/Sep/30/designing-agentic-loops/'
     hash: sha256:616bc39546fd4aab969e3a8ec0a6fa01330405714c063a028ab4419f84132964
+  - type: url
+    url: 'https://zenn.dev/team_zenn/articles/ai-agent-security'
+    hash: sha256:2be721cd73612dfe7c91c26ac50fcee96d54da09dcbaa9bd625325d049417502
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "The practice of running an AI coding agent in an isolated environment — a container, VM, separate branch, or disposable workspace — so its actions can't affect production systems or the real codebase."
@@ -36,6 +39,33 @@ environment being exfiltrated or bad code being pushed to the attached repositor
 being burned belonging to someone else. It reports hosted code-interpreter modes as able to go a
 surprisingly long way in the same role, and reports the author having had a lot of success using
 OpenAI's Codex Cloud that way.
+
+[[BlogPosting/ai-coding-agent-speed-and-safety-2026]] compares three of these forms against each
+other on four axes — the effort to set up, how stable it is, whether the developer keeps their choice
+of editor, and how easily outside tooling integrates. Development containers come out well on
+stability and editor choice at moderate effort: that post notes that the agent vendor's own
+repository ships a sample container configuration carrying iptables-based network restriction, and
+that container development is not tied to one editor, since a separate CLI and a third-party tool
+both drive the same configuration from elsewhere. What it costs is the conveniences of working on the
+host — retrieving secrets from a password manager, hook-driven notifications, and sharing a
+user-level agent configuration all become harder.
+
+An agent's own built-in sandbox needs the least setup of the three, tied with a cloud IDE and below a
+container: it is turned on from the agent's settings file rather than by writing a container
+definition. It is implemented with
+bubblewrap on Linux and Seatbelt on macOS. That post reports it as the least mature of the three and
+correspondingly hard to diagnose when something inside it fails; it recommends turning off the
+setting that still permits unsandboxed commands, while acknowledging that doing so leaves less room
+to work around an error the sandbox itself causes. A cloud IDE is the third option: low effort and
+isolated, but it settles which editor is used.
+
+The same post supplies an argument for pairing a sandbox with a *more* permissive approval setting
+rather than treating the two as alternatives. It recommends the setting that auto-allows shell
+commands *because* they are sandboxed, on the grounds that this improves the experience while keeping
+the safety property, and relays a substantial reduction in permission prompts from the vendor's own
+engineering write-up rather than measuring it. That fewer prompts is itself a safety property, and
+not merely a convenience, is argued in a different section of that post — the one on permission
+settings — and is set out here under [[DefinedTerm/approval-fatigue]].
 
 ## When It Applies
 

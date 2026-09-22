@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2026/Jul/21/cat-and-thariq/'
     hash: sha256:a27deba3b2ae555c7354fa9733173cb7efc80237fc406cc7f265170dc8a99b5b
+  - type: url
+    url: 'https://zenn.dev/team_zenn/articles/ai-agent-security'
+    hash: sha256:2be721cd73612dfe7c91c26ac50fcee96d54da09dcbaa9bd625325d049417502
 review_status: pending
 generated_at: "2026-09-22"
-generated_by: "claude-opus-5"
+generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -99,6 +102,19 @@ allow list with `dontAsk`, so that listed tools run and every other prompting ca
 Its documented misuse is treating a mode as a constraint rather than a default: an allow list does
 not narrow `bypassPermissions`, because unlisted tools match no allow rule and are approved by the
 mode itself. To put a tool out of reach the documentation directs the reader to a deny rule instead.
+
+A practitioner account adds a second misuse, on the other side of the same trade-off.
+[[BlogPosting/ai-coding-agent-speed-and-safety-2026]] recommends curating the allow and deny lists
+first and then working in the mode that auto-approves edits, and is specific about which way to err
+while doing so: operations that are unobjectionable should be put on the allow list actively rather
+than left to prompt. Its reason is that a configuration which prompts too often defeats itself —
+people begin approving without reading what they are approving, so the posture that looks most
+cautious lowers security in practice (see [[DefinedTerm/approval-fatigue]]). The same post treats
+running with human approval switched off entirely as unsuitable for commercial development, and
+reports its author using it only for open-source work inside an isolated container. Where an agent
+runs under [[DefinedTerm/sandboxing]] it points instead at the setting that auto-allows shell
+commands *because* they are sandboxed, as the way to cut the prompt count without removing the
+check.
 
 How well-established it is: this is one vendor's documented design for its own SDK and its own coding
 tool, and the mode names above are that vendor's vocabulary rather than an industry-wide standard.

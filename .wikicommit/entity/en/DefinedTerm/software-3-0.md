@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://karpathy.bearblog.dev/sequoia-ascent-2026/'
     hash: sha256:5f0fc28c7d2ce3663820af50aba485b5ec93384a47528a92d2935967dd678dc4
+  - type: url
+    url: 'https://toss.tech/article/harness-for-team-productivity'
+    hash: sha256:c578d09dce25f7293277154d1741cd800ad5d6afd7700ee897468e966f53f939
 review_status: pending
-generated_at: "2026-09-19"
+generated_at: "2026-09-22"
 generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_with: "0.7.0"
 
 properties:
   description: "Andrej Karpathy's name for programming a large language model through prompts, context, tools, examples, memory and instructions, as the third step after hand-written code and learned weights — with the context window as the lever and the model as the interpreter that computes over it."
@@ -52,6 +55,20 @@ persistent Markdown knowledge base of summaries, entity pages, concept pages, co
 cross-links. His recommended question is therefore not only which existing workflow AI can speed
 up, but which information transformation was impossible before and is now natural.
 
+The framing is also used by others as a period label rather than as Karpathy's specific
+programming argument. [[BlogPosting/raising-productivity-floor-with-harness]] takes "the Software
+3.0 era" as its setting and asks an organizational question inside it: if the program is now
+prompts, context and instructions, then those artifacts are what a team should be distributing to
+each other the way it once distributed shared libraries. That post's proposal — team knowledge
+held as agent plugins, which it says have the potential to become an
+[[DefinedTerm/executable-ssot]], and published through a marketplace — treats the module's contents
+as having changed from code to prompts and agent logic while the engineering practice around it
+carries over: it maps shared modules onto workflow plugins
+and library publication onto marketplace upload, and argues that the code review and quality
+management applied to a shared module should apply to an AI workflow too. That post's author
+presents all of it as direction and hypothesis rather than as a result. Read that way the term names the material an organization
+works in rather than only the act of programming a model.
+
 ## When It Applies
 
 The paradigm's trade is stated plainly by its author: it buys adaptiveness at the cost of
@@ -62,4 +79,4 @@ whose prose was produced by a model from the event transcript and then checked b
 
 ## Related Terms
 
-[[DefinedTerm/context-engineering]], [[DefinedTerm/jagged-intelligence]], [[DefinedTerm/prompt-engineering]], [[DefinedTerm/agentic-engineering]]
+[[DefinedTerm/context-engineering]], [[DefinedTerm/jagged-intelligence]], [[DefinedTerm/prompt-engineering]], [[DefinedTerm/agentic-engineering]], [[DefinedTerm/executable-ssot]], [[DefinedTerm/raising-the-floor]]
