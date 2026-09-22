@@ -6,6 +6,8 @@ review_status: reviewed
 comments: false
 ---
 
+- [[BlogPosting/2025-output-retrospective]]
+- [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]
 - [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
 - [[BlogPosting/agent-as-a-judge-in-the-feedback-loop]]
 - [[BlogPosting/agent-definition-useful-jargon]]
@@ -45,6 +47,7 @@ comments: false
 - [[BlogPosting/do-you-really-need-a-human-in-every-loop]]
 - [[BlogPosting/effective-context-engineering-for-ai-agents]]
 - [[BlogPosting/effective-harnesses-for-long-running-agents]]
+- [[BlogPosting/embracing-the-parallel-coding-agent-lifestyle]]
 - [[BlogPosting/enabling-ai-usage-at-mercari-with-secure-devin-management]]
 - [[BlogPosting/equipping-agents-for-the-real-world-with-agent-skills]]
 - [[BlogPosting/exercise-caution-when-building-off-llms]]
@@ -54,6 +57,7 @@ comments: false
 - [[BlogPosting/githubs-agentic-security-principles]]
 - [[BlogPosting/good-spec]]
 - [[BlogPosting/harness-design-for-long-running-application-development]]
+- [[BlogPosting/how-strongdms-ai-team-build-serious-software-without-even-looking-at-the-code]]
 - [[BlogPosting/how-to-build-reliable-ai-workflows-with-agentic-primitives-and-context-engineering]]
 - [[BlogPosting/how-we-built-our-multi-agent-research-system]]
 - [[BlogPosting/human-intent-ai-implementation-codex-workflow]]
@@ -62,6 +66,7 @@ comments: false
 - [[BlogPosting/introducing-agent-skills]]
 - [[BlogPosting/introducing-codex]]
 - [[BlogPosting/introducing-devstral-2-and-mistral-vibe-cli]]
+- [[BlogPosting/introduction-to-cc-sdd]]
 - [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]]
 - [[BlogPosting/long-running-agents]]
 - [[BlogPosting/loop-engineering]]
