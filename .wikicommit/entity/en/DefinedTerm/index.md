@@ -132,6 +132,7 @@ comments: false
 - [[DefinedTerm/harness-as-a-service]]
 - [[DefinedTerm/harness-engineering]]
 - [[DefinedTerm/human-in-the-loop]]
+- [[DefinedTerm/implicit-tool-poisoning]]
 - [[DefinedTerm/in-ide-hax]]
 - [[DefinedTerm/indirect-agents-md-injection]]
 - [[DefinedTerm/indirect-prompt-injection]]
