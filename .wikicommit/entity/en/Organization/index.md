@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[Organization/ai-agent-user-group]]
 - [[Organization/anthropic]]
 - [[Organization/cyberagent]]
 - [[Organization/dmm]]
