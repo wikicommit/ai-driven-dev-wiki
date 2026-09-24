@@ -74,6 +74,7 @@ comments: false
 - [[BlogPosting/introducing-agent-skills]]
 - [[BlogPosting/introducing-codex]]
 - [[BlogPosting/introducing-devstral-2-and-mistral-vibe-cli]]
+- [[BlogPosting/introducing-google-antigravity]]
 - [[BlogPosting/introduction-to-cc-sdd]]
 - [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]]
 - [[BlogPosting/long-running-agents]]
