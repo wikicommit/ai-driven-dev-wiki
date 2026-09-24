@@ -61,6 +61,7 @@ comments: false
 - [[ScholarlyArticle/indirect-prompt-injection-in-the-wild]]
 - [[ScholarlyArticle/inside-the-scaffold]]
 - [[ScholarlyArticle/landscape-of-prompt-injection-threats-in-llm-agents]]
+- [[ScholarlyArticle/llm-agents-making-agent-tools]]
 - [[ScholarlyArticle/llm-based-multi-agent-systems-for-code-generation]]
 - [[ScholarlyArticle/llm-based-multi-agent-systems-for-software-engineering]]
 - [[ScholarlyArticle/magentic-ui]]
