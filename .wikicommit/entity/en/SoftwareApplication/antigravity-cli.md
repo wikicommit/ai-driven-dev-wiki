@@ -9,6 +9,9 @@ sources:
   - type: url
     url: 'https://antigravity.google/docs/subagents/'
     hash: sha256:5be9ef15339e691ef64f32feff17f95fe5b9fb784ff700b261fe1757ec8ce1a7
+  - type: url
+    url: 'https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/'
+    hash: sha256:74ccc5f44492281655fe5a0f8252a401ded3c57354ca7f1efbbcc7b28d3120f6
 review_status: pending
 generated_at: "2026-09-24"
 generated_by: "claude-opus-5-5"
@@ -29,6 +32,19 @@ product family, alongside the Antigravity 2.0 desktop app, the Antigravity IDE a
 interface and is invoked as `agy`. The product changelog lists its initial public release
 as version 1.0.0; it dates 1.0.0 through 1.0.3 January 1, 2026, and the entries then run
 from 1.0.4 (June 1, 2026) to 1.2.9 (September 23, 2026).
+
+Google made the CLI available to everyone on May 19, 2026, in an announcement
+([[BlogPosting/transitioning-gemini-cli-to-antigravity-cli]]) that also made it the successor
+to [[SoftwareApplication/gemini-cli]] for consumer users. Google's stated reason was that
+developers now want several agents communicating to split up complex work, which needs a
+terminal tool sharing one backend with the rest of the workflow. The announcement describes
+the CLI as built in Go for faster execution, as orchestrating multiple agents in the
+background so that large refactors or research tasks do not lock up the terminal session,
+and as sharing the same agent harness as the Antigravity 2.0 desktop application, so that
+improvements to the core agents apply wherever they are used. It carries over what Google
+called Gemini CLI's most critical features — Agent Skills, hooks, subagents, and extensions,
+which become Antigravity plugins — while stating that feature parity would not be one-to-one
+at first.
 
 The CLI shares its configuration with the rest of the family: from 1.0.5 its permissions
 merge project-level rules, user settings shared with Antigravity, and the CLI's own
