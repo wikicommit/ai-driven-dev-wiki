@@ -1,0 +1,15 @@
+---
+source:
+  type: url
+  url: 'https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/'
+  hash: ""
+  license:
+
+schema:
+status: pending
+last_generated_at:
+extracted_tokens:
+generated_pages: []
+failed_pages: []
+---
+
