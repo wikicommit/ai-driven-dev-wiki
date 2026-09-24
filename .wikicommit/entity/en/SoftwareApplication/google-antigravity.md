@@ -21,11 +21,14 @@ sources:
   - type: url
     url: 'https://antigravity.google/docs/subagents/'
     hash: sha256:5be9ef15339e691ef64f32feff17f95fe5b9fb784ff700b261fe1757ec8ce1a7
+  - type: url
+    url: 'https://codelabs.developers.google.com/getting-started-google-antigravity'
+    hash: sha256:8bece7706f3b7757018ef86b798516d0b8cfed77ce82354bf16839890a6ef3c4
 review_status: pending
 generated_at: "2026-09-24"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
-tags: [agents, coding-tools, agent-architecture, human-oversight]
+tags: [agents, coding-tools, agent-architecture, human-oversight, agent-skills]
 
 properties:
   description: "Google's agentic development platform, combining an AI-powered editor with an agent-first Manager surface; its agents plan, execute and verify tasks across the editor, terminal and browser."
@@ -134,6 +137,34 @@ agent's execution cycle, a reworked browser subagent invoked with `/browser` tha
 integrates with Chrome DevTools MCP, Remote Control of desktop agent sessions from any web
 browser, an integrated terminal, and a Git-native version-control panel for reviewing
 uncommitted, branch and agent-made diffs.
+
+Google's "Getting Started with Google Antigravity" codelab describes the same generation as a
+family of products for what it calls the agent-first era rather than an Agent Manager attached to
+an IDE. At its centre is Antigravity itself, a standalone application for macOS, Linux and Windows
+that the codelab calls a command center for managing multiple local agents in parallel and running
+scheduled tasks, and which, unlike its predecessor the Agent Manager, works independently of an
+IDE. Around it sit the Antigravity IDE — the original agentic IDE, which the codelab says remains
+available and recommended for developers — the [[SoftwareApplication/antigravity-cli]], the
+[[SoftwareApplication/antigravity-sdk]], and Antigravity for IDEs, extensions for editors such as
+Visual Studio Code, JetBrains IDEs and Zed.
+
+The codelab explains projects as a combination of folders that defines both the environment and the
+scope of an agent. Each project inherits its permissions — artifact review, allowed tools, MCP server
+configuration — from a global configuration, and can override them individually: a security preset
+deciding whether terminal commands and file accesses are reviewed first, whether an implementation
+plan must be approved before the agent executes it, allowed file paths and allowed or blocked URLs,
+and which MCP tools the project may use. MCP servers, local or remote, are configured in
+`$HOME/.gemini/config/mcp_config.json`, and the codelab describes pre-packaged configurations for
+Google Cloud services that install with one click, with individual tools switchable on and off.
+
+It presents Artifacts as Antigravity's answer to a trust gap — where a developer previously had to
+read code to check an agent's claim to have fixed a bug, the agent now produces an artifact to show
+it — and lists the main ones as task lists, implementation plans, walkthroughs and screenshots, with
+code diffs reviewable and commentable alongside them though technically not artifacts. Skills are
+described as loading through [[DefinedTerm/progressive-disclosure]]: only a skill's metadata is read
+up front, and its full instructions are loaded when a request matches its description. Global skills
+live in `~/.gemini/config/skills/` and are available across Antigravity, the Antigravity IDE and the
+Antigravity CLI; project skills live in `<project-root>/.agents/skills/`.
 
 ### Subagents
 
