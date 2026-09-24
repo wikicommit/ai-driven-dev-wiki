@@ -18,6 +18,8 @@ comments: false
 - [[SoftwareApplication/aishelljack]]
 - [[SoftwareApplication/amazon-bedrock-agentcore]]
 - [[SoftwareApplication/amazon-q-developer]]
+- [[SoftwareApplication/antigravity-cli]]
+- [[SoftwareApplication/antigravity-sdk]]
 - [[SoftwareApplication/apm-agent-package-manager]]
 - [[SoftwareApplication/ast-grep]]
 - [[SoftwareApplication/asyncreview]]
