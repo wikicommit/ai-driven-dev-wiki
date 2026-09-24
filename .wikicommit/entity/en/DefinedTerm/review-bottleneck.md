@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://developers.cyberagent.co.jp/blog/archives/60882/'
     hash: sha256:7997cccac08ed6a2731d85a3012e81cea6de4b141192497c171f97de0740feb1
+  - type: url
+    url: 'https://blog.douglasmedeiros.dev/artigos/ia/boas-praticas-de-vibe-coding'
+    hash: sha256:1879a34aa5b34154a6c6d052e67a713a2bef8fbccecbbeb327adbd2959666f34
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -50,6 +53,18 @@ skills. It reports its backend team's test-to-code line ratio rising from 78.6% 
 That is one team's experience rather than a measured comparison, and it should be read as such
 next to the study above; it is notable here mainly because it converges on the same diagnosis
 from inside one organization rather than across many.
+
+A third account, from an individual practitioner writing about vibe coding,
+[[BlogPosting/vibe-coding-best-practices-what-not-to-let-slide]], frames the same shift as the
+bottleneck changing address: implementation used to be the slow step, and once an agent can produce it in
+minutes the constraint becomes validating what came out, at a volume no reviewer can read line by line.
+Its response is to push the quality barrier into automation — high test coverage checked by mutation
+testing, stricter static-analysis limits, regression and end-to-end tests for critical flows — and to
+change what human review covers rather than drop it: reviewing by decision instead of by line, with
+attention concentrated on boundaries, contracts, authentication, persistence, external calls and changes
+the agent made without being asked. The author presents this as their own practice rather than a measured
+result, and notes that some defects, such as performance problems, still got past automated checks in
+their experience and needed a senior engineer's reading.
 
 ## Related Terms
 

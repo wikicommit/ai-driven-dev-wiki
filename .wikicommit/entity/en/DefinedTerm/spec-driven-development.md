@@ -36,9 +36,12 @@ sources:
   - type: url
     url: 'https://zenn.dev/genda_jp/articles/f71d3ed7d4d7e8'
     hash: sha256:3b930434d815794b112529193eb4b0eb5224288334a07ea828aa21c4e620cc28
+  - type: url
+    url: 'https://arxiv.org/pdf/2609.00252'
+    hash: sha256:5331d1eb219124b67deabb6640416e4b3ac07d3f4ede62ff19407f403d7d576d
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -236,6 +239,30 @@ is that a feature spec could reference a design token defined in a standing `DES
 restating it, which it offers as a way to avoid maintaining the same norm in two places. It states that this is not yet a
 widely established practice.
 
+**A further account treats the practice as a team-level discipline** rather than as a workflow for
+one developer and one agent. [[ScholarlyArticle/spec-driven-development-for-agentic-software-engineering]]
+defines it through four commitments a team makes: every non-trivial planned change originates from a
+written specification treated as the contract for that change; the specification is version-controlled
+alongside the code under the same review, audit and rollback discipline; code, tests, documentation and
+infrastructure are derived from it, by humans, agents or both, with explicit provenance back to it; and
+when specification and artifact disagree, the specification is the source of truth, the disagreement
+being resolved by re-deriving the artifact or amending the specification, never by silent edits. It
+separates two levels of specification — system specifications, which describe the durable architecture,
+conventions and normative rules and are materialized in the rule files an agent loads every session, and
+feature specifications, which describe one change and are archived once it is delivered — and warns
+that loading only the feature level yields functionally correct but architecturally inconsistent code,
+while loading only the system level leaves the agent unable to ground the task. It further distinguishes
+both from skills, which are procedural and loaded on demand rather than normative and always active.
+
+That account rejects two readings of the practice: that it means more documentation (specifying before
+implementation is presented as an act of design, whereas documenting existing code lags behind it) and
+that it implies a waterfall process (iteration is kept, but happens over specifications first and code
+second, as in a proposal–apply–archive cycle). It pairs the practice with a
+[[DefinedTerm/methodological-harness]] of team-owned mechanisms built around the specification, and it
+presents the whole as a conceptual framework drawn largely from gray literature, whose predicted
+benefits are hypotheses rather than findings. It also limits its own scope: for exploratory work whose
+requirements are genuinely unknown, it suggests a lighter discipline may be more appropriate.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -350,3 +377,7 @@ timing comparison drawn from the authors' own two attempts rather than from a co
   mathematical notation and reviewed by the model before any code is generated
 - [[SoftwareApplication/agentscript]] — one of the implementations the eighth account lists, in
   which the agent's own plan is emitted as code rather than as prose
+- [[ScholarlyArticle/spec-driven-development-for-agentic-software-engineering]] — source of the
+  team-level account above, with its four commitments and its two levels of specification
+- [[DefinedTerm/methodological-harness]] — the set of team-owned mechanisms that account builds around
+  the specification
