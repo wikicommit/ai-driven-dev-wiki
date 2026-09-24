@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-teams.md"
-source_commit: "0426e7f2036ea739db9b2cbdbaaed396066f6d6c"
+source_commit: "c6bf44a9d0262400c75a0abf7dee6a8fbb53ff80"
 translated_at: "2026-09-24"
 translated_by: "claude-opus-5-5"
 translated_with: "0.7.0"
@@ -14,7 +14,7 @@ properties:
   description: "真に並列なマルチエージェント実行のための Claude Code の実験的機能。依存関係の追跡とファイルロックを備えた共有タスクリストと、チームメイト同士の直接のピアツーピアのメッセージングを提供し、チームリードがそれらを調整する。"
 ---
 
-Agent Teams は、複数のエージェントに 1 つのタスクを真に並列で実行させるための Claude Code の実験的機能であり、素のサブエージェント構成には欠けている調整のためのプリミティブを追加する。環境変数 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` で有効化され、作業を 3 つのレイヤーにわたって構造化する。作業を分解し、タスクリストを作成し、結果を統合する Team Lead。各タスクのステータス（pending、in-progress、completed、blocked）を追跡し、依存関係の追跡とファイルロックを備えた共有タスクリスト。そしてチームメイトである。チームメイトはそれぞれ独自のコンテキストウィンドウを持つ独立した Claude Code インスタンスであり、別々の tmux ペインで動作し、リストから自らタスクを引き受ける。
+Agent Teams は、1 つのタスクに複数のエージェントを真に並列で取り組ませるための Claude Code の実験的機能であり、素のサブエージェント構成には欠けている調整のためのプリミティブを追加する。環境変数 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` で有効化され、作業を 3 つのレイヤーにわたって構造化する。作業を分解し、タスクリストを作成し、結果を統合する Team Lead。各タスクのステータス（pending、in-progress、completed、blocked）を追跡し、依存関係の追跡とファイルロックを備えた共有タスクリスト。そしてチームメイトである。チームメイトはそれぞれ独自のコンテキストウィンドウを持つ独立した Claude Code インスタンスであり、別々の tmux ペインで動作し、リストから自らタスクを引き受ける。
 
 ## 用法
 
