@@ -61,6 +61,7 @@ comments: false
 - [[SoftwareApplication/get-shit-done]]
 - [[SoftwareApplication/github-agentic-workflows]]
 - [[SoftwareApplication/github-copilot]]
+- [[SoftwareApplication/github-copilot-cli]]
 - [[SoftwareApplication/github-copilot-code-review]]
 - [[SoftwareApplication/github-copilot-coding-agent]]
 - [[SoftwareApplication/github-spec-kit]]

@@ -12,6 +12,7 @@ comments: false
 - [[Organization/github]]
 - [[Organization/google]]
 - [[Organization/mercari]]
+- [[Organization/microsoft]]
 - [[Organization/neolabhq]]
 - [[Organization/nvidia]]
 - [[Organization/openai]]
