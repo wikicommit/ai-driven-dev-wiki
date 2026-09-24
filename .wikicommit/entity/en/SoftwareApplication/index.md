@@ -54,6 +54,7 @@ comments: false
 - [[SoftwareApplication/deepcode]]
 - [[SoftwareApplication/devgpt]]
 - [[SoftwareApplication/devin]]
+- [[SoftwareApplication/entire-cli]]
 - [[SoftwareApplication/gemini-api-developer-skill]]
 - [[SoftwareApplication/gemini-cli]]
 - [[SoftwareApplication/gemini-enterprise-agent-platform]]

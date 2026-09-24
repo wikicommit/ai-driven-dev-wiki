@@ -7,47 +7,85 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.29442'
     hash: sha256:4f54dee1b64331647df773370db022f7f472348a7dbcf5f522b760058dfbf607
+  - type: url
+    url: 'https://arxiv.org/pdf/2604.20779'
+    hash: sha256:2da8cc42c5f1fad936e428f3013e1a312598cbf5a01c8c1112ea9578963593b4
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
+generated_with: "0.7.0"
 
 properties:
-  description: "A corpus of CLI coding-agent sessions collected from developers on GitHub who opted into public checkpoint logging, contributing 5,785 sessions across 198 repositories."
-  variableMeasured: ["user prompts", "agent responses", "tool-call traces"]
+  description: "A continually growing dataset of real coding-agent sessions collected from public GitHub repositories whose developers opted into Entire.io checkpoint logging, pairing full interaction and tool-call traces with line-level human-versus-agent code attribution."
+  variableMeasured: ["user prompts", "agent responses", "tool-call traces", "token usage", "code authorship attribution"]
 ---
 
-SWE-chat is a corpus of real coding-agent sessions introduced by Baumann et al. and used as one of the
-two datasets behind [[ScholarlyArticle/how-coding-agents-fail-their-users]]. It covers CLI workflows
-specifically, and complements the IDE-weighted SpecStory exports that study pairs it with.
+SWE-chat is a dataset of real coding-agent sessions introduced by Baumann et al. in
+[[ScholarlyArticle/swe-chat-coding-agent-interactions-from-real-users-in-the-wild]], which describes it
+as the first large-scale dataset of real coding-agent sessions from open-source developers in the wild.
+It is a living dataset: its collection pipeline automatically and continually discovers and processes
+new sessions from public repositories. It has also been used as one of the two datasets behind
+[[ScholarlyArticle/how-coding-agents-fail-their-users]], where it covers CLI workflows specifically and
+complements the IDE-weighted SpecStory exports that study pairs it with.
 
 ## Contents
 
 A record is a single coding-agent session: interleaved user prompts, agent responses, and tool-call
-traces such as file edits and command executions. The corpus contributes 5,785 sessions across 198
-repositories. CLI sessions run longer than IDE ones in the study
-that uses it: it reports a median of five user-authored messages per session across its CLI group
-against three across its IDE group, though the per-agent medians in its combined dataset vary widely
-(eight for OpenCode, five for [[SoftwareApplication/claude-code]], one for
-[[SoftwareApplication/openai-codex]]).
+traces such as file edits, shell commands and code searches, together with token usage. What sets the
+dataset apart, according to its authors, is that sessions are linked to commits with line-level
+attribution of which committed lines a human wrote and which the agent wrote; among the agent datasets
+they compare it with, it is the only one combining human prompts, agent tool-use trajectories, code
+diffs and code attribution. As of April 2026 it held almost 6,000 sessions across more than 200
+repositories, with over 13,000 checkpoints, 63,000 user prompts and 355,000 agent tool calls; the full
+logs contain 2.7 million events, including streamed progress events, tool-call return values and a
+small set of reasoning traces. About 85% of the data comes from [[SoftwareApplication/claude-code]], the
+first agent the logging tool supported; sessions from OpenCode, Gemini CLI, Cursor and Factory AI Droid
+are also recorded. The introducing paper also annotates sessions and prompts with LLM judges for session
+success, user persona, prompt intent and user pushback.
 
-Agent identity is recorded for these sessions, unlike the early SpecStory exports the study pairs them
-with: within the study's CLI group, sessions are attributed to [[SoftwareApplication/claude-code]] (6,648), OpenCode (624),
-[[SoftwareApplication/openai-codex]] (517), Gemini CLI (39) and Cursor CLI (32), with 483 of unknown
-agent. Those counts describe the study's combined CLI group rather than SWE-chat alone. The study does not
-analyse results by model identity, giving two reasons: SpecStory exports do not record it, and within
-SWE-chat, Claude-family models account for 94.9% of annotated responses, leaving insufficient variation
-for meaningful comparison.
+In [[ScholarlyArticle/how-coding-agents-fail-their-users]] the corpus contributes 5,785 sessions across
+198 repositories. CLI sessions run longer than IDE ones in that study: it reports a median of five
+user-authored messages per session across its CLI group against three across its IDE group, though the
+per-agent medians in its combined dataset vary widely (eight for OpenCode, five for
+[[SoftwareApplication/claude-code]], one for [[SoftwareApplication/openai-codex]]).
+
+Agent identity is recorded for these sessions, unlike the early SpecStory exports that study pairs them
+with: within that study's CLI group, sessions are attributed to [[SoftwareApplication/claude-code]]
+(6,648), OpenCode (624), [[SoftwareApplication/openai-codex]] (517), Gemini CLI (39) and Cursor CLI
+(32), with 483 of unknown agent. Those counts describe the study's combined CLI group rather than
+SWE-chat alone. The study does not analyse results by model identity, giving two reasons: SpecStory
+exports do not record it, and within SWE-chat, Claude-family models account for 94.9% of annotated
+responses, leaving insufficient variation for meaningful comparison.
 
 ## Provenance
 
-The corpus was collected via Entire.io, a tool that logs CLI coding-agent sessions. It comprises public
-checkpoint logs from developers on GitHub who opted in between January and April 2026. The study using
-it characterises that public availability as reflecting deliberate developer action rather than
-incidental exposure, and reports redacting personally identifiable information — names, emails, phone
-numbers and credentials such as API keys and OAuth tokens — from extracted records before analysis.
+The corpus is collected via [[SoftwareApplication/entire-cli]], an open-source tool that logs
+coding-agent sessions and records them, with checkpoint metadata, on a dedicated branch of the
+repository. The introducing paper's pipeline finds public GitHub repositories that use it through the
+GitHub code search API, downloads their checkpoint directories and parses the raw transcripts into
+structured tables; it filters out data that appears to be generated by automated bots. Only
+repositories whose licenses allow redistribution are included, images attached to prompts are not
+collected, and before release personally identifiable information is removed from every user prompt
+and assistant response with Microsoft Presidio and credentials such as API keys and OAuth tokens with
+TruffleHog. The study procedure was deemed exempt by Stanford's Institutional Review Board.
+
+Its authors caution that because it captures only developers who opt into public checkpoint logging,
+the dataset reflects an early-adopter population, excludes proprietary enterprise codebases, and may not
+generalize to all coding-agent users; a large fraction of early data came from the logging tool's own
+repository, a share they report falling below 20% as adoption grew. The later study that reuses it
+describes its sessions as public checkpoint logs from developers on GitHub who opted in between January
+and April 2026, characterises that public availability as reflecting deliberate developer action rather
+than incidental exposure, and reports redacting personally identifiable information — names, emails,
+phone numbers and credentials such as API keys and OAuth tokens — from extracted records before
+analysis.
 
 ## Use
+
+[[ScholarlyArticle/swe-chat-coding-agent-interactions-from-real-users-in-the-wild]] uses the dataset to
+characterize real-world coding-agent usage — including a bimodal split between sessions where the
+agent writes virtually all committed code and sessions where the human writes all of it — and failure
+modes such as low code survival and frequent user pushback. Its authors also propose it as material for
+benchmarks grounded in real workflows and for training user simulators for offline evaluation.
 
 [[ScholarlyArticle/how-coding-agents-fail-their-users]] combines SWE-chat with a re-crawl of SpecStory
 exports to assemble 20,574 sessions from 1,639 repositories, having first verified that the two
