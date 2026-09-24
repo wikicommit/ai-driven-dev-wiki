@@ -17,6 +17,7 @@ comments: false
 - [[DefinedTerm/agent-harness]]
 - [[DefinedTerm/agent-hooks]]
 - [[DefinedTerm/agent-native-training]]
+- [[DefinedTerm/agent-plugins]]
 - [[DefinedTerm/agent-primitives]]
 - [[DefinedTerm/agent-scaffold]]
 - [[DefinedTerm/agent-skills]]

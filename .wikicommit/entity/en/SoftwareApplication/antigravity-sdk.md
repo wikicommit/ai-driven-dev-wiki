@@ -9,6 +9,9 @@ sources:
   - type: url
     url: 'https://codelabs.developers.google.com/agy-cli-sdk-code-review'
     hash: sha256:283b349fe5d611bf6d0c0d2b5ac36978aaa667fac020078c52e2bf0412ba54ae
+  - type: url
+    url: 'https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk/'
+    hash: sha256:29af3552e39410efe70d79dcfd4f566d9ee66624acce774cc7db217bcbc4ca24
 review_status: pending
 generated_at: "2026-09-24"
 generated_by: "claude-opus-5-5"
@@ -58,6 +61,16 @@ their own custom tools (0.1.15) and, from 0.1.18, their own model.
 OpenAI-compatible endpoints such as Ollama and LM Studio. 0.1.7 extended MCP and subagent
 support to these backends, a `.lightweight()` preset for small local models followed in
 0.1.16, and 0.1.18 announced local model support as official.
+
+Google's announcement of that support ([[BlogPosting/introducing-support-for-local-ai-models-in-the-antigravity-sdk]],
+September 23, 2026) names Gemma 4 26B A4B on LiteRT as the initial model, recommends a
+machine with more than 24GB of VRAM or unified memory, and names Ollama, LM Studio and
+vLLM as OpenAI-compatible servers usable through `LocalOpenAIAgentConfig`. It gives cost (no API
+charges or rate limits), privacy (code and requests stay on the machine), offline resiliency
+and hybrid cloud-local workflows as the reasons to run agents locally. Its main
+demonstration is what it calls an Architect-Builder pattern: a cloud Gemini model plans and
+decomposes a task from filenames and task descriptions alone, while several local Gemma
+instances audit, patch and test the code on-device, so no source code is sent to the cloud.
 
 **Operational controls.** `BudgetConfig` (0.1.11) caps a session's tokens, turns and cost,
 and a `StopReason` reports why a turn ended; `CompactionConfig` (0.1.17) sets the token

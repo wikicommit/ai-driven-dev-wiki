@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/'
     hash: sha256:3e885a3a1f0cd7d3569bd0492c6f94334876f6d2ff073e6d5514b7c77d7deffa
+  - type: url
+    url: 'https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more/'
+    hash: sha256:db0cfe6b242f1f7ec3c7efd7ead8d95b5da039f04572d7cbc8540fa6ee8545df
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
+generated_with: "0.7.0"
 
 properties:
   description: "A command-line tool for the agent development lifecycle on Google Cloud, built to be driven by an AI coding assistant as well as typed by a person. It covers scaffolding, evaluation, infrastructure provisioning, deployment and publishing through one interface."
@@ -34,4 +37,6 @@ The reasoning given for that design is about context cost. When a coding assista
 
 ## Adoption & Ecosystem
 
-The tool sits on top of the [[SoftwareApplication/gemini-enterprise-agent-platform]] stack rather than replacing it, and its publishing step targets Gemini Enterprise as the distribution point. Its design is an instance of a broader pattern in which tooling is shaped for an AI assistant to operate rather than only for a person — here through skills bundled with the CLI itself, so that the knowledge needed to drive it travels with the tool. The account summarized here is the announcement from its own team, so it establishes the tool's scope and command surface rather than any independent experience of using it.
+In August 2026 Google named Agents CLI as one of its first two products to support [[DefinedTerm/agent-plugins]], the vendor-neutral format for packaging skills and MCP servers ([[BlogPosting/agent-plugins-package-your-skills-tools-and-more]]). That announcement describes it as packaging Google's expert skills for agent building, evaluation, deployment, observability and publishing, and as turning any AI coding agent — Antigravity, Gemini CLI, Claude Code or Cursor are named — into an expert at agent building and agent operations; those skills were already distributable, and are now distributable in a format that is not Google's alone.
+
+The tool sits on top of the [[SoftwareApplication/gemini-enterprise-agent-platform]] stack rather than replacing it, and its publishing step targets Gemini Enterprise as the distribution point. It is designed for AI coding agents to operate, and ships bundled skills for them with the CLI itself. The account summarized here is the announcement from its own team, so it establishes the tool's scope and command surface rather than any independent experience of using it.
