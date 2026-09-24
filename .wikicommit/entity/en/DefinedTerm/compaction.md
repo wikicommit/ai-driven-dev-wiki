@@ -22,9 +22,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.03515'
     hash: sha256:5afdaed7652dc3b8c3833fd90b9e8d54cd5d758f847d5d80b3aee353a3cb3acd
+  - type: url
+    url: 'https://arxiv.org/pdf/2606.30560'
+    hash: sha256:90d9d93dde14b87925191228c1addb5b483ccd600b3080a99d134b04712cf1e3
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -72,6 +75,16 @@ summary-based compaction — that the summarisation step is a blocking inference
 non-deterministic, with retained content fluctuating across runs on identical inputs. They contrast
 the whole approach with simpler alternatives, single-pass truncation or one summarisation step,
 which sacrifice information but are easier to reason about.
+
+How often compaction actually fires in everyday use has been measured from session logs.
+[[ScholarlyArticle/tracelab]], analysing about 4,300 real sessions of
+[[SoftwareApplication/claude-code]] and [[SoftwareApplication/openai-codex]], identifies a
+compaction as a drop of at least 64K input tokens in one step, taken near the session's peak context
+and followed by slow regrowth. By that definition it finds compaction "not rare but not dominant":
+9.7% of sessions undergo at least one, and those that do average 3.7 compactions with a long tail.
+It is overwhelmingly tool-initiated — occurring mid-loop rather than at a user's turn — and far more
+common in Codex (18.4% of sessions) than in Claude Code (4.5%), which the authors relate to Codex's
+shorter context length.
 
 ## When It Applies
 
@@ -122,9 +135,10 @@ which sacrifice information but are easier to reason about.
   sufficiency is therefore reported as depending on the model, not on the technique alone.
 
 - Compaction is one design choice among several, and
-  [[ScholarlyArticle/inside-the-scaffold]] reports it as the dimension on which open-source coding
-  agents diverge most widely — seven distinct strategies across the 13 scaffolds it analysed, from no
-  management at all to compaction the model itself requests. It sorts these into two philosophies.
+  [[ScholarlyArticle/inside-the-scaffold]] counts it among the dimensions on which open-source coding
+  agents diverge, alongside state management and multi-model routing — seven distinct strategies
+  across the 13 scaffolds it analysed, from no management at all to compaction the model itself
+  requests. It sorts these into two philosophies.
   *Prevention* agents bound context growth structurally, by scoping messages per unit of work,
   capping search rounds and truncating results, or limiting trajectory depth; *cure* agents let
   context grow and compress it when a token threshold is reached. Prevention avoids summarisation

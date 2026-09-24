@@ -17,9 +17,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.02273'
     hash: sha256:730f6134755c88620fbdf3f7484bce3b65c3370345ef9ce8ff858915d757ac84
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.22534'
+    hash: sha256:86242f871d4dd502cdfdf9c5a6346361f31b07c300cce562052319a0eb42cb18
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -119,3 +122,11 @@ comments on agent-authored PRs against 1.63% on human-authored ones.
 work on refactoring in agent-authored pull requests drawn from AIDev, reporting that agents
 frequently perform localized and consistency-oriented refactorings while undertaking fewer
 high-level architectural changes than human developers.
+
+[[ScholarlyArticle/why-are-agentic-pull-requests-merged-or-rejected]] built on AIDev to ask why
+agent-authored pull requests are merged or rejected. It restricted the data to closed pull requests
+with an explicit merge or rejection decision in repositories with at least 500 stars — 11,048 PRs,
+6,774 merged and 4,274 rejected — and then removed 1,249 PRs that had no human comments, leaving
+9,799 human-reviewed PRs, of which it manually inspected a stratified sample of 717. It reports that
+only 35.7% of the rejected PRs in that sample reflected clear agentic failures and that 15.4% of the
+merged ones involved explicit reviewer participation.
