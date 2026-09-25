@@ -19,17 +19,20 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/context/overview/'
     hash: sha256:f8e2752a1acfb50932f79278c2d01a48144d0a2169965cfa644161eb58799c23
+  - type: url
+    url: 'https://blog.langchain.com/the-rise-of-context-engineering/'
+    hash: sha256:32b2b5652177ec8f3a2a23644d8fd7ad0c33e762e6609a596dd0ebbf90f2d682
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
-  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Five accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository; and a fifth that begins by separating the persisted session record from the payload assembled before each inference, and frames the practice as building a pipeline between them."
+  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Six accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository; a fifth that begins by separating the persisted session record from the payload assembled before each inference, and frames the practice as building a pipeline between them; and a sixth, from an agent-framework vendor, that defines it as building dynamic systems that give the model the right information and tools in the right format."
 ---
 
 Context engineering is the practice of curating and dynamically managing what information
-occupies a large language model's context window during inference. Five of this wiki's sources
+occupies a large language model's context window during inference. Six of this wiki's sources
 bear on the term, each writing about its own practice; the two treated first below are the ones
 that set out to define it. They agree on the problem and on the substantive contrast — a static
 written prompt against a dynamically assembled context — and differ in emphasis on how the term
@@ -173,6 +176,24 @@ remembers only what is in its temporary window, and cannot reach real-time data 
 The chapter is marked as a draft and reports no evaluation; like the four accounts above it is a
 practitioner writing about the practice rather than measuring it.
 
+A sixth account comes from an agent-framework vendor. In
+[[BlogPosting/the-rise-of-context-engineering]], LangChain's Harrison Chase defines context engineering
+as "building dynamic systems to provide the right information and tools in the right format such that the
+LLM can plausibly accomplish the task", a definition he presents as building on recent statements by
+others rather than as his own coinage. Where Anthropic's account is organized around a scarce token
+budget, his is organized around failure diagnosis: an agent's model errs either because it is not good
+enough or because it was not given appropriate context, and he argues that more often than not —
+especially as models improve — it is the second, through context that is missing or poorly formatted.
+The test he proposes, whether the model could plausibly accomplish the task with what it was given, is
+meant to separate those two failure modes because they are fixed differently. He treats tools as part
+of what must be supplied alongside information, and format as mattering for both — a short, descriptive
+error message over a large JSON blob. On the relation to prompt engineering he takes a third position
+beside Anthropic's progression and AWS's fundamental difference: prompt engineering is a subset of
+context engineering, since assembling context into a prompt still matters but the task is formatting a
+set of dynamic data rather than phrasing a prompt for one fixed input. He is explicit that the idea is not
+new — agent builders had been doing it for a year or two — and that what is new is a term for it. The post
+reports no evaluation, and its closing sections describe how LangChain's own products support the practice.
+
 ## When It Applies
 
 - Applies once an agent operates over multiple turns, where the whole context state rather than
@@ -194,7 +215,7 @@ practitioner writing about the practice rather than measuring it.
   laundry list of edge cases is stuffed into a prompt in place of canonical examples. Anthropic's
   stated remedy is to start from a minimal prompt on the best available model and add
   instructions and examples in response to failure modes found in testing.
-- None of the five accounts is an independent evaluation; each is written by a party describing
+- None of the six accounts is an independent evaluation; each is written by a party describing
   its own practice.
   Anthropic's is drawn from building agents and working alongside its customers; it observes that
   smarter models require less prescriptive engineering, and gives "do the simplest thing that

@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2604.03515'
     hash: sha256:5afdaed7652dc3b8c3833fd90b9e8d54cd5d758f847d5d80b3aee353a3cb3acd
+  - type: url
+    url: 'https://arxiv.org/pdf/2609.00006'
+    hash: sha256:b2b6be03cc43e6f9b52518921f9545373563aec224327e1bb29a30beea7b7ce0
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -51,6 +54,18 @@ The same paper argues that these dimensions are best treated as continuous spect
 search — act as composable building blocks that agents layer and nest, so that the space of possible
 scaffolds is combinatorial rather than categorical.
 
+Another source-code study, of eleven production coding agents,
+[[ScholarlyArticle/harness-engineering-anatomy-architecture-and-evolution-of-coding-agents]], takes up the
+relation between "scaffold" and [[DefinedTerm/agent-harness]], which it calls near-synonyms in practice.
+Where a distinction is useful, it reserves "scaffold" for the structural code — the loop and the
+registries — and "harness" for the shipped runtime artifact that embeds it; its example is that
+Mini-SWE-Agent's scaffold is 100 lines of Python, while Claude Code's harness is a product with a terminal
+UI, a permission system and a plugin ecosystem. That study names Inside the Scaffold as its closest
+methodological relative and maps that paper's twelve dimensions onto its own seven harness subsystems,
+adopting the loop-primitive vocabulary where it finds it sharper than its own. It also draws on it for
+the observation that most production loops compose primitives rather than implement one, reading the
+plan modes that the four provider-native agents it studies now ship as plan-execute grafted onto ReAct.
+
 ## When It Applies
 
 - Applies to any design decision made outside the model: which tools to expose and at what
@@ -77,6 +92,7 @@ scaffolds is combinatorial rather than categorical.
 ## Related Terms
 
 - [[DefinedTerm/harness-engineering]]
+- [[DefinedTerm/agent-harness]]
 - [[DefinedTerm/agent-computer-interface]]
 - [[DefinedTerm/compaction]]
 - [[DefinedTerm/agent-execution-environment]]
