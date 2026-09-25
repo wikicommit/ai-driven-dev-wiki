@@ -90,6 +90,7 @@ comments: false
 - [[DefinedTerm/closed-loop-ai-review]]
 - [[DefinedTerm/code-execution-mcp]]
 - [[DefinedTerm/code-generating-task]]
+- [[DefinedTerm/code-pattern-drift-detection]]
 - [[DefinedTerm/code-review-agent]]
 - [[DefinedTerm/code-review-as-runtime-monitoring]]
 - [[DefinedTerm/code-review-task-taxonomy]]
