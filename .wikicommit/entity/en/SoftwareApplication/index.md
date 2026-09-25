@@ -128,6 +128,7 @@ comments: false
 - [[SoftwareApplication/pr-agent]]
 - [[SoftwareApplication/qoder]]
 - [[SoftwareApplication/reversa]]
+- [[SoftwareApplication/sandeco-loop]]
 - [[SoftwareApplication/sourcery]]
 - [[SoftwareApplication/spec-flow]]
 - [[SoftwareApplication/spec-kitty]]
