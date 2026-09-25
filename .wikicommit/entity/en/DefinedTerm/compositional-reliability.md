@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.28791'
     hash: sha256:0de559cacdfe9078d48a08a5f2b05d76219a579abd307e3a72ca17d1894464d0
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/engineering/'
+    hash: sha256:ba3ef8f424b5b76f1af59a9b3a243e05ffacad7327edcda8e2f9e42bc81e3099
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
+generated_with: "0.7.0"
 
 properties:
   description: "The multiplicative decay of an agent's end-to-end success probability over a sequence of dependent steps: a high per-step success rate compounds downward across a long horizon, which is why trajectory-level evaluation and human checkpoints govern usable autonomy rather than per-step accuracy."
@@ -38,6 +41,16 @@ gives a reason to prefer trajectory evaluation — asking whether the agent chos
 tools, even where the final answer varies — over scoring outcomes alone, and a reason to place human-in-the-loop
 checkpoints on the consequential and destructive actions along the way, which is where the paper puts
 them.
+
+A draft chapter of Jimmy Song's online handbook 智能体构建指南 makes the same compounding argument for
+LLM-based agent systems under the heading of an amplification effect of LLM uncertainty, without using
+this term: assuming a single LLM call is right 90% of the time, it puts a system of 10 calls at about
+35% and one of 20 calls at about 12%. The chapter attributes the amplification to memory (uncontrolled
+state consistency and semantic drift in embedding retrieval), orchestration (the LLM deciding the flow
+dynamically) and testing (probabilistic output defeating conventional unit tests), and answers it with
+replay tests, baseline comparison and simulation environments, version tracking of prompts and memory,
+and monitoring of drift rate and error rate — part of what it calls
+[[DefinedTerm/agent-systems-engineering]].
 
 It is worth reading beside [[DefinedTerm/behavioral-drift]], which the same paper treats in the
 adjacent section: drift concerns an agent having no stable terminal state over time, while
@@ -72,3 +85,5 @@ for evaluation, the paper offers no measurement of its own.
 - [[DefinedTerm/trajectory-evaluation]] — the evaluation approach this result argues for
 - [[DefinedTerm/human-in-the-loop]] — the checkpointing this result argues for
 - [[DefinedTerm/ai-native-software-engineering]] — the paradigm this limit constrains
+- [[DefinedTerm/agent-systems-engineering]] — the engineering response the handbook chapter draws from
+  the same compounding

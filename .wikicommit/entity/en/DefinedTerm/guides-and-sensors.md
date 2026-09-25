@@ -8,6 +8,9 @@ sources:
   - type: url
     url: 'https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html'
     hash: sha256:cf7369071f56e7b3b36f7b003d612f4aa69fef17a7135ba19f2e22f2ad7e1cc6
+  - type: url
+    url: 'https://martinfowler.com/articles/harness-engineering.html'
+    hash: sha256:cf7369071f56e7b3b36f7b003d612f4aa69fef17a7135ba19f2e22f2ad7e1cc6
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
