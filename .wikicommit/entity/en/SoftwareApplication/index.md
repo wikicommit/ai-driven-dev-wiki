@@ -121,6 +121,7 @@ comments: false
 - [[SoftwareApplication/toolmaker]]
 - [[SoftwareApplication/trae]]
 - [[SoftwareApplication/useagent]]
+- [[SoftwareApplication/vouch]]
 - [[SoftwareApplication/voyager]]
 - [[SoftwareApplication/watsonx-orchestrate-agent-development-kit]]
 - [[SoftwareApplication/windsurf]]
