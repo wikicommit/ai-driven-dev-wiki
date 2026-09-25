@@ -140,6 +140,7 @@ comments: false
 - [[DefinedTerm/craft-values-and-principles]]
 - [[DefinedTerm/creation-to-verification-shift]]
 - [[DefinedTerm/crisp-prompt-pattern]]
+- [[DefinedTerm/critic-model]]
 - [[DefinedTerm/critical-dialogue-review]]
 - [[DefinedTerm/curse-of-instructions]]
 - [[DefinedTerm/custom-slash-commands]]
