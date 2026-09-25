@@ -37,9 +37,12 @@ sources:
   - type: url
     url: 'https://jonghoonpark.com/2026/03/29/agentic-engineering'
     hash: sha256:92fea29c2779ce511435e3c79aeb42f9b33855c8f3a1f24849a1c6993534b024
+  - type: url
+    url: 'https://developers.redhat.com/articles/2026/02/17/uncomfortable-truth-about-vibe-coding'
+    hash: sha256:42f3249cb6e39d9ef4f8c213fa9e954e331b6f259c1af55afe2c58acef2f03fb
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -218,6 +221,20 @@ reflect — adding that, at least today, a model cannot hold an application past
 its context window. His conclusion is the plainest version of the narrow reading: if you don't
 understand the code, you can't debug it, extend it, or explain it to your team.
 
+A practitioner article on Red Hat Developer,
+[[BlogPosting/the-uncomfortable-truth-about-vibe-coding]], uses the broad sense of the term — building
+software by conversing with AI rather than writing every line — and draws the boundary by project
+lifetime and by testability rather than by whether code is read. Its author reports the speed as real
+for prototypes and self-contained projects, but describes vibe-coded projects commonly hitting a wall
+around three months in, when one small change breaks several other features, and attributes that to
+building without specifications: the prompts are obsolete once code is generated, so the code becomes
+the only record of what the software does and not of why. The article's prescription is to move to
+[[DefinedTerm/spec-driven-development]] for anything that must be maintained while keeping vibe coding
+at the unit level — if a unit or functional test can validate the output, the scope is small enough to
+vibe; if not, it needs a spec. Like Connell, it insists the developer still has to be technical, since a
+specification written without understanding architecture, dependencies and trade-offs is only a wish
+list. These are one practitioner's observations from their own projects, not measured findings.
+
 ## Related Terms
 
 - [[DefinedTerm/agentic-engineering]] — the disciplined counterpart one source contrasts it with
@@ -230,5 +247,7 @@ understand the code, you can't debug it, extend it, or explain it to your team.
   processing unless explicitly prompted, proposing [[DefinedTerm/non-delegation-zone]] for the gap
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] — the same author reporting the
   boundary eroding from the disciplined side of it
+- [[DefinedTerm/spec-driven-development]] — the practice one practitioner article prescribes once a
+  vibe-coded project has to be maintained
 - [[DefinedTerm/verification-debt]] — what accumulates when the review step the narrow definition
   turns on is skipped

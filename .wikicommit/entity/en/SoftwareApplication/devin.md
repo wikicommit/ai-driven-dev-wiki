@@ -13,24 +13,32 @@ sources:
   - type: url
     url: 'https://tech-blog.yayoi-kk.co.jp/entry/2026/02/18/110000'
     hash: sha256:f257dca18ea047972a127fe941a248ac2184ccbbb5bd4fc88d619fb52132227a
+  - type: url
+    url: 'https://cognition.com/blog/devin-annual-performance-review-2025'
+    hash: sha256:9faf159b1a9fcb52db11ab77a27cff8fad27e55cef689d325eedb664358b64ea
+  - type: url
+    url: 'https://cognition.com/blog/introducing-devin'
+    hash: sha256:73d2b8bef9a54736f9a6e7d6f3a7897727764c71d604e77c4ab4b9643a59d302
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "Cognition's autonomous coding agent, cited as an emerging example of goal-agentic (Level 3, SE3.0) AI software engineering that can take a well-defined technical goal and execute a multi-step plan across code, documentation, and other project artifacts. An enterprise operator's account describes it as a service that can autonomously investigate code, write code, and submit pull requests; a separate practitioner account describes driving it as a pull-request reviewer through its session API."
+  description: "Cognition's autonomous coding agent, cited as an emerging example of goal-agentic (Level 3, SE3.0) AI software engineering that can take a well-defined technical goal and execute a multi-step plan across code, documentation, and other project artifacts. An enterprise operator's account describes it as a service that can autonomously investigate code, write code, and submit pull requests; a separate practitioner account describes driving it as a pull-request reviewer through its session API. Cognition's own 2025 review of the agent describes it as strongest on clearly scoped, verifiable tasks run in parallel and on understanding large codebases, and weakest on ambiguous or changing requirements."
   applicationCategory: "Autonomous coding agent"
-  author: "Cognition"
+  author: "[[Organization/cognition]]"
 ---
 
-Devin is Cognition's autonomous coding agent, discussed in [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] alongside Google's [[SoftwareApplication/google-jules]], OpenAI's Codex, and Anthropic's [[SoftwareApplication/claude-code]] as an example of an agent aiming for Goal-Agentic (Level 3, SE3.0) capability in the paper's [[DefinedTerm/se-autonomy-levels]] hierarchy: taking a well-defined technical goal (e.g. "add a caching layer") and executing a multi-step plan, self-devised or human-guided, across code, documentation, and other essential project artifacts.
+Devin is [[Organization/cognition]]'s autonomous coding agent, announced by Cognition in March 2024 as "the first AI software engineer" ([[BlogPosting/introducing-devin]]). It is discussed in [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] alongside Google's [[SoftwareApplication/google-jules]], OpenAI's Codex, and Anthropic's [[SoftwareApplication/claude-code]] as an example of an agent aiming for Goal-Agentic (Level 3, SE3.0) capability in the paper's [[DefinedTerm/se-autonomy-levels]] hierarchy: taking a well-defined technical goal (e.g. "add a caching layer") and executing a multi-step plan, self-devised or human-guided, across code, documentation, and other essential project artifacts.
 
 A team operating it at Mercari describes it in more workaday terms, as a service that can autonomously investigate code, write code and submit pull requests, and notes that operating it at an organizational level comes with several management challenges ([[BlogPosting/enabling-ai-usage-at-mercari-with-secure-devin-management]]). A team at Yayoi describes using it as a pull-request reviewer, one of several uses it reports for the agent ([[BlogPosting/ai-code-review-ideal-and-reality]]).
 
 ## Capabilities
 
-The paper cites DeepWiki, used by Devin, as an early example of a persistent-memory capability: it lets the agent build and refer to its own documentation and decision logs across multiple tasks, creating continuity and helping prevent it from repeating past mistakes — an example the paper uses to motivate its proposed [[DefinedTerm/ai-teammate-lifecycle-engineering]] activity.
+Cognition's launch post describes the agent's working environment: Devin is equipped with a shell, a code editor and a browser inside a sandboxed compute environment, and Cognition attributes its ability to plan and execute complex engineering tasks requiring thousands of decisions to advances in long-term reasoning and planning. The same post stresses collaboration alongside autonomy — Devin reports its progress in real time, accepts feedback, and works through design choices with the user as needed — and describes it as able either to build alongside an engineer or to complete tasks independently for the engineer to review. At launch it was available only in early access, through a waitlist.
+
+The paper cites [[SoftwareApplication/deepwiki]], used by Devin, as an early example of a persistent-memory capability: it lets the agent build and refer to its own documentation and decision logs across multiple tasks, creating continuity and helping prevent it from repeating past mistakes — an example the paper uses to motivate its proposed [[DefinedTerm/ai-teammate-lifecycle-engineering]] activity.
 
 The Mercari account describes the execution model an operator has to work with: Devin launches an independent virtual machine for each session, so in its initial state it holds permissions only for source-code management services such as GitHub, and connecting it to cloud environments or ticket-management services means configuring credentials such as API keys individually. That post also records that members within an Organization can access the file system and shell inside sessions, and that as an AI agent Devin can freely use any API key it is given — two properties it treats as the reason credentials must be handled with care.
 
@@ -39,6 +47,16 @@ Several product surfaces appear in that account. Devin Knowledge is described as
 The Yayoi account adds two behaviors relevant to unattended use. It reports that Devin refers to [[DefinedTerm/agents-md]] automatically, and gives that as the reason recording project-specific rules and context there yields more accurate review; that team keeps setup commands, code style and test guidelines, project structure and workflow notes in it. It also describes review sessions being created programmatically — an authenticated POST against the Devin API's sessions endpoint, carrying a prompt assembled by the caller — with Devin posting its findings back as comments on the pull request. That team reports session start-up being slow at first and improving on two counts it states separately — the agent learning the project over time, and project information being defined in advance in the review prompt and in AGENTS.md — while first sessions stayed slow; that is one team's observation rather than a published characteristic.
 
 The Yayoi post also notes a newer feature called Devin Review — described there as a comprehensive code review platform offered as a web application, with diff organization and bug-catching capabilities. That team had not compared it against the API-driven approach at the time of writing.
+
+### The vendor's own assessment
+
+Cognition's [[BlogPosting/devins-2025-performance-review]], published eighteen months after launch, is the vendor's account of where the agent performs well and where it does not, framed as a performance review of an engineer. It reports that calibrating Devin against a traditional engineering competency matrix was difficult, because Devin is senior-level at codebase understanding but junior at execution.
+
+On execution, Cognition says Devin does best on tasks with clear, upfront requirements and verifiable outcomes that would take a junior engineer four to eight hours, and that because it can run in parallel without limit it suits work such as resolving vulnerabilities flagged by static analysis tools, language and framework migrations, writing unit tests and completing small tickets. It separately describes brownfield feature work, where existing code provides clear patterns for Devin to replicate and modify. For migrations, the post says that once Devin has instructions on how to update each repository, a fleet of Devins can execute on every repository in parallel; for test generation, humans write a unit-testing playbook, a fleet of Devins writes the tests, and code owners then check that all logic has been tested. Cognition limits its pull-request review role to a first pass that catches obvious issues, stating that human review remains necessary because code quality is not straightforwardly verifiable.
+
+On understanding, the same post describes Devin documenting large codebases through DeepWiki and helping engineers plan through a chat interface (AskDevin) that can explain a system with architecture diagrams, map dependencies, flag breaking changes and recommend what should be tackled by humans versus AI.
+
+The post names three areas for improvement. Devin cannot independently carry an ambiguous project end-to-end on its own judgement, and needs specifics — in visual design, component structure, colour codes and spacing values. It handles clear upfront scoping well but usually performs worse when given more instructions after a task has started, so the post places more responsibility on engineers to scope work up front and to learn to "manage" Devin. And while it collaborates in Slack, Teams and Jira, it cannot manage reports or stakeholders. These are Cognition's characterizations of its own product.
 
 ## Enterprise Administration
 

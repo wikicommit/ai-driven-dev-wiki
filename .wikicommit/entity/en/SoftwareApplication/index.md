@@ -54,6 +54,7 @@ comments: false
 - [[SoftwareApplication/cxdb]]
 - [[SoftwareApplication/deep-agents]]
 - [[SoftwareApplication/deepcode]]
+- [[SoftwareApplication/deepwiki]]
 - [[SoftwareApplication/devgpt]]
 - [[SoftwareApplication/devin]]
 - [[SoftwareApplication/entire-cli]]
