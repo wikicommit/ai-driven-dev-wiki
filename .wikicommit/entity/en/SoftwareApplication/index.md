@@ -64,6 +64,7 @@ comments: false
 - [[SoftwareApplication/github-copilot-cli]]
 - [[SoftwareApplication/github-copilot-code-review]]
 - [[SoftwareApplication/github-copilot-coding-agent]]
+- [[SoftwareApplication/github-mcp-server]]
 - [[SoftwareApplication/github-spec-kit]]
 - [[SoftwareApplication/google-antigravity]]
 - [[SoftwareApplication/google-jules]]

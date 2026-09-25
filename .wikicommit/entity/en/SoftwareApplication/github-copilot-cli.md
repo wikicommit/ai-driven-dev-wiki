@@ -8,9 +8,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2607.01418'
     hash: sha256:bbc1053e3b6e6a0aa7c93d9962cf8cb956ef31b8a516dbcb70bf3743e8cbf04d
+  - type: url
+    url: 'https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/'
+    hash: sha256:900fe932178827ecd6df3b0cd594d93c22c0e9cd960bd539ec89b97b0a9e6ed3
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -27,6 +30,17 @@ the command line; that paper groups it with [[SoftwareApplication/claude-code]] 
 developers. It is distinct from the non-CLI forms of [[SoftwareApplication/github-copilot]] — code
 completion, chat and agent mode in IDEs such as VS Code. GitHub announced its general availability
 on February 25, 2026.
+
+## Capabilities
+
+A GitHub researcher's account of building an internal agent tool with it
+([[BlogPosting/agent-driven-development-in-copilot-applied-science]]) shows the interaction modes
+it exposes: a `/plan` command for working out a feature with the agent before any change is made,
+and an `/autopilot` mode in which the agent implements the agreed plan. From inside a session the
+agent can also be prompted to request a review from [[SoftwareApplication/github-copilot-code-review]],
+wait for it, address the relevant comments and re-request review until none remain. The same post
+describes the Copilot SDK as powered by Copilot CLI, giving agents built on it access to existing
+tools and MCP servers and a way to register new tools and skills.
 
 ## Adoption & Ecosystem
 

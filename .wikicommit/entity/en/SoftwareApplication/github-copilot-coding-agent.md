@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/'
     hash: sha256:f3a6917c79f2f70870a12536be1e700c8b33381be9f7cfe35243aba5ec7dab46
+  - type: url
+    url: 'https://github.blog/ai-and-ml/github-copilot/from-idea-to-pr-a-guide-to-github-copilots-agentic-workflows/'
+    hash: sha256:d26a28f8e99d98794a771d2e9f313c93e3141162781714ff1bfd49653195fa0b
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "GitHub's asynchronous background coding agent: assign it a GitHub issue and it works on GitHub Actions compute, pushing commits to a draft pull request and iterating as a human comments on it."
@@ -53,17 +56,33 @@ there. It can also be asked to open a pull request from Copilot Chat on GitHub o
   feature can form part of the task.
 - It incorporates context from related issue and pull request discussions and follows custom
   repository instructions.
-- A survey on AI agentic programming describes it as able to hold a conversation across multiple
-  steps, remember earlier function names, and build a complete module through back-and-forth
+- A GitHub developer advocate's walkthrough ([[BlogPosting/from-idea-to-pr]]) gives the sequence
+  after assignment as: create a branch; start a new session, first configuring a development
+  environment if the repository has a `copilot-setup-steps.yml`; review the task, explore the
+  codebase and form a plan; use any custom instructions as context (the example requires
+  `npm run lint` and `npm run test` to pass before committing); and open a draft pull request for
+  review. Feedback posted as a pull request comment starts another session in which it works on
+  the requested changes.
+- The same walkthrough contrasts it with Copilot agent mode, which works synchronously alongside
+  the developer in the editor, whereas the coding agent works on its task asynchronously.
+- A survey on AI agentic programming describes a "GitHub Copilot Agent" — without saying which
+  Copilot product it means — as able to hold a conversation across multiple steps, remember earlier function names, and build a complete module through back-and-forth
   iterations between agents — contrasted in the survey with single-turn tools such as classic
   [[SoftwareApplication/github-copilot]], which do not preserve state between interactions.
-- That same survey catalogues a subset of the tools the GitHub Copilot agent supports, spanning
+- That same survey catalogues a subset of the tools it says the "GitHub Copilot agent" supports, spanning
   compilers (gcc, clang), debuggers (gdb, pdb), test frameworks (pytest, Jest), linters (eslint,
   black), version control (git), build systems (make, npm), package managers (pip, cargo) and
   language servers (pyright, tsserver).
 - GitHub states it is strongest on low-to-medium complexity tasks in well-tested codebases — adding
   features, fixing bugs, extending tests, refactoring, improving documentation. This is GitHub's own
   scoping claim rather than a measured result.
+
+The walkthrough pairs it with drafting the issue itself with Copilot — a natural-language prompt
+turned into an issue with a title, acceptance criteria and pointers to the files to change — and
+its advice for delegation is to keep issues tightly scoped, provide acceptance criteria rather than
+assume the agent knows the intent, review its changes as carefully as any other pull request before
+running or merging them, and expect to iterate rather than get the result right first time. This is
+one practitioner's guidance from a demo, not a measured result.
 
 ## Security & Controls
 
@@ -81,13 +100,12 @@ GitHub Marketplace and more than 40 million jobs run every weekday.
 
 ## Adoption & Ecosystem
 
-At announcement it was available to Copilot Enterprise and Copilot Pro+ customers, enabled per
-repository, with an additional organization-level policy for Enterprise users; from June 4, 2025 it
-was to consume one premium request per model request the agent makes.
+At announcement it was available to Copilot Enterprise and Copilot Pro+ customers and was enabled
+per repository; for Copilot Enterprise users, an administrator also had to turn on a policy.
 
-The source groups it with other cloud agents — Claude Web, Codex, and Jules — as tools explicitly
+Osmani groups it with other cloud agents — Claude Web, Codex, and Jules — as tools explicitly
 positioned for parallelizable, sandboxed tasks that write code, run commands, and propose changes
-for review. It also reports that GitHub previewed "Agent HQ," a control plane for coordinating
+for review, and reports that GitHub previewed "Agent HQ," a control plane for coordinating
 multiple third-party coding agents in one place, including running them in parallel on the same
 tasks to compare outputs, as part of a broader move toward "mission control" dashboards for
 managing multiple agents rather than one.
