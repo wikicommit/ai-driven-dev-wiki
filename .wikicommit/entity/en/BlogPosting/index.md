@@ -192,6 +192,7 @@ comments: false
 - [[BlogPosting/verify-ai-agent-coding-rules-with-archunit]]
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]]
 - [[BlogPosting/vibe-coding-best-practices-what-not-to-let-slide]]
+- [[BlogPosting/vibe-engineering]]
 - [[BlogPosting/welcome-to-the-eternal-september-of-open-source]]
 - [[BlogPosting/what-ai-taught-us-about-code-review]]
 - [[BlogPosting/what-is-spec-driven-development-practitioners-guide]]

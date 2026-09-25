@@ -24,8 +24,11 @@ sources:
   - type: url
     url: 'https://codelabs.developers.google.com/getting-started-google-antigravity'
     hash: sha256:8bece7706f3b7757018ef86b798516d0b8cfed77ce82354bf16839890a6ef3c4
+  - type: url
+    url: 'https://simonwillison.net/2025/Nov/18/google-antigravity/'
+    hash: sha256:3e7b3fbdc9081875732d8763d1a0b12ae6866774c9614a43f8e5181ad519ff58
 review_status: pending
-generated_at: "2026-09-24"
+generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 tags: [agents, coding-tools, agent-architecture, human-oversight, agent-skills]
@@ -195,3 +198,14 @@ individuals, and cross-platform across macOS, Windows and Linux. Google stated i
 offered model optionality: generous rate limits on Gemini 3 Pro, with full support for
 Anthropic's Claude Sonnet 4.5 and OpenAI's GPT-OSS. This availability and model list
 describe the platform as announced in November 2025.
+
+Writing on launch day, Simon Willison described the platform at first glance as "yet another VS
+Code fork Cursor clone" — a desktop application that signs in to a Google account and provides an
+IDE for agentic coding against Gemini models — but said that on closer inspection it was a fair bit
+more interesting. He picked out its three surfaces (an agent manager dashboard, a VS Code-style
+editor and deep browser integration through a new Chrome extension, which he compared in role to
+Playwright MCP in letting the agent test the web applications it builds) and its Artifacts, which he
+described as Markdown documents created automatically as the agent works. His own first attempt,
+adding Gemini 3 support to his `llm-gemini` plugin, worked at first and then stopped with an
+"Agent execution terminated due to model provider overload" error; he said he would try again once
+the initial launch jitters had been worked through.
