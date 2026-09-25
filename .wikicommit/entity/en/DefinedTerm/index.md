@@ -11,6 +11,7 @@ comments: false
 - [[DefinedTerm/action-space]]
 - [[DefinedTerm/agent-as-a-judge]]
 - [[DefinedTerm/agent-as-a-service]]
+- [[DefinedTerm/agent-client-protocol]]
 - [[DefinedTerm/agent-command-environment]]
 - [[DefinedTerm/agent-communication-protocol]]
 - [[DefinedTerm/agent-computer-interface]]
