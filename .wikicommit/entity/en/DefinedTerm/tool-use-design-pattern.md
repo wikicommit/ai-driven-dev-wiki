@@ -20,10 +20,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/writing-tools-for-agents'
     hash: sha256:7541e4e46d675b2aed1175d9291d45d75f493ae908aea2afc77b29c615a324ea
+  - type: url
+    url: 'https://blog.langchain.com/tool-calling-with-langchain/'
+    hash: sha256:272d889d15308a542b7029c3aae6528c22e13a794ef6e75763f377ff9e0b206a
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "A design pattern in which a language model is given machine-readable descriptions of callable functions, selects one and produces its arguments, and has the result fed back into its reasoning — extending an agent from producing language to taking actions against external systems."
@@ -42,10 +45,11 @@ database lookups to external APIs and cloud services.
 
 ## Usage
 
-Four published accounts of the mechanism are described here — a cloud vendor's architectural pattern
-catalogue, a vendor-published teaching course, a framework vendor's engineering blog post, and an
-independent practitioner's survey of the research and the vendor APIs — and they agree on the
-mechanism while differing in what they emphasize around it.
+Five published accounts of the mechanism are described here — a cloud vendor's architectural pattern
+catalogue, a vendor-published teaching course, a framework vendor's engineering blog post, an
+independent practitioner's survey of the research and the vendor APIs, and a second framework vendor's
+announcement of a cross-provider interface — and they agree on the mechanism while differing in what
+they emphasize around it.
 
 **AWS Prescriptive Guidance** presents it as an architecture pattern named *tool-based agents for
 calling functions*, and sets out a five-step control flow: the agent receives a natural-language
@@ -119,7 +123,7 @@ by Python's `inspect` module and formatted into the type that provider expects, 
 means adding a function. It recommends including a fallback
 tool that lets the model answer from its own knowledge, and — modelling the flow as a state machine in
 [[SoftwareApplication/burr]] — argues for one action per tool rather than a single dispatching action,
-so that every available tool is visible in the application graph. It is also the only one of the four
+so that every available tool is visible in the application graph. It is also the only one of these accounts
 to report the pattern misbehaving: the model was finicky about choosing a tool, sometimes declining to
 choose one and sometimes losing track of the instructions, and reasonable behaviour came from prompt
 engineering iterated against the framework's own debugging UI.
@@ -156,9 +160,22 @@ tool with them and append the result to the conversation history for the model t
 final output. That restates, from outside any vendor, the same division of labour the AWS and
 Microsoft accounts describe from inside one.
 
+**LangChain's own announcement** of that cross-model support,
+[[BlogPosting/tool-calling-with-langchain]], tells the same convergence from the framework side. It dates
+native tool calling to OpenAI's "function calling", released roughly a year before the post and evolving
+into "tool calling" that November, with Gemini, Mistral, Fireworks, Together, Groq, Cohere and Anthropic
+following over the next months — each through a slightly different interface, OpenAI's, Anthropic's and
+Gemini's among them incompatible with one another. Where Lee reads the vendors' schemas as essentially the
+same, LangChain's response was to hide the remaining differences behind one interface: `bind_tools()` to
+attach tool definitions to any tool-calling model, a `tool_calls` attribute returning each invocation as
+a name, arguments and an id, and an agent constructor that works with any model implementing both. The
+post also relates the pattern to structured output: its `with_structured_output()` is built on tool
+calling for most models, always returning output in the given schema, whereas binding tools leaves the
+model free to call one tool, several or none.
+
 ## Designing Tools for Agents
 
-A fifth account, [[BlogPosting/writing-effective-tools-for-agents]], takes the mechanism above as
+A further account, [[BlogPosting/writing-effective-tools-for-agents]], takes the mechanism above as
 given and asks what follows for how tools should be designed. Its starting claim is that a tool is a
 different kind of artifact from a function: conventional software establishes a contract between
 deterministic systems, where the same call fetches the same thing the same way every time, whereas a
@@ -203,3 +220,5 @@ written either by its researchers or by Claude.
 - [[DefinedTerm/two-channel-prompt-injection]]
 - [[SoftwareApplication/burr]]
 - [[BlogPosting/agentic-design-pattern-tool-calling]]
+- [[BlogPosting/tool-calling-with-langchain]]
+- [[DefinedTerm/structured-tool]]
