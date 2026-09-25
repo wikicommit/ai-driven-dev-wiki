@@ -158,6 +158,7 @@ comments: false
 - [[SoftwareApplication/toolmaker]]
 - [[SoftwareApplication/trae]]
 - [[SoftwareApplication/useagent]]
+- [[SoftwareApplication/utah]]
 - [[SoftwareApplication/vibecraft]]
 - [[SoftwareApplication/vibesdk]]
 - [[SoftwareApplication/vouch]]

@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[Organization/ai-agent-user-group]]
+- [[Organization/all-hands-ai]]
 - [[Organization/anthropic]]
 - [[Organization/atlassian]]
 - [[Organization/charm]]
