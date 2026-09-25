@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://blog.langchain.com/agent-frameworks-runtimes-and-harnesses-oh-my/'
     hash: sha256:dbbb531bd6a1b614e8c6537f3fe67ea744c2f9b7a8532abd9bfc3cd413ce1729
+  - type: url
+    url: 'https://blog.langchain.com/context-engineering-for-agents/'
+    hash: sha256:8117f9ce8bfc2d31c554ae40e47e44aea14ddecd56eea8f73a6cb9c2ce29ffff
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -58,6 +61,24 @@ communicate, which makes each agent's decision path easier to analyse; LangSmith
 where state snapshots and logs are recorded. Its stated weakness in that account is the cost of that
 flexibility — a high complexity overhead — and its stated strengths are complete state management,
 persistent memory across turns, and modelling agent interaction as a state machine.
+
+## Context Engineering Support
+
+A LangChain blog post, [[BlogPosting/langchain-context-engineering]], maps LangGraph features onto the
+four [[DefinedTerm/context-engineering]] strategies it identifies — write, select, compress and isolate —
+presenting LangGraph as a low-level orchestration framework in which the developer lays out an agent as a
+set of nodes, defines the logic in each, and defines a state object passed between them. For writing
+context, it describes thread-scoped short-term memory that uses checkpointing to persist agent state
+across all steps of an agent, usable as a scratchpad, and long-term memory that persists context across
+many sessions, whether as small sets of files such as a user profile or as larger collections of
+memories, with the LangMem library offering further abstractions. For selecting context, it says state
+can be fetched within each node, giving fine-grained control over what the model sees at each step, that
+long-term memory supports retrieval including embedding-based search over a memory collection, and that
+the LangGraph Bigtool library applies semantic search over tool descriptions. For compressing, it points
+to built-in utilities for summarizing or trimming a message list and to summarization nodes or
+summarization logic inside the tool-calling node. For isolating, it describes storing context from tool
+calls in state fields kept from the model until needed, support for sandboxes, and supervisor and swarm
+libraries for multi-agent architectures. These are LangChain's own descriptions of its product.
 
 ## As an Agent Runtime
 
