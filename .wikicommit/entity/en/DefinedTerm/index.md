@@ -208,6 +208,7 @@ comments: false
 - [[DefinedTerm/mentorscript]]
 - [[DefinedTerm/merge-readiness-pack]]
 - [[DefinedTerm/meta-harness]]
+- [[DefinedTerm/meta-skill]]
 - [[DefinedTerm/methodological-harness]]
 - [[DefinedTerm/mise-en-place-methodology]]
 - [[DefinedTerm/model-context-protocol]]
