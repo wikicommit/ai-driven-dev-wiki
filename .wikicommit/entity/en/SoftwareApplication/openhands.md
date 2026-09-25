@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://openhands.dev/blog/mitigating-prompt-injection-attacks-in-software-agents'
     hash: sha256:c531528526e6141ec71ff79c2e5e157b6f4eed38552de696dcc4c7135b39d6ff
+  - type: url
+    url: 'https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents'
+    hash: sha256:9c162f7d2b9faa097af2bc398adfb790f05ef67863ae29034d68c30367bfb45b
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
@@ -21,7 +24,7 @@ generated_with: "0.7.0"
 properties:
   description: "An open platform for developing AI agents that interact with the world as a human developer does — writing code, working at a command line, and browsing the web — with sandboxed code execution, multi-agent coordination and built-in evaluation benchmarks. Formerly known as OpenDevin."
   applicationCategory: "AI agent development platform"
-  featureList: "Implementation of new agents; safe interaction with sandboxed environments for code execution; coordination between multiple agents; incorporation of evaluation benchmarks; a trajectory-level critic model for scoring agent attempts, available in the OpenHands Software Agent SDK and CLI; Docker-sandboxed conversations; a confirmation mode in the OpenHands CLI; a security analyzer for proposed agent actions"
+  featureList: "Implementation of new agents; safe interaction with sandboxed environments for code execution; coordination between multiple agents; incorporation of evaluation benchmarks; a trajectory-level critic model for scoring agent attempts, available in the OpenHands Software Agent SDK and CLI; Docker-sandboxed conversations; a confirmation mode in the OpenHands CLI; a security analyzer for proposed agent actions; a context condenser that summarizes older conversation history once it passes a size threshold"
 ---
 
 OpenHands, formerly known as OpenDevin, is a platform for the development of powerful and flexible
@@ -49,6 +52,16 @@ production traces rather than benchmark data. The critic is integrated into the 
 Agent SDK, where its score can be used in custom loops for reranking, early stopping or iterative
 refinement, and into the OpenHands CLI, where it can be enabled with early stopping, used for
 iterative refinement, and given different acceptance thresholds. The post names a second, patch-level layer as still to come.
+
+### Context condensation
+
+An April 2025 post, [[BlogPosting/openhands-context-condensation-for-more-efficient-ai-agents]],
+introduces the OpenHands context condenser. Once a conversation grows beyond a threshold, older
+interactions are summarized — encoding the user's goals, the agent's progress and what remains, and for
+software tasks details such as critical files and failing tests — while recent exchanges are kept
+intact. On a subset of SWE-bench Verified instances, the post reports per-turn API cost settling at
+less than half the baseline agent's, with an average solve rate of 54% against the baseline's 53%. It
+describes context condensation as available in OpenHands, including OpenHands Cloud.
 
 ### Security controls
 
