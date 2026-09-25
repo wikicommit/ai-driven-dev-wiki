@@ -19,9 +19,12 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/'
     hash: sha256:7b380e1b02a7431f86ce85fd5ad5a49d2707ee157205f5584f28284782319fef
+  - type: url
+    url: 'https://arxiv.org/abs/2505.02279'
+    hash: sha256:7697852f9428f817d9c744137c1cc2162cddc7fa5d0876349a9b513835cce643
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -103,6 +106,16 @@ to tools and data, and A2A connects agents to other agents. It also notes that t
 [[DefinedTerm/universal-commerce-protocol]] reuses A2A's well-known-URL discovery pattern and can run over
 A2A as a transport.
 
+A survey of four emerging agent communication protocols,
+[[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]], summarizes A2A as enabling
+peer-to-peer task delegation using capability-based Agent Cards, supporting secure and scalable
+collaboration across enterprise agent workflows. It compares A2A with
+[[DefinedTerm/model-context-protocol]], [[DefinedTerm/agent-communication-protocol]] and
+[[DefinedTerm/agent-network-protocol]], and in the phased adoption roadmap it proposes, A2A is adopted
+for collaborative task execution after MCP (for tool access) and ACP (for messaging), before adoption
+extends to ANP for decentralized agent marketplaces.
+
 ## Related Terms
 
-[[DefinedTerm/model-context-protocol]], [[DefinedTerm/ai-agent]], [[DefinedTerm/universal-commerce-protocol]]
+[[DefinedTerm/model-context-protocol]], [[DefinedTerm/ai-agent]], [[DefinedTerm/universal-commerce-protocol]],
+[[DefinedTerm/agent-communication-protocol]], [[DefinedTerm/agent-network-protocol]]

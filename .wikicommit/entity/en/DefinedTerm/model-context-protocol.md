@@ -17,9 +17,12 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/'
     hash: sha256:7b380e1b02a7431f86ce85fd5ad5a49d2707ee157205f5584f28284782319fef
+  - type: url
+    url: 'https://arxiv.org/abs/2505.02279'
+    hash: sha256:7697852f9428f817d9c744137c1cc2162cddc7fa5d0876349a9b513835cce643
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -82,6 +85,14 @@ The same paper sets out [[DefinedTerm/code-execution-mcp]] as an alternative, co
 execution model that addresses this limitation by decoupling tool orchestration from the agent's
 context window.
 
+A survey of agent communication protocols,
+[[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]], describes MCP as providing a
+JSON-RPC client-server interface for secure tool invocation and typed data exchange, and places it
+alongside three other emerging protocols: [[DefinedTerm/agent-communication-protocol]],
+[[DefinedTerm/agent2agent-protocol]] and [[DefinedTerm/agent-network-protocol]]. In the phased
+adoption roadmap that survey proposes, MCP comes first, for tool access, before the other three are
+adopted for messaging, collaborative task execution and decentralized agent marketplaces.
+
 ## Related Terms
 
 - [[DefinedTerm/code-execution-mcp]] — an alternative execution model for MCP that generates a
@@ -94,3 +105,5 @@ context window.
   server and registering it with GitHub Copilot in VS Code
 - [[DefinedTerm/agent2agent-protocol]] — the agent-to-agent counterpart that Google's protocol guide
   places alongside MCP
+- [[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]] — a survey comparing MCP with
+  ACP, A2A and ANP and proposing a phased adoption roadmap
