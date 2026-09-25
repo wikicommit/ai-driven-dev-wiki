@@ -97,6 +97,7 @@ comments: false
 - [[SoftwareApplication/hoop-dev]]
 - [[SoftwareApplication/hula]]
 - [[SoftwareApplication/invariant-guardrails]]
+- [[SoftwareApplication/jailed-agents]]
 - [[SoftwareApplication/jules-tools]]
 - [[SoftwareApplication/kilo-code]]
 - [[SoftwareApplication/kimi-cli]]
