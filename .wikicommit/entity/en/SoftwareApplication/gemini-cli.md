@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/'
     hash: sha256:74ccc5f44492281655fe5a0f8252a401ded3c57354ca7f1efbbcc7b28d3120f6
+  - type: url
+    url: 'https://codelabs.developers.google.com/sdlc/instructions'
+    hash: sha256:ed5d01ab1f229b1c0f5543df1541841ed81d141c60c442f41d9ad008c38881ee
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -26,6 +29,18 @@ Gemini CLI is a command-line assistant from [[Organization/google]], powered by 
 ## Capabilities
 
 It is invoked from the command line and works against an existing codebase; analyzing a codebase and drafting a solution plan are the two uses one account names, with its large context window singled out as the characteristic feature and the developer refining the output across successive turns of the same session. Google's own account names Agent Skills, hooks, subagents and extensions among its features, and credits its terminal UI and weekly release cadence with being what users liked about it.
+
+A Google Codelabs workshop, "AI Agent End to End", uses it as the development tool across a whole
+build. It shows the CLI's slash commands — `/help`, `/tools` to list built-in tools such as `ReadFile`,
+`WriteFile` and `GoogleSearch`, and `/memory show` and `/memory add` to inspect and add to the context
+the agent holds — and referencing a file in a prompt with the `@` symbol. The workshop explains that
+when the `gemini` command runs it looks for a `gemini.md` file in the current directory that acts as a
+project-specific instruction manual, able to set a persona, point at files and searches, and hold
+facts or rules to remember for the project; in a later step it writes coding guidelines into a
+`GEMINI.md` file and has the CLI generate an agent from a design document, which it presents as the
+context-engineering way of working. It then uses the CLI to generate agents for Google's
+[[SoftwareApplication/agent-development-kit]], agent evaluation files, deployment scripts and a CI/CD
+pipeline from prompts.
 
 ## Adoption & Ecosystem
 
