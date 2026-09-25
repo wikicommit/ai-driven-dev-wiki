@@ -85,6 +85,7 @@ comments: false
 - [[BlogPosting/crush-welcome-home]]
 - [[BlogPosting/custom-agents-in-github-copilot-cli]]
 - [[BlogPosting/custom-code-review-rules-for-codex]]
+- [[BlogPosting/deepswe-training-a-fully-open-sourced-state-of-the-art-coding-agent-by-scaling-rl]]
 - [[BlogPosting/demystifying-evals-for-ai-agents]]
 - [[BlogPosting/design-patterns-for-securing-llm-agents]]
 - [[BlogPosting/designing-agentic-loops]]

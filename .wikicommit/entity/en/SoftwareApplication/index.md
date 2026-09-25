@@ -140,6 +140,7 @@ comments: false
 - [[SoftwareApplication/pr-agent]]
 - [[SoftwareApplication/qoder]]
 - [[SoftwareApplication/reversa]]
+- [[SoftwareApplication/rllm]]
 - [[SoftwareApplication/sandbox-runtime]]
 - [[SoftwareApplication/sandeco-loop]]
 - [[SoftwareApplication/semantic-governance-policies]]
@@ -167,3 +168,4 @@ comments: false
 - [[SoftwareApplication/watsonx-orchestrate-agent-development-kit]]
 - [[SoftwareApplication/windsurf]]
 - [[SoftwareApplication/yandex-code-assistant]]
+- [[SoftwareApplication/zed]]
