@@ -12,9 +12,12 @@ sources:
   - type: url
     url: 'https://docs.github.com/en/copilot/how-tos/github-agentic-workflows/creating-github-agentic-workflows'
     hash: sha256:a8e56bd50a0890f7f307b8d7987d63165acf3552883dc367b139df6ca784eb6f
+  - type: url
+    url: 'https://github.blog/changelog/2026-02-13-github-agentic-workflows-are-now-in-technical-preview/'
+    hash: sha256:3a42888c4bda0dd7a8257cbea68e434226f40b820a649da9288c35de9602287d
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 tags: [agents, continuous-ai, agent-tooling, guardrails, agent-safety]
 
@@ -89,6 +92,15 @@ task requires.
 GitHub states that pull requests are never merged automatically and that humans must always
 review and approve.
 
+The technical-preview changelog entry adds a few specifics to this picture: workflows are added as
+Markdown files under `.github/workflows/`, and the `gh aw` CLI converts them into standard GitHub
+Actions workflows; the security design includes SHA-pinned dependencies and sanitized write operations
+alongside sandboxing and network isolation; the GitHub MCP Server gives native access to repositories,
+issues, pull requests, actions and security, with additional tools for browser automation, web search
+and custom MCP servers; and workflows can be triggered by issue and pull request events, on a schedule,
+by manual dispatch, or by commands in comments. It also states that the implementation is fully open
+source under the MIT license in the `gh-aw` repository.
+
 ## Adoption & Ecosystem
 
 GitHub presents the system as the vehicle for [[DefinedTerm/continuous-ai]] — its term for
@@ -113,6 +125,9 @@ documentation's example comes from `githubnext/agentics` — and records a `sour
 frontmatter so that `gh aw update` can later pull upstream changes while trying to preserve local
 edits. Workflows marked `private: true` cannot be imported, and the documentation advises importing
 only from trusted sources and reviewing what a workflow does before adding it.
+
+For examples, the changelog points to Peli's Agent Factory, which it says showcases over 50
+specialized agentic workflows for different use cases.
 
 Running a workflow uses a coding agent at runtime and so incurs billing cost. The
 announcement is described in [[BlogPosting/automate-repository-tasks-with-agentic-workflows]].

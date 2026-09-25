@@ -19,9 +19,12 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/github-copilot/github-copilot-coding-agent-101-getting-started-with-agentic-workflows-on-github/'
     hash: sha256:6144c6b7e4fe07bdc9dd325f45c74f73d95f372935d7794b280556efd97c4585
+  - type: url
+    url: 'https://github.blog/ai-and-ml/github-copilot/onboarding-your-ai-peer-programmer-setting-up-github-copilot-coding-agent-for-success/'
+    hash: sha256:822cf11b61d2b4dee40e368a8a3a65011646e0467d0e94521e2341528f263d3b
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -91,6 +94,18 @@ there. It can also be asked to open a pull request from Copilot Chat on GitHub o
   administrators add others through a JSON configuration in the repository settings, and that its
   internet access is limited by a firewall whose default rules allow the hosts it uses to interact
   with GitHub and download dependencies.
+- A GitHub developer advocate's setup guide ([[BlogPosting/onboarding-your-ai-peer-programmer]], July
+  2025) describes a fixed sequence after assignment — create a branch, create a pull request to track
+  the work, create a contained environment inside GitHub Actions, read the issue or prompt, explore the
+  project, work iteratively, then update the pull request and notify the team it is ready for review.
+  It explains that the environment is configured by a workflow at
+  `.github/workflows/copilot-setup-steps.yml` whose job must be named `copilot-setup-steps`, and that
+  the agent reads two kinds of custom instructions: a repository-wide `.github/copilot-instructions.md`
+  and `<file-name>.instructions.md` files under `.github/instructions/` targeted at specific files with
+  an `applyTo` glob.
+- The same guide says an existing `.vscode/mcp.json` in the project can be used by the agent to
+  identify MCP servers, as an alternative to configuring them in the repository's Copilot coding agent
+  settings, and that a "View session" button on the pull request shows everything the agent did.
 
 The walkthrough pairs it with drafting the issue itself with Copilot — a natural-language prompt
 turned into an issue with a title, acceptance criteria and pointers to the files to change — and
@@ -118,6 +133,12 @@ with limited repository permissions, and its commits are co-authored for traceab
 the agent against a traditional IDE assistant, where the developer still creates the branch, writes
 commit messages and opens the pull request, whereas the coding agent automates those steps inside the
 pull request workflow with each one logged and visible to the team.
+
+The setup guide describes the default firewall as limiting the agent's access to core services such as
+the npm and pip package hosts, and presents it as a way to manage data exfiltration risk — if malicious
+instructions somehow reach the agent, code or other sensitive information could otherwise be leaked to
+remote locations. Adding a remote MCP server, or any other internet access, requires updating the
+firewall's allow list in the repository's Copilot coding agent settings.
 
 ## Adoption & Ecosystem
 
