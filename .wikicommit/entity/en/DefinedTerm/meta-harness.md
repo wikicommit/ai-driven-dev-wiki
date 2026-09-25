@@ -7,13 +7,16 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2609.00006'
     hash: sha256:b2b6be03cc43e6f9b52518921f9545373563aec224327e1bb29a30beea7b7ce0
+  - type: url
+    url: 'https://www.anthropic.com/engineering/managed-agents'
+    hash: sha256:058bb96f68b5ec148e00110cca6d9517e4d5dcba8d1d14b840b8aef1a5da3ed2
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
-  description: "An orchestration layer that sits above coding-agent harnesses and treats whole harnesses as interchangeable components behind a common API, coordinating them from outside while implementing no editing loop of its own."
+  description: "A layer defined relative to agent harnesses rather than as one. In one research usage it is an orchestration layer that treats whole coding-agent harnesses as interchangeable components behind a common API; Anthropic uses the term for a hosted system that stays unopinionated about which harness runs on its stable interfaces."
 ---
 
 A meta-harness, in the usage of
@@ -44,8 +47,19 @@ vendor's CLI in its own sandbox while delegating to another's native sandbox mod
 takes as evidence that OS-level isolation resists being factored out as a shared service. It lists the
 economics of commoditization from above as an open question for future work.
 
-The term and its analysis rest on a single system and a single source-code study; the paper calls
-Omnigent the first meta-harness it is aware of rather than a representative of an established category.
+The paper's analysis rests on a single system and a single source-code study; it calls Omnigent the
+first meta-harness it is aware of rather than a representative of an established category.
+
+Anthropic uses the same word for a different design. In
+[[BlogPosting/scaling-managed-agents-decoupling-the-brain-from-the-hands]] it calls
+[[SoftwareApplication/claude-managed-agents]] "a meta-harness", meaning a system that is unopinionated
+about the specific harness Claude will need in future and instead offers general interfaces — a durable
+session and sandboxes reached through a tool-call interface — that many different harnesses can run on,
+from a general-purpose one such as Claude Code to task-specific ones. Where the paper's meta-harness
+coordinates existing vendors' harnesses from above, Anthropic's hosts whatever harness sits between
+Claude and those interfaces, and it describes the design as being opinionated about the interfaces around
+Claude rather than about the harness itself (see [[DefinedTerm/brain-hands-session-split]]). Neither
+source refers to the other's usage.
 
 ## Related Terms
 
@@ -54,3 +68,4 @@ Omnigent the first meta-harness it is aware of rather than a representative of a
 - [[DefinedTerm/system-harness]]
 - [[DefinedTerm/harness-as-a-service]]
 - [[DefinedTerm/multi-model-orchestration]]
+- [[DefinedTerm/brain-hands-session-split]]

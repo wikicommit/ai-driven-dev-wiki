@@ -42,6 +42,7 @@ comments: false
 - [[SoftwareApplication/claude-code]]
 - [[SoftwareApplication/claude-code-action]]
 - [[SoftwareApplication/claude-code-for-web]]
+- [[SoftwareApplication/claude-code-security-review]]
 - [[SoftwareApplication/claude-cowork]]
 - [[SoftwareApplication/claude-managed-agents]]
 - [[SoftwareApplication/claude-squad]]

@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://addyosmani.com/agentic-engineering/skill-atrophy/'
     hash: sha256:093e78f49a3b3b5adf304d52c21d5f996df2d142d90137b42629a4ffc505058a
+  - type: url
+    url: 'https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic'
+    hash: sha256:768151bc1fd55f4171a86c1cf74c112f09821eebf20b00b6dcd176e957394536
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -51,7 +54,20 @@ work such as boilerplate, tests and documentation while keeping architectural an
 in human hands. Learning new things frames AI as a learning accelerator rather than a learning
 replacement — it should expand what a developer can build, not narrow what they understand.
 
+The concern also appears in practitioners' own accounts. In
+[[Report/how-ai-is-transforming-work-at-anthropic]], Anthropic's study of its own engineers and
+researchers, some interviewees worried about "skills atrophying as [they] delegate more" and about losing
+the incidental learning that comes from working through a problem by hand — reading docs and code that
+builds a model of how a system works even when it does not directly solve the problem at hand. The study
+ties this to what it calls the [[DefinedTerm/paradox-of-supervision]]: using Claude effectively requires
+supervising it, and supervising it requires the coding skills that may atrophy. It also records that
+engineers were divided on how much this matters. Some deliberately practise without AI to stay sharp;
+others were unworried, saying AI helped them learn faster, that they had only lost less important skills,
+or that lost skills could come back if needed; and one questioned the premise, arguing that coding will
+not return to the way it was before these tools.
+
 ## Related Terms
 
 [[DefinedTerm/automation-bias]], [[DefinedTerm/the-70-percent-problem]],
-[[DefinedTerm/cognitive-debt]], [[DefinedTerm/human-in-the-loop]]
+[[DefinedTerm/cognitive-debt]], [[DefinedTerm/human-in-the-loop]],
+[[DefinedTerm/paradox-of-supervision]]
