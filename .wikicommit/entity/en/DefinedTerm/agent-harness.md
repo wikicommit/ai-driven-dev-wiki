@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://blog.langchain.com/agent-frameworks-runtimes-and-harnesses-oh-my/'
     hash: sha256:dbbb531bd6a1b614e8c6537f3fe67ea744c2f9b7a8532abd9bfc3cd413ce1729
+  - type: url
+    url: 'https://blog.langchain.com/the-anatomy-of-an-agent-harness/'
+    hash: sha256:71cffd4adc7b81b7dd5f981d26af2bebcee592b2751a882ea95bb833fa2d022e
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -52,6 +55,23 @@ Code's step in the same direction and allows that all coding CLIs could be argue
 of a kind. He states that he did not come up with the term and that its definition, like the
 boundaries between the three layers, was not yet clear.
 
+A later LangChain post by Vivek Trivedy, [[BlogPosting/the-anatomy-of-an-agent-harness]], proposes a much
+broader definition than Chase's layering: "Agent = Model + Harness", and "if you're not the model, you're
+the harness". On this account a harness is every piece of code, configuration and execution logic that is
+not the model itself — system prompts; tools, skills and MCP servers with their descriptions; bundled
+infrastructure such as a filesystem, sandbox and browser; orchestration logic such as subagent spawning,
+handoffs and model routing; and hooks or middleware for deterministic execution such as compaction,
+continuation and lint checks. A raw model is not an agent, the post argues, until a harness gives it state,
+tool execution, feedback loops and enforceable constraints. Trivedy offers this as, in his opinion, the
+cleanest of many possible ways to draw the boundary, and derives each component by working backwards from
+something a model cannot do on its own: the filesystem for durable state, bash and code execution as a
+general-purpose tool, sandboxes for safe execution and self-verification, memory files and search for
+knowledge beyond the weights, [[DefinedTerm/compaction]] and [[DefinedTerm/tool-call-offloading]] against
+[[DefinedTerm/context-rot]], and the [[DefinedTerm/ralph-loop]] and planning for long-horizon work. The
+post also argues that because products such as Claude Code and Codex are post-trained with their harness
+in the loop, a model can overfit to that harness — yet the best harness for a given task is not
+necessarily the one the model was trained with.
+
 ## Related Terms
 
 - [[DefinedTerm/system-harness]]
@@ -63,3 +83,5 @@ boundaries between the three layers, was not yet clear.
 - [[DefinedTerm/agent-framework]]
 - [[DefinedTerm/agent-runtime]]
 - [[SoftwareApplication/deep-agents]]
+- [[DefinedTerm/tool-call-offloading]]
+- [[BlogPosting/the-anatomy-of-an-agent-harness]]

@@ -49,6 +49,7 @@ comments: false
 - [[SoftwareApplication/context-engineering-kit]]
 - [[SoftwareApplication/continue-dev]]
 - [[SoftwareApplication/crewai]]
+- [[SoftwareApplication/crush]]
 - [[SoftwareApplication/cursor]]
 - [[SoftwareApplication/cxdb]]
 - [[SoftwareApplication/deep-agents]]

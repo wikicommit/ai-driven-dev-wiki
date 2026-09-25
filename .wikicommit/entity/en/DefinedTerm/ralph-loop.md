@@ -2,7 +2,7 @@
 title: "Ralph Loop"
 type: "schema:DefinedTerm"
 lang: en
-tags: []
+tags: [harness-engineering, long-running-agents]
 sources:
   - type: url
     url: 'https://addyosmani.com/blog/agent-harness-engineering/'
@@ -16,10 +16,16 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/long-running-agents/'
     hash: sha256:fa154fd01c14b8301d6ace42af061e437332617df2059253633747e4f7d39b17
+  - type: url
+    url: 'https://blog.langchain.com/improving-deep-agents-with-harness-engineering/'
+    hash: sha256:7628e7920b4c219963d45c07cb27a6039a14ef5a60f3939b0ccb424dd7481ddd
+  - type: url
+    url: 'https://blog.langchain.com/the-anatomy-of-an-agent-harness/'
+    hash: sha256:71cffd4adc7b81b7dd5f981d26af2bebcee592b2751a882ea95bb833fa2d022e
 review_status: pending
-generated_at: "2026-09-17"
-generated_by: "claude-sonnet-5"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "A harness pattern, nicknamed the 'Ralph Wiggum technique' and popularized by Geoffrey Huntley and Ryan Carson, that breaks development into small atomic tasks and runs an agent through a repeating pick/implement/validate/commit/reset cycle, resetting context each iteration to avoid accumulating confusion."
@@ -33,11 +39,11 @@ Four channels of memory persist across the otherwise-stateless resets: git commi
 
 ## When It Applies
 
-It applies where a task is expected to run longer than a single context window can hold and needs to continue unattended, such as overnight, between iterations. It assumes durable state on the filesystem that each fresh context window can read to pick up where the previous one left off, small tasks with unambiguous pass/fail criteria, and safeguards to keep an unattended run from causing harm: reported safeguards include running only on feature branches, feeding failing test/build output back to the agent for auto-retry, killing and reassigning an agent stuck for 3 or more iterations on the same error, hard limits on iterations/time/tokens (including per-role budgets), and opening a pull request for human review rather than merging automatically.
+It applies where a task is expected to run longer than a single context window can hold and needs to continue unattended, such as overnight. It assumes durable state on the filesystem that each fresh context window can read to pick up where the previous one left off, small tasks with unambiguous pass/fail criteria, and safeguards to keep an unattended run from causing harm: reported safeguards include running only on feature branches, feeding failing test/build output back to the agent for auto-retry, killing and reassigning an agent stuck for 3 or more iterations on the same error, hard limits on iterations/time/tokens (including per-role budgets), and opening a pull request for human review rather than merging automatically.
 
-Two of the sources describing this pattern credit Geoffrey Huntley and Ryan Carson with popularizing it, rather than presenting it as either author's own invention; one of those two credits a standalone `ralph` tool implementation to Carson specifically. The earliest-published of the three sources discusses the pattern as one it has written about previously, without naming an originator.
+Three of the Addy Osmani posts describing this pattern credit Geoffrey Huntley and Ryan Carson with popularizing it, rather than presenting it as either author's own invention, and one of them credits a standalone `ralph` tool implementation to Carson specifically. The fourth, "Agent Harness Engineering" (April 19, 2026), discusses the pattern as one its author has written about before, without naming an originator, and describes it there as a hook that intercepts the model's attempt to exit and re-injects the original prompt into a fresh context.
 
-A fourth source describes Anthropic reducing its own scientific-computing agent stack to a version of the same pattern: `CLAUDE.md` as a living plan the agent edits as it learns, `CHANGELOG.md` as portable lab notes, `tmux` plus `SLURM` plus `git` as the execution and coordination layer, and a `for` loop that kicks the agent back into context whenever it claims completion and asks whether it is really done. That source's flagship case study is a Boltzmann solver Claude Opus 4.6 built over a few days that reached sub-percent agreement with a reference CLASS implementation.
+Two LangChain posts describe the hook-based form from the harness-design side. [[BlogPosting/the-anatomy-of-an-agent-harness]] defines the Ralph Loop as a harness pattern that intercepts the model's attempt to exit through a hook and reinjects the original prompt into a clean context window, forcing the agent to continue its work against a completion goal; it adds that the filesystem is what makes this possible, since each iteration starts with fresh context but reads the state the previous one left. [[BlogPosting/improving-deep-agents-with-harness-engineering]] calls it a "Ralph Wiggum Loop" — a hook that forces the agent to continue executing on exit — and reports borrowing the mechanism for a different end: a middleware that intercepts LangChain's coding agent before it exits and reminds it to run a verification pass against the task specification.
 
 ## Related Terms
 
