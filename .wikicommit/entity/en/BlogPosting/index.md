@@ -151,6 +151,7 @@ comments: false
 - [[BlogPosting/self-improving-agents]]
 - [[BlogPosting/sequoia-ascent-2026-summary]]
 - [[BlogPosting/shared-claude-code-plugin-marketplace]]
+- [[BlogPosting/shell-skills-compaction-tips-for-long-running-agents]]
 - [[BlogPosting/software-development-in-the-age-of-ai-agents]]
 - [[BlogPosting/spec-driven-development-a-spec-first-approach-to-ai-native-engineering]]
 - [[BlogPosting/spec-driven-development-context-engineering-custom-slash-commands]]

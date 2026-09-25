@@ -28,9 +28,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.07358'
     hash: sha256:096f5ed37573599d6a6c7ead31f91dbe0c836695066c0ed2890efe4a97108983
+  - type: url
+    url: 'https://developers.openai.com/codex/skills'
+    hash: sha256:5ebdfc92d1486abd67e502b39443805551caddaedab7c0f36ee755769b80128f
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -194,6 +197,27 @@ Google's account makes about fast-moving SDKs, reached here from the direction o
 expertise rather than a model's training cutoff. That account reports no evaluation and does not
 identify which harness feature set it is describing beyond naming Claude Code as the agent.
 
+The format is not confined to Anthropic's products. OpenAI's documentation for building skills in
+ChatGPT and [[SoftwareApplication/openai-codex]] says its skills build on the open agent skills
+standard and describes the same shape: a directory with a `SKILL.md` file, which must include `name`
+and `description`, plus optional `scripts/`, `references/` and `assets/` directories and an optional
+`agents/openai.yaml` file for UI metadata, invocation policy and tool dependencies. It also describes
+progressive disclosure — ChatGPT and Codex start with each skill's name and description and load the
+full `SKILL.md` only when they decide to use the skill — and adds a limit specific to Codex: the
+initial skills list, which in Codex also carries each skill's file path, uses at most 2% of the model's
+context window, or 8,000 characters when the window is unknown, with Codex shortening descriptions
+first and possibly omitting some skills when many are installed. Activation is either explicit, by
+naming the skill in the prompt, or implicit, when the task matches the skill's `description`, which
+setting `allow_implicit_invocation: false` in `agents/openai.yaml` turns off while leaving explicit
+invocation working. Codex reads skills from repository locations (`.agents/skills` in every directory
+from the working directory up to the repository root), a user location, an admin location and a set
+bundled with Codex; the documentation treats these locations as for authoring and local discovery,
+and points to plugins, which can bundle several skills with MCP server connections, for distributing
+skills to others (compare [[DefinedTerm/agent-plugins]]). Its best-practice list is to keep each skill
+focused on one job, prefer instructions over scripts unless deterministic behaviour or external
+tooling is needed, write imperative steps with explicit inputs and outputs, and test prompts against
+the skill description to confirm it triggers correctly.
+
 ## A Research Framing
 
 The academic literature uses the term more broadly than any one product's file format.
@@ -293,5 +317,6 @@ external tools, and enabling agents to create, edit and evaluate Skills on their
 - [[DefinedTerm/context-engineering]] — the broader concern this format addresses
 - [[DefinedTerm/agents-md]] — another file-based convention for giving an agent standing instructions
 - [[SoftwareApplication/claude-code]] — one of the products the format is available in
+- [[SoftwareApplication/openai-codex]] — another product documented as supporting the format
 - [[DefinedTerm/procedural-gap]] — the shortfall the research literature presents skills as bridging
 - [[ScholarlyArticle/comprehensive-survey-on-agent-skills]] — a survey organizing agent-skill research around a lifecycle
