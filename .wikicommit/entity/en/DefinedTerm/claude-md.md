@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://code.claude.com/docs/en/how-claude-code-works'
     hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
+  - type: url
+    url: 'https://docs.anthropic.com/en/docs/claude-code/memory'
+    hash: sha256:b82b912f1cb5142539e561088fe1795bdeada1ef689b12e535152c8fafc326ee
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -51,6 +54,28 @@ put persistent rules in CLAUDE.md rather than rely on conversation history. It a
 "Compact Instructions" section in CLAUDE.md as a way to control what is preserved when the
 conversation is compacted, and an `/init` command that generates a starter CLAUDE.md for a project.
 
+Claude Code's memory documentation sets CLAUDE.md beside a second mechanism, [[DefinedTerm/auto-memory]]:
+CLAUDE.md holds instructions and rules that the user writes, while auto memory holds learnings Claude
+writes itself, and both are loaded at the start of every conversation as context rather than as
+enforced configuration. It lists four scopes, in load order from broadest to most specific: a managed
+policy file deployed organization-wide by IT or DevOps (which individual settings cannot exclude), a
+user file at `~/.claude/CLAUDE.md`, a project file at `./CLAUDE.md` or `./.claude/CLAUDE.md` shared
+through version control, and a personal `./CLAUDE.local.md` meant to be gitignored. Files found in the
+working directory and every directory above it are concatenated rather than overriding one another,
+ordered from the filesystem root down, so instructions closer to where Claude was launched are read
+last, and within each directory `CLAUDE.local.md` follows `CLAUDE.md`. A CLAUDE.md can pull in other
+files with `@path` imports, which are expanded into context at launch and may nest to a maximum depth
+of four hops; block-level HTML comments are stripped before the content is injected, so they can hold
+notes for human maintainers without costing context.
+
+For larger projects the documentation describes splitting instructions into topic files under
+`.claude/rules/`. A rule without `paths` frontmatter loads at launch with the same priority as
+`.claude/CLAUDE.md`; one whose `paths` field lists glob patterns loads only when Claude reads a
+matching file. It also describes Claude Code reading a repository's AGENTS.md as project instructions:
+by default only when no `CLAUDE.md` or `CLAUDE.local.md` exists in the working directory or above it,
+with a setting to read both, and with importing `@AGENTS.md` from a CLAUDE.md as the way to share one
+file with other coding tools.
+
 CLAUDE.md is one of seven places the post lists for instructions, and its advice is largely about what
 does not belong there. Procedures such as a deployment runbook or a review checklist belong in skills
 ([[DefinedTerm/agent-skills]]), whose bodies load only when invoked; a constraint that applies to one
@@ -69,9 +94,24 @@ instructions that matter. Its recommendations are to keep the file under 200 lin
 review changes to it like code, and write its content following the same rules as any prompt. These
 are Anthropic's recommendations for its own product rather than measured thresholds.
 
+The memory documentation's own guidance runs the same way. It frames CLAUDE.md as the place to write
+down what would otherwise be re-explained — when Claude makes the same mistake twice, when code review
+catches something Claude should have known, or when a new teammate would need the same context — and
+advises moving multi-step procedures to a skill and part-of-the-codebase concerns to a path-scoped
+rule. It recommends targeting under 200 lines per file, on the grounds that longer files consume more
+context and reduce adherence, and writing instructions concrete enough to verify ("Use 2-space
+indentation" rather than "Format code properly"). It explains why a file may not be followed: CLAUDE.md
+content is delivered as a user message after the system prompt, not as part of the system prompt, so
+there is no guarantee of strict compliance, especially for vague or conflicting instructions — and an
+instruction that must run at a fixed point, such as before every commit, should be written as a hook
+instead. On size limits it states that Claude Code loads a CLAUDE.md of up to 4 MiB in full and skips a
+larger file, and that after `/compact` the project-root CLAUDE.md is re-read from disk while nested
+files and path-scoped rules reload only as Claude reads files they apply to.
+
 ## Related Terms
 
 - [[DefinedTerm/agents-md]]
+- [[DefinedTerm/auto-memory]]
 - [[DefinedTerm/agent-skills]]
 - [[DefinedTerm/agent-hooks]]
 - [[DefinedTerm/compaction]]
