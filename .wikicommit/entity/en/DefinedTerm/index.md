@@ -266,6 +266,7 @@ comments: false
 - [[DefinedTerm/software-factory]]
 - [[DefinedTerm/software-issue-resolution]]
 - [[DefinedTerm/softwares-third-age]]
+- [[DefinedTerm/solution-leakage]]
 - [[DefinedTerm/source-sink-analysis]]
 - [[DefinedTerm/spec-driven-agentic-development]]
 - [[DefinedTerm/spec-driven-development]]

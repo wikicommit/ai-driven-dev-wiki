@@ -8,6 +8,7 @@ comments: false
 
 - [[Organization/ai-agent-user-group]]
 - [[Organization/anthropic]]
+- [[Organization/atlassian]]
 - [[Organization/charm]]
 - [[Organization/cognition]]
 - [[Organization/cyberagent]]

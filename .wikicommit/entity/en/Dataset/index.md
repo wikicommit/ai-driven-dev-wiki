@@ -32,6 +32,8 @@ comments: false
 - [[Dataset/swe-bench]]
 - [[Dataset/swe-bench-java-verified]]
 - [[Dataset/swe-bench-lite-s]]
+- [[Dataset/swe-bench-multimodal]]
+- [[Dataset/swe-bench-plus]]
 - [[Dataset/swe-bench-pro]]
 - [[Dataset/swe-bench-verified]]
 - [[Dataset/swe-chat]]
