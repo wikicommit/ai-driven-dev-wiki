@@ -101,6 +101,7 @@ comments: false
 - [[DefinedTerm/context-aware-code-review]]
 - [[DefinedTerm/context-blindness]]
 - [[DefinedTerm/context-bloat-loop]]
+- [[DefinedTerm/context-coding]]
 - [[DefinedTerm/context-confusion]]
 - [[DefinedTerm/context-driven-engineering]]
 - [[DefinedTerm/context-engineering]]

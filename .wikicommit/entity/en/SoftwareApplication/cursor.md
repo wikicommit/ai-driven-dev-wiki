@@ -16,10 +16,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.12231'
     hash: sha256:08aa95b018a1374f9de491d626d4f394b8efec41d830ef1726a1b8db6a69d9d6
+  - type: url
+    url: 'https://guangzhengli.com/blog/zh/vibe-coding-and-context-coding'
+    hash: sha256:1fb990c1b96d538c33025bac005806f001ffce5a54b8a29877454d271c67a3dd
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
+generated_with: "0.7.0"
 
 properties:
   description: "A popular tool for building software with an LLM, initially intended for professional developers and carrying far fewer safety rails than sandboxed alternatives. Published by Anysphere, it is also studied as an AI IDE, with project-specific rules kept under .cursor/rules/."
@@ -64,6 +67,28 @@ later superseded by the directory-based mechanism. That study records
 Cursor's release date as 6 April 2023, noting that the date corresponds to the version in which it
 transitioned to its VS Code-based architecture.
 
+A 2025 practitioner's blog post, [[BlogPosting/ai-coding-tools-evolution-and-vibe-coding]], attributes
+Cursor's lead over the IDE plugins that preceded it to [[DefinedTerm/context-engineering]], and gives
+the codebase index as its first breakthrough. On that post's account, when a project is opened Cursor
+splits the codebase into small chunks locally and uploads them to Cursor's cloud servers, where an
+embedding model embeds them and they are stored in a cloud vector database; when a question is asked,
+the prompt is embedded, Turbopuffer runs a nearest-neighbour search, and obfuscated file paths and line
+ranges are sent back to the client, which reads those code chunks locally. The post says the resulting
+multi-file context is what lets the model implement cross-file calls, fix bugs spanning several files,
+refactor whole modules and add features that touch many files. It adds that Cursor lets users @-mention
+files and folders directly, later added indexing of Git history and of documentation, and supports
+Rules, which it describes as giving the model general coding rules so that generated code stays
+consistent with a project's architecture, style and stack. Separately, it credits Cursor with a
+proprietary model built for Tab completion, fast and accurate enough that the author reports a high
+rate of accepting its suggestions.
+
+The same post also relays the other side of the argument over retrieval: that semantic similarity is
+not the same as the context code actually depends on, and that an index kept in sync through a Merkle
+tree of file hashes, as Cursor's is, can return out-of-date code during heavy refactoring or when the
+index servers are under load. In the author's experience Cursor and [[SoftwareApplication/claude-code]]
+perform similarly on small and medium tasks, while Claude Code does far better on large tasks touching
+more than ten files.
+
 ## Adoption & Ecosystem
 
 Willison groups Cursor with other popular vibe coding tools, which places a tool built for
@@ -77,3 +102,10 @@ In the rule-taxonomy study's practitioner survey, Cursor was the most widely ado
 study counts as a plugin arrangement rather than an AI IDE. On the mining side, Cursor also accounted
 for the largest share of that study's project dataset: 46 of the 83 projects it analysed, drawn from an
 initial 18,790 candidates before keyword, rule-file and manual filtering.
+
+The blog post above adds one practitioner's account of how Cursor is used when the code has to be
+kept clean: the author reports that Tab completion is the feature they use most in serious
+engineering work — writing the layering, abstractions, comments and method names by hand and letting
+completion generate the rest — because in their experience LLMs are poor at abstraction, and that
+this is often more efficient than repeatedly adjusting a conversation to get the model to output
+complete code.

@@ -16,9 +16,12 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
     hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
+  - type: url
+    url: 'https://help.aliyun.com/zh/lingma/user-guide/code-review-agent'
+    hash: sha256:ef40c22a5390c62d3c761a0e5431078665da73fcd3151121c4cfafb64296ad52
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -97,6 +100,20 @@ same thing deliberately; and to derive a to-do list from the request, extend it 
 extended, and show each item's state in the chat window. A separate prompt-optimization control is
 described as rewriting a rough instruction into a more detailed one using the surrounding context and
 conversation history, which the developer can then edit, submit or undo.
+
+A further page of the same guide describes a **Code Review agent** built into agent mode, which it
+says needs no separate configuration. The developer switches the chat panel to agent mode and uses a
+`/code-review` command, or describes the review wanted in natural language, naming the scope: the whole
+project, specific files, a Git diff or a pull request. The agent is said to review that scope across
+several dimensions — logic defects, security vulnerabilities (SQL injection and XSS are the examples
+given), performance bottlenecks and code-style problems — and to produce a structured report sorted by
+severity into errors, warnings and suggestions, each giving the code location, a description of the
+problem and a suggested fix. For large changes the page advises reviewing module by module to get
+finer-grained feedback, and, where a change involves specific business logic, briefly explaining that
+background in the request. See [[DefinedTerm/code-review-agent]] for the pattern across tools. That
+page also carries a notice that a new documentation site for the Qoder CN series has gone live at
+docs.qoder.cn, and that the content on the guide's own site may not reflect the product's latest
+features and changes.
 
 Note that the guide describes what is being configured as a plugin, with commands sent to a host
 IDE's terminal window — which is a different shape from the standalone AI IDE the study above

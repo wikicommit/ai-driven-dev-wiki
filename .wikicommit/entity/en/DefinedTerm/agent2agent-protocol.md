@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/agent/multi-agent/'
     hash: sha256:644e8c22de6fd778cefa3c3c44647eee3beb025a3fb81617e0411c473018e2c9
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-native-whitepaper/03-development-frameworks/'
+    hash: sha256:387bad42083bfa6f2ac79781096a48796e1b0e141792328d9810971e043c1a93
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -62,6 +65,24 @@ forming the protocol base of a [[DefinedTerm/llm-based-multi-agent-system]]. In 
 table it lists MCP as having become the de facto standard and A2A as Google-led, with the agent
 directory as its distinguishing addition. Those are stated there as assessments of where the
 ecosystem stands, not as measured findings.
+
+A fourth source describes the protocol's moving parts rather than its place in the ecosystem. Chapter 3
+of the AI 原生应用架构白皮书 (AI-native application architecture whitepaper) hosted on jimmysong.io calls
+A2A an open standard for efficient communication and collaboration between heterogeneous agents, with
+three core roles — the user, the A2A client and the A2A server — and five main elements: the **Agent
+Card**, JSON-format metadata describing an agent's capabilities and service endpoint; the **Task**, a
+stateful unit that supports multi-turn interaction; the **Message**, the basic unit of a single
+exchange; the **Artifact**, the concrete result produced once a task is complete; and the **Part**, the
+smallest unit of content within a message or artifact. It lists three interaction mechanisms — polling,
+streaming and push notification — and a three-step flow: discover the A2A server's Agent Card, carry
+out authorisation and authentication, then send an A2A request, either synchronous or streaming.
+
+The same chapter treats discovery as the problem distributed deployment raises. It calls the Agent Card
+a remote agent's digital business card, which the A2A client parses in order to discover that agent,
+and names three ways of obtaining one: direct configuration, a fixed URI, and a registry. For the last
+it describes Nacos acting as the A2A registry, managing agents' registration, discovery and retrieval
+in one place, and supporting agent version management and gray releases, which it presents as making
+distributed agent systems more maintainable and extensible.
 
 ## Related Terms
 
