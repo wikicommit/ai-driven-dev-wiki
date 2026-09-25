@@ -11,6 +11,9 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/agentic-code-quality/'
     hash: sha256:56349ced5b7fdba7ce2fa4ec5b60235f5fff08ae8eda38b2493c358817cec69f
+  - type: url
+    url: 'https://www.humanlayer.dev/blog/context-efficient-backpressure'
+    hash: sha256:e57c7b4289eae44405b7fa2bcda631a3a903cec96d2347c19da0a422f664cbe9
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
@@ -47,6 +50,15 @@ that keep production flowing to a quality standard create back-pressure in the p
 it should ideally exist throughout the loop rather than as a single review at the very end, so that
 the signals are used as early as possible rather than waiting for CI to refuse a deployment.
 
+HumanLayer's [[BlogPosting/context-efficient-backpressure-for-coding-agents]] adds a constraint on how
+those checks report back to an agent: they should be context-efficient. The post's pattern is to
+swallow test, build and lint output and show the agent only a `✓` when a stage passes, printing the full
+output only on failure, because a passing run otherwise spends context on hundreds of lines the agent
+does not need. It pairs this with fail-fast flags so the agent sees one failure at a time, filtering
+out stack frames and timing noise, and framework-specific parsing of test counts, and argues that this
+decision should be made deterministically by the wrapper rather than left to the model's own
+truncation.
+
 ## When It Applies
 
 It applies to agents that generate code in unattended loops, where no human reviews each iteration
@@ -64,3 +76,10 @@ to scale the verification system, reduce the rate at which agents generate chang
 quality bar, and he recommends applying strong constraints where they matter most while relaxing
 those that serve no purpose. This too is presented as one author's argument rather than a measured
 result.
+
+The HumanLayer post adds a failure mode of its own: verification that floods the context window. It
+argues that agents working near the limit of their context do worse, so a check that passes but prints
+hundreds of lines still costs something, and that models' own workarounds — discarding output or piping
+it through `head`, then re-running a slow suite — waste more tokens and human time. Its recommendation
+rests on the author's practice with HumanLayer's own monorepo and customers' Maven and Gradle projects,
+not on a measured comparison.

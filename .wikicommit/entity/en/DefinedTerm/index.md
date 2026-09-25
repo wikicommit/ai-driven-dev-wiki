@@ -177,6 +177,7 @@ comments: false
 - [[DefinedTerm/five-levels-of-ai-assisted-software-development]]
 - [[DefinedTerm/forked-subagent]]
 - [[DefinedTerm/four-stage-evolution-of-agentic-engineering]]
+- [[DefinedTerm/frequent-intentional-compaction]]
 - [[DefinedTerm/function-calling]]
 - [[DefinedTerm/generate-review-revise-loop]]
 - [[DefinedTerm/git-worktrees]]
