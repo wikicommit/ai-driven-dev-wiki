@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents'
     hash: sha256:9c162f7d2b9faa097af2bc398adfb790f05ef67863ae29034d68c30367bfb45b
+  - type: url
+    url: 'https://www.openhands.dev/blog/one-year-of-openhands-a-journey-of-open-source-ai-development'
+    hash: sha256:95b651a75d1dfdd3495be3b52292a94e0ce96f5db80c93d75d7f6b46422ad958
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
@@ -38,6 +41,16 @@ It is released under the permissive MIT license, and the introducing paper descr
 community project spanning academia and industry, with more than 2.1K contributions from over 188
 contributors at the time of writing. Its code is stated to be at
 <https://github.com/All-Hands-AI/OpenHands>.
+
+The project's first-anniversary post,
+[[BlogPosting/one-year-of-openhands-a-journey-of-open-source-ai-development]], gives its origin. It
+began on 12 March 2024 with the aim of creating an open-source AI agent for software development, and
+was originally created as OpenDevin — an homage to [[SoftwareApplication/devin]] by
+[[Organization/cognition]], which the post says inspired the project — by Binyuan Hui and Junyang Lin of
+the team developing the Qwen open-source language model. The open-source community rallied around it,
+and three early contributors, Graham Neubig, Robert Brennan and Xingyao Wang, went on to found
+[[Organization/all-hands-ai]] to carry on its mission, at which point the project was renamed
+OpenHands.
 
 ## Capabilities
 
@@ -84,3 +97,11 @@ Because evaluation benchmarks are incorporated into the platform itself, the ben
 part of what it offers. The introducing paper reports an evaluation of agents over 15 challenging
 tasks based on the benchmarks currently incorporated, spanning software engineering — for which it
 names [[Dataset/swe-bench]] — and web browsing, for which it names WebArena, among others.
+
+The anniversary post describes OpenHands being used both by individual developers automating routine
+tasks and by large teams on complex refactoring projects. It set out four aims for the project's second
+year: a general release of OpenHands Cloud, then in beta, which runs OpenHands without the user's own
+server and can be used from a browser, a mobile device or GitHub; continued improvement of the agent,
+both in core accuracy on benchmarks such as SWE-Bench and in the range of tasks it performs reliably;
+more integrations, including a better CLI and task-management tools such as Jira and Linear; and more
+customization to users' preferences, organizational policies and workflows.

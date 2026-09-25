@@ -12,3 +12,4 @@ comments: false
 - [[TechArticle/function-calling-using-llms]]
 - [[TechArticle/githubs-internal-playbook-for-building-an-ai-powered-workforce]]
 - [[TechArticle/model-ai-governance-framework-for-agentic-ai]]
+- [[TechArticle/technik-fuer-ki-unterstuetzte-software-entwicklung]]
