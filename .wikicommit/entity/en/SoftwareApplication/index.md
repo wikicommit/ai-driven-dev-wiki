@@ -94,6 +94,7 @@ comments: false
 - [[SoftwareApplication/hula]]
 - [[SoftwareApplication/invariant-guardrails]]
 - [[SoftwareApplication/jules-tools]]
+- [[SoftwareApplication/kilo-code]]
 - [[SoftwareApplication/kimi-cli]]
 - [[SoftwareApplication/kiro]]
 - [[SoftwareApplication/langchain]]

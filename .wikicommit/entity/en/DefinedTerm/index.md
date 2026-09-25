@@ -31,6 +31,7 @@ comments: false
 - [[DefinedTerm/agent-spec-driven-development]]
 - [[DefinedTerm/agent-sprawl]]
 - [[DefinedTerm/agent-steering]]
+- [[DefinedTerm/agent-systems-engineering]]
 - [[DefinedTerm/agent-teams]]
 - [[DefinedTerm/agent-to-user-interface-protocol]]
 - [[DefinedTerm/agent-user-interaction-protocol]]
