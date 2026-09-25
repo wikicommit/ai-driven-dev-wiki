@@ -320,6 +320,7 @@ comments: false
 - [[DefinedTerm/tool-result-clearing]]
 - [[DefinedTerm/tool-search]]
 - [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/tool-use-examples]]
 - [[DefinedTerm/toolleak]]
 - [[DefinedTerm/trace-grading]]
 - [[DefinedTerm/trajectory-evaluation]]
