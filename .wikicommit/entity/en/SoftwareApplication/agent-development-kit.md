@@ -15,6 +15,9 @@ sources:
   - type: url
     url: 'https://codelabs.developers.google.com/sdlc/instructions'
     hash: sha256:ed5d01ab1f229b1c0f5543df1541841ed81d141c60c442f41d9ad008c38881ee
+  - type: url
+    url: 'https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/'
+    hash: sha256:7b380e1b02a7431f86ce85fd5ad5a49d2707ee157205f5584f28284782319fef
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -43,6 +46,22 @@ render interactive, streaming dashboards. The framework is presented as somethin
 combine with open standards such as [[DefinedTerm/model-context-protocol]], and Google's
 argument for it is that doing so avoids writing and maintaining brittle integration code
 for every tool an agent touches.
+
+### Protocol support
+
+Google's [[BlogPosting/developers-guide-to-ai-agent-protocols]] builds that restaurant agent in ADK and
+shows, protocol by protocol, where the framework supports each one. It connects to
+[[DefinedTerm/model-context-protocol]] servers through `McpToolset`, and to databases through the MCP
+Toolbox for Databases. For [[DefinedTerm/agent2agent-protocol]], a utility turns any ADK agent into an A2A
+service, and `RemoteA2aAgent` routes to one remote agent per turn — for queries that span several remote
+agents at once the guide uses the `a2a-sdk` directly instead. The framework's `adk web` interface can
+render [[DefinedTerm/agent-to-user-interface-protocol]] components natively, so an agent's UI output can
+be tested without a custom renderer. ADK also provides a native `/run_sse` endpoint for streaming events;
+for the [[DefinedTerm/agent-user-interaction-protocol]], the guide wraps the agent with the `ag_ui_adk`
+package and mounts it on a FastAPI app. Not every protocol is in the core: the guide notes that the
+[[DefinedTerm/agent-payments-protocol]]'s types ship as a separate package rather than being built into
+ADK core. Its advice is to check for an ADK integration, an official SDK and sample code before building
+with any of these protocols.
 
 ### Tools
 

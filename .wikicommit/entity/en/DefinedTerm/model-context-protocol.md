@@ -14,6 +14,9 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/github-copilot/building-your-first-mcp-server-how-to-extend-ai-tools-with-custom-capabilities/'
     hash: sha256:79fe71c090476d29a3745d92b375a5354c83e43dff0abc079080c9c6d7048789
+  - type: url
+    url: 'https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/'
+    hash: sha256:7b380e1b02a7431f86ce85fd5ad5a49d2707ee157205f5584f28284782319fef
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -54,6 +57,17 @@ including sampling and elicitation. Its practical advice is to look for an exist
 building one, such as the [[SoftwareApplication/github-mcp-server]], and to vet third-party servers
 as supply-chain dependencies — whether the publisher is recognizable and the code open to review.
 
+Google's [[BlogPosting/developers-guide-to-ai-agent-protocols]] frames the same contract from the
+side of maintenance cost. Without MCP, it says, a developer writes and maintains a custom tool for each
+endpoint of each service an agent uses; with it, servers advertise their tools and the agent discovers
+them automatically, through a single standard connection pattern. It adds that because MCP servers are
+maintained by the teams who built the underlying systems, the agent gets current tool definitions
+without the developer writing or updating integration code. In that guide's worked example an
+[[SoftwareApplication/agent-development-kit]] agent reads a PostgreSQL database, looks up recipes and
+emails suppliers through three MCP servers, and the guide's closing advice is that most agents start
+with MCP for data access and add other protocols as requirements grow. That is Google's recommendation,
+made in a tutorial for its own framework.
+
 The MCP standardizes tool interfaces but does not specify how much metadata and output must be
 exposed to the model. A study of MCP execution models,
 [[ScholarlyArticle/from-tool-orchestration-to-code-execution]], calls the traditional arrangement a
@@ -78,3 +92,5 @@ context window.
   and the N-times-M framing above
 - [[BlogPosting/building-your-first-mcp-server]] — an introductory walkthrough of building an MCP
   server and registering it with GitHub Copilot in VS Code
+- [[DefinedTerm/agent2agent-protocol]] — the agent-to-agent counterpart that Google's protocol guide
+  places alongside MCP

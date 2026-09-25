@@ -9,6 +9,7 @@ comments: false
 - [[Organization/ai-agent-user-group]]
 - [[Organization/anthropic]]
 - [[Organization/charm]]
+- [[Organization/cognition]]
 - [[Organization/cyberagent]]
 - [[Organization/dmm]]
 - [[Organization/github]]

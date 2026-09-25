@@ -6,10 +6,13 @@ sources:
   - type: url
     url: 'https://developers.googleblog.com/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/'
     hash: sha256:b7703e83eb963ad1264b1927a931ffc37279d57efe136cc6d02e664b3df6aa63
+  - type: url
+    url: 'https://developers.openai.com/blog/eval-skills/'
+    hash: sha256:51ec56a57b97282cac1e2ff8d92b29b354928a62291f581e9daa7e0697a3597d
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.7.0"
 tags: [evaluation, harness-engineering, agent-architecture]
 
 properties:
@@ -44,6 +47,21 @@ suggest the suite can automate prompt engineering: an LLM tweaks its own system 
 until a failing test passes, while the rest of the suite acts as a CI/CD-style guardrail
 against breaking existing features.
 
+A second vendor describes the same shape of check for a narrower subject, without using the term.
+OpenAI's [[BlogPosting/testing-agent-skills-systematically-with-evals]] applies it to agent skills
+for [[SoftwareApplication/openai-codex]]: each eval runs the agent on a prompt, records what it did as
+a structured JSONL event trace, and scores that trace with deterministic checks — whether the agent
+ran `npm install`, whether a `package.json` was created, whether the expected commands ran in the
+expected order. The post names "process goals" — did the agent invoke the skill and follow the
+intended tools and steps — as one of four kinds of success to define up front, alongside outcome,
+style and efficiency goals, and values these checks because a failure can be explained by opening the
+trace and reading every command execution in order. Like Google's engineers, it adds a model-graded
+step for what fixed checks cannot capture: a second, read-only run that grades style and conventions
+against a rubric, constrained to a JSON schema so the result can be compared across runs. It also
+tests the skill's triggering, not only its execution, with a small prompt set that includes at least
+one negative control — a prompt that should not invoke the skill — to catch the skill firing too
+eagerly.
+
 ## When It Applies
 
 Google's engineers place these evaluations in the second phase of an agent's development.
@@ -69,9 +87,12 @@ runs is unsound because model nondeterminism makes them noisy; they recommend tr
 aggregate pass rates over time and treating that directional signal as the thing to act
 on.
 
-As to how well-established it is: this account is one engineering team's recommended
+As to how well-established it is: Google's account is one engineering team's recommended
 practice, published on their employer's developer blog and illustrated with their own
-SDK, not a measured result or an industry consensus. They are careful to present it as
+SDK, not a measured result or an industry consensus. OpenAI's guide is the same kind of
+source — a vendor's recommended practice for its own agent, reporting no measured results. OpenAI's version shares the incremental starting point: it recommends 10–20
+prompts for a single skill, growing the set from real failures, and adding slower checks
+such as builds or runtime smoke tests only where they reduce risk. They are careful to present it as
 complementary rather than replacing larger end-to-end suites — in their framing macro
 benchmarks verify the final destination while micro behavioural evals enable safe, rapid
 iteration, and the recommendation is to adopt both.

@@ -16,13 +16,16 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-native-whitepaper/03-development-frameworks/'
     hash: sha256:387bad42083bfa6f2ac79781096a48796e1b0e141792328d9810971e043c1a93
+  - type: url
+    url: 'https://developers.googleblog.com/developers-guide-to-ai-agent-protocols/'
+    hash: sha256:7b380e1b02a7431f86ce85fd5ad5a49d2707ee157205f5584f28284782319fef
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "A standard defining how agents communicate with each other, listed as the agent-to-agent counterpart to the Model Context Protocol's agent-to-tool role. A further source describes it as Google-led and reports a 2026 update introducing an agent directory."
+  description: "A standard defining how agents communicate with each other, listed as the agent-to-agent counterpart to the Model Context Protocol's agent-to-tool role. A further source describes it as Google-led and reports a 2026 update introducing an agent directory; Google's developer guide to agent protocols presents it as the standard for how agents discover and communicate with each other, with each agent publishing an Agent Card at a well-known URL."
 ---
 
 The Agent2Agent Protocol, abbreviated A2A, is a standard defining how agents communicate with each
@@ -84,6 +87,22 @@ it describes Nacos acting as the A2A registry, managing agents' registration, di
 in one place, and supporting agent version management and gray releases, which it presents as making
 distributed agent systems more maintainable and extensible.
 
+A fifth source shows the discovery mechanism in use. Google's
+[[BlogPosting/developers-guide-to-ai-agent-protocols]] introduces A2A as the answer to expertise that
+lives with remote agents — potentially built by different teams, on different frameworks, running on
+different servers — and notes that some data may never be exposed through an API at all but could be
+exposed through an agentic interface. In its description each A2A agent publishes an Agent Card at the
+well-known path `/.well-known/agent-card.json`, describing its name, capabilities and endpoint; the
+calling agent fetches these cards to learn what each remote agent does and routes queries to the right
+one at runtime, so adding a new remote agent is a matter of adding its URL, with no code change or
+redeployment. The guide's worked example uses
+[[SoftwareApplication/agent-development-kit]], whose `RemoteA2aAgent` routes to one remote agent per
+turn; where a query spans several remote agents at once, the guide uses the `a2a-sdk` directly. The same
+guide places A2A in a six-protocol stack and summarizes its role there in one line: MCP connects agents
+to tools and data, and A2A connects agents to other agents. It also notes that the
+[[DefinedTerm/universal-commerce-protocol]] reuses A2A's well-known-URL discovery pattern and can run over
+A2A as a transport.
+
 ## Related Terms
 
-[[DefinedTerm/model-context-protocol]], [[DefinedTerm/ai-agent]]
+[[DefinedTerm/model-context-protocol]], [[DefinedTerm/ai-agent]], [[DefinedTerm/universal-commerce-protocol]]
