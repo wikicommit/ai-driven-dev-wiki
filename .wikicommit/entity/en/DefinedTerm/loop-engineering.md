@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2608.21884'
     hash: sha256:56268a33af13d85aafed774b47a06d244855bbba6f3a42fd54400c1a78c0c418
+  - type: url
+    url: 'https://github.com/cobusgreyling/loop-engineering'
+    hash: sha256:df92990337d4e1373522192c1477d3c64cc7549531858bec90092f054ee4a84b
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -31,6 +34,26 @@ An exploratory academic study, [[ScholarlyArticle/loop-engineering-building-bloc
 A loop is built from five recurring pieces plus a place to remember state: automations that run on a schedule to discover and triage work; worktrees (isolated working directories on their own branch) so agents running in parallel don't edit the same files; skills that record project-specific knowledge so the agent doesn't have to re-derive it every session; plugins and connectors, generally built on MCP, that let the loop reach real tools such as an issue tracker or a chat channel; and sub-agents split so that the one who writes the work is not the one who checks it, since a model grading its own output tends to be too lenient. The sixth piece is external memory — a markdown file or a Linear board that lives outside any single conversation — since the underlying model forgets everything between runs and this state has to live on disk instead. Both the Codex app and Anthropic's Claude Code are described as now shipping all five pieces, under different names, which is presented as evidence that loop engineering has become a property of the products themselves rather than something each team has to hand-build.
 
 A worked instance outside coding work is reported in [[BlogPosting/loop-engineering-prompt-tuning]], where the loop being automated is prompt tuning for a vision-language model. Its construction method is stated as decomposing what the person was already doing by hand and assigning each step its own component — looking at the failures, diagnosing the cause, rewriting the prompt, re-evaluating, and recording what helped, with the re-evaluation step falling to a plain script and the rest to sub-agents — and a skill file acting purely as orchestrator, a single policy file holding the improvement priorities, accept/reject rules and stopping conditions that every sub-agent follows, and a lessons file the loop appends to after each iteration as the deliberate equivalent of a human tuner's accumulating memory. That account reports the automated loop matching or slightly exceeding hand tuning on the one task where a comparison existed, and cutting the surrounding evaluation cycle from about 3.5 weeks to about one week, from a single run rather than a repeated measurement.
+
+A practitioner-maintained pattern library, the `cobusgreyling/loop-engineering` repository on
+GitHub, gives the practice a catalogue of named, ready-to-install loops. It describes itself as a
+pattern library "for operating agents around a codebase", explicitly not a button for rewriting a
+module, and sums the practice up as "Stop prompting. Design the loop. Get a score." — designing a
+system that discovers work, hands it to agents, verifies results and persists state. Its patterns
+include daily triage, a thin loop run from GitHub Actions without a state file, a pull-request
+babysitter, CI and dependency sweepers, a changelog drafter, post-merge cleanup and issue triage, each
+listed with a cadence (from every five to fifteen minutes up to daily) and a relative cost. Each
+pattern also names a starting autonomy level, and the library's rollout rule is to move from L1
+(report only) to L2 (assisted) to L3 (unattended) only after the verifier has been right for a week;
+its tooling weights recent runs over the files on disk when judging readiness, so a month-old
+`STATE.md` does not count as L3. A CLI (`npx @cobusgreyling/loop`) initialises a pattern for Claude
+Code, Codex, Grok or OpenCode, checks a set-up, and estimates cost, and the repository keeps pages on
+failure modes, anti-patterns and safety alongside stories of both wins and failures. Among its
+sources it lists Addy Osmani's post ([[BlogPosting/loop-engineering]]), an article of the same title by
+its maintainer, and [[ScholarlyArticle/loop-engineering-building-blocks-adoption-and-impact]], and it
+states that it is the community reference that study reviewed. Its own warnings match the ones below:
+loop engineering amplifies judgment, token costs can explode, and unattended loops make unattended
+mistakes.
 
 Evidence on how widely the practice is actually adopted comes from the same study's mining of 36,710 engineered open-source repositories. It confirmed autonomous agent loops in 217 of them, almost all started by GitHub Actions workflows and most running on repository events (typically reviewing each newly opened pull request) rather than on a schedule, with the scheduled loops being mostly issue triage. The committed configuration of these loops was visible, but almost none of the repositories committed the state files the practitioner sources prescribe; the authors observe that in most of the confirmed loops there was either nothing to persist between runs or the issue tracker already held that state.
 

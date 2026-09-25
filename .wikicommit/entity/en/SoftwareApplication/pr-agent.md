@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://github.com/qodo-ai/pr-agent'
     hash: sha256:bae9d7a3b5520e87b29aedabf95fe580660a51d935b8c5996921390dc0fa1966
+  - type: url
+    url: 'https://github.com/The-PR-Agent/pr-agent'
+    hash: sha256:1712edfaeb1d1aa66a8ea2a39c1b1df87d9568399e52d116625034b732dc49d9
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -68,7 +71,9 @@ published under `pragent/pr-agent`, while releases up to and including `v0.31` r
 pinned image references be updated when upgrading across that boundary.
 
 The project's governance has moved as well. Qodo donated it to the open-source community; it now
-lives in its own GitHub organization, is described as fully community-owned and open to additional
+lives in its own GitHub organization — the repository is published as `The-PR-Agent/pr-agent`, and
+the quick-start GitHub Actions workflow references the action as `the-pr-agent/pr-agent@main` — is
+described as fully community-owned and open to additional
 maintainers, and has gained its first external maintainer. The README states that it is in the
 process of being donated to an open-source foundation, and that its documentation has moved to
 docs.pr-agent.ai. Qodo remains its gold sponsor, under a heading stating that the project's ongoing
