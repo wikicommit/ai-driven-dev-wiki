@@ -29,6 +29,7 @@ comments: false
 - [[Dataset/swe-compass]]
 - [[Dataset/swe-review-bench]]
 - [[Dataset/swe-review-traj]]
+- [[Dataset/tau-bench]]
 - [[Dataset/terminal-bench]]
 - [[Dataset/tm-bench]]
 - [[Dataset/tracelab]]

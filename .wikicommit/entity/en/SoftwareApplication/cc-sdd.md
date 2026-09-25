@@ -7,15 +7,18 @@ sources:
   - type: url
     url: 'https://sreake.com/blog/learn-about-spec-driven-development/'
     hash: sha256:e8daa5b4df3be65a4f9ac7fc508f2c5e3a691b64fb7a69809011b0c17c3dba37
+  - type: url
+    url: 'https://github.com/gotalab/cc-sdd'
+    hash: sha256:e8d562f47d97d5985da87d1ebb4a7dce60281281af99c121cee98add04df8c34
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "An npm package that installs a spec-driven development workflow into an AI coding agent as a set of slash commands, keeping requirements, design and tasks as Markdown in the repository. Its design is inspired by Kiro's spec-driven development and is compatible with Kiro specifications."
+  description: "An MIT-licensed npm package that installs a Kiro-inspired spec-driven development workflow into an AI coding agent, keeping requirements, design and tasks as Markdown in the repository. Earlier versions installed it as slash commands; version 3.0 installs it as a set of Agent Skills that extend through long-running autonomous implementation."
   applicationCategory: "Spec-driven development toolkit"
-  featureList: "Slash commands for steering, spec initialisation, EARS-format requirements, technical design, task breakdown and implementation; support for eight coding agents; specification output in thirteen languages; dry-run and backup installation flags"
+  featureList: "Seventeen Agent Skills per install in version 3.0, including a discovery entry point, multi-spec batch creation and long-running autonomous implementation; legacy slash commands for steering, spec initialisation, EARS-format requirements, technical design, task breakdown and implementation; support for eight coding agents; dry-run, backup and custom specs-directory installation options"
 ---
 
 cc-sdd is an npm package that brings [[DefinedTerm/spec-driven-development]] to an AI coding agent,
@@ -37,12 +40,54 @@ matters such as EARS format and design principles. The directories for project c
 per-feature specifications are not created at install time — each is created by the command that
 first fills it, so a fresh installation contains only the settings tree.
 
+The project's own README, for version 3.0, describes it more ambitiously — as turning approved specs
+into long-running autonomous implementation — and states its rationale directly: cc-sdd treats the spec
+as a contract between parts of the system rather than a master command document handed to the agent,
+with code remaining the source of truth and the spec making the boundaries between parts of the code
+explicit so that humans and agents can work in parallel. In its summary, agents write the spec, humans
+approve the contract at phase gates, and code is what ships. The package is published under the MIT
+License.
+
 ## Capabilities
+
+Version 3.0 is described in the README as a rework around [[DefinedTerm/agent-skills]] and long-running
+autonomous implementation. One command installs seventeen skills per agent, loaded on demand, and the
+earlier `/kiro:*` command modes remain available but are deprecated. What the README lists as new:
+
+- A discovery skill as the entry point, which routes new work into extending an existing spec,
+  implementing directly with no spec, creating one new spec, or decomposing the work into several
+  specs, and writes a brief (plus a roadmap when needed) so a workstream can be resumed without
+  re-explaining its scope.
+- An implementation skill for long-running autonomous implementation. Where the host agent has native
+  subagents, each task gets a fresh implementer working test-first (RED → GREEN) behind a feature flag,
+  an independent reviewer, and an auto-debug pass when blocked or after repeated review rejection;
+  otherwise implementation and review run inline in the main context. Learnings are carried forward in
+  an implementation-notes section of the task file, each iteration handles one task, and recorded task
+  state supports resuming.
+- Boundary-first spec discipline: the design document includes a file structure plan that drives task
+  boundaries, tasks carry boundary and dependency annotations, and review looks for boundary violations
+  rather than only style issues.
+- A batch skill that turns a roadmap into multiple specs by dependency wave — in parallel where native
+  subagents are available — with cross-spec review for contradictions, duplicated responsibilities and
+  interface mismatches.
+
+Of the eight supported agents, the README marks [[SoftwareApplication/claude-code]] and Codex
+([[SoftwareApplication/openai-codex]]) as stable, and [[SoftwareApplication/cursor]],
+[[SoftwareApplication/github-copilot]], Devin Local / CLI ([[SoftwareApplication/devin]]),
+[[SoftwareApplication/opencode]], [[SoftwareApplication/gemini-cli]] and Antigravity
+([[SoftwareApplication/google-antigravity]]) as beta, and cautions that installing the skills does not verify that a host can run the
+full autonomous loop. It gives typical spec outputs as EARS-format requirements with acceptance
+criteria, a design document with Mermaid diagrams and the file structure plan, and a task list with
+boundary and dependency annotations, and says templates and generation rules under the settings
+directory can be edited to fit a team's workflow.
+
+The introductory guide, written against the command-based form, describes the following:
 
 - Support for eight coding agents, selected by an installation flag, with two of them additionally
   offering a choice between a commands form and a subagents form.
-- Specification output in thirteen languages, selected by a language flag, so that generated
-  requirements and design documents can be produced in a language other than English.
+- Specification output in multiple languages, selected by a language flag, so that generated
+  requirements and design documents can be produced in a language other than English. The guide
+  gives thirteen; the version 3.0 README lists fourteen.
 - Two further installation flags: a dry-run that previews the changes without writing anything, and a
   backup that preserves existing files before overwriting them.
 - A steering command that reads the codebase and generates three project-context files — product

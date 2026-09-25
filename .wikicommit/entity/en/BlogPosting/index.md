@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[BlogPosting/2025-output-retrospective]]
+- [[BlogPosting/60-million-copilot-code-reviews-and-counting]]
 - [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]
 - [[BlogPosting/a-guide-to-fine-tuning-functiongemma]]
 - [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
@@ -59,6 +60,7 @@ comments: false
 - [[BlogPosting/code-agent-orchestra]]
 - [[BlogPosting/comprehension-debt-the-hidden-cost-of-ai-generated-code]]
 - [[BlogPosting/conductor-update-introducing-automated-reviews]]
+- [[BlogPosting/context-engineering-for-agents]]
 - [[BlogPosting/context-engineering-for-coding-agents]]
 - [[BlogPosting/continuous-ai-in-practice]]
 - [[BlogPosting/crush-welcome-home]]

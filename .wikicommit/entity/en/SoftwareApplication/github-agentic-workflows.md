@@ -15,9 +15,12 @@ sources:
   - type: url
     url: 'https://github.blog/changelog/2026-02-13-github-agentic-workflows-are-now-in-technical-preview/'
     hash: sha256:3a42888c4bda0dd7a8257cbea68e434226f40b820a649da9288c35de9602287d
+  - type: url
+    url: 'https://github.com/github/gh-aw'
+    hash: sha256:a0f6ac49aa254e9854bcb867f6e0876d397df8e4206038050635c1f5fe3e5704
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 tags: [agents, continuous-ai, agent-tooling, guardrails, agent-safety]
 
@@ -92,6 +95,16 @@ task requires.
 GitHub states that pull requests are never merged automatically and that humans must always
 review and approve.
 
+The `gh-aw` repository's README summarizes the project as "Actions + Agent + Safety" and spells out
+how writes are kept apart from the agent: the supported agent-job path defaults to read-only GitHub
+access and sandboxed execution, and safe outputs buffer the configured writes, validate them, and
+apply them in separate jobs with scoped permissions. It also stresses that these controls are
+configurable, so workflow authors must review permissions, tools, network access and generated files
+before deployment, and warns that using agentic workflows requires careful attention to security and
+careful human supervision — "and even then things can still go wrong" — so they are to be used with
+caution and at the user's own risk. The README's list of built-in engines adds Google Gemini and Pi
+to GitHub Copilot, Claude Code and OpenAI Codex.
+
 The technical-preview changelog entry adds a few specifics to this picture: workflows are added as
 Markdown files under `.github/workflows/`, and the `gh aw` CLI converts them into standard GitHub
 Actions workflows; the security design includes SHA-pinned dependencies and sanitized write operations
@@ -109,7 +122,12 @@ collaboration similarly to continuous integration and continuous deployment prac
 documentation, continuous code simplification, continuous test improvement, continuous
 quality hygiene, and continuous reporting. GitHub is explicit that these augment rather
 than replace CI/CD: they do not replace build, test or release pipelines, and their use
-cases are said largely not to overlap with deterministic CI/CD workflows.
+cases are said largely not to overlap with deterministic CI/CD workflows. The repository README
+draws the same line from the other side: conventional GitHub Actions remain the tool for
+deterministic builds, tests, linting, deployments and reproducible scripts, and an agentic workflow
+is added when a task needs reasoning or interpretation — its examples being issue triage, pull-request
+review, CI failure investigation, documentation maintenance, dependency analysis and repository
+reporting.
 
 Published design patterns include ChatOps, DailyOps, DataOps, IssueOps, ProjectOps,
 MultiRepoOps and Orchestration. GitHub's practical guidance is to start with low-risk
@@ -128,6 +146,13 @@ only from trusted sources and reviewing what a workflow does before adding it.
 
 For examples, the changelog points to Peli's Agent Factory, which it says showcases over 50
 specialized agentic workflows for different use cases.
+
+The README is written partly for agents as readers: it opens with a greeting addressed to "fellow
+agent" and links raw Markdown files for creating a workflow, installing the tool, packaging a workflow
+repository and a reference, and it points AI agents and retrieval tools at a published prompt index,
+a full prompt corpus and an AI-readable project summary. For people, it points to a separate
+self-contained workshop repository, the Factory Tour Workshop, that teaches building, running and
+customizing agentic workflows step by step.
 
 Running a workflow uses a coding agent at runtime and so incurs billing cost. The
 announcement is described in [[BlogPosting/automate-repository-tasks-with-agentic-workflows]].

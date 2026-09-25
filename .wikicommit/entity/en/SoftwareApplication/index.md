@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[SoftwareApplication/adlc-team-skills]]
 - [[SoftwareApplication/agent-development-kit]]
 - [[SoftwareApplication/agent-governance-toolkit]]
 - [[SoftwareApplication/agent-hq]]
@@ -124,6 +125,7 @@ comments: false
 - [[SoftwareApplication/spec-kitty]]
 - [[SoftwareApplication/spring-ai-alibaba]]
 - [[SoftwareApplication/strands-agents]]
+- [[SoftwareApplication/superpowers]]
 - [[SoftwareApplication/swe-agent]]
 - [[SoftwareApplication/tabnine]]
 - [[SoftwareApplication/taskmaster]]

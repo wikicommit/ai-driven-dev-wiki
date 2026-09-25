@@ -26,6 +26,7 @@ comments: false
 - [[ScholarlyArticle/agentic-software-restructuring-paradigm]]
 - [[ScholarlyArticle/agentic-tool-use-in-large-language-models]]
 - [[ScholarlyArticle/agentless-demystifying-llm-based-software-engineering-agents]]
+- [[ScholarlyArticle/agentspec]]
 - [[ScholarlyArticle/agrail]]
 - [[ScholarlyArticle/ai-agentic-programming-survey]]
 - [[ScholarlyArticle/ai-ides-or-autonomous-agents]]

@@ -10,15 +10,18 @@ sources:
   - type: url
     url: 'https://github.com/openai/openai-agents-js/blob/main/examples/agent-patterns/human-in-the-loop-stream.ts'
     hash: sha256:b539be2209796c131f666763bb7f0bc31443222962ec94c0ae76eb1d5d80a43e
+  - type: url
+    url: 'https://github.com/openai/openai-agents-python'
+    hash: sha256:ad4864368c4fd34df68f3fc5e5fb22528dd9e94b98216be7039ff93b53bdb86c
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.7.0"
 
 properties:
   description: "OpenAI's code-first agent framework, in which an agent is declared with a name, instructions and a list of tools, run in a loop by a Runner until an exit condition is reached, and composed with other agents either as tools or through handoffs."
   applicationCategory: "Agent framework"
-  featureList: "Agent objects defined by name, instructions and tools; Runner loop with exit conditions; agents exposed as tools; handoffs between agents; input guardrails with tripwires; per-tool approval gates that pause a run and resume it from the same run state"
+  featureList: "Agent objects defined by name, instructions and tools; Runner loop with exit conditions; agents exposed as tools; handoffs between agents; input and output guardrails; per-tool approval gates that pause a run and resume it from the same run state; sandbox agents working in a container workspace; realtime and voice agents; sessions for conversation history; built-in tracing"
   author: "[[Organization/openai]]"
 ---
 
@@ -33,10 +36,32 @@ guide's opening example is a weather agent given a single `get_weather` tool, an
 turned into tools with a `@function_tool` decorator; built-in tools such as `WebSearchTool` can be
 listed alongside the developer's own.
 
-The SDK is also distributed as a JavaScript/TypeScript package, `@openai/agents`, whose repository
-carries its own set of worked agent-pattern examples.
+The SDK's Python repository describes it as a lightweight yet powerful framework for building
+multi-agent workflows, and as provider-agnostic: it supports the OpenAI Responses and Chat Completions
+APIs as well as more than 100 other LLMs. The Python package, `openai-agents`, requires Python 3.10 or
+newer and is published under the MIT License; pull requests are accepted only from repository
+collaborators. The SDK is also distributed as a JavaScript/TypeScript package, `@openai/agents`, whose
+repository carries its own set of worked agent-pattern examples.
 
 ## Capabilities
+
+The Python README lists ten core concepts: agents (LLMs configured with instructions, tools,
+guardrails and handoffs); sandbox agents, preconfigured to work with a container over long time
+horizons; realtime agents for voice; voice agents built as speech-to-text, agent workflow and
+text-to-speech pipelines; agents as tools and handoffs, for delegating to other agents; tools, covering
+functions, MCP and hosted tools; guardrails, as configurable input and output validation;
+human-in-the-loop mechanisms across agent runs; sessions, which manage conversation history across
+runs automatically; and tracing, which records agent runs so a workflow can be viewed, debugged and
+optimized.
+
+It shows four primary ways to run an agent. A text `Agent` suits workflows that need neither a
+persistent realtime connection nor a sandbox workspace. A `SandboxAgent` is for work that has to
+inspect files, run commands, apply patches, or preserve workspace state across longer tasks; the
+README's example mounts a Git repository into the workspace through a manifest and runs it with a
+local Unix sandbox client supported on macOS and Linux, with a Docker client or a hosted sandbox
+client as the alternatives on Windows. A `RealtimeAgent` provides low-latency server-side voice and
+multimodal sessions over WebSocket, and a `VoicePipeline` turns audio into text, runs an agent
+workflow, and streams generated speech back.
 
 Agents are started through a `Runner.run()` method that loops over the LLM until an exit condition
 is met. The guide names two for this SDK specifically: a final-output tool is invoked, defined by
