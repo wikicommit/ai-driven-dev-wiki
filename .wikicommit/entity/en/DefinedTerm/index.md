@@ -230,6 +230,8 @@ comments: false
 - [[DefinedTerm/output-verifiability]]
 - [[DefinedTerm/panel-of-experts-prompting]]
 - [[DefinedTerm/parallel-agent-limit]]
+- [[DefinedTerm/pass-at-k]]
+- [[DefinedTerm/pass-hat-k]]
 - [[DefinedTerm/permission-modes]]
 - [[DefinedTerm/plan-act-observe-loop]]
 - [[DefinedTerm/plan-do-assess-review]]
