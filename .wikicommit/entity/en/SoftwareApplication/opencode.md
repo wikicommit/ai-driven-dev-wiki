@@ -10,15 +10,21 @@ sources:
   - type: url
     url: 'https://github.com/sst/opencode'
     hash: sha256:32149c4fdfab8d1624e1097f54b94cf8321178e8e1d31a37b5127d4071b779d7
+  - type: url
+    url: 'https://opencode.ai/docs/rules/'
+    hash: sha256:7cd8c6d50ef202d91e43e65062c29cdda2d416ea578da276ae9ee84503315a7d
+  - type: url
+    url: 'https://opencode.ai/docs/'
+    hash: sha256:a089d588869c390fcc98738c0a7686e55af8afc9c7c862f5d27d6b95bfb76732
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
   description: "An open-source, end-to-end AI coding agent whose primary interface is the terminal, built to work with models from many providers as well as local models, with separate agents for planning and for changing code."
   applicationCategory: "AI coding agent (terminal)"
-  featureList: "Native terminal user interface (TUI); support for 75+ model providers through Models.dev, including local models; Language Server Protocol (LSP) integration; parallel sessions and session sharing; a Plan agent that plans without editing and a Build agent that makes changes; a general subagent for complex searches and multistep tasks; a desktop application in beta"
+  featureList: "Native terminal user interface (TUI); support for 75+ model providers through Models.dev, including local models; Language Server Protocol (LSP) integration; parallel sessions and session sharing; a Plan agent that plans without editing and a Build agent that makes changes; a general subagent for complex searches and multistep tasks; a desktop application in beta; an IDE extension; undo and redo of agent changes; shareable conversation links"
 ---
 
 OpenCode is an open-source, end-to-end AI coding agent that uses the terminal as its main interface,
@@ -27,8 +33,7 @@ Jimmy Song's online handbook 智能体构建指南 describes it as one of the im
 AI programming, and presents it as an important open-source alternative to closed-source coding
 assistants such as [[SoftwareApplication/claude-code]].
 
-The project's own README introduces it simply as "the open source AI coding agent", published under the
-MIT License. It is installed through an install script or a wide range of package managers across
+The project's own README introduces it simply as "the open source AI coding agent". It is installed through an install script or a wide range of package managers across
 macOS, Linux and Windows, and is also offered as a desktop application, marked as beta, for macOS,
 Windows and Linux. The README asks related community projects that use "opencode" in their names to
 state that they are not built by or affiliated with the OpenCode team.
@@ -69,6 +74,56 @@ not modify code directly, while the Build agent makes the actual changes, subjec
 confirmation; other models or agents can take supporting roles such as analysis or calling external
 tools. Its typical workflow has the agent output a plan first, a human review it, and only then the
 change carried out, before testing and review lead into delivery.
+
+### Getting started and everyday use
+
+OpenCode's documentation introduces it as an open source AI coding agent available as a terminal-based
+interface, a desktop app, or an IDE extension. Using it in the terminal needs a modern terminal emulator
+and API keys for the LLM providers to be used; it is installed through an install script or with npm,
+Bun, pnpm, Yarn, Homebrew, pacman and paru on Arch Linux, Chocolatey, Scoop, Mise or Docker, and the
+documentation recommends the Windows Subsystem for Linux for the best experience on Windows. Any LLM
+provider can be used by configuring its API key; for newcomers the documentation points to OpenCode Zen,
+which it describes as a curated list of models tested and verified by the OpenCode team, connected
+through the `/connect` command. Running `/init` in a project has OpenCode analyze it and create an
+`AGENTS.md` file at the project root.
+
+The documentation's suggested workflow for adding a feature is to plan first. A *Plan mode*, toggled with
+the Tab key, disables OpenCode's ability to make changes and has it suggest *how* it would implement the
+feature instead; the user iterates on the plan, can drag images into the terminal to add them to the
+prompt, and then switches back to *Build mode* with Tab to have the changes made. It advises giving the
+agent plenty of detail, and to talk to it like a junior developer on the team; simpler changes can be
+requested directly without reviewing a plan first. The `@` key fuzzy-searches for project files to
+reference in a prompt. `/undo` reverts the agent's changes and restores the original message so the
+prompt can be tweaked and retried, and can be run repeatedly, while `/redo` reapplies them. `/share`
+creates a link to the current conversation for a team; conversations are not shared by default.
+
+### Rules and custom instructions
+
+OpenCode's own documentation describes how project-specific instructions reach the model: through an
+[[DefinedTerm/agents-md]] file whose contents are included in the LLM's context, which the
+documentation likens to Cursor's rules. The `/init` command scans the important files in a repository,
+may ask a couple of targeted questions when the codebase cannot answer them, and creates or updates
+`AGENTS.md` with concise project-specific guidance — build, lint and test commands, architecture and
+structure not obvious from filenames, project conventions and setup quirks, and references to existing
+instruction sources such as Cursor or Copilot rules. An existing file is improved in place rather than
+replaced, and the documentation recommends committing the project's `AGENTS.md` to Git.
+
+Rules can live in two places: an `AGENTS.md` at the project root, which applies when working in that
+directory or its sub-directories, and a global `~/.config/opencode/AGENTS.md`, applied across all
+OpenCode sessions and recommended for personal rules because it is not committed or shared. For users
+migrating from [[SoftwareApplication/claude-code]], OpenCode falls back to Claude Code's conventions — a
+project `CLAUDE.md` when no `AGENTS.md` exists, `~/.claude/CLAUDE.md` when no global OpenCode file
+exists, and skills under `~/.claude/skills/` — and each of these fallbacks can be switched off with an
+environment variable. At startup it looks first for local files by traversing up from the current
+directory, then the global file, then the Claude Code file, and the first match wins in each category,
+so `AGENTS.md` is used over `CLAUDE.md` when both are present.
+
+Further instruction files can be listed in the `instructions` field of `opencode.json`, including glob
+patterns and remote URLs (fetched with a 5 second timeout), and all of them are combined with the
+`AGENTS.md` files. OpenCode does not automatically parse file references written inside `AGENTS.md`;
+the documentation recommends the `instructions` field instead, or explicit instructions in `AGENTS.md`
+telling the agent to load referenced files only when a task needs them. For monorepos it calls the
+glob-pattern approach more maintainable than manual instructions.
 
 Because the architecture does not lock in a model, the chapter describes three model strategies: cloud
 models, local models run on a local inference framework for private, low-cost inference, and a hybrid in
