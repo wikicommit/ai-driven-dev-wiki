@@ -338,6 +338,7 @@ comments: false
 - [[DefinedTerm/version-controlled-resolution]]
 - [[DefinedTerm/vibe-coding]]
 - [[DefinedTerm/vibe-coding-development-models]]
+- [[DefinedTerm/vibe-engineering]]
 - [[DefinedTerm/virtual-tools]]
 - [[DefinedTerm/whole-of-process-vision]]
 - [[DefinedTerm/writing-code-is-cheap-now]]

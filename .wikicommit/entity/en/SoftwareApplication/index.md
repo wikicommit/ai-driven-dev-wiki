@@ -71,6 +71,7 @@ comments: false
 - [[SoftwareApplication/devgpt]]
 - [[SoftwareApplication/devin]]
 - [[SoftwareApplication/entire-cli]]
+- [[SoftwareApplication/fastrender]]
 - [[SoftwareApplication/gemini-api]]
 - [[SoftwareApplication/gemini-api-developer-skill]]
 - [[SoftwareApplication/gemini-cli]]
