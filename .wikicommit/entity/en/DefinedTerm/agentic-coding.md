@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://www.production-ready.de/2026/09/07/agentic-coding-done-efficient.html'
     hash: sha256:b507ecb9845ab7dd33c04b325e8e71953a95bd8024012c732706d7c435df4c1a
+  - type: url
+    url: 'https://yeasy.gitbook.io/agentic_ai_guide/di-san-bu-fen-gong-cheng-shi-jian-yu-luo-di/10_agentic_coding'
+    hash: sha256:26618db82c0fda1c7e9633fba110e9dede9cc12504649f20daedac021481f3ab
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -108,6 +111,18 @@ its argument is that the development process was never deterministic either, sin
 and the same person at different times arrive at different solutions, and that the variation
 occasionally produces an approach the developer would not have reached — while code once generated
 is deterministic like any other.
+
+## In the Agentic AI Guide
+
+The chapter on agentic coding in the Chinese-language *Agentic AI Guide* (智能体AI 权威指南) frames the
+term as going beyond code generation: the AI takes part as an autonomous agent across the whole
+lifecycle of requirements understanding, architecture planning, code writing, and debugging and
+fixing. It organizes the subject as a progression — first the paradigm shift from vibe coding to
+agentic coding, then how the agent loop works (single-step iteration, concurrent scheduling, stop
+sequences and the context window), then a comparison of common coding-agent tools by their operating
+surface, permission model and instruction files, then a development methodology it calls the P-D-E-R
+loop combined with spec-driven and test-driven development, and finally engineering practice: human
+oversight models, checkpoint mechanisms and compound engineering.
 
 ## When It Applies
 

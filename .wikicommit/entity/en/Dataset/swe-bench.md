@@ -2,7 +2,7 @@
 title: "SWE-Bench"
 type: "schema:Dataset"
 lang: en
-tags: [evaluation, agents, coding-agents]
+tags: [evaluation, agents, coding-agents, leaderboards]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2508.11126'
@@ -13,9 +13,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2310.06770'
     hash: sha256:706b494065faa4145cd8f13923309b0192bd91ae7eac0d5f62df2ceaacb70416
+  - type: url
+    url: 'https://www.swebench.com/'
+    hash: sha256:80c659d8a196c9dac19e7364704397cbd136cc0d9416d332a9702948b5d55fe8
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -48,6 +51,30 @@ correspond to them. Data, code and a leaderboard are stated by the introducing p
 at <https://www.swebench.com>.
 
 The survey separately lists SWE-Bench Multimodal, a related benchmark that uses JavaScript rather than Python, as a distinct dataset from SWE-Bench itself. [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] describes a further progression from SWE-Bench to [[Dataset/swe-bench-verified]], a human-validated 500-task subset OpenAI released with the SWE-Bench authors to address concerns that some tasks were ambiguous or underspecified, and then to [[Dataset/swe-bench-pro]], which OpenAI recommended after SWE-Bench Verified became increasingly exposed to data contamination.
+
+## Benchmark Family and Leaderboards
+
+The benchmark's own site hosts official leaderboards for several members of what it presents as a
+family of benchmarks, each reporting a model's **% Resolved** — the percentage of task instances
+solved — and marking open-weights models and runs performed or directly checked by the SWE-bench team.
+The site lists the members with their sizes:
+
+- **SWE-bench** (the full, original benchmark): 2,294 instances, real GitHub issues from 12 Python
+  repositories.
+- **SWE-bench Lite**: 300 instances, a subset curated for less costly evaluation, released in March 2024.
+- **[[Dataset/swe-bench-verified]]**: 500 instances, a human-filtered subset of SWE-bench, announced in
+  August 2024 as a collaboration with [[Organization/openai]].
+- **Bash Only**: the default view of the Verified leaderboard, over the same 500 instances, in which
+  every model runs in the same [[SoftwareApplication/mini-swe-agent]] environment.
+- **SWE-bench Multilingual**: 300 instances, tasks from 42 repositories across 9 programming languages.
+- **[[Dataset/swe-bench-multimodal]]**: 480 instances, issues described with visual elements, introduced
+  in October 2024.
+
+The site's news list also records that SWE-bench was Docker-ized in June 2024 for easier evaluation.
+Alongside the benchmarks, the site groups related tools and evaluations under the same family,
+including [[SoftwareApplication/swe-agent]], mini-SWE-agent, SWE-smith (for training models for
+software engineering agents), SWE-ReX, a SWE-bench CLI, and the later evaluations CodeClash and
+ProgramBench.
 
 ## Use
 

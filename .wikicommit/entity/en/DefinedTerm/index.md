@@ -113,6 +113,7 @@ comments: false
 - [[DefinedTerm/cognitive-surrender]]
 - [[DefinedTerm/colang]]
 - [[DefinedTerm/collaboration-paradox]]
+- [[DefinedTerm/compact-filtering]]
 - [[DefinedTerm/compaction]]
 - [[DefinedTerm/completion-attack]]
 - [[DefinedTerm/compositional-reliability]]
