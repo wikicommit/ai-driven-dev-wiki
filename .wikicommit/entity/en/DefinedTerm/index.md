@@ -272,6 +272,7 @@ comments: false
 - [[DefinedTerm/schema-gating]]
 - [[DefinedTerm/se-autonomy-levels]]
 - [[DefinedTerm/security-code-review]]
+- [[DefinedTerm/security-context-file]]
 - [[DefinedTerm/self-repair]]
 - [[DefinedTerm/semantic-diffusion]]
 - [[DefinedTerm/semi-executable-artifact]]
