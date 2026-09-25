@@ -233,6 +233,7 @@ comments: false
 - [[DefinedTerm/reasoning-effort]]
 - [[DefinedTerm/reasoning-sandwich]]
 - [[DefinedTerm/red-green-tdd]]
+- [[DefinedTerm/reflexion]]
 - [[DefinedTerm/remote-attestation]]
 - [[DefinedTerm/repository-level-coding]]
 - [[DefinedTerm/responsibility-topology]]

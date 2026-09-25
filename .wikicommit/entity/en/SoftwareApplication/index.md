@@ -48,6 +48,7 @@ comments: false
 - [[SoftwareApplication/codeplan]]
 - [[SoftwareApplication/coderabbit]]
 - [[SoftwareApplication/codestrike]]
+- [[SoftwareApplication/compound-engineering-plugin]]
 - [[SoftwareApplication/conductor]]
 - [[SoftwareApplication/conductor-gemini-cli-extension]]
 - [[SoftwareApplication/context-engineering-kit]]
