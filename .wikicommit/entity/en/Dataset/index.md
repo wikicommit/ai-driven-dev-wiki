@@ -23,6 +23,7 @@ comments: false
 - [[Dataset/nl2repo-bench]]
 - [[Dataset/repocompliancebench]]
 - [[Dataset/safe-os]]
+- [[Dataset/skillsbench]]
 - [[Dataset/swe-bench]]
 - [[Dataset/swe-bench-lite-s]]
 - [[Dataset/swe-bench-pro]]
