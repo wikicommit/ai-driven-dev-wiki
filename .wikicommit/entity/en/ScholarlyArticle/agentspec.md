@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://cposkitt.github.io/files/publications/agentspec_llm_enforcement_icse26.pdf'
     hash: sha256:0fbf810eedefe38eea9170bb8a468f156c7dc2046b9c17efd2f8e0354dcd76e0
+  - type: url
+    url: 'https://arxiv.org/abs/2503.18666'
+    hash: sha256:6405871d6e09b7f008fc5a55902e735b93576674578e4cb6775fc95aee229d10
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -42,3 +45,5 @@ The framework is implemented on [[SoftwareApplication/langchain]] and evaluated 
 The paper contrasts AgentSpec with NVIDIA's NeMo, which it describes as applying natural-language constraints at the dialogue level, and with GuardAgent, which relies on an LLM to interpret and apply safety constraints; AgentSpec instead keeps enforcement external to the model and developer-defined, which the authors argue improves verifiability and auditability. It is an instance of the deterministic, pre-execution style of [[DefinedTerm/guardrails]].
 
 As limitations, the authors note that AgentSpec enforces deterministically at discrete checkpoints and does not reason about the long-term consequences of an action sequence; they propose probabilistic enforcement — for example, learning a discrete-time Markov chain from historical agent interactions — as future work. Among threats to validity they name the risk of overfitting rules to the dataset, which they mitigated by using 10% of each risky dataset for rule development and the rest for testing, and human involvement in judging user-inspection outcomes.
+
+The paper is also available as an arXiv preprint (arXiv:2503.18666), first submitted on 24 March 2025 and last revised on 31 July 2025 (version 3); its journal reference is Proc. ICSE'26, pages 2938–2950 (ACM, 2026).
