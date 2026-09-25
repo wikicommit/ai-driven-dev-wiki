@@ -26,9 +26,12 @@ sources:
   - type: url
     url: 'https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use'
     hash: sha256:b617f4377dcd4fcab5698ec8b5919a3fec12cf22b96c9f6c69bfb3d73b497ce6
+  - type: url
+    url: 'https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use'
+    hash: sha256:f6402a3fe89e2e1e8e08eb769fbf3dc97994f6b04e1f57f8702632cabc6b897b
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -48,10 +51,10 @@ database lookups to external APIs and cloud services.
 
 ## Usage
 
-Five published accounts of the mechanism are described here — a cloud vendor's architectural pattern
+Six published accounts of the mechanism are described here — a cloud vendor's architectural pattern
 catalogue, a vendor-published teaching course, a framework vendor's engineering blog post, an
-independent practitioner's survey of the research and the vendor APIs, and a second framework vendor's
-announcement of a cross-provider interface — and they agree on the mechanism while differing in what
+independent practitioner's survey of the research and the vendor APIs, a second framework vendor's
+announcement of a cross-provider interface, and a letter in an AI newsletter — and they agree on the mechanism while differing in what
 they emphasize around it.
 
 **AWS Prescriptive Guidance** presents it as an architecture pattern named *tool-based agents for
@@ -176,6 +179,23 @@ post also relates the pattern to structured output: its `with_structured_output(
 calling for most models, always returning output in the given schema, whereas binding tools leaves the
 model free to call one tool, several or none.
 
+**A letter in DeepLearning.AI's *The Batch***, [[BlogPosting/agentic-design-patterns-part-3-tool-use]],
+the third in a series on agentic design patterns, calls Tool Use a key design pattern of AI agentic
+workflows, in which an LLM is given functions it can request to call for gathering information, taking
+action or manipulating data. It describes the mechanism at the level of generated text: the model is
+fine-tuned or prompted, perhaps with few-shot prompting, to emit a special string requesting a call —
+to a search engine, or to a Python interpreter to evaluate an arithmetic expression it would be unlikely
+to get right by generating the answer directly — and a post-processing step detects that string, calls
+the function with the relevant parameters and passes the result back to the model as additional
+context, the exact format of the string depending on the implementation. The letter also raises the
+question of scale: in systems where the model has access to hundreds of tools, too many to put all of
+them into its context, heuristics may pick the most relevant subset for the current step, which it
+likens to the way retrieval augmented generation systems pick a subset of text. It notes that much
+early tool-use work came from the computer vision community, because before large multimodal models
+became widely available an LLM-based system could manipulate an image only by calling a function on
+it, and it calls GPT-4's function calling capability a significant step toward a general-purpose
+implementation.
+
 ## Designing Tools for Agents
 
 A further account, [[BlogPosting/writing-effective-tools-for-agents]], takes the mechanism above as
@@ -251,4 +271,5 @@ a fixed JSON shape is needed.
 - [[SoftwareApplication/burr]]
 - [[BlogPosting/agentic-design-pattern-tool-calling]]
 - [[BlogPosting/tool-calling-with-langchain]]
+- [[BlogPosting/agentic-design-patterns-part-3-tool-use]]
 - [[DefinedTerm/structured-tool]]

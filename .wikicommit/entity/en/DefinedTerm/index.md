@@ -287,6 +287,8 @@ comments: false
 - [[DefinedTerm/self-repair]]
 - [[DefinedTerm/semantic-diffusion]]
 - [[DefinedTerm/semi-executable-artifact]]
+- [[DefinedTerm/shift-left]]
+- [[DefinedTerm/shift-right]]
 - [[DefinedTerm/signal-to-noise-ratio]]
 - [[DefinedTerm/six-dimension-process-taxonomy]]
 - [[DefinedTerm/skill-atrophy]]
