@@ -22,5 +22,6 @@ comments: false
 - [[Organization/openai]]
 - [[Organization/qodo]]
 - [[Organization/strongdm]]
+- [[Organization/yandex]]
 - [[Organization/zalando]]
 - [[Organization/zozo]]
