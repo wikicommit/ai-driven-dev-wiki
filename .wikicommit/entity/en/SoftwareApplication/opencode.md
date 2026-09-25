@@ -7,15 +7,18 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/vibe-coding/opencode/'
     hash: sha256:3cd1ec82817b79f22b6e50da9384b8f2ac1a6884b066eed6a1d9f4ad3e9fba97
+  - type: url
+    url: 'https://github.com/sst/opencode'
+    hash: sha256:32149c4fdfab8d1624e1097f54b94cf8321178e8e1d31a37b5127d4071b779d7
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
   description: "An open-source, end-to-end AI coding agent whose primary interface is the terminal, built to work with models from many providers as well as local models, with separate agents for planning and for changing code."
   applicationCategory: "AI coding agent (terminal)"
-  featureList: "Native terminal user interface (TUI); support for 75+ model providers through Models.dev, including local models; Language Server Protocol (LSP) integration; parallel sessions and session sharing; a Plan agent that plans without editing and a Build agent that makes changes"
+  featureList: "Native terminal user interface (TUI); support for 75+ model providers through Models.dev, including local models; Language Server Protocol (LSP) integration; parallel sessions and session sharing; a Plan agent that plans without editing and a Build agent that makes changes; a general subagent for complex searches and multistep tasks; a desktop application in beta"
 ---
 
 OpenCode is an open-source, end-to-end AI coding agent that uses the terminal as its main interface,
@@ -23,6 +26,12 @@ helping developers write code, fix errors and understand code in their local env
 Jimmy Song's online handbook 智能体构建指南 describes it as one of the important open-source projects in
 AI programming, and presents it as an important open-source alternative to closed-source coding
 assistants such as [[SoftwareApplication/claude-code]].
+
+The project's own README introduces it simply as "the open source AI coding agent", published under the
+MIT License. It is installed through an install script or a wide range of package managers across
+macOS, Linux and Windows, and is also offered as a desktop application, marked as beta, for macOS,
+Windows and Linux. The README asks related community projects that use "opencode" in their names to
+state that they are not built by or affiliated with the OpenCode team.
 
 On that chapter's account the project's design goal is to move beyond the "user asks, platform answers"
 pattern of conventional AI coding assistants, which it criticises for lacking project-level context,
@@ -47,6 +56,13 @@ models and tools, and audits output; this is where the division of labour betwee
 **Build agent** lives. An extension tool layer covers local file-system access, LSP-based code analysis
 and external toolchains such as [[DefinedTerm/model-context-protocol]] servers, which is what lets the
 agent act rather than only generate text.
+
+The README describes the built-in agents concretely. Two are switched between with the Tab key:
+**build**, the default, a full-access agent for development work; and **plan**, a read-only agent for
+analysis and code exploration, which denies file edits by default, asks permission before running bash
+commands, and is suggested for exploring unfamiliar codebases or planning changes. A third, the
+**general** subagent, handles complex searches and multistep tasks; it is used internally and can be
+invoked by writing `@general` in a message.
 
 In use, the chapter says, the Plan agent is responsible for understanding and planning safely and does
 not modify code directly, while the Build agent makes the actual changes, subject to review or
