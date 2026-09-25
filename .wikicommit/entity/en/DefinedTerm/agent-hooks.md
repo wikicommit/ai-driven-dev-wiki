@@ -22,9 +22,12 @@ sources:
   - type: url
     url: 'https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more'
     hash: sha256:bb67b24e7e743610aadc45e492a9035d66952bb3cadff52ef8301bc773391708
+  - type: url
+    url: 'https://hidekazu-konishi.com/entry/claude_code_hooks_complete_guide.html'
+    hash: sha256:66f427a7be411fa79c42761b1304353ab4194737429bda9adf85af056786ff4a
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -37,7 +40,7 @@ What the mechanism is *for* is stated most directly in [[BlogPosting/agentic-cod
 
 ## Usage
 
-In Google's Gemini API, a hook fires on one of two lifecycle events: `pre_tool_execution`, which runs before a tool call and can approve (`allow`) or block (`deny`) it before it runs — when blocked, the model sees the rejection reason and can adapt — or `post_tool_execution`, which runs after a call completes and can only perform follow-up work such as formatting code, running tests, or logging telemetry, since it cannot undo or block an action that already happened. Each rule group names a `matcher` (a regular expression matched against tool names such as `code_execution`, `read_file`, or `write_file`) and an ordered list of `hooks` to run when it matches; a hook is either a `command` (runs inside the sandbox, reading the event as JSON on stdin and writing its decision to stdout) or an `http` handler (posts the event to an external HTTPS endpoint through the sandbox's egress proxy, which can inject authentication headers on outgoing requests so secrets never need to be stored in the hook configuration itself). If a command script crashes, an HTTP hook returns a non-2xx status, or a hook times out or returns unrecognized output, the runtime treats it as an approval rather than blocking the call, so a broken hook never deadlocks the agent. In Gemini API's implementation, hooks are scoped to the sandbox's own built-in tools (code execution and filesystem operations) and do not fire for custom function-calling tools or external MCP-server tools handled outside the container.
+In Google's Gemini API, a hook fires on one of two lifecycle events: `pre_tool_execution`, which runs before a tool call and can approve (`allow`) or block (`deny`) it before it runs — when blocked, the model sees the rejection reason and can adapt — or `post_tool_execution`, which runs after a call completes and can only perform follow-up work such as formatting code, running tests, or logging telemetry, since it cannot undo or block an action that already happened. Each rule group names a `matcher` (a regular expression matched against tool names such as `code_execution`, `view_file`, or `write_to_file`) and an ordered list of `hooks` to run when it matches; a hook is either a `command` (runs inside the sandbox, reading the event as JSON on stdin and writing its decision to stdout) or an `http` handler (posts the event to an external HTTPS endpoint through the sandbox's egress proxy, which can inject authentication headers on outgoing requests so secrets never need to be stored in the hook configuration itself). If a command script crashes, an HTTP hook returns a non-2xx status, or a hook times out or returns unrecognized output, the runtime treats it as an approval rather than blocking the call, so a broken hook never deadlocks the agent. In Gemini API's implementation, hooks are scoped to the sandbox's own built-in tools (code execution and filesystem operations) and do not fire for custom function-calling tools or external MCP-server tools handled outside the container.
 
 The same pre-execution interception appears as an in-process API in [[SoftwareApplication/strands-agents]], where a `HookProvider` registers a callback against `BeforeToolCallEvent` through a `HookRegistry`. The callback receives the pending call's name and input and blocks it by assigning a message to `event.cancel_tool`, which the framework returns to the model in place of the tool's result. What the post describing it draws from that arrangement is an argument about where enforcement belongs: because the callback runs outside the model, a rule evaluated there is not something the model can reinterpret, unlike the same rule written into a prompt or a tool docstring. That use is developed under [[DefinedTerm/neurosymbolic-validation]].
 
@@ -88,6 +91,19 @@ also reports a constraint that follows from hooking every file write — the hoo
 immediately, so rule selection is done with filename patterns and regular expressions, an earlier
 model-based relevance check having cost about ten seconds per request.
 
+A practitioner's reference guide to Claude Code's hooks,
+[[BlogPosting/claude-code-hooks-complete-guide]], places the mechanism against the permission system
+rather than only against the prompt. In its account a `PreToolUse` `deny` is evaluated before any
+permission-mode check and so still blocks a call under `bypassPermissions`, while a hook's `allow`
+only skips the interactive prompt and does not override a matching `deny` or `ask` rule in settings —
+a hook can tighten what the permission system allows but never loosen it. The same guide records two
+shapes for a decision that it calls the most common source of hook bugs: `PreToolUse` answers through
+`hookSpecificOutput.permissionDecision`, while most other decision-capable events use a top-level
+`decision: "block"`, and returning the wrong shape silently does nothing. It also notes that a matcher
+made only of letters, digits, `_` and `|` is treated as an exact string, so a server prefix such as
+`mcp__memory` never matches that server's tools unless written as a regular expression like
+`mcp__memory__.*`.
+
 ## When It Applies
 
 Hooks apply where an outcome must be impossible rather than merely discouraged. [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]] names the recurring cases as destructive shell commands, access to `.env` files, secrets and production configuration, and the one or two CI/CD standards an organisation depends on; the most common hook in practice, it reports, is the least dramatic one — a `PostToolUse` formatter and linter run after every file edit.
@@ -106,6 +122,13 @@ prompted rule. That post names hooks and permissions as the enforcement methods,
 admin-deployed and not overridable by a user's local configuration — as the only way to enforce a
 deterministic organisation-wide guardrail.
 
+[[BlogPosting/claude-code-hooks-complete-guide]] sums up the division of labour in one phrase —
+"`CLAUDE.md` persuades, permissions filter, hooks enforce-and-react" — and has a hardened setup run
+all three for the same requirement, each catching what the others let through. It adds that the
+resolution order across settings layers is Managed > Local > Project > Plugin > User, and that
+`allowManagedHooksOnly: true` blocks all user, project and plugin hooks so that only
+organisation-approved ones run.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]], [[DefinedTerm/claude-md]], [[BlogPosting/steering-claude-code]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]], [[DefinedTerm/claude-md]], [[BlogPosting/steering-claude-code]], [[BlogPosting/claude-code-hooks-complete-guide]]

@@ -19,15 +19,18 @@ sources:
   - type: url
     url: 'https://jimmysong.io/zh/book/ai-handbook/sdd/overview/'
     hash: sha256:946cf421ab8284921cee80b48fc236a89feb6dfd5c4a90f01ae072227495be73
+  - type: url
+    url: 'https://github.github.com/spec-kit/'
+    hash: sha256:a3c3ee81dd09a1dd92dd95b2b1b56d1f329aa896a1e5daddc94c5af7cff81654
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
   description: "An open-source toolkit that gives AI coding agents structured processes, reusable templates and documented outcomes. Its core process is spec-driven development, run as a sequence of human-gated agent skills; bug fixing and idea assessment ship as separate opt-in extensions."
   applicationCategory: "Spec-driven AI development toolkit"
-  featureList: "specify CLI installed with uv; /speckit-* agent skills invoked in the agent's chat; spec-driven development, bug fixing and idea assessment as independent entry points; extensions, presets, workflows and bundles for customization; integrations across multiple coding agents"
+  featureList: "specify CLI installed with uv; /speckit-* agent skills invoked in the agent's chat; spec-driven development, bug fixing and idea assessment as independent entry points; extensions, presets, workflows and bundles for customization; integrations across multiple coding agents, with a generic integration for agents not listed; offline and air-gapped use with self-hosted catalogs"
   author: "[[Organization/github]]"
 ---
 
@@ -130,6 +133,23 @@ handed to `/speckit-specify` if the idea is to be built.
 Customization is layered: extensions add capabilities, presets adapt existing behaviour, workflows
 automate steps, and bundles package a role-based setup, with project-local overrides for one-off
 template changes. The toolkit is MIT licensed.
+
+The project's documentation site frames the toolkit as giving a coding agent structured processes
+that keep intent and evidence ahead of implementation, and states the core spec-driven sequence as
+Specify → Plan → Tasks → Implement → Converge, with each phase producing a Markdown artifact that
+feeds the next so the agent works from structured context instead of ad-hoc prompts; templates,
+quality checklists and cross-artifact analysis are included by default. It stresses that the three
+processes are independent entry points, that assessment can stand alone, and that a decision to
+proceed does not automatically start implementation. `specify init` sets up the command files and
+directory structure for the chosen agent, and a `generic` integration serves as an escape hatch for
+agents that are not listed. The site describes the process itself as living in presets, extensions,
+workflows and bundles, so that a project is not locked to spec-driven development "or even to
+software": community-built processes it lists range from a product-management-oriented variant of
+SDD and a multi-agent orchestration process with quality-assurance gates to a .NET Framework
+migration and long-form fiction writing. For organizations, it states that Spec Kit works offline
+and behind firewalls on Windows, macOS and Linux, that an organization can host its own catalogs to
+curate which integrations, extensions, presets, workflows and bundles its teams discover, and that
+community extensions such as CI Guard and Architecture Guard add compliance gates and governance.
 
 A chapter of Jimmy Song's online handbook 智能体构建指南, surveying representative implementations of
 [[DefinedTerm/spec-driven-development]], describes Spec Kit as GitHub's CLI suite and singles out
