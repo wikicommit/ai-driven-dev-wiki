@@ -140,6 +140,7 @@ comments: false
 - [[BlogPosting/new-sdlc-vibe-coding]]
 - [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]]
 - [[BlogPosting/onboarding-your-ai-peer-programmer]]
+- [[BlogPosting/openhands-context-condensation-for-more-efficient-ai-agents]]
 - [[BlogPosting/orchestrating-ai-code-review-at-scale]]
 - [[BlogPosting/organizing-a-development-team-in-the-age-of-ai-part-ii-2]]
 - [[BlogPosting/organizing-a-development-team-in-the-age-of-ai-part-iii]]

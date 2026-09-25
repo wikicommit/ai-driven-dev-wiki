@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/writing-tools-for-agents'
     hash: sha256:7541e4e46d675b2aed1175d9291d45d75f493ae908aea2afc77b29c615a324ea
+  - type: url
+    url: 'https://platform.openai.com/docs/guides/function-calling'
+    hash: sha256:837fddfb4f47440271a02bb4e3bf476c552ccbfc1b962b602a0217dc5bf68f47
 review_status: pending
-generated_at: "2026-09-19"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
+generated_with: "0.7.0"
 
 properties:
   description: "Grouping related agent tools under common name prefixes — by service, by resource, or both — so that an agent with access to many overlapping tools can tell which one to reach for. Anthropic reports that the choice between prefix- and suffix-based schemes had non-trivial effects on its tool-use evaluations and varied by model."
@@ -37,6 +40,15 @@ that selecting between prefix- and suffix-based namespacing had non-trivial effe
 tool-use evaluations, that the effects vary by model, and they recommend choosing a naming scheme
 according to one's own evaluations rather than adopting a rule.
 
+OpenAI's function-calling guide (see [[DefinedTerm/function-calling]]) supports the practice as an
+API feature rather than a naming convention: related tools can be grouped into namespaces by domain, with
+`crm`, `billing` and `shipping` as its examples. It gives the same motivation — namespaces are
+especially useful when the model must choose between tools serving different systems or purposes, such
+as one search tool for a CRM and another for a support ticketing system. Where namespaced tools are
+deferred with [[DefinedTerm/tool-search]], the guide advises keeping the namespace description concise
+and putting detailed guidance in each function's description, since the namespace helps the model
+choose what to load and the function description helps it use the loaded tool correctly.
+
 The post places namespacing alongside a second, related discipline: selectively implementing tools whose
 names reflect natural subdivisions of tasks. It is that second practice the post credits with
 simultaneously reducing the number of tools and tool descriptions loaded into the agent's context and
@@ -61,12 +73,15 @@ and the one preceding it — building a few thoughtful, consolidated tools rathe
 endpoint — addresses the same underlying problem from the other end, by not creating the overlapping
 tools in the first place.
 
-How well-established it is: this is one vendor's engineering guidance, drawn from optimizing its own
+How well-established it is: the naming advice is one vendor's engineering guidance, drawn from optimizing its own
 internal tools against its own evaluations. The direction of the advice is stated as a finding; the
-specific choice between prefix and suffix is explicitly left to the reader's own measurement.
+specific choice between prefix and suffix is explicitly left to the reader's own measurement. OpenAI's function-calling
+guide separately offers namespaces as a first-class API feature for grouping tools by domain.
 
 ## Related Terms
 
 - [[DefinedTerm/tool-use-design-pattern]] — the broader pattern this is a design discipline within
 - [[DefinedTerm/model-context-protocol]] — the protocol whose tool sprawl motivates the practice
 - [[DefinedTerm/context-engineering]] — the concern that tool names and descriptions occupy context
+- [[DefinedTerm/function-calling]] — the mechanism through which namespaced tools are offered to a model
+- [[DefinedTerm/tool-search]] — deferring namespaced tools until the model needs them

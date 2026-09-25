@@ -28,9 +28,12 @@ sources:
   - type: url
     url: 'https://code.claude.com/docs/en/how-claude-code-works'
     hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
+  - type: url
+    url: 'https://platform.claude.com/cookbook/tool-use-context-engineering-context-engineering-tools'
+    hash: sha256:ff18c6ce4f289fc1d0603542473d89de2170efe173360a83c70d460ec9204888
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -66,6 +69,22 @@ steered, by adding a "Compact Instructions" section to CLAUDE.md or by running `
 The documentation also records a failure case: if a single file or tool output is so large that the
 context refills immediately after each summary, Claude Code stops auto-compacting after a few attempts
 and shows an error instead of looping.
+
+Anthropic's API offers compaction as a server-side feature, which
+[[TechArticle/context-engineering-memory-compaction-and-tool-clearing]] walks through as the
+`compact_20260112` context edit. It fires automatically at a token threshold (minimum 50K, default
+150K), returns a typed compaction block that the application sends back in place of the earlier
+conversation, and handles tool-use pairing across the summary boundary. The notebook stresses that
+compaction is a *whole-transcript* operation — user and assistant messages, tool calls, tool results and
+even earlier compaction blocks are all flattened into the summary — which is what distinguishes it from
+[[DefinedTerm/tool-result-clearing]], a sub-transcript edit that drops only old tool results. Its custom
+`instructions` parameter does not supplement the default summarisation prompt but replaces it entirely,
+so a caller who supplies one takes on the full framing; the notebook's example names the specific
+details its research agent needs preserved, such as every quantitative figure with its source and which
+documents remain unread. Probing the summaries its agent produced, the notebook reports that high-level
+facts central to the task tended to survive while obscure specifics, such as a single cell in an
+appendix table, tended not to: compaction keeps the substance in compressed form but loses verbatim
+detail.
 
 A summarising pass is not always a single step. [[ScholarlyArticle/dive-into-claude-code]], reading
 Claude Code's source at v2.1.88, describes compaction there as a pipeline of five shapers that run
@@ -147,6 +166,13 @@ shorter context length.
   [[SoftwareApplication/claude-agent-sdk]]'s automatic compaction handling context growth. Compaction's
   sufficiency is therefore reported as depending on the model, not on the technique alone.
 
+- The Claude Cookbook notebook on context-engineering primitives recommends compaction first where
+  dialogue is the primary context, and over tool-result clearing where tool results cannot easily be
+  re-fetched, such as ephemeral APIs or uploads; it suggests skipping compaction when sessions stay well
+  under the context limit, since compaction is lossy and without the need for headroom one would be
+  paying fidelity for nothing. It notes that compaction costs inference, because a model has to write the
+  summary, and that it provides no persistence across sessions.
+
 - Compaction is one design choice among several, and
   [[ScholarlyArticle/inside-the-scaffold]] counts it among the dimensions on which open-source coding
   agents diverge, alongside state management and multi-model routing — seven distinct strategies
@@ -179,3 +205,4 @@ shorter context length.
 - [[DefinedTerm/context-anxiety]]
 - [[DefinedTerm/agent-scaffold]]
 - [[DefinedTerm/claude-md]]
+- [[DefinedTerm/tool-result-clearing]]
