@@ -102,3 +102,22 @@ article, without its footnotes, that also binds the whole wiki to that article's
 license — and this keeps the number of pages in that position small and
 deliberate.
 -->
+
+Link collections — "awesome" lists, survey repositories, reading lists — are read as an
+index only, like Wikipedia above: mine their links for the primary sources they cite and
+register those, never the collection itself. Extend either list below as you go.
+
+Mine (one paper list at a time — they yield primary sources by the hundred; watch for forks):
+  - https://github.com/walkinglabs/awesome-harness-engineering
+  - https://github.com/filipecalegario/awesome-vibe-coding
+  - https://github.com/RUCAIBox/awesome-agent-harness            (survey, 500+ refs)
+  - https://github.com/FudanSELab/Agent4SE-Paper-List            (survey)
+  - https://github.com/Meirtz/Awesome-Context-Engineering        (survey)
+  - https://github.com/archersama/awesome-agentic-coding-papers  (mined 2026-09)
+
+Skip (tool directories: hundreds of one-person CLI agents, no prose to build a page from):
+  - https://github.com/eltociear/awesome-AI-driven-development
+  - https://github.com/bradAGI/awesome-cli-coding-agents
+
+engineering4ai/awesome-spec-driven-development is registered as a source itself, from
+before this paragraph — the exception, not the pattern.
