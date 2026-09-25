@@ -19,6 +19,9 @@ sources:
   - type: url
     url: 'https://code.claude.com/docs/en/how-claude-code-works'
     hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
+  - type: url
+    url: 'https://github.com/HKUDS/OpenHarness'
+    hash: sha256:9bbda0914ba868f48d4405712010871672d985e50cc184e63fbbbd2d0a88071e
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -82,6 +85,15 @@ provides the tools and manages the context the model sees, which it identifies a
 agentic harness refers to. The loop that harness runs is described as three blended phases: gathering
 context, taking action and verifying results.
 
+The open-source [[SoftwareApplication/openharness]] project defines the term in the same broad sense in
+its README: an agent harness is the complete infrastructure that wraps around an LLM to make it a
+functional agent, with the model providing intelligence and the harness providing "hands, eyes, memory,
+and safety boundaries". It closes on the line "The model is the agent. The code is the harness." The
+harness it implements is organized around an agent loop that runs each tool call the model requests
+through a permission check and lifecycle hooks before feeding the result back, surrounded by subsystems
+for tools, skills, plugins, permissions, hooks, commands, MCP, memory, background tasks and multi-agent
+coordination — the model, as the README puts it, decides what to do and the harness handles how.
+
 ## Related Terms
 
 - [[DefinedTerm/system-harness]]
@@ -95,3 +107,4 @@ context, taking action and verifying results.
 - [[SoftwareApplication/deep-agents]]
 - [[DefinedTerm/tool-call-offloading]]
 - [[BlogPosting/the-anatomy-of-an-agent-harness]]
+- [[SoftwareApplication/openharness]]

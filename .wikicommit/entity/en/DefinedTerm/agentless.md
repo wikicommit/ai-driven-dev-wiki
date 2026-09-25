@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2407.01489'
     hash: sha256:ec78fdd1fa6d6641919d4b68279ff1e8157c8bebd09ad96bd24d862821b708e7
+  - type: url
+    url: 'https://github.com/OpenAutoCoder/Agentless'
+    hash: sha256:a832300f0f4ae25fc985076b0e717fa3e2665f14639ad89a2024cb7386da555c
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -32,6 +35,25 @@ authors' stated motivation is the question of whether complex autonomous softwar
 necessary, given that current LLMs have limited abilities while agent-based approaches are
 correspondingly complex — so "agentless" is defined by subtraction from the agent-based systems it
 is compared with, rather than by a mechanism of its own beyond the three phases.
+
+The system itself is published as an open-source, MIT-licensed repository under the OpenAutoCoder
+organization on GitHub, whose README spells out what each phase does for a single issue:
+
+- **Localization** is hierarchical — the fault is first narrowed to specific files, then to relevant
+  classes or functions, and finally to fine-grained edit locations.
+- **Repair** takes those edit locations and samples multiple candidate patches per bug, in a simple
+  diff format.
+- **Patch validation** selects regression tests to run and generates an additional reproduction test
+  for the original error; the test results are used to re-rank the remaining patches and select one
+  to submit.
+
+The repository is set up to run on SWE-bench problems with an OpenAI API key. It announces a 1.0
+release on 1 July 2024 and a 1.5 release on 28 October 2024, and reports that in December 2024 the
+project integrated Agentless with Claude 3.5 Sonnet for runs on SWE-bench Lite and SWE-bench
+Verified. Its v1.5.0 release carries the complete Agentless runs on both of those benchmarks together
+with preprocessed repository-structure information for each SWE-bench problem, and the repository
+also holds the authors' manual classifications of SWE-bench Lite and the filtered
+[[Dataset/swe-bench-lite-s]] problems.
 
 ## When It Applies
 
@@ -57,3 +79,4 @@ and misleading issue descriptions — which is why the same authors construct
 ## Related Terms
 
 - [[Dataset/swe-bench-lite-s]] — the filtered benchmark the same paper constructs for more rigorous comparison
+- [[Dataset/swe-bench]] — the benchmark family the repository is set up to run on

@@ -17,6 +17,7 @@ comments: false
 - [[DefinedTerm/agent-framework]]
 - [[DefinedTerm/agent-harness]]
 - [[DefinedTerm/agent-hooks]]
+- [[DefinedTerm/agent-md]]
 - [[DefinedTerm/agent-middleware]]
 - [[DefinedTerm/agent-native-training]]
 - [[DefinedTerm/agent-payments-protocol]]

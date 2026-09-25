@@ -10,3 +10,4 @@ comments: false
 - [[Book/beyond-vibe-coding]]
 - [[Book/hello-agents]]
 - [[Book/leading-effective-engineering-teams]]
+- [[Book/vibe-vibe]]
