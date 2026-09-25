@@ -32,6 +32,7 @@ comments: false
 - [[BlogPosting/ai-code-review-ideal-and-reality]]
 - [[BlogPosting/ai-coding-agent-speed-and-safety-2026]]
 - [[BlogPosting/ai-coding-agents-adoption-trends]]
+- [[BlogPosting/ai-coding-tools-evolution-and-vibe-coding]]
 - [[BlogPosting/ai-driven-development-two-commands]]
 - [[BlogPosting/ai-knowledge-sharing-sessions-96-products]]
 - [[BlogPosting/ai-writes-code-faster-your-job-is-still-to-prove-it-works]]

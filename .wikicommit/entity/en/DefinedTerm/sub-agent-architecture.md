@@ -20,9 +20,12 @@ sources:
   - type: url
     url: 'https://zenn.dev/globis/articles/d0c73d2b176ba5'
     hash: sha256:d007e48e9860eef6953063dd12b23e8be1cf1576ddabcc4574d8a292c21d4357
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/agent/agent-basics/'
+    hash: sha256:0e39f53f9f6fff0ddac9779101da8aef50cca78d20a39bf6f9814d0647866bf7
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-24"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -117,6 +120,30 @@ treating whether it is then invoked as intended as a separate question settled e
 creating test pull requests — since a clear file-pattern trigger is easy for the orchestrator to judge
 and other cases are not.
 
+A sixth account, a draft chapter of Jimmy Song's online handbook 智能体构建指南, restates the pattern
+for AI programming and gives as its motivation that a single agent's context swells as a conversation
+goes on and pollutes the main thread. It describes subagents as specialised, context-isolated sub-roles,
+each completing a well-defined subtask in its own context before the results are gathered back into the
+main thread, and says platforms such as [[SoftwareApplication/claude-code]] have turned this into a
+product feature. It lists four benefits — context isolation; specialisation, with each subagent given
+one atomic responsibility such as dependency upgrades, code review or i18n checks; reuse and governance,
+through project- or user-level configurations that can set tool and permission boundaries; and
+composition, with several subagents run in order as a workflow for reliability and verifiability.
+
+That chapter names three ways a subagent comes to be invoked: automatic delegation, where the platform
+matches the subagent's description against the context; explicit invocation in the prompt; and
+configuration files such as `.claude/agents/*.md` that state trigger conditions and default behaviour to
+make invocation more deterministic. Its design points are atomic granularity; declared inputs and
+outputs, including the file paths a subagent produces, so the main thread and other subagents can pass
+data to it; intermediate results written out explicitly to files, such as under a temporary directory,
+with read and write permissions and file names stated in the description; keywords such as
+`use PROACTIVELY` or `MUST BE USED` in the description to raise how often automatic delegation picks it;
+and separate model and tool settings per subagent for safety governance. Its worked example is a
+reusable workflow for adding a field to a domain model, run as four subagents in sequence — a dependency
+upgrader, a domain-model field enhancer, a Maven build specialist and a tester — each one's output
+becoming the next one's input, with the main agent or a verification agent doing the final compliance
+check.
+
 ## When It Applies
 
 - Applies to complex research and analysis where parallel exploration pays dividends. Anthropic
@@ -163,6 +190,12 @@ and other cases are not.
 - A stated limitation of that implementation is synchronous execution: the lead agent waits for each set
   of subagents to finish, which simplifies coordination but means it cannot steer them mid-flight,
   subagents cannot coordinate with one another, and a single slow subagent blocks the system.
+
+- The handbook chapter above names three costs of its own: latency, because each time a subagent
+  starts it has to reload context and resources; a context-switching cost, because to keep them
+  isolated subagents usually do not inherit the main thread's full context, so parameters or files
+  have to be passed to them explicitly; and maintainability, because a team's subagent library needs
+  curating and conventions to avoid duplication and conflict.
 
 ## Related Terms
 
