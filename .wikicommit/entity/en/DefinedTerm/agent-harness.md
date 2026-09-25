@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.17799'
     hash: sha256:98d0e3aebf3d1c5ab551f46a6c1f719389e820d2be1490bfefd669d87c107e69
+  - type: url
+    url: 'https://blog.langchain.com/agent-frameworks-runtimes-and-harnesses-oh-my/'
+    hash: sha256:dbbb531bd6a1b614e8c6537f3fe67ea744c2f9b7a8532abd9bfc3cd413ce1729
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -37,6 +40,18 @@ A further argument the survey makes about safety is that human-in-the-loop contr
 
 Gorinova et al. use the agent harness as an argument about measurement: because the harness is part of what a benchmark actually scores, a leaderboard entry naming only a model is under-specified. They reproduce Terminal-Bench entries for a single fixed model across several agent harnesses in which accuracy ranges from roughly 58% to roughly 80%, and argue that since the model is fixed the spread cannot be explained as a difference in model capability — it shows that prompt, tool interface, action loop, environment handling, retry behaviour and terminal conventions are part of the measured object. They add that a model may have been trained or tuned under particular tool-use conventions, so a harness can be well or poorly matched to a model before any task-specific reasoning begins.
 
+LangChain's Harrison Chase uses the term for a position in a layering of agent-building software
+rather than for the system around a model in general. In
+[[BlogPosting/agent-frameworks-runtimes-and-harnesses]] he places an agent harness above an
+[[DefinedTerm/agent-framework]]: where a framework's value is its abstractions and an
+[[DefinedTerm/agent-runtime]] beneath it supplies production infrastructure, a harness adds default
+prompts, opinionated handling of tool calls, planning tools and filesystem access — "batteries
+included". His example is LangChain's own [[SoftwareApplication/deep-agents]], built on LangChain and
+described as a "general purpose version of Claude Code"; he reads the Claude Agent SDK as Claude
+Code's step in the same direction and allows that all coding CLIs could be argued to be agent harnesses
+of a kind. He states that he did not come up with the term and that its definition, like the
+boundaries between the three layers, was not yet clear.
+
 ## Related Terms
 
 - [[DefinedTerm/system-harness]]
@@ -45,3 +60,6 @@ Gorinova et al. use the agent harness as an argument about measurement: because 
 - [[DefinedTerm/agent-scaffold]]
 - [[DefinedTerm/harness-as-a-service]]
 - [[DefinedTerm/ai-coding-agent]]
+- [[DefinedTerm/agent-framework]]
+- [[DefinedTerm/agent-runtime]]
+- [[SoftwareApplication/deep-agents]]

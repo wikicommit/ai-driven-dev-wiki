@@ -10,9 +10,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2601.11655'
     hash: sha256:cbedafca04b35cddb49e45fd2b158a2fc521a51a9ea5da37f4059553ec41b806
+  - type: url
+    url: 'https://arxiv.org/html/2406.01422v2'
+    hash: sha256:d9bfa615cea940d9674ffc433e47eb528cb25093699809cd3e9b54dabf0caf1d
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -88,9 +91,22 @@ computational and economic burden of high-performing methods — and the relianc
 rewards, typically a binary test pass or fail, which it argues makes credit assignment ambiguous
 across the many action steps a multi-turn task requires.
 
+One system shows what the repo-preprocessing and localization phases look like when a method invests
+heavily in them. [[ScholarlyArticle/lingmaagent-improving-automated-issue-resolution]] argues that a
+comprehensive understanding of the whole repository is the most critical path to automating the task,
+because the code making up one functionality is typically scattered across folders and files and
+cannot all be placed in a model's context. Its agent builds a knowledge graph of files, classes,
+functions and function calls, explores it with Monte Carlo tree search before attempting a fix, and
+reports higher fault-localization accuracy than the agent baselines it compares against. The same
+paper gives an industrial data point on how far automation reaches: on issues drawn from Alibaba
+Cloud's own repositories its agent resolved 16.9% unaided, and on a 30-issue subset the rate rose to
+43.3% once engineers could adjust its plans, searches and fault localization — which the authors read
+as the system augmenting human problem-solving rather than replacing it.
+
 ## Related Terms
 
 - [[DefinedTerm/ai-coding-agent]] — the kind of system the task is now predominantly attempted with
 - [[DefinedTerm/repository-level-coding]] — the broader setting the task operates in
 - [[Dataset/swe-bench]] — the benchmark whose introducing paper the survey credits with pioneering the task
 - [[ScholarlyArticle/advances-and-frontiers-of-llm-based-issue-resolution]] — a survey of the task's data, methods and analysis literature
+- [[ScholarlyArticle/lingmaagent-improving-automated-issue-resolution]] — an agent built around whole-repository exploration

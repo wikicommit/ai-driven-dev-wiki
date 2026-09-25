@@ -25,9 +25,12 @@ sources:
   - type: url
     url: 'https://jonghoonpark.com/2026/03/29/agentic-engineering'
     hash: sha256:92fea29c2779ce511435e3c79aeb42f9b33855c8f3a1f24849a1c6993534b024
+  - type: url
+    url: 'https://arxiv.org/pdf/2605.07358'
+    hash: sha256:096f5ed37573599d6a6c7ead31f91dbe0c836695066c0ed2890efe4a97108983
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -191,6 +194,39 @@ Google's account makes about fast-moving SDKs, reached here from the direction o
 expertise rather than a model's training cutoff. That account reports no evaluation and does not
 identify which harness feature set it is describing beyond naming Claude Code as the agent.
 
+## A Research Framing
+
+The academic literature uses the term more broadly than any one product's file format.
+[[ScholarlyArticle/comprehensive-survey-on-agent-skills]] defines agent skills as reusable procedural
+artifacts that coordinate tools, memory and runtime context under task-specific constraints, and
+formalizes a skill as a tuple of three parts: a root instruction document the agent can load and
+follow, a set of auxiliary resources such as reference documents, templates or executable scripts,
+and applicability conditions governing when the skill should be retrieved and applied — expressed as
+metadata, natural-language descriptions or embeddings. The survey notes that the tuple need not be
+fully instantiated in every system. Read against the format described above, a `SKILL.md` body
+corresponds to the instruction document, bundled files to the resources, and the frontmatter
+`description` to the applicability condition; the survey itself refers to `SKILL.md` files and skill
+folders among the artifacts its methods evolve, without tying the concept to them.
+
+On the survey's account the case for skills is what it calls the [[DefinedTerm/procedural-gap]]:
+access to tools does not say when a capability should be invoked, how tools should be coordinated, how
+failures should be handled or how outputs should be validated. It casts the agent as the high-level
+planner and skills as the operational layer beneath it, and distinguishes skills from raw tools and
+MCP servers on the grounds that skills encode situated know-how — triggers, sequencing, fallbacks and
+pitfalls — while tools only expose operations. It also allows skills that are not tool-centric at all,
+such as review checklists, which mainly draw on the model's own knowledge but still supply structure
+beyond ad-hoc prompting.
+
+Where the vendor documentation describes how a skill is written and loaded, the survey organizes the
+research around a lifecycle: how skills are represented (text-backed, code-backed or hybrid, by what
+their resources contain), acquired (from human experts, from an agent's own past runs, on demand for
+the current task, or from external corpora), retrieved and selected from a large pool, and evolved
+after they exist — revised, validated, propagated through shared repositories and governed at
+runtime. The problems it identifies are lifecycle problems rather than authoring ones: weak trigger
+conditions that leave a useful procedure routed poorly, drift between a skill's main document and its
+attached scripts, low-quality skills accumulating faster than libraries can curate them, and systems
+that are far better at adding skills than at safely rewriting or retiring them.
+
 ## When It Applies
 
 The format applies where an agent needs domain expertise — workflows, context and best practices —
@@ -257,3 +293,5 @@ external tools, and enabling agents to create, edit and evaluate Skills on their
 - [[DefinedTerm/context-engineering]] — the broader concern this format addresses
 - [[DefinedTerm/agents-md]] — another file-based convention for giving an agent standing instructions
 - [[SoftwareApplication/claude-code]] — one of the products the format is available in
+- [[DefinedTerm/procedural-gap]] — the shortfall the research literature presents skills as bridging
+- [[ScholarlyArticle/comprehensive-survey-on-agent-skills]] — a survey organizing agent-skill research around a lifecycle
