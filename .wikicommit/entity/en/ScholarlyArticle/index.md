@@ -77,6 +77,7 @@ comments: false
 - [[ScholarlyArticle/from-human-centric-to-agentic-code-review]]
 - [[ScholarlyArticle/from-industry-claims-to-empirical-reality]]
 - [[ScholarlyArticle/from-llms-to-llm-based-agents-for-software-engineering]]
+- [[ScholarlyArticle/from-obstacles-to-strategies-integrating-ai-into-the-sdlc]]
 - [[ScholarlyArticle/from-prompt-to-process]]
 - [[ScholarlyArticle/from-tool-orchestration-to-code-execution]]
 - [[ScholarlyArticle/generative-ai-adoption-in-software-engineering]]
