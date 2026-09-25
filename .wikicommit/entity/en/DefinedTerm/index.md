@@ -157,6 +157,7 @@ comments: false
 - [[DefinedTerm/direct-prompt-injection]]
 - [[DefinedTerm/domain-driven-design]]
 - [[DefinedTerm/doom-loop]]
+- [[DefinedTerm/dora-ai-capabilities-model]]
 - [[DefinedTerm/dual-llm-pattern]]
 - [[DefinedTerm/easy-approach-to-requirements-syntax]]
 - [[DefinedTerm/edit-apply-model]]
