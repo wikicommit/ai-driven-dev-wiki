@@ -23,6 +23,9 @@ sources:
   - type: url
     url: 'https://blog.langchain.com/tool-calling-with-langchain/'
     hash: sha256:272d889d15308a542b7029c3aae6528c22e13a794ef6e75763f377ff9e0b206a
+  - type: url
+    url: 'https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use'
+    hash: sha256:b617f4377dcd4fcab5698ec8b5919a3fec12cf22b96c9f6c69bfb3d73b497ce6
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -99,8 +102,8 @@ a decorator and the framework serializes it into the schema sent to the model, a
 [[SoftwareApplication/microsoft-foundry-agent-service]], where tool calling is handled server-side
 and tools are combined into a toolset.
 
-**A framework vendor's blog post** ([[BlogPosting/agentic-design-pattern-tool-calling]]) spends most
-of its length on the vocabulary before any mechanism, judging the distinction between "tool",
+**A framework vendor's blog post** ([[BlogPosting/agentic-design-pattern-tool-calling]]) opens
+with the vocabulary before any mechanism, judging the distinction between "tool",
 "function" and "structured output" to be made more complex than it is. Its answer is that a tool and
 a function are synonyms: for an agent built in code, the simplest way to do something on a user's
 behalf is to call a function, and "tool" is the higher-level word for the same thing — which that
@@ -210,6 +213,33 @@ there is an evaluation loop rather than judgment: build evaluation tasks from re
 as simple agentic loops, and read the resulting transcripts — a discipline the post reports applying to
 Anthropic's own internal tools, with held-out test sets showing gains beyond expert implementations
 written either by its researchers or by Claude.
+
+Anthropic's own API documentation on defining tools sets out the declaration side of the same
+advice for its Claude API. A user-defined tool is declared in the request's `tools` parameter with a
+`name` (letters, digits, underscores and hyphens, up to 128 characters), a detailed plaintext
+`description`, an `input_schema` given as a JSON Schema object, and optionally `input_examples` —
+sample inputs that must validate against the schema, which the documentation recommends for tools
+with nested objects or format-sensitive parameters and says add roughly 20–50 prompt tokens for a
+simple example and 100–200 for a complex nested one. From the tool definitions, the tool
+configuration and any user-supplied system prompt, the API constructs a special system prompt that
+instructs the model to use the tools. Its best practices restate the positions above in a vendor's
+reference documentation: it calls extremely detailed descriptions by far the most important factor in
+tool performance and asks for at least three to four sentences per tool, covering what the tool does,
+when it should and should not be used, what each parameter means and what the tool does not return;
+it recommends consolidating related operations into one tool with an `action` parameter rather than
+one tool per action, prefixing tool names with the service they belong to, and returning semantic,
+stable identifiers and only the fields the model needs for its next step.
+
+The same page documents a control the accounts above do not cover: `tool_choice`, which takes four
+values — `auto`, in which the model decides whether to call a tool (the default when tools are
+provided); `any`, in which it must call one of the provided tools; `tool`, in which it must call one
+named tool; and `none`, in which it may not call tools (the default when none are provided). With
+`any` or `tool` the API prefills the assistant turn to force a tool call, so the model emits no
+natural-language explanation before it. Forced tool use is not available everywhere: the
+documentation states that manual extended thinking rejects `any` and `tool`, and that Claude Opus 5.5,
+Claude Fable 5.1 and Claude Mythos 5.1 return an error for them regardless of thinking settings,
+pointing instead to `auto` combined with strict tool use, or to structured outputs when a response in
+a fixed JSON shape is needed.
 
 ## Related Terms
 
