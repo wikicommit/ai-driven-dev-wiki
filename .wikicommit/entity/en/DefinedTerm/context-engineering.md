@@ -22,17 +22,20 @@ sources:
   - type: url
     url: 'https://blog.langchain.com/the-rise-of-context-engineering/'
     hash: sha256:32b2b5652177ec8f3a2a23644d8fd7ad0c33e762e6609a596dd0ebbf90f2d682
+  - type: url
+    url: https://cognition.ai/blog/dont-build-multi-agents
+    hash: sha256:c456bd571f488ee46bc4c213e9d4302677f283c444dd4b85a1ad7fa1bd41d480
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
-  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Six accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository; a fifth that begins by separating the persisted session record from the payload assembled before each inference, and frames the practice as building a pipeline between them; and a sixth, from an agent-framework vendor, that defines it as building dynamic systems that give the model the right information and tools in the right format."
+  description: "The practice of curating and dynamically managing what information enters a language model's context window during inference. Seven accounts of it coexist in this wiki's sources: two vendor accounts that agree on the problem but differ on whether it is the natural progression of prompt engineering or fundamentally different from it; a third, from a team describing its own practice, treating it as a question of which tacit knowledge has to be written down for an agent to find; a fourth that makes it one layer of a larger framework and answers it with file conventions committed to the repository; a fifth that begins by separating the persisted session record from the payload assembled before each inference, and frames the practice as building a pipeline between them; a sixth, from an agent-framework vendor, that defines it as building dynamic systems that give the model the right information and tools in the right format; and a seventh, from a company building its own coding agent, that treats it as the core of reliability for long-running agents and derives from it an argument against multi-agent architectures."
 ---
 
 Context engineering is the practice of curating and dynamically managing what information
-occupies a large language model's context window during inference. Six of this wiki's sources
+occupies a large language model's context window during inference. Seven of this wiki's sources
 bear on the term, each writing about its own practice; the two treated first below are the ones
 that set out to define it. They agree on the problem and on the substantive contrast — a static
 written prompt against a dynamically assembled context — and differ in emphasis on how the term
@@ -194,6 +197,22 @@ set of dynamic data rather than phrasing a prompt for one fixed input. He is exp
 new — agent builders had been doing it for a year or two — and that what is new is a term for it. The post
 reports no evaluation, and its closing sections describe how LangChain's own products support the practice.
 
+A seventh account, [[BlogPosting/dont-build-multi-agents]] from [[Organization/cognition]], treats
+context engineering as the core of reliability for agents that must run for long periods and keep
+coherent conversations. It presents "prompt engineering" as the effort of writing a task in the ideal
+format for an LLM chatbot and context engineering as the next level of that — doing it automatically in
+a dynamic system — and calls it effectively the #1 job of engineers building AI agents. What it adds is
+a pair of principles, and a design conclusion drawn from them rather than a list of techniques: share
+context, and share full agent traces rather than individual messages; and actions carry implicit
+decisions, so conflicting decisions carry bad results. It argues that these principles are so rarely worth violating that
+agent architectures which break them should be ruled out by default, and that multi-agent designs in
+which subagents work on parts of a task in parallel break them — each subagent acts on assumptions the
+others cannot see, and the combined result is inconsistent. Its recommended default is a single-threaded
+linear agent whose context is continuous, with, for tasks long enough to overflow the context window, a
+separate model that compresses the history of actions and conversation into key details, events and
+decisions — which the post calls hard to get right. Like the others it reports no evaluation, and it
+presents its principles as ones its author's team keeps relearning while building its own agent.
+
 ## When It Applies
 
 - Applies once an agent operates over multiple turns, where the whole context state rather than
@@ -215,7 +234,7 @@ reports no evaluation, and its closing sections describe how LangChain's own pro
   laundry list of edge cases is stuffed into a prompt in place of canonical examples. Anthropic's
   stated remedy is to start from a minimal prompt on the best available model and add
   instructions and examples in response to failure modes found in testing.
-- None of the six accounts is an independent evaluation; each is written by a party describing
+- None of the seven accounts is an independent evaluation; each is written by a party describing
   its own practice.
   Anthropic's is drawn from building agents and working alongside its customers; it observes that
   smarter models require less prescriptive engineering, and gives "do the simplest thing that
@@ -239,6 +258,10 @@ reports no evaluation, and its closing sections describe how LangChain's own pro
   keeping an instruction file out of contexts it does not belong in. Its named misapplication is
   one massive instruction file that applies everywhere, which the account presents as the thing
   modular files exist to replace.
+- The shared-context sense assumes that every action an agent takes can be informed by the relevant
+  decisions made elsewhere in the system. The seventh account concedes that this is not always possible
+  within limited context windows and practical trade-offs, and names its misapplication as splitting work
+  among parallel subagents that cannot see each other's decisions.
 
 ## Related Terms
 
