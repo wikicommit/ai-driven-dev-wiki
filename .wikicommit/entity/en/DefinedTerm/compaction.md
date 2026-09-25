@@ -25,9 +25,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.30560'
     hash: sha256:90d9d93dde14b87925191228c1addb5b483ccd600b3080a99d134b04712cf1e3
+  - type: url
+    url: 'https://code.claude.com/docs/en/how-claude-code-works'
+    hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -53,6 +56,16 @@ Anthropic identifies clearing tool calls and results as low-hanging superfluous 
 tool has been called deep in the message history, the raw result generally need not be seen again
 — and calls tool result clearing one of the safest, lightest-touch forms of compaction. It
 describes this as having launched as a feature on the Claude Developer Platform.
+
+Claude Code's user documentation describes the same behaviour from the user's side. As the context
+limit approaches, it says, Claude Code first clears older tool outputs and then summarises the
+conversation if needed; the user's requests and key code snippets are preserved, while detailed
+instructions from early in the conversation may be lost, which is why it advises putting persistent
+rules in [[DefinedTerm/claude-md]] rather than relying on conversation history. What is kept can be
+steered, by adding a "Compact Instructions" section to CLAUDE.md or by running `/compact` with a focus.
+The documentation also records a failure case: if a single file or tool output is so large that the
+context refills immediately after each summary, Claude Code stops auto-compacting after a few attempts
+and shows an error instead of looping.
 
 A summarising pass is not always a single step. [[ScholarlyArticle/dive-into-claude-code]], reading
 Claude Code's source at v2.1.88, describes compaction there as a pipeline of five shapers that run
@@ -165,3 +178,4 @@ shorter context length.
 - [[DefinedTerm/context-reset]]
 - [[DefinedTerm/context-anxiety]]
 - [[DefinedTerm/agent-scaffold]]
+- [[DefinedTerm/claude-md]]

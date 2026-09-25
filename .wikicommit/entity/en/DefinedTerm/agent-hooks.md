@@ -19,9 +19,12 @@ sources:
   - type: url
     url: 'https://toss.tech/article/52631'
     hash: sha256:8e01a448bd2676b5a47e3ed4d8360ee248c40091ecec973ede57f55edea8cba1
+  - type: url
+    url: 'https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more'
+    hash: sha256:bb67b24e7e743610aadc45e492a9035d66952bb3cadff52ef8301bc773391708
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -44,7 +47,7 @@ Claude Code's two decision mechanisms are documented in that post as alternative
 
 Anthropic's own Claude Code documentation states the same enforcement argument in one line —
 CLAUDE.md instructions are advisory, hooks are deterministic and guarantee the action happens — and
-adds a use the accounts above do not cover: gating when a turn is allowed to *end*. A `Stop` hook
+describes using hooks to gate when a turn is allowed to *end*. A `Stop` hook
 runs a check as a script and, in that documentation's words, blocks the turn from ending until it
 passes — putting a test suite or build between the agent and declaring itself done. How firm that
 is depends on which of this page's sources is asked:
@@ -53,6 +56,20 @@ feeds the reason back to the model and asks it to continue, and calls it a stron
 an absolute guarantee. The documentation also records a ceiling: Claude Code overrides the hook and
 ends the turn after eight consecutive blocks. The same
 documentation notes that hooks can be written by the agent itself on request.
+
+An Anthropic post dated June 18, 2026, [[BlogPosting/steering-claude-code]], places hooks among the seven ways of
+instructing Claude Code and explains their position there by context cost rather than by enforcement
+alone. It describes hooks as user-defined commands, HTTP endpoints or LLM prompts, registered in
+`settings.json`, in managed policy settings, or in a skill's or subagent's frontmatter, and lists five
+types — command, HTTP, `mcp_tool`, prompt and agent. All are triggered deterministically; the first
+three also execute deterministically, while prompt and agent hooks use Claude's judgment rather than a
+set of rules to determine their output. Because a hook's configuration lives outside the main
+context window — the harness runs the handler for command, HTTP and `mcp_tool` hooks, and makes model
+calls in separate windows for prompt and agent hooks — the post counts hooks as low in context cost and
+as bypassing [[DefinedTerm/compaction]] entirely. The corollary it draws is that most hook output never reaches the
+main context unless the configuration returns it: a blocking hook's standard error is kept so Claude
+knows why a call was denied, but if a `PreCompact` hook backs up the chat history to a file, Claude
+would not know which file holds it.
 
 A use that neither decides nor blocks anything is described in
 [[BlogPosting/making-ai-follow-team-rules]], where hooks carry team coding conventions into the
@@ -73,12 +90,22 @@ model-based relevance check having cost about ten seconds per request.
 
 ## When It Applies
 
-Hooks apply where an outcome must be impossible rather than merely discouraged. [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]] names the recurring cases as destructive shell commands, access to `.env` files, secrets and production configuration, and the one or two CI/CD standards an organisation depends on; the most common hook in practice, it reports, is the least dramatic one — a `PostToolUse` formatter and linter run after every file edit. It assumes an agent whose runtime supports the mechanism at all, and it assumes the rule can be decided by code from the tool call alone.
+Hooks apply where an outcome must be impossible rather than merely discouraged. [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]] names the recurring cases as destructive shell commands, access to `.env` files, secrets and production configuration, and the one or two CI/CD standards an organisation depends on; the most common hook in practice, it reports, is the least dramatic one — a `PostToolUse` formatter and linter run after every file edit.
 
-Placement is the scope of the policy: user settings for a personal, machine-wide safety net, the project's committed `.claude/settings.json` for a team standard, and administrator-controlled managed policy settings for an organisational guardrail. That placement is also the mechanism's main failure mode. A hook is code the runtime executes automatically with the user's permissions, and a `SessionStart` hook runs the moment a project is opened, before anything is typed — so anything that can write to a settings file can plant code that runs. The post cites an April 2026 PyPI worm that planted a malicious `SessionStart` hook in repository settings, and advises treating settings files the way CI configuration is treated: review every change, and review a cloned repository's `.claude` folder before opening it.
+In the same post, placement is the scope of the policy: user settings for a personal, machine-wide safety net, the project's committed `.claude/settings.json` for a team standard, and administrator-controlled managed policy settings for an organisational guardrail. That placement is also a security question, the post argues. A hook is code the runtime executes automatically with the user's permissions, and a `SessionStart` hook runs the moment a project is opened, before anything is typed — so anything that can write to a settings file can plant code that runs. The post cites an April 2026 PyPI worm that planted a malicious `SessionStart` hook in repository settings, and advises treating settings files the way CI configuration is treated: review every change, and review a cloned repository's `.claude` folder before opening it.
 
 The post also argues against over-use on cost grounds — hooks run inside the agent loop, so every matching tool call pays for spawning the script — and holds that everything outside the critical few belongs in prompts and skills, where an occasional miss is annoying rather than dangerous. How well-established the practice is can be read from its spread: the post reports that Cursor shipped hooks in version 1.7 keeping the same exit-code semantics, that Gemini CLI and GitHub Copilot CLI shipped their own hook systems, and that OpenAI Codex added experimental hooks behind a feature flag with five events mirroring Claude Code's naming — with Claude Code's JSON-on-`stdin` and `exit 2`-to-block design becoming the de facto convention.
 
+[[BlogPosting/steering-claude-code]], the Anthropic post on where Claude Code instructions belong, turns
+the enforcement argument into a placement rule. An instruction phrased "every
+time X, always do Y" in [[DefinedTerm/claude-md]] belongs in a hook instead, because the model
+choosing to run a formatter is different from the formatter running automatically; and "never do
+this" is the wrong job for an instruction at all, since under pressure, in a long session, in an
+ambiguous situation or through a prompt injection in a file it reads, the model can fail to follow a
+prompted rule. That post names hooks and permissions as the enforcement methods, and managed settings —
+admin-deployed and not overridable by a user's local configuration — as the only way to enforce a
+deterministic organisation-wide guardrail.
+
 ## Related Terms
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]], [[DefinedTerm/claude-md]], [[BlogPosting/steering-claude-code]]

@@ -22,15 +22,18 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/april-23-postmortem'
     hash: sha256:269dd6e147333715b02167db5eedbc394fe254ceebed15d9cf7f2a05a25c87f5
+  - type: url
+    url: 'https://code.claude.com/docs/en/how-claude-code-works'
+    hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
-  description: "Anthropic's agentic coding solution, which combines up-front context files with just-in-time file and data retrieval, message-history compaction, and to-do list note-taking."
+  description: "Anthropic's agentic coding solution, an assistant that runs in the terminal and works through a loop of gathering context, taking action and verifying results. It combines up-front context files with just-in-time file and data retrieval, message-history compaction, and to-do list note-taking."
   applicationCategory: "Agentic coding tool"
-  featureList: "Targeted database queries with stored results; Bash primitives including head, tail, glob and grep; CLAUDE.md context files loaded up front; message-history compaction; a to-do list for agentic note-taking"
+  featureList: "Targeted database queries with stored results; Bash primitives including head, tail, glob and grep; CLAUDE.md context files loaded up front; message-history compaction; a to-do list for agentic note-taking; local, cloud and Remote Control execution environments; resumable and forkable sessions; file-edit checkpoints; permission modes"
   author: "[[Organization/anthropic]]"
 ---
 
@@ -47,6 +50,40 @@ navigate its environment and retrieve files just in time, which Anthropic says e
 bypasses the issues of stale indexing and complex syntax trees.
 
 ## Capabilities
+
+Anthropic's documentation describes Claude Code as an agentic assistant that runs in the terminal and
+that, while it excels at coding, can help with anything done from the command line. Given a task, it
+works through three phases — **gather context**, **take action** and **verify results** — which the
+documentation says blend together, with Claude choosing each step from what it learned in the previous
+one and the user able to interrupt and steer at any point. The loop is powered by two components,
+models that reason and tools that act, and the documentation names Claude Code itself as the layer
+around the model that provides the tools and manages the context the model sees — the layer it says
+the term agentic harness refers to (see [[DefinedTerm/agent-harness]]). It groups the built-in tools
+into five categories: file operations, search, execution, web, and code intelligence (the last
+requiring code intelligence plugins), alongside tools for spawning subagents and asking the user
+questions.
+
+On that account, running `claude` in a directory gives it access to the project's files, the
+terminal, the current git state, [[DefinedTerm/claude-md]] (and an AGENTS.md written for other coding
+agents, which it can read on its own or alongside CLAUDE.md), and an auto memory in which it saves
+learnings as it works, of which the first 200 lines or 25KB of `MEMORY.md` load at the start of each
+session. The same loop runs in three execution environments — locally, in the cloud on
+Anthropic-managed VMs or self-hosted environments, and under Remote Control, where a browser drives a
+session whose execution and files stay on the user's machine — and behind several interfaces,
+including the terminal, a desktop app, IDE extensions, the web, Slack and CI/CD pipelines.
+
+Each session is written locally as a plaintext JSONL file under `~/.claude/projects/`, and sessions are
+independent: a new one starts with a fresh context window. Resuming with `--continue` or `--resume`
+reopens a session under the same ID, while forking with `--fork-session` or `/branch` copies its
+history into a new one. As context fills, the documentation says Claude Code first clears older tool
+outputs and then summarises the conversation if needed, and that it stops auto-compacting and shows an
+error after a few attempts when a single oversized file or output refills the context each time. MCP
+tool definitions are deferred by default and loaded on demand via tool search. Two safety mechanisms
+are named: checkpoints, which snapshot a file before Claude edits it and are rewound by pressing `Esc`
+twice, and which cannot cover actions on remote systems such as databases, APIs or deployments; and
+[[DefinedTerm/permission-modes]], cycled with `Shift+Tab`, of which the documentation lists Auto,
+Manual, Accept edits and Plan.
+
 - [[DefinedTerm/just-in-time-context-retrieval]] over large data sets: targeted queries whose
   results are stored, plus Bash primitives such as `head` and `tail` for working through large
   volumes without loading them whole.
@@ -142,8 +179,9 @@ Its second is to separate exploration and planning from implementation via plan 
 that planning adds overhead and should be skipped when the change could be described in one sentence.
 For CLAUDE.md it recommends brevity over completeness, offering the test "would removing this cause
 Claude to make mistakes?" and warning that a bloated file causes actual instructions to be ignored —
-with the practical diagnostic that an instruction repeatedly skipped is usually a sign the file is too
-long rather than that the rule needs restating. It names five recurring failure patterns: mixing
+with the practical diagnostic that if Claude keeps doing something despite a rule against it, the file
+is probably too long and the rule is getting lost; for a single instruction Claude keeps skipping, it
+suggests adding emphasis to that line alone, since emphasising many lines makes none stand out. It names five recurring failure patterns: mixing
 unrelated tasks in one session, correcting repeatedly instead of restarting with a better prompt, an
 over-specified CLAUDE.md, trusting plausible-looking output without verification, and unscoped
 investigation that fills the context. The documentation closes by presenting all of this as starting
@@ -190,7 +228,7 @@ the API unaffected; what follows is the part of that account that bears on Claud
 
 The effort default is the first of the three. It was lowered from `high` to `medium` on March 4,
 2026 to address occasional thinking times long enough to make the interface appear frozen, and
-reverted on April 7 after user feedback, with defaults thereafter stated as `xhigh` for Opus 4.7
+reverted on April 7 after user feedback, with defaults now stated as `xhigh` for Opus 4.7
 and `high` for every other model. Anthropic reports having first tried notices, an inline effort
 selector and the reinstatement of ultrathink, and that most users stayed on the default anyway.
 
@@ -226,7 +264,7 @@ sub-agents for specific tasks. The same paper cites it as an example of a powerf
 agentic platform that grants developers immense control and flexibility but results in ephemeral
 interactions: on its account the conversational context of planning, clarification and refinement
 between the human and the agent exists only in a terminal's scroll-back buffer, with no systematic
-archival of the agent's reasoning or the human's guidance, making it difficult to reconstruct the
+archival of the agent's reasoning or the human's guidance, making it, in the paper's words, nearly impossible to reconstruct the
 evolution of design decisions or reproduce specific outcomes.
 
 The two sources disagree here, and this page follows the source-level study. That paper mentions

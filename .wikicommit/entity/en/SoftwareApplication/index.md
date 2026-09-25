@@ -60,6 +60,7 @@ comments: false
 - [[SoftwareApplication/gemini-api]]
 - [[SoftwareApplication/gemini-api-developer-skill]]
 - [[SoftwareApplication/gemini-cli]]
+- [[SoftwareApplication/gemini-cloud-assist]]
 - [[SoftwareApplication/gemini-enterprise-agent-platform]]
 - [[SoftwareApplication/get-shit-done]]
 - [[SoftwareApplication/github-agentic-workflows]]

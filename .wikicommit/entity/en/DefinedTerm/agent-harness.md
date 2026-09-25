@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://blog.langchain.com/the-anatomy-of-an-agent-harness/'
     hash: sha256:71cffd4adc7b81b7dd5f981d26af2bebcee592b2751a882ea95bb833fa2d022e
+  - type: url
+    url: 'https://code.claude.com/docs/en/how-claude-code-works'
+    hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -71,6 +74,13 @@ knowledge beyond the weights, [[DefinedTerm/compaction]] and [[DefinedTerm/tool-
 post also argues that because products such as Claude Code and Codex are post-trained with their harness
 in the loop, a model can overfit to that harness — yet the best harness for a given task is not
 necessarily the one the model was trained with.
+
+Anthropic's own documentation uses the term in the same broad sense for its product. Describing how
+[[SoftwareApplication/claude-code]] works, it says the agentic loop is powered by two components —
+models that reason and tools that act — and that Claude Code is the layer around the model that
+provides the tools and manages the context the model sees, which it identifies as what the term
+agentic harness refers to. The loop that harness runs is described as three blended phases: gathering
+context, taking action and verifying results.
 
 ## Related Terms
 
