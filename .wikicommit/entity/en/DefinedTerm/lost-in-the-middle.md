@@ -7,9 +7,12 @@ sources:
   - type: url
     url: 'https://toss.tech/article/52631'
     hash: sha256:8e01a448bd2676b5a47e3ed4d8360ee248c40091ecec973ede57f55edea8cba1
+  - type: url
+    url: 'https://helloworld.kurly.com/blog/vibe-coding-with-claude-code/'
+    hash: sha256:ebce348758ea4336c22fe2c0c79c3120371a0d7c62e9c800a099fbcd0248ecb2
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -39,6 +42,19 @@ and it is used in that post as the reason a project-root instruction file such a
 not sufficient on its own: the rule was supplied and was not wrong, it simply ended up where the
 model would not use it. The remedy proposed there is not a better-written file but re-injecting the
 relevant rules at points inside the agent loop — see [[SoftwareApplication/pfmls-stylepack]].
+
+[[BlogPosting/predictable-vibe-coding-strategy-with-claude-code]] applies the same name both to
+a single long document handed over at once and, in its troubleshooting section, to rules set at the
+start of a conversation being ignored after around ten turns. Its worked example is a thirty-page specification given to a coding agent in one prompt, where the first and
+last few pages are reflected in the result while requirements in the pages between are partly missed.
+That post traces the name to a paper on the phenomenon, likens the pattern to the serial position
+effect in human memory — primacy and recency, with the middle neither rehearsed nor still in short-term
+memory — and suggests, as a possibility rather than a finding, that models trained on human-written
+data may have inherited that bias. It keeps the term separate from a working-memory limit, where rules
+are dropped because there are many distinct items to track even when the instruction is short. The
+remedies it proposes are procedural: split a request into small turns checked one at a time, list the
+items to be handled as an explicit to-do list and work through it, and divide a large exploration
+across subagents so each works in a small context.
 
 ## Related Terms
 

@@ -16,9 +16,12 @@ sources:
   - type: url
     url: 'https://zenn.dev/team_zenn/articles/ai-agent-security'
     hash: sha256:2be721cd73612dfe7c91c26ac50fcee96d54da09dcbaa9bd625325d049417502
+  - type: url
+    url: 'https://docs.claude.com/en/docs/claude-code/sandboxing'
+    hash: sha256:57360cd4178c36fd6c21f3d4b7e9a52359e555419c6b9e09d2ba3b7a7f244a3c
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -67,6 +70,40 @@ engineering write-up rather than measuring it. That fewer prompts is itself a sa
 not merely a convenience, is argued in a different section of that post — the one on permission
 settings — and is set out here under [[DefinedTerm/approval-fatigue]].
 
+### A vendor's built-in sandbox, as documented
+
+Anthropic's documentation for [[SoftwareApplication/claude-code]]'s sandboxed Bash tool describes one
+built-in sandbox in detail. Instead of approving each command, the user defines which files and network
+domains commands may touch, and the operating system enforces that boundary for every Bash, PowerShell
+or Monitor command and their child processes — Seatbelt on macOS, and bubblewrap on Linux and WSL2, with
+`socat` relaying network traffic to the sandbox proxy; native Windows and WSL1 are not supported. The
+documentation splits the sandbox into two independent layers. Filesystem isolation by default allows
+writes only to the working directory, directories the user has added, and a session temp directory,
+while allowing reads across the whole computer except certain denied directories — a default it
+explicitly notes still leaves credential files such as `~/.aws/credentials` and `~/.ssh/` readable
+unless they are listed for protection. Network isolation runs through a proxy outside the sandbox that
+pre-allows no domains and asks the first time a command needs a new one.
+
+Two design choices in that account bear on the general practice. First, the sandbox is presented as a
+separate layer from permission rules rather than a variant of them: permission rules are evaluated
+before a tool runs, based on the command string, whereas the sandbox is enforced by the operating system
+on the running process, so the documentation says it holds regardless of what the model chose to run
+and even if an allowed command does more than its name suggests. Second, it pairs the sandbox with an
+optional auto-allow mode that runs sandboxed commands without prompting, and with an escape hatch — a
+command that fails under the sandbox may be retried outside it through the regular permission flow —
+which can be switched off so that every command must run sandboxed. For credentials it offers, besides
+blocking a file or unsetting a variable, a masking mode in which sandboxed commands see a placeholder
+and the proxy substitutes the real value only on outbound requests to hosts the user allows.
+
+The same documentation is explicit that this is not a complete isolation boundary. By default the
+proxy decides from the client-supplied hostname without terminating or inspecting TLS, so allowing a
+broad domain such as `github.com` can open a path for data exfiltration, including through techniques
+such as domain fronting; allowing a Unix socket such as the Docker socket can hand the sandboxed process
+access to the host; and a weaker mode for running inside unprivileged containers is described as
+considerably weakening security. Its closing claim is that effective sandboxing requires both layers:
+without network isolation a compromised agent could exfiltrate sensitive files such as SSH keys, and
+without filesystem isolation it could backdoor system resources to gain network access.
+
 ## When It Applies
 
 Sandboxing matters more as an agent is given more autonomy: agents can misinterpret instructions, hallucinate solutions, or execute commands with unintended side effects, and without isolation every action carries real risk, so each command needs review and approval before it runs. With sandboxing in place, an agent can experiment freely and only the final result needs review, which is described as dramatically speeding up workflows. It is presented as a general best practice for autonomous agents rather than one party's specific proposal, summarized as treating agent output like an untrusted pull request: let it work in isolation, review the result, and merge only after verification.
@@ -103,4 +140,4 @@ stop exfiltration of private source code.
 
 ## Related Terms
 
-[[DefinedTerm/guardrails]], [[DefinedTerm/human-in-the-loop]], [[DefinedTerm/tool-use]], [[DefinedTerm/agentic-engineering]], [[DefinedTerm/lethal-trifecta]], [[SoftwareApplication/claude-code-for-web]], [[DefinedTerm/yolo-mode]]
+[[DefinedTerm/guardrails]], [[DefinedTerm/human-in-the-loop]], [[DefinedTerm/tool-use]], [[DefinedTerm/agentic-engineering]], [[DefinedTerm/lethal-trifecta]], [[SoftwareApplication/claude-code-for-web]], [[DefinedTerm/yolo-mode]], [[DefinedTerm/permission-modes]]

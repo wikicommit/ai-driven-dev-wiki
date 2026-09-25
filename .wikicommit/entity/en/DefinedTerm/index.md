@@ -150,6 +150,7 @@ comments: false
 - [[DefinedTerm/designing-agentic-loops]]
 - [[DefinedTerm/deterministic-quality-gate]]
 - [[DefinedTerm/developer-agent-misalignment]]
+- [[DefinedTerm/developer-happiness-metric]]
 - [[DefinedTerm/digital-twin-universe]]
 - [[DefinedTerm/direct-prompt-injection]]
 - [[DefinedTerm/domain-driven-design]]

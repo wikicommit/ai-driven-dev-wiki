@@ -25,9 +25,12 @@ sources:
   - type: url
     url: 'https://code.claude.com/docs/en/how-claude-code-works'
     hash: sha256:bd22d00c3d6884ed8323b1d1a90abe77a12c9df0272a5a855041afec603c6196
+  - type: url
+    url: 'https://docs.claude.com/en/docs/claude-code/overview'
+    hash: sha256:c92c369ec87bb472c8a5093377d92cfd2a487ffc60b26f2473021b1518d5e358
 review_status: pending
 generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
+generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
@@ -257,6 +260,35 @@ anything that could trade against intelligence — are stated as applying to Cla
 development.
 
 ## Adoption & Ecosystem
+
+### Surfaces, installation and scheduling
+
+Anthropic's overview documentation describes Claude Code as an agentic coding tool that reads a
+codebase, edits files, runs commands and integrates with development tools, and lists the surfaces
+it runs on: the terminal, IDE extensions (VS Code, and a JetBrains plugin that requires the CLI
+installed separately), a desktop app and the web. It states that every surface connects to the same
+underlying engine, so a repository's CLAUDE.md files, settings and MCP servers work across all of
+them. Most surfaces are stated to require a Claude subscription or an Anthropic Console account,
+while the terminal CLI, VS Code and JetBrains also support third-party providers.
+
+The same page gives three install routes for the CLI. The native installer updates itself in the
+background; the Homebrew and WinGet installations do not, and have to be upgraded by hand. Homebrew
+offers two casks: `claude-code`, which tracks a stable channel the documentation describes as
+typically about a week behind and skipping releases with major regressions, and `claude-code@latest`,
+which receives new versions as soon as they ship. On native Windows, Git for Windows is recommended
+so that Claude Code can use the Bash tool; without it Claude Code uses PowerShell as its shell tool.
+
+Beyond interactive use, the documentation presents it as composable in the Unix style — logs piped
+into `claude -p`, invocations in CI, or chained with other tools — and names GitHub Actions and
+GitLab CI/CD for automating code review and issue triage. For recurring work it distinguishes three
+mechanisms: Routines, which run in the cloud so they continue while the user's computer is off and can
+also be triggered by API calls or GitHub events; Desktop scheduled tasks, which run on the user's
+machine with access to local files and tools; and `/loop`, which repeats a prompt within a CLI session
+for quick polling. Work can also move between surfaces — continued from a phone or browser through
+Remote Control, started on the web or mobile app and pulled into the terminal with `claude --teleport`,
+or handed from the terminal to the desktop app with `/desktop`. For fully custom workflows, it points
+to the Agent SDK ([[SoftwareApplication/claude-agent-sdk]]) as the way to build agents on Claude Code's
+tools and capabilities.
 
 [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] describes Claude Code's
 architecture as having shifted from a monolithic agent to a multi-agent one, spawning specialized
