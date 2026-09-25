@@ -39,9 +39,12 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2609.00252'
     hash: sha256:5331d1eb219124b67deabb6640416e4b3ac07d3f4ede62ff19407f403d7d576d
+  - type: url
+    url: 'https://felipefontoura.com/articles/what-is-spec-driven-development'
+    hash: sha256:df2dca52352dcf718f101f98063eb1e945bc10156a4d147c303ee689675185ea
 review_status: pending
-generated_at: "2026-09-24"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-09-25"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
 
 properties:
@@ -263,6 +266,27 @@ presents the whole as a conceptual framework drawn largely from gray literature,
 benefits are hypotheses rather than findings. It also limits its own scope: for exploratory work whose
 requirements are genuinely unknown, it suggests a lighter discipline may be more appropriate.
 
+**A practitioner's guide**
+([[BlogPosting/what-is-spec-driven-development-practitioners-guide]]) frames the practice around
+memory rather than intelligence. Its author, Felipe Fontoura, defines it as writing and approving a
+structured specification — requirements, design, acceptance criteria, constraints and edge cases —
+before any code is generated, with that specification remaining the source of truth the agent builds
+from, so that the code becomes a byproduct of the specification rather than the documentation a
+byproduct of the code. The reason he gives is that an agent has no persistent memory between sessions:
+whatever is not written down is reinvented on the next run, and the specification is the external
+memory that carries a project's decisions forward. His workflow is four phases — requirements, design,
+tasks and implementation — each separated by a human approval gate; tasks are cut into units of two to
+four hours that can each be tested on their own, and in his own kit a per-feature status file carrying
+tokens such as `requirements:approved` is the only thing that counts as approval, a design document
+merely present on disk does not. He recommends writing functional requirements in
+[[DefinedTerm/easy-approach-to-requirements-syntax]] and stating explicitly what will not be built. He
+attributes the spec-first, spec-anchored and spec-as-source levels of rigor to Birgitta Böckeler's work
+at Thoughtworks, reports running spec-first for MVP features and spec-anchored for anything touching
+money, and calls TDD spec-driven development at the unit level. He also answers the objection that a
+large context window makes specifications unnecessary by separating context length from context
+precision: a whole codebase in context tells an agent what the system currently is, not what it should
+become.
+
 ## When It Applies
 
 The practice trades developer time and tokens for reliability, so it applies where that trade is
@@ -346,6 +370,14 @@ offered by its author as an experimental workflow rather than a recommendation. 
 industrial-research case study reporting one team's experience on a single simulation program, with its
 timing comparison drawn from the authors' own two attempts rather than from a controlled study.
 
+The practitioner's guide draws its line at work that outlives a single sitting, spans multiple
+sessions, or involves real architecture and correctness requirements, and judges one-off scripts,
+throwaway prototypes and exploratory spikes not worth a specification. It rejects the waterfall reading
+on the ground that its specifications are living documents revised phase by phase, but, citing
+Böckeler, warns that the failure modes that ended model-driven development in the 2000s — spec drift and
+over-specifying too early among them — remain risks for this practice. Its evidence is its author's own
+report of building a 13-app fintech alone in 70 days, not an independent evaluation.
+
 ## Related Terms
 
 - [[DefinedTerm/vibe-coding]] — the practice the project contrasts its plugin with: it describes
@@ -381,3 +413,7 @@ timing comparison drawn from the authors' own two attempts rather than from a co
   team-level account above, with its four commitments and its two levels of specification
 - [[DefinedTerm/methodological-harness]] — the set of team-owned mechanisms that account builds around
   the specification
+- [[BlogPosting/what-is-spec-driven-development-practitioners-guide]] — source of the practitioner's
+  guide above, which treats the specification as the external memory an agent lacks
+- [[DefinedTerm/easy-approach-to-requirements-syntax]] — the requirements format that guide
+  recommends for writing functional requirements

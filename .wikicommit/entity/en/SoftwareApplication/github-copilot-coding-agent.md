@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/github-copilot/from-idea-to-pr-a-guide-to-github-copilots-agentic-workflows/'
     hash: sha256:d26a28f8e99d98794a771d2e9f313c93e3141162781714ff1bfd49653195fa0b
+  - type: url
+    url: 'https://github.blog/ai-and-ml/github-copilot/github-copilot-coding-agent-101-getting-started-with-agentic-workflows-on-github/'
+    hash: sha256:6144c6b7e4fe07bdc9dd325f45c74f73d95f372935d7794b280556efd97c4585
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
@@ -24,7 +27,7 @@ generated_with: "0.7.0"
 properties:
   description: "GitHub's asynchronous background coding agent: assign it a GitHub issue and it works on GitHub Actions compute, pushing commits to a draft pull request and iterating as a human comments on it."
   applicationCategory: "Agentic coding tool"
-  featureList: "Assigned by issue assignment; runs on GitHub Actions; opens a draft pull request; session logs; MCP server configuration; image input from issues; default branch, approval and network policies"
+  featureList: "Assigned by issue assignment, the agents panel or VS Code; runs on GitHub Actions; opens a draft pull request; session logs; MCP server configuration with Playwright and GitHub MCP servers built in; image input from issues; default branch, approval and network policies"
   author: "[[Organization/github]]"
 ---
 
@@ -77,6 +80,18 @@ there. It can also be asked to open a pull request from Copilot Chat on GitHub o
   features, fixing bugs, extending tests, refactoring, improving documentation. This is GitHub's own
   scoping claim rather than a measured result.
 
+- GitHub's later introductory post ([[BlogPosting/github-copilot-coding-agent-101]], September 2025,
+  updated January 2026) adds two further ways to hand it work — delegating from VS Code through the
+  GitHub Pull Requests extension, and the agents panel on github.com, which also tracks running tasks —
+  and says it can be prompted from Copilot Chat in an IDE or from any MCP-supported tool. It describes
+  the draft pull request as tagged `[WIP]` while the agent works, after which the agent updates the
+  title and description and tags the developer for review; further changes are requested with
+  comments tagging `@copilot`.
+- The same post says it ships with the Playwright and GitHub MCP servers built in, that repository
+  administrators add others through a JSON configuration in the repository settings, and that its
+  internet access is limited by a firewall whose default rules allow the hosts it uses to interact
+  with GitHub and download dependencies.
+
 The walkthrough pairs it with drafting the issue itself with Copilot — a natural-language prompt
 turned into an issue with a title, acceptance criteria and pointers to the files to change — and
 its advice for delegation is to keep issues tightly scoped, provide acceptance criteria rather than
@@ -97,6 +112,12 @@ rulesets and organization policies are said to apply as well.
 The compute layer is GitHub Actions, which GitHub chose on grounds of scale — it describes Actions,
 introduced in 2018, as the largest CI/CD ecosystem in the world, with over 25,000 actions in the
 GitHub Marketplace and more than 40 million jobs run every weekday.
+
+The introductory post restates these controls and adds two: the agent works in a sandboxed environment
+with limited repository permissions, and its commits are co-authored for traceability. It also frames
+the agent against a traditional IDE assistant, where the developer still creates the branch, writes
+commit messages and opens the pull request, whereas the coding agent automates those steps inside the
+pull request workflow with each one logged and visible to the team.
 
 ## Adoption & Ecosystem
 
