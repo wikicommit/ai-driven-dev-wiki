@@ -252,6 +252,7 @@ comments: false
 - [[DefinedTerm/sandboxing]]
 - [[DefinedTerm/schema-gating]]
 - [[DefinedTerm/se-autonomy-levels]]
+- [[DefinedTerm/self-repair]]
 - [[DefinedTerm/semantic-diffusion]]
 - [[DefinedTerm/semi-executable-artifact]]
 - [[DefinedTerm/signal-to-noise-ratio]]
