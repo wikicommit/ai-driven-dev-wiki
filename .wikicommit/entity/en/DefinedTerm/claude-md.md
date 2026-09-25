@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://docs.anthropic.com/en/docs/claude-code/memory'
     hash: sha256:b82b912f1cb5142539e561088fe1795bdeada1ef689b12e535152c8fafc326ee
+  - type: url
+    url: 'https://www.humanlayer.dev/blog/writing-a-good-claude-md'
+    hash: sha256:fa23502d53bddbb8cccdecb704426d3137dbffcf62a88ed2965780a516d208fb
 review_status: pending
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
@@ -84,9 +87,15 @@ never happen, belongs in hooks ([[DefinedTerm/agent-hooks]]) or permissions, bec
 can fail to be followed. It calls an unscoped rule mechanically identical to putting its content in
 CLAUDE.md.
 
+HumanLayer's [[BlogPosting/writing-a-good-claude-md]], written from outside Anthropic, approaches the file
+from the premise that LLMs are stateless: since CLAUDE.md is, in that post's words, the only file that by
+default goes into every conversation with the agent, it should onboard Claude to the codebase by stating
+the project's **what** (stack and a map of the codebase), **why** (purpose of each part) and **how** (how to
+work on it and verify changes). The post says it applies equally to AGENTS.md.
+
 ## When It Applies
 
-The post treats CLAUDE.md as the home for facts Claude should hold all the time, and its main failure
+Anthropic's post treats CLAUDE.md as the home for facts Claude should hold all the time, and its main failure
 mode as growth. In a shared repository it grows the way any unowned configuration file does — every
 team appends and nothing is deleted — and since every line loads into every session for every
 engineer, relevant or not, the cost compounds; the post says it also dilutes adherence to the
@@ -108,6 +117,18 @@ instead. On size limits it states that Claude Code loads a CLAUDE.md of up to 4 
 larger file, and that after `/compact` the project-root CLAUDE.md is re-read from disk while nested
 files and path-scoped rules reload only as Claude reads files they apply to.
 
+HumanLayer's post reaches similar advice by a different route. It reports that Claude Code injects
+CLAUDE.md with a system reminder saying the context may or may not be relevant, so Claude ignores
+content it judges irrelevant to the current task — and the more instructions a file holds that are not
+universally applicable, the more likely it is ignored. Its recommendations are to include as few
+instructions as reasonably possible, keep the file concise and universally applicable (it reports a
+general consensus that under 300 lines is best and says HumanLayer's own root file is under sixty lines),
+move task-specific material into separate files that CLAUDE.md points to (see
+[[DefinedTerm/progressive-disclosure]]), leave code style to deterministic linters and formatters rather
+than the model, and write the file by hand rather than generating it with `/init`, because it is the
+highest-leverage point of the harness. These are one company's recommendations drawn from its own
+experience, which the post itself qualifies with "your mileage may vary".
+
 ## Related Terms
 
 - [[DefinedTerm/agents-md]]
@@ -116,3 +137,4 @@ files and path-scoped rules reload only as Claude reads files they apply to.
 - [[DefinedTerm/agent-hooks]]
 - [[DefinedTerm/compaction]]
 - [[DefinedTerm/context-engineering]]
+- [[DefinedTerm/progressive-disclosure]]

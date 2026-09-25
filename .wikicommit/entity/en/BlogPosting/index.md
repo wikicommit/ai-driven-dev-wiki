@@ -6,12 +6,14 @@ review_status: reviewed
 comments: false
 ---
 
+- [[BlogPosting/12-factor-agents]]
 - [[BlogPosting/2025-output-retrospective]]
 - [[BlogPosting/60-million-copilot-code-reviews-and-counting]]
 - [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]
 - [[BlogPosting/a-guide-to-fine-tuning-functiongemma]]
 - [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
 - [[BlogPosting/a-true-ai-agent-coding-tool-claude-code]]
+- [[BlogPosting/advanced-context-engineering-for-coding-agents]]
 - [[BlogPosting/agent-as-a-judge-in-the-feedback-loop]]
 - [[BlogPosting/agent-definition-useful-jargon]]
 - [[BlogPosting/agent-driven-development-in-copilot-applied-science]]
@@ -70,6 +72,7 @@ comments: false
 - [[BlogPosting/codex-as-a-platform]]
 - [[BlogPosting/comprehension-debt-the-hidden-cost-of-ai-generated-code]]
 - [[BlogPosting/conductor-update-introducing-automated-reviews]]
+- [[BlogPosting/context-efficient-backpressure-for-coding-agents]]
 - [[BlogPosting/context-engineering-for-agents]]
 - [[BlogPosting/context-engineering-for-coding-agents]]
 - [[BlogPosting/continuous-ai-in-practice]]
@@ -178,6 +181,7 @@ comments: false
 - [[BlogPosting/shared-claude-code-plugin-marketplace]]
 - [[BlogPosting/shell-skills-compaction-tips-for-long-running-agents]]
 - [[BlogPosting/shift-left-and-right-how-ai-integration-grows-beyond-coding]]
+- [[BlogPosting/skill-issue-harness-engineering-for-coding-agents]]
 - [[BlogPosting/software-development-in-the-age-of-ai-agents]]
 - [[BlogPosting/software-engineering-debunking-myths-welcoming-vibe-coding]]
 - [[BlogPosting/spec-driven-development-a-spec-first-approach-to-ai-native-engineering]]
@@ -216,6 +220,7 @@ comments: false
 - [[BlogPosting/what-ai-taught-us-about-code-review]]
 - [[BlogPosting/what-is-harness-engineering]]
 - [[BlogPosting/what-is-spec-driven-development-practitioners-guide]]
+- [[BlogPosting/writing-a-good-claude-md]]
 - [[BlogPosting/writing-about-agentic-engineering-patterns]]
 - [[BlogPosting/writing-effective-tools-for-agents]]
 - [[BlogPosting/your-ai-coding-agents-need-a-manager]]
