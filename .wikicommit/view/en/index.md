@@ -13,6 +13,7 @@ comments: false
 - [[View/empirical-studies-of-agent-authored-pull-requests]]
 - [[View/moving-agent-rules-out-of-the-prompt]]
 - [[View/multi-agent-orchestration-patterns-compared]]
+- [[View/organizational-adoption-of-ai-coding-agents]]
 - [[View/prompt-injection-defense-patterns-compared]]
 - [[View/spec-driven-development-tools-compared]]
 - [[View/swe-bench-family-of-benchmarks]]
