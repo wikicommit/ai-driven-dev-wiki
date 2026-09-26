@@ -25,13 +25,14 @@ sources:
   - type: url
     url: 'https://developers.cyberagent.co.jp/blog/archives/62639/'
     hash: sha256:8fe61a90b7d83235354ba7e66eb8068f7329ab03406aa10fc3725f34ee02cadc
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
   description: "A design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run unsupervised. This wiki's sources use the one term for seven distinct patterns: real-time pairing, an asynchronous approval gate inside a long run, a structured review surface for inspecting and editing proposals, an escalation path an agent takes when it cannot finish, a network gateway that holds the credential and forwards a request only on consent, a selection mechanism deciding which actions pull a human in at all, and a ratification step in which the AI proposes candidates and only a human decides which become team norms."
+reviewed_by: "joyk0117"
 ---
 
 Human-in-the-loop describes a design in which a human is deliberately kept part of an otherwise-automated agent workflow, rather than letting the agent run entirely unsupervised. The term is used for seven distinct patterns across the sources: a developer pairing with an agent in real time, an asynchronous approval gate inside a longer autonomous run, a structured review surface through which a person inspects and edits what the agent proposes, an escalation path the agent takes when it cannot complete a task on its own, an enforcement point placed in the network path between the agent and the system it is acting on, a selection mechanism that decides which actions pull a human in at all, and a ratification step in which the AI proposes and the human alone decides what becomes a standing rule.
