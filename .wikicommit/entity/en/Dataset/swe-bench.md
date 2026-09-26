@@ -16,7 +16,7 @@ sources:
   - type: url
     url: 'https://www.swebench.com/'
     hash: sha256:80c659d8a196c9dac19e7364704397cbd136cc0d9416d332a9702948b5d55fe8
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
@@ -25,6 +25,7 @@ properties:
   description: "A benchmark built from real GitHub issues that evaluates whether language models and coding agents can resolve Python software-engineering tasks, using unit tests and continuous integration to check correctness."
   url: "https://www.swebench.com"
   variableMeasured: ["task type", "proportion", "interaction type", "multi-turn feedback", "library integration", "build pipeline"]
+reviewed_by: "joyk0117"
 ---
 
 SWE-Bench is a benchmark built from real GitHub issues, used to evaluate whether language models and
