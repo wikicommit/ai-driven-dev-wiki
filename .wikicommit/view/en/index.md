@@ -18,6 +18,7 @@ comments: false
 - [[View/prompt-injection-defense-patterns-compared]]
 - [[View/spec-driven-development-tools-compared]]
 - [[View/swe-bench-family-of-benchmarks]]
+- [[View/terminal-coding-agents-compared]]
 - [[View/what-counts-as-a-harness]]
 - [[View/what-does-vibe-coding-mean]]
 - [[View/working-within-a-finite-context-window]]
