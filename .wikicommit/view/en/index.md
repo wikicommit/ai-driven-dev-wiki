@@ -8,6 +8,7 @@ comments: false
 - [[View/agent-autonomy-level-schemes-compared]]
 - [[View/agent-instruction-files-compared]]
 - [[View/agent-interoperability-protocols-compared]]
+- [[View/ai-code-review-tools-compared]]
 - [[View/debt-family-in-ai-assisted-development]]
 - [[View/does-every-agent-action-need-a-human]]
 - [[View/empirical-studies-of-agent-authored-pull-requests]]
