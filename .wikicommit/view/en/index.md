@@ -11,6 +11,7 @@ comments: false
 - [[View/debt-family-in-ai-assisted-development]]
 - [[View/does-every-agent-action-need-a-human]]
 - [[View/empirical-studies-of-agent-authored-pull-requests]]
+- [[View/moving-agent-rules-out-of-the-prompt]]
 - [[View/multi-agent-orchestration-patterns-compared]]
 - [[View/prompt-injection-defense-patterns-compared]]
 - [[View/spec-driven-development-tools-compared]]
