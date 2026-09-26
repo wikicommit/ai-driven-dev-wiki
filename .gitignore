@@ -26,3 +26,6 @@ Thumbs.db
 content/
 .quartz-cache/
 quartz/public/
+
+# Scratch notes from agent runs
+.work/
