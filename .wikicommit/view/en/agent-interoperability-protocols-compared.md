@@ -107,7 +107,9 @@ The sources describe discovery in different forms:
 - **ANP** relies on decentralized identifiers on an open network.
 - **MCP** discovery works through tool metadata on the servers an agent is connected to.
 - **The Agent Client Protocol** starts a session with capability negotiation between the IDE and the agent.
-- **AP2, A2UI and AG-UI** have no discovery step in the pages that describe them. The guide lists discovery through well-known URLs, typed schemas and standard event streams as patterns the protocols it covers share.
+- **AP2, A2UI and AG-UI** have no discovery step in the pages that describe them.
+
+The guide lists discovery through well-known URLs, typed schemas and standard event streams as patterns the protocols it covers share.
 
 ### Control and authorization
 
