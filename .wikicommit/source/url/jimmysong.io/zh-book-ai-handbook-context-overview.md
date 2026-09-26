@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 extracted_tokens: 4738
 last_generated_at: "2026-09-21"
 generated_pages:

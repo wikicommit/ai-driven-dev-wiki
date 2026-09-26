@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-16"
 extracted_tokens: 8457
 generated_pages: [".wikicommit/entity/en/BlogPosting/code-agent-orchestra.md", ".wikicommit/entity/en/DefinedTerm/agent-teams.md", ".wikicommit/entity/en/DefinedTerm/beads.md", ".wikicommit/entity/en/DefinedTerm/ralph-loop.md", ".wikicommit/entity/en/DefinedTerm/conductor-and-orchestrator-modes.md"]

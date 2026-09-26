@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-25"
 extracted_tokens: 9600
 generated_pages: [".wikicommit/entity/en/BlogPosting/steering-claude-code.md", ".wikicommit/entity/en/DefinedTerm/claude-md.md", ".wikicommit/entity/en/DefinedTerm/agent-hooks.md"]

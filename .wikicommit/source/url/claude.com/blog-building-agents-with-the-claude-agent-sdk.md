@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-25"
 extracted_tokens: 8646
 generated_pages: [".wikicommit/entity/en/BlogPosting/building-agents-with-the-claude-agent-sdk.md", ".wikicommit/entity/en/DefinedTerm/agentic-search.md", ".wikicommit/entity/en/SoftwareApplication/claude-agent-sdk.md"]

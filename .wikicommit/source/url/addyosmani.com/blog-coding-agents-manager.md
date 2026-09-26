@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-17"
 extracted_tokens: 4270
 generated_pages: [".wikicommit/entity/en/BlogPosting/your-ai-coding-agents-need-a-manager.md", ".wikicommit/entity/en/Book/beyond-vibe-coding.md", ".wikicommit/entity/en/DefinedTerm/human-in-the-loop.md", ".wikicommit/entity/en/DefinedTerm/verification-loop.md", ".wikicommit/entity/en/DefinedTerm/git-worktrees.md", ".wikicommit/entity/en/SoftwareApplication/github-copilot-coding-agent.md", ".wikicommit/entity/en/SoftwareApplication/openai-codex.md", ".wikicommit/entity/en/DefinedTerm/conductor-and-orchestrator-modes.md", ".wikicommit/entity/en/DefinedTerm/agents-md.md"]
