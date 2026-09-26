@@ -36,7 +36,7 @@ The wiki holds pages on nine protocols that standardize some part of what an AI 
 ## What each one connects
 
 | Protocol | Connects | Transport and format, as described | Discovery, as described |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | MCP | An agent to external tools and data | A JSON-RPC client-server interface; servers expose tool names, input schemas and descriptions | The agent queries tool metadata across connected servers; in VS Code a server is registered in `.vscode/mcp.json` |
 | A2A | An agent to other agents | Tasks, Messages, Artifacts and Parts exchanged between an A2A client and server, synchronously or by streaming | An Agent Card at `/.well-known/agent-card.json`, or by direct configuration, a fixed URI or a registry |
 | ACP (Agent Communication Protocol) | Agents to one another, for general-purpose messaging | RESTful HTTP with MIME-typed multipart messages, synchronous and asynchronous | Online and offline discovery, as the survey associates with its roadmap stage |
@@ -83,7 +83,7 @@ Only MCP and A2A appear in all four schemes. The survey's roadmap has no layer f
 MCP links an agent to tools. A2A, the Agent Communication Protocol and ANP link agents to other agents. They differ in how they are described:
 
 | Protocol | Described as |
-|---|---|
+| --- | --- |
 | A2A | Peer-to-peer task delegation through capability-based Agent Cards |
 | Agent Communication Protocol | Lightweight, runtime-independent HTTP messaging |
 | ANP | Discovery on an open network through decentralized identifiers |
@@ -91,7 +91,7 @@ MCP links an agent to tools. A2A, the Agent Communication Protocol and ANP link 
 The remaining five protocols each face one specific counterpart:
 
 | Protocol | Counterpart |
-|---|---|
+| --- | --- |
 | Agent Client Protocol | The developer's editor |
 | UCP | A merchant |
 | AP2 | The person who authorizes a purchase |
