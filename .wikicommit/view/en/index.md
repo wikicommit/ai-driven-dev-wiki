@@ -15,4 +15,5 @@ comments: false
 - [[View/spec-driven-development-tools-compared]]
 - [[View/swe-bench-family-of-benchmarks]]
 - [[View/what-counts-as-a-harness]]
+- [[View/what-does-vibe-coding-mean]]
 - [[View/working-within-a-finite-context-window]]
