@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-16"
 extracted_tokens: 5286
 generated_pages: [".wikicommit/entity/en/BlogPosting/agentic-autonomy-levels.md", ".wikicommit/entity/en/DefinedTerm/agentic-autonomy-levels.md"]

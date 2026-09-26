@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-16"
 extracted_tokens: 4682
 generated_pages: [".wikicommit/entity/en/BlogPosting/stop-using-init-for-agents-md.md", ".wikicommit/entity/en/DefinedTerm/agents-md.md", ".wikicommit/entity/en/DefinedTerm/agentic-context-engineering.md"]

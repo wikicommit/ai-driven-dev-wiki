@@ -5,7 +5,7 @@ source:
   hash: sha256:4365f280066b75c7dd36a75fac36ea644a7def7defead60293cae1344d78800f
   license:
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-25"
 extracted_tokens: 4680
 generated_pages:

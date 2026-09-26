@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-16"
 extracted_tokens: 12296
 generated_pages: [".wikicommit/entity/en/BlogPosting/good-spec.md", ".wikicommit/entity/en/DefinedTerm/three-tier-boundaries.md", ".wikicommit/entity/en/DefinedTerm/curse-of-instructions.md", ".wikicommit/entity/en/DefinedTerm/spec-driven-development.md"]

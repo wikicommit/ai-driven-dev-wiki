@@ -6,7 +6,7 @@ source:
   license:
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-16"
 extracted_tokens: 4386
 generated_pages: [".wikicommit/entity/en/BlogPosting/new-sdlc-vibe-coding.md", ".wikicommit/entity/en/DefinedTerm/trajectory-evaluation.md", ".wikicommit/entity/en/DefinedTerm/conductor-and-orchestrator-modes.md"]

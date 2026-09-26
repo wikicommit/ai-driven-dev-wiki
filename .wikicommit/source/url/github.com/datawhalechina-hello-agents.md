@@ -6,7 +6,7 @@ source:
   license: CC-BY-NC-SA-4.0
 
 schema:
-status: partial
+status: generated
 last_generated_at: "2026-09-21"
 extracted_tokens: 8207
 generated_pages:
