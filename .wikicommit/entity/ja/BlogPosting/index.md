@@ -6,6 +6,7 @@ review_status: reviewed
 comments: false
 ---
 
+- [[BlogPosting/12-factor-agents]]
 - [[BlogPosting/2025-output-retrospective]]
 - [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]
 - [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
