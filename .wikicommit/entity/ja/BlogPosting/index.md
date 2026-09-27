@@ -141,3 +141,8 @@ comments: false
 - [[BlogPosting/introducing-agent-skills]]
 - [[BlogPosting/introducing-all-hands-ai]]
 - [[BlogPosting/introducing-codex]]
+- [[BlogPosting/introducing-devin]]
+- [[BlogPosting/introducing-devstral-2-and-mistral-vibe-cli]]
+- [[BlogPosting/introducing-google-antigravity]]
+- [[BlogPosting/introducing-support-for-local-ai-models-in-the-antigravity-sdk]]
+- [[BlogPosting/introduction-to-cc-sdd]]
