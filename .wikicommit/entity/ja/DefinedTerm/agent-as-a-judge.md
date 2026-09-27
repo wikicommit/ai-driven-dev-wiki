@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, コードレビュー, 評価]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-as-a-judge.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "dd9449729978a2bb341016b5d35f2f19ff11a7a4"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

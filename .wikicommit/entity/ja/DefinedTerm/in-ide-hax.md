@@ -5,7 +5,7 @@ lang: ja
 tags: [IDE, 人間と AI のインタラクション]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/in-ide-hax.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "561693fc9b2da392d0f7caec54c8c1643a4c1acc"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

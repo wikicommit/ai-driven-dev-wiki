@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントメモリ, コンテキストエンジニアリング, Anthropic]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/auto-memory.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "10e9746c9bd7c8cfc2db7e41ba9601f191b8bb0f"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

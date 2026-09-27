@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント型コーディング, コーディングツール, Model Context Protocol]
 translated_from: ".wikicommit/entity/en/BlogPosting/a-true-ai-agent-coding-tool-claude-code.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "a2a36121909aa23634f929ee05bc57eb32194828"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

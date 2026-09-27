@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型 AI, マルチエージェントシステム, エージェントアーキテクチャ, SDLC]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/planner-executor-reviewer.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "c6b8c68a8b3e34ab51b855aeb44d0daa53497505"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

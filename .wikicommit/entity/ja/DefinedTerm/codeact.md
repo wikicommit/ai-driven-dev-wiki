@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, ツール利用, エージェントアーキテクチャ, 用語]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/codeact.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "c30b98db983bd016bce35703f3ae928b84c5f04c"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

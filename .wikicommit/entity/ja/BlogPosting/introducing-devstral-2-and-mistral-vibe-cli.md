@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [コーディングエージェント, コーディングツール, オープンソース, CLI]
 translated_from: ".wikicommit/entity/en/BlogPosting/introducing-devstral-2-and-mistral-vibe-cli.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "0787ce032ea72845b53b3574598bea1bcb64f761"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

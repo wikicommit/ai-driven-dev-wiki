@@ -5,7 +5,7 @@ lang: ja
 tags: [コードレビュー, エージェント, ソフトウェアプロセス]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/ai-final-gatekeeper.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "cebf43107fcc80ba464fe278c5b12e158d6d81f2"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

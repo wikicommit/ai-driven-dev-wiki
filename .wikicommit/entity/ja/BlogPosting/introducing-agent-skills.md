@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェントツーリング, エージェントアーキテクチャ, コンテキストエンジニアリング]
 translated_from: ".wikicommit/entity/en/BlogPosting/introducing-agent-skills.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "3e04896e3fde39929a8aec85eca2e5b6eed44b4e"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

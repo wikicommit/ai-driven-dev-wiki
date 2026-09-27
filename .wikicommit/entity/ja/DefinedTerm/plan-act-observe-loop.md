@@ -4,7 +4,7 @@ type: "schema:DefinedTerm"
 lang: ja
 tags: []
 translated_from: ".wikicommit/entity/en/DefinedTerm/plan-act-observe-loop.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "c6bf44a9d0262400c75a0abf7dee6a8fbb53ff80"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

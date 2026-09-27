@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, Anthropic, コンテキストウィンドウ, プロンプティング]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/effective-context-engineering-for-ai-agents.md"
-source_commit: "c6bf44a9d0262400c75a0abf7dee6a8fbb53ff80"
+source_commit: "d6b740fcefb776ad598c9c610d08c7220255d861"
 translated_at: "2026-09-24"
 translated_by: "claude-opus-5-5"
 translated_with: "0.7.0"

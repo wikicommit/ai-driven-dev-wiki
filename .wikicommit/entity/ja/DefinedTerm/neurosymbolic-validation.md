@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, エージェント安全性, ガードレール, ツール利用]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/neurosymbolic-validation.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "b4fb7581251cd94ab647bba78e4b423acfc06ec0"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -6,7 +6,7 @@ aliases: ["Agents as tools", "ツールとしてのエージェント"]
 tags: [エージェント, マルチエージェント, オーケストレーション, エージェントアーキテクチャ]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/manager-pattern.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "7b07912e0ef7183c203dba9eea44e8052dcec715"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

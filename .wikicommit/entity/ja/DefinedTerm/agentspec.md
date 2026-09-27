@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントの安全性, ランタイム強制, ドメイン固有言語]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agentspec.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "918f7af409eaecc35e50dea8e21fc3277faf15bf"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, エージェント型エンジニアリング, 評価, ガバナンス]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/trustworthiness-dimensions.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "8d7644d8b85a563c829192e2cb8492577074f87c"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

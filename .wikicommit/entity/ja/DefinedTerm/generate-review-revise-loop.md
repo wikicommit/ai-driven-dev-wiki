@@ -5,7 +5,7 @@ lang: ja
 tags: [コードレビュー, エージェント, ソフトウェアプロセス]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/generate-review-revise-loop.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "cebf43107fcc80ba464fe278c5b12e158d6d81f2"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

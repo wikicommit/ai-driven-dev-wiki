@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, 要求工学, 仕様駆動開発]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/4d-are.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "c044ecf40b811dd9fe94970a2c89786a7a0bda4f"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

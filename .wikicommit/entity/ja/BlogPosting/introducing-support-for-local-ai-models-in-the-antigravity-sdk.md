@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント, ローカルモデル, マルチエージェント]
 translated_from: ".wikicommit/entity/en/BlogPosting/introducing-support-for-local-ai-models-in-the-antigravity-sdk.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "9b65710f8033cfb0f6c3388db1436c4e823817a3"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

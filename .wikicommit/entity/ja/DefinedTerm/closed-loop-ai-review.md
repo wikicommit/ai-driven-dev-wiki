@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型コードレビュー, エージェント]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/closed-loop-ai-review.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "c044ecf40b811dd9fe94970a2c89786a7a0bda4f"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

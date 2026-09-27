@@ -5,7 +5,7 @@ lang: ja
 tags: [LLM, 用語, 評価, 人間による監督]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/jagged-intelligence.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "71b854b7f5b03028ea4c6c50fa5c8249a196756b"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

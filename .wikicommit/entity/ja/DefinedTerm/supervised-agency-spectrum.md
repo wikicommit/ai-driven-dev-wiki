@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, ガバナンス, 自律性レベル]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/supervised-agency-spectrum.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "0ea12caf5df433486d9ab0e30d7c6a7b7cf57315"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

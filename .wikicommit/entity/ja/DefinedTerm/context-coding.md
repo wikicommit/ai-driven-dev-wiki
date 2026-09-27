@@ -5,7 +5,7 @@ lang: ja
 tags: [AI 支援プログラミング, コンテキストエンジニアリング, 用語]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/context-coding.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "86e16a2d50882353cc91ba7116891cec9c627c63"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

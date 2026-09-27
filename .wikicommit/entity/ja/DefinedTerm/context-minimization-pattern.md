@@ -5,7 +5,7 @@ lang: ja
 tags: [セキュリティ, プロンプトインジェクション, エージェントアーキテクチャ, エージェント安全性]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/context-minimization-pattern.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "a3e645ed9a2cca471e9bc76fd3ba0c25d255e24a"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

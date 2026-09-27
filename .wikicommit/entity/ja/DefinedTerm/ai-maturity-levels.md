@@ -5,7 +5,7 @@ lang: ja
 tags: [AI 導入, 業界, 自律性レベル]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/ai-maturity-levels.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "55ede569cda46919557ac84eb1e8680542150b12"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

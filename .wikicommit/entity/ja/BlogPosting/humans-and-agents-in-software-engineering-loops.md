@@ -5,7 +5,7 @@ lang: ja
 tags: [コーディングエージェント, ハーネスエンジニアリング, 人間による監督]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/humans-and-agents-in-software-engineering-loops.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "d2fb1a6ec03c16446d710a6305ae25342ee4b2b9"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/brain-hands-session-split.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "f948f309cb907fd940528e22bdf1a82e1e673130"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

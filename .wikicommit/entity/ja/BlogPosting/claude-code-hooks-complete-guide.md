@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント安全性, ガードレール, ツール利用, エージェント設定]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/claude-code-hooks-complete-guide.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "74c6840463d960cf5b82c76818ec6b07f5f7233d"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

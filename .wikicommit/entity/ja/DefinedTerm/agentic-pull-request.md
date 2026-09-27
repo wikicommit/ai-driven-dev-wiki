@@ -5,7 +5,7 @@ lang: ja
 aliases: ["Agentic-PR", "Agentic PR"]
 tags: [コーディングエージェント, コードレビュー]
 translated_from: ".wikicommit/entity/en/DefinedTerm/agentic-pull-request.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "4f24561db04e0d1d4e76ad45ceeafcc734f1123b"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

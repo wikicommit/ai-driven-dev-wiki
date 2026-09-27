@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型コードレビュー, マルチエージェント, エージェントオーケストレーション]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/three-layer-agent-orchestration.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "2d31d66aac2a2bd64ef42b2343e0c9c19e1f422d"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

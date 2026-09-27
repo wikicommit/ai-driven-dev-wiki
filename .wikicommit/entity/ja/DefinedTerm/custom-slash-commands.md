@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント設定, 仕様駆動開発, プロンプトエンジニアリング]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/custom-slash-commands.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "55ede569cda46919557ac84eb1e8680542150b12"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

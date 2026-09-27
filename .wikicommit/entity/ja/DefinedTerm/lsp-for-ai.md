@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型エンジニアリング, ツール利用, MCP]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/lsp-for-ai.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "62375f91cd50b55903e4c7e317338dbf1f45f8fe"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

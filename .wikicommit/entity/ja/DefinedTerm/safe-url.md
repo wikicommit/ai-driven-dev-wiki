@@ -5,7 +5,7 @@ lang: ja
 tags: [セキュリティ, プロンプトインジェクション, エージェント安全性, データ持ち出し]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/safe-url.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "ac679fb0b8398751f97b635791af1ae0e67cb150"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

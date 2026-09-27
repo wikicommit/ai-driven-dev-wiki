@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, 人間による監督, ガバナンス, エージェント安全性]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/automation-bias.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "6b5a8ac7a493c71300dccb7564cd1bdadb65f53c"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

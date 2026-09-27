@@ -6,7 +6,7 @@ aliases: ["SDAD"]
 tags: [仕様駆動, SDLC, エージェント型エンジニアリング, 方法論]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/spec-driven-agentic-development.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "2beeb6175d891dfb85ba85571ebde76abc6677c2"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

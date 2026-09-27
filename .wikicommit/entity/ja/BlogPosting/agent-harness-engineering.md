@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/agent-harness-engineering.md"
-source_commit: "c6bf44a9d0262400c75a0abf7dee6a8fbb53ff80"
+source_commit: "908ab492691e9fcd622bfa73c6c2fd839716bea1"
 translated_at: "2026-09-24"
 translated_by: "claude-opus-5-5"
 translated_with: "0.7.0"

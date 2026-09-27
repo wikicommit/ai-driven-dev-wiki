@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント型エンジニアリング, コーディングツール, テスト, 開発者の生産性]
 translated_from: ".wikicommit/entity/en/BlogPosting/lessons-from-releasing-a-product-with-ai-agents.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "4b83a0390f0437f8f63f9399a1db3e12e1ace784"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

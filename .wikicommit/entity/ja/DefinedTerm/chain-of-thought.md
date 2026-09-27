@@ -6,7 +6,7 @@ aliases: ["Chain of Thought"]
 tags: [プロンプトエンジニアリング, LLM, 推論]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/chain-of-thought.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "ef2531ca21f1030c853bca7e560613f050793160"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

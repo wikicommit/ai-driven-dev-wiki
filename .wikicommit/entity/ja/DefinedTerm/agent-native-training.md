@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントアーキテクチャ, トレーニング, 評価, エージェント状態]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-native-training.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "23acf239019dbf782b4365d4b7b30b659e3d60c1"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

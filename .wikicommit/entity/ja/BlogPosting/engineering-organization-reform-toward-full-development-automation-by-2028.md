@@ -5,7 +5,7 @@ lang: ja
 tags: [AI 導入, 業界, エンジニアリング組織]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/engineering-organization-reform-toward-full-development-automation-by-2028.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "bbf242f67501a7e50d8b504ffa6c0e795ce432cd"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -4,7 +4,7 @@ type: "schema:DefinedTerm"
 lang: ja
 tags: [エージェント安全性, エージェントツーリング, エージェントアーキテクチャ]
 translated_from: ".wikicommit/entity/en/DefinedTerm/schema-gating.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "3aafc96f266b62b417b9f97d5751eb5fdfe8fce0"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
