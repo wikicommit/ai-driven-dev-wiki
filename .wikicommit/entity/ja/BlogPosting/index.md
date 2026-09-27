@@ -146,3 +146,8 @@ comments: false
 - [[BlogPosting/introducing-google-antigravity]]
 - [[BlogPosting/introducing-support-for-local-ai-models-in-the-antigravity-sdk]]
 - [[BlogPosting/introduction-to-cc-sdd]]
+- [[BlogPosting/keep-agentic-ai-simple]]
+- [[BlogPosting/langchain-context-engineering]]
+- [[BlogPosting/learning-to-verify-ai-generated-code]]
+- [[BlogPosting/lessons-from-releasing-a-product-with-ai-agents]]
+- [[BlogPosting/long-running-agents]]
