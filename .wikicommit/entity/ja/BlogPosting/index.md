@@ -7,9 +7,14 @@ comments: false
 ---
 
 - [[BlogPosting/12-factor-agents]]
+- [[BlogPosting/2025-ai-coding-trends-agent-10x-productivity-amplification]]
 - [[BlogPosting/2025-output-retrospective]]
+- [[BlogPosting/60-million-copilot-code-reviews-and-counting]]
 - [[BlogPosting/a-fireside-chat-with-cat-and-thariq-from-the-claude-code-team]]
+- [[BlogPosting/a-guide-to-fine-tuning-functiongemma]]
 - [[BlogPosting/a-survey-of-vibe-coding-with-llm]]
+- [[BlogPosting/a-true-ai-agent-coding-tool-claude-code]]
+- [[BlogPosting/acp-protocol-and-multiple-ai-coding-agents]]
 - [[BlogPosting/agent-as-a-judge-in-the-feedback-loop]]
 - [[BlogPosting/agent-definition-useful-jargon]]
 - [[BlogPosting/agent-harness-engineering]]
