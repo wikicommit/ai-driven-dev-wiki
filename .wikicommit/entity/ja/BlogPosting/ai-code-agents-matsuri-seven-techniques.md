@@ -3,7 +3,7 @@ title: "「AI Code Agents祭り」成功の裏側：大企業でAIコードエ�
 type: "schema:BlogPosting"
 lang: ja
 tags: [AI 導入, 業界, エンジニアリング組織]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/BlogPosting/ai-code-agents-matsuri-seven-techniques.md"
 source_commit: "55ede569cda46919557ac84eb1e8680542150b12"
 translated_at: "2026-09-27"
@@ -14,6 +14,7 @@ properties:
   description: "サイバーエージェントの AI Driven 推進室のメンバーが、社内での導入を go-to-market の問題として捉え、まず社外で注目を生み出すことで、大企業の中に AI コーディングエージェントを広めた経緯を語る記事。社外イベントと、その背後にある 7 つのテクニックを中心に据えている。"
   author: ["gunta"]
   publisher: "[[Organization/cyberagent]]"
+reviewed_by: "joyk0117"
 ---
 
 この記事は、サイバーエージェントの 2025 年の開発者向けアドベントカレンダーの最終日のエントリであり、[[Organization/cyberagent]] の AI Driven 推進室に所属し、サイバーエージェントグループ全体での AI 活用と開発者の生産性の推進に取り組むエンジニア兼クリエイターによって書かれている。ツール導入の話として示されているが、著者は、本当の主題は組織が動くように何かを「届ける」方法だと述べている。
