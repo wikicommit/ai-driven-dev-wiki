@@ -176,6 +176,7 @@ derived_from:
 The pages agree on where the term comes from. [[DefinedTerm/vibe-coding]] credits Andrej Karpathy with coining it in early February 2025. Karpathy's description was of fully giving in to the vibes and forgetting that the code even exists: accepting every diff without reading it, pasting error messages back in with no comment, and working around bugs the model cannot fix, or asking for random changes until they go away. [[BlogPosting/two-publishers-and-three-authors-fail-to-understand-what-vibe-coding-means]] quotes the tweet in full. It stresses two phrases: "forget that the code even exists" and "It's not too bad for throwaway weekend projects". [[SoftwareApplication/cursor]] records the setup Karpathy described: Cursor Composer driven by a Sonnet model, talked to by voice rather than typed at.
 
 Several other pages also attribute the term to Karpathy:
+
 - [[ScholarlyArticle/vibe-coding-vs-agentic-coding]]
 - [[ScholarlyArticle/vibe-coding-programming-through-conversation-with-artificial-intelligence]], which calls his February 2025 post "the Karpathy canon"
 - [[BlogPosting/ai-coding-tools-evolution-and-vibe-coding]]
@@ -192,16 +193,19 @@ The pages do not disagree about where the term came from. They disagree about ho
 The most sharply drawn answer comes from Simon Willison. [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]] reduces the term to one observable test: vibe coding is building software with an LLM without reviewing the code it writes. Code that an LLM wrote but that has since been reviewed, tested and understood is software development, and the LLM's involvement is immaterial. [[DefinedTerm/ai-assisted-programming]] gives the umbrella category this narrow term falls under.
 
 Willison presents the narrow reading as a defence of vibe coding, not an attack on it:
+
 - It lowers a steep barrier to programming for people without a computer science degree or a bootcamp.
 - It is the best way for experienced developers to build intuition about LLMs.
 
 In [[BlogPosting/two-publishers-and-three-authors-fail-to-understand-what-vibe-coding-means]] he calls the distinction "a hill I am willing to die on". He adds that vibe coding is for people who are not software developers, not for people who already are.
 
 Willison was still holding the same line in 2026:
+
 - [[BlogPosting/writing-about-agentic-engineering-patterns]] keeps the term in its original definition: coding where you pay no attention to the code at all. It notes the term is today often associated with non-programmers.
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] describes it as not looking at the code at all, possibly without knowing how to program, and judging the result only by whether it works.
 
 Other pages adopt or restate the same boundary:
+
 - **[[BlogPosting/ai-coding-tools-evolution-and-vibe-coding]]** reads Karpathy's post as four points: forgetting the code exists, fixing even small errors through the AI, not reviewing what the AI writes, and accepting that this is fine for throwaway projects. It argues that much of the argument about vibe coding comes from not separating two different practices.
 - **[[ScholarlyArticle/vibe-coding-practice-performance-productivity-and-risk-a-state-of-the-art-review]]** adopts Willison's boundary for its definition. What sets vibe coding apart is the developer's disengagement from the generated code, validating by whether the output runs. On that boundary, the conversational-IDE workflow, in which the developer still reviews and tests, falls outside vibe coding proper.
 - **[[ScholarlyArticle/swe-chat-coding-agent-interactions-from-real-users-in-the-wild]]** makes the narrow reading measurable. It counts a session as vibe coding when more than 99% of committed code was written by the agent, and reports that share doubling from about 20% to over 40% over its three-month window.
@@ -239,6 +243,7 @@ A second group of pages uses the term for any development led by prompts, includ
 - **[[ScholarlyArticle/vibe-coding-kills-open-source]]** starts from vibe coding as an AI agent building software by selecting and assembling open-source components, often without the user engaging with those components' maintainers.
 
 Several products and tutorials also use the broad sense, some of them approvingly:
+
 - [[Book/vibe-vibe]] treats vibe coding as AI programming for learners with no programming background, glossed as moving "from Coder to Commander".
 - [[SoftwareApplication/vibesdk]] describes itself as an open-source vibe coding platform.
 - [[SoftwareApplication/vibecraft]] and [[BlogPosting/programming-for-those-who-dont-write-code-how-vibecraft-works]] present a chat-driven app builder as a response to vibe coding's limits with general-purpose assistants.
@@ -250,6 +255,7 @@ Several products and tutorials also use the broad sense, some of them approvingl
 ### Is review part of the practice?
 
 Here the two answers exclude each other. On Willison's test, any work in which the code is reviewed is not vibe coding. Two broad-sense sources put review inside it:
+
 - [[ScholarlyArticle/vibe-coding-vs-agentic-coding]] builds per-piece review into its definition.
 - [[ScholarlyArticle/vibe-coding-programming-through-conversation-with-artificial-intelligence]] observed lightweight review in every session it analysed.
 
@@ -264,6 +270,7 @@ Willison ties vibe coding to people who are not professional developers, in [[Bl
 [[BlogPosting/the-vibesec-reckoning]] describes a prototype built by a "citizen builder", a non-technical user building with AI. The governance framework in [[TechArticle/model-ai-governance-framework-for-agentic-ai]] warns that users who vibe code with agents may lack the software engineering expertise to review the robustness of the code. [[DefinedTerm/automation-bias]] uses the same case as its example of an overseer without the expertise to judge what they approve.
 
 The empirical studies look at a different population:
+
 - The corpus of [[ScholarlyArticle/vibe-coding-programming-through-conversation-with-artificial-intelligence]] contained no non-programmers. Its finding that vibe coding needs programming expertise holds only for vibe coders who have it.
 - [[ScholarlyArticle/building-software-by-rolling-the-dice]] counts both professional programmers and people with no formal training as vibe coders.
 - [[ScholarlyArticle/professional-software-developers-dont-vibe-they-control]] finds that experienced developers do not vibe code. They keep control of design and implementation through planning and supervision.
@@ -271,6 +278,7 @@ The empirical studies look at a different population:
 ### Is it a category or a stage?
 
 Several pages use the term for the first step of a transition, not for a category to keep:
+
 - **[[BlogPosting/the-new-era-of-software-development-from-vibe-coding-to-agentic-engineering]]** calls it the phase most people pass through first.
 - **[[DefinedTerm/vibe-coding]]** records a handbook chapter that treats it as a stage in a progression of programming paradigms and argues the stage is unstable at team scale.
 - **[[BlogPosting/impact-of-ai-on-the-state-of-the-art-in-software-engineering-in-2026]]** holds that where vibe coding dominated early 2025, people now speak instead of [[DefinedTerm/context-driven-engineering]] or agentic engineering.
@@ -302,11 +310,13 @@ The names compete with each other too. [[DefinedTerm/vibe-engineering]] records 
 ## Is the narrow line holding?
 
 The narrow camp's own pages report it losing ground:
+
 - **[[DefinedTerm/semantic-diffusion]]** records Willison applying Martin Fowler's term to vibe coding's reception in March 2025. The term's definition was weakening as it spread.
 - **[[BlogPosting/two-publishers-and-three-authors-fail-to-understand-what-vibe-coding-means]]** takes as its occasion two books that used the term for professional work: [[Book/vibe-coding-building-production-grade-software]] and the book later retitled [[Book/beyond-vibe-coding]]. It concedes the argument is probably lost.
 - **Karpathy's reply**, as [[DefinedTerm/vibe-coding]] and [[DefinedTerm/semantic-diffusion]] record it, was that settling on definitions would take time. He added that he himself rarely goes full-out vibe coding.
 
 By 2026 the erosion shows from the other side as well:
+
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] reports Willison no longer reviewing every line agents write, including for production work. He describes the line between the two categories blurring in his own practice, and names the normalization of deviance as the risk.
 - [[BlogPosting/humans-and-agents-in-software-engineering-loops]] says some interpretations of spec-driven development are much the same as vibe coding.
 - [[DefinedTerm/spec-driven-development]] records one spec-driven plugin that is described as not a vibe coding solution, yet behaves like one when run from a single prompt with no human checkpoints.
@@ -317,18 +327,21 @@ By 2026 the erosion shows from the other side as well:
 On both readings, the pages mostly place vibe coding at prototypes, personal tools and throwaway work. They differ on what rules it out.
 
 **Missing review.** The narrow camp's objection is that nobody reads the code.
+
 - [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]] sets its conditions as low stakes, care with secrets and private data, the load placed on other services, and hard billing limits.
 - [[SoftwareApplication/claude-artifacts]] is its example of a sandbox that limits what unread code can reach.
 - [[SoftwareApplication/cursor]] is its example of a tool with far fewer safety rails.
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] calls vibe coding fantastic for a personal tool where a bug hurts only you, and grossly irresponsible when building software for other people.
 
 **Structural limits.** Pages using the broad sense point elsewhere:
+
 - **No specification.** [[BlogPosting/the-uncomfortable-truth-about-vibe-coding]] reports vibe-coded projects hitting a wall around three months in, and blames building without specifications. Its rule is: if a unit or functional test can validate the output, the scope is small enough to vibe.
 - **Architecture.** [[ScholarlyArticle/context-before-code]] found vibe coding reliable for scaffolding but not for tenant isolation, access control or asynchronous processing unless they were made explicit. [[DefinedTerm/non-delegation-zone]] names those areas.
 - **Scaling to a team.** [[ScholarlyArticle/spec-driven-development-for-agentic-software-engineering]] names five limits: non-reproducibility, non-auditability, non-transferability, review saturation and noise scaling.
 - **Sharing practice.** [[BlogPosting/pj-double-mercari-development-productivity]] blames vibe coding's synchronous nature for leaving each developer's judgement in chat logs, where it is neither transparent nor reusable.
 
 Other pages name specific costs:
+
 - [[DefinedTerm/trust-debt]] (from [[BlogPosting/stop-vibe-coding-embrace-new-software-engineering]])
 - [[DefinedTerm/fast-integration-debt]]
 - [[DefinedTerm/context-momentum]]
@@ -339,6 +352,7 @@ Other pages name specific costs:
 - the effect on open-source maintainers modelled in [[ScholarlyArticle/vibe-coding-kills-open-source]]
 
 Practitioners describe the same limits from their own work:
+
 - [[BlogPosting/making-ai-do-t-wada-style-tdd]] finds vibe coding left unattended regularly produces unusable output.
 - [[BlogPosting/keep-agentic-ai-simple]] declines to vibe code because of problems it expects in the long term.
 - [[BlogPosting/2025-ai-coding-trends-agent-10x-productivity-amplification]] sees AI's amplification of existing habits most clearly in vibe coding.
@@ -349,6 +363,7 @@ Practitioners describe the same limits from their own work:
 - [[BlogPosting/new-sdlc-vibe-coding]] puts the dividing line at verification, not at AI use itself.
 
 Some pages from both camps also make a positive case:
+
 - [[ScholarlyArticle/sdd-foundation-of-ai-native-enterprise-software-engineering]] affirms vibe coding as legitimate for ideation, prototyping, learning and accessibility.
 - [[DefinedTerm/vibe-coding]] records Connell's case that it lets non-engineers express a prototype in natural language.
 
@@ -357,11 +372,13 @@ Some pages from both camps also make a positive case:
 The narrow answer rests on argument, not measurement. [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]] is explicitly definitional, and cites Karpathy's wording and the author's own practice.
 
 The broad answer is mostly what the empirical and survey literature uses, and that literature is young:
+
 - **Studies of streamed sessions.** [[ScholarlyArticle/vibe-coding-programming-through-conversation-with-artificial-intelligence]] counted a session as vibe coding only when the programmer described it that way, so it measures how people use the word, not a fixed definition. [[ScholarlyArticle/building-software-by-rolling-the-dice]] calls itself a snapshot rather than a definition of what should count as vibe coding.
 - **Literature reviews.** [[ScholarlyArticle/vibe-coding-multivocal-literature-review]] describes its corpus as early and proposal-driven, with 40% grey literature. [[ScholarlyArticle/a-survey-of-vibe-coding]] notes that empirical research on the practice lacks longitudinal validation.
 - **Recent, contested terms.** [[ScholarlyArticle/sdd-foundation-of-ai-native-enterprise-software-engineering]] and [[ScholarlyArticle/spec-driven-development-for-agentic-software-engineering]] both call their central terms young or contested.
 
 The quantified findings each adopt a definition first and then measure against it:
+
 - [[ScholarlyArticle/swe-chat-coding-agent-interactions-from-real-users-in-the-wild]] uses its 99% threshold.
 - [[ScholarlyArticle/vibe-coding-practice-performance-productivity-and-risk-a-state-of-the-art-review]] uses Willison's boundary.
 
