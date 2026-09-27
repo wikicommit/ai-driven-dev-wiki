@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2025/Sep/18/agents/'
     hash: sha256:6d9f27a63efffc1ed6b38a09e0c4427dd2728ee4c790cc63fd2321499c95670f
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
@@ -16,6 +16,7 @@ properties:
   description: "The post in which Simon Willison adopts \"an LLM agent runs tools in a loop to achieve a goal\" as a definition he is willing to use without qualification, having previously avoided the term as buzzword bingo."
   author: ["Simon Willison"]
   datePublished: "2025-09-18"
+reviewed_by: "joyk0117"
 ---
 
 The post is a change of position rather than a new proposal. Its author had been unwilling to use
