@@ -6,7 +6,7 @@ aliases: ["AI contribution rules"]
 tags: [オープンソース, AI ガバナンス, コーディングエージェント]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/ai-contribution-policy.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "2beeb6175d891dfb85ba85571ebde76abc6677c2"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

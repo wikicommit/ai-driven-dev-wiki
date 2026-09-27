@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型ソフトウェアエンジニアリング, ガバナンス]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/responsibility-topology.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "35d96aaa33f4f9b2ab6d25c70a59d6ec1d1c503a"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型コーディング, コーディングツール, チームの実践]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agentic-coding.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "4438c05fa3a3f4ca959d0a98e469711dd675b69b"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

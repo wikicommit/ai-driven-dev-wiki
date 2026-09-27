@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントフレームワーク, コンテキストエンジニアリング, エージェントアーキテクチャ]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-middleware.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "136844949634913857d6d1eb26ef9cb9cfaf8876"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

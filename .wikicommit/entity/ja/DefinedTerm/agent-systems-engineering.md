@@ -6,7 +6,7 @@ tags: [エージェント, エージェントアーキテクチャ, 信頼性, �
 aliases: ["智能体系统工程化"]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-systems-engineering.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "5a469d929e172ff921cd501cb6f2c1e9edd4c65b"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

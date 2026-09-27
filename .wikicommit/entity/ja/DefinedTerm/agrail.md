@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agrail.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "777a6f1fe30a4c2323cdc9454cdde1c69212981a"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

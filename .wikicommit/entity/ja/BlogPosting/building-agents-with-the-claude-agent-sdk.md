@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェントアーキテクチャ, エージェントツール, コンテキストエンジニアリング, 検証]
 translated_from: ".wikicommit/entity/en/BlogPosting/building-agents-with-the-claude-agent-sdk.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "f98378c1c0274db465979eeb9b19989edbed4da1"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

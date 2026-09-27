@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント, コーディングツール, エージェントアーキテクチャ, 人間による監督]
 translated_from: ".wikicommit/entity/en/BlogPosting/introducing-google-antigravity.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "7ae50c1b3f74855549dc94d1d69956102b45a2da"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

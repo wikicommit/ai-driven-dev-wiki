@@ -5,7 +5,7 @@ lang: ja
 tags: [LLM, セキュリティ, プロンプトインジェクション, エージェント安全性]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/structured-query.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "6b5a8ac7a493c71300dccb7564cd1bdadb65f53c"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

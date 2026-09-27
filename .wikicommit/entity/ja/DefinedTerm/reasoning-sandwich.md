@@ -5,7 +5,7 @@ lang: ja
 tags: [推論モデル, ハーネスエンジニアリング, エージェント型コーディング]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/reasoning-sandwich.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "136844949634913857d6d1eb26ef9cb9cfaf8876"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

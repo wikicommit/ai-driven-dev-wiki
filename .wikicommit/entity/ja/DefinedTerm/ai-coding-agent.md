@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/ai-coding-agent.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "0787ce032ea72845b53b3574598bea1bcb64f761"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

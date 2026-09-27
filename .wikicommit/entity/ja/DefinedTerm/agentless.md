@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, コーディングエージェント, LLM, ソフトウェアエンジニアリング, プログラム修正]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agentless.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "abe7dbaa9cb573068b927bda52cc565d6ba058e6"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

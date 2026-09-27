@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型エンジニアリング, ソフトウェアエンジニアリング, 用語]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/semi-executable-artifact.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "09becb4eb728528ea1c24b3c450ca9da552891a4"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

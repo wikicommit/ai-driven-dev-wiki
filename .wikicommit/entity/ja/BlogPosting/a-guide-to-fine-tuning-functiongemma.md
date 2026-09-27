@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント, ツール利用, LLM]
 translated_from: ".wikicommit/entity/en/BlogPosting/a-guide-to-fine-tuning-functiongemma.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "9b65710f8033cfb0f6c3388db1436c4e823817a3"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, ソフトウェア保守]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/software-issue-resolution.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "7c488ab4f260fd3eaef2b747c30cbac61c788ca2"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

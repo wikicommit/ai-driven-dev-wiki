@@ -5,7 +5,7 @@ lang: ja
 tags: [ハーネスエンジニアリング, 長時間稼働エージェント]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/ralph-loop.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "7567a177e4f0172fd7847cc2fe9a076543e5ad54"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

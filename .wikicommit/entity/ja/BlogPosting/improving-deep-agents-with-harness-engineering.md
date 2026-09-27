@@ -5,7 +5,7 @@ lang: ja
 tags: [ハーネスエンジニアリング, エージェント評価, エージェント型コーディング, エージェントアーキテクチャ]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/improving-deep-agents-with-harness-engineering.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "136844949634913857d6d1eb26ef9cb9cfaf8876"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

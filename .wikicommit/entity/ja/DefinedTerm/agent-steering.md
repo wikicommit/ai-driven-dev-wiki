@@ -5,7 +5,7 @@ lang: ja
 tags: [コードレビュー, エージェント, 人間と AI の協働, プルリクエスト]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-steering.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "67eb2a7e7aeea32abb49ca81daa984b78b394440"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

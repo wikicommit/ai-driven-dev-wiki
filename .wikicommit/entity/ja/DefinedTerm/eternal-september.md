@@ -6,7 +6,7 @@ aliases: ["Eternal September of open source", "the September that never ended"]
 tags: [オープンソース, AI 生成の貢献, メンテナー]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/eternal-september.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "fc6f8839ef49b4ad99a056d9f2d3011a9e22d960"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

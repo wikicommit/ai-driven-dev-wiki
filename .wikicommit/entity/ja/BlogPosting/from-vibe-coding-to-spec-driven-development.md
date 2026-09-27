@@ -5,7 +5,7 @@ lang: ja
 tags: [仕様駆動開発, バイブコーディング, コンテキストエンジニアリング, エージェント設定, セキュリティ]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/from-vibe-coding-to-spec-driven-development.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "bbf242f67501a7e50d8b504ffa6c0e795ce432cd"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

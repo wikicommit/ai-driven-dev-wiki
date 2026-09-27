@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント, 用語, 人間による監督]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agentic-engineer.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "8d7644d8b85a563c829192e2cb8492577074f87c"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

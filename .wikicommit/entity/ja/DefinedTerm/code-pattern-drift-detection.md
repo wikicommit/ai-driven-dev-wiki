@@ -5,7 +5,7 @@ lang: ja
 tags: [コーディングエージェント, MCP, 技術的負債]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/code-pattern-drift-detection.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "74c6840463d960cf5b82c76818ec6b07f5f7233d"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

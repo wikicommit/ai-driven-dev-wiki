@@ -4,7 +4,7 @@ type: "schema:BlogPosting"
 lang: ja
 tags: [仕様駆動開発, コーディングエージェント, エージェント, コーディングツール]
 translated_from: ".wikicommit/entity/en/BlogPosting/introduction-to-cc-sdd.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "26a416de0f4a7992cb9f84fad31d68262aaf5c2a"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

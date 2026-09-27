@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントアーキテクチャ, エージェントツール, 検証, エージェントの状態, オーケストレーション]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/execution-harness.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "23acf239019dbf782b4365d4b7b30b659e3d60c1"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/good-spec.md"
-source_commit: "c6bf44a9d0262400c75a0abf7dee6a8fbb53ff80"
+source_commit: "09b655594ff0cebcc127385c76c7c935da284a27"
 translated_at: "2026-09-24"
 translated_by: "claude-opus-5-5"
 translated_with: "0.7.0"

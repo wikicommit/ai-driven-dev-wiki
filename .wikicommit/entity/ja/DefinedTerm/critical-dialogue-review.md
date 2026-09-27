@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェント型コードレビュー, エージェント]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/critical-dialogue-review.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "07f44d78c36c0f3ef8211927eac4fa818f178ac1"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

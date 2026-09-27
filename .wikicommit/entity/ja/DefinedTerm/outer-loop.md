@@ -4,7 +4,7 @@ type: "schema:DefinedTerm"
 lang: ja
 tags: []
 translated_from: ".wikicommit/entity/en/DefinedTerm/outer-loop.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "ebe0aa0633b147a8544f3ed123bd09c74adc6988"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

@@ -5,7 +5,7 @@ lang: ja
 tags: [MCP, セキュリティ, エージェント, プロンプトインジェクション]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/implicit-tool-poisoning.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "864e0a92b6b7213d87ef534b8204d9992ffc5386"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

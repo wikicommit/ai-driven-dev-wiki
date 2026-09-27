@@ -5,7 +5,7 @@ lang: ja
 tags: [技術的負債, コード品質, 保守性, バイブコーディング]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/fast-integration-debt.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "67eb2a7e7aeea32abb49ca81daa984b78b394440"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

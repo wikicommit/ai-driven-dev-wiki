@@ -6,7 +6,7 @@ aliases: ["ANP"]
 tags: [エージェント, エージェントプロトコル, 相互運用性]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/agent-network-protocol.md"
-source_commit: "f3cd768971749927e49083efe4fbd9f44cf27fb0"
+source_commit: "48d80cbbb1b1176580f1d3e42bed65bbe89633ce"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

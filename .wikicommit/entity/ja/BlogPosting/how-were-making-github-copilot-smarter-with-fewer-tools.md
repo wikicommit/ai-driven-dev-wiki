@@ -5,7 +5,7 @@ lang: ja
 tags: [エージェントツーリング, Model Context Protocol, ツール選択]
 review_status: pending
 translated_from: ".wikicommit/entity/en/BlogPosting/how-were-making-github-copilot-smarter-with-fewer-tools.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "fc6f8839ef49b4ad99a056d9f2d3011a9e22d960"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

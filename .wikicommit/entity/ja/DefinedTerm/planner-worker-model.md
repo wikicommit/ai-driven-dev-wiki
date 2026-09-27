@@ -5,7 +5,7 @@ lang: ja
 tags: []
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/planner-worker-model.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "b0cc6ca63c7e8c23683ba90cc3b5cf0b4690d315"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"

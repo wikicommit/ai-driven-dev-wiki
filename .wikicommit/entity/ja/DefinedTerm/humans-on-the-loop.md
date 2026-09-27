@@ -6,7 +6,7 @@ tags: [コーディングエージェント, ハーネスエンジニアリン�
 aliases: ["On the loop"]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/humans-on-the-loop.md"
-source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+source_commit: "d2fb1a6ec03c16446d710a6305ae25342ee4b2b9"
 translated_at: "2026-09-26"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
