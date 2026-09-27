@@ -5,20 +5,20 @@ lang: ja
 tags: [SASE]
 review_status: pending
 translated_from: ".wikicommit/entity/en/DefinedTerm/briefing-engineering.md"
-source_commit: "1241f6026eea3b9fe7666601cd9fbf68d202989f"
-translated_at: "2026-09-21"
-translated_by: "claude-opus-5[1m]"
-translated_with: "0.7.0"
+source_commit: "b5ca703338b47ee427f9fd85de1f456b7453f357"
+translated_at: "2026-09-27"
+translated_by: "claude-opus-5-5"
+translated_with: "0.8.0"
 
 properties:
-  description: "Structured Agentic Software Engineering（SASE）において提案されているエンジニアリング活動で、エージェントへのミッションブリーフィングを執筆するもの — 要求仕様、アーキテクチャ設計、実装上の戦略的助言、テスト計画を、単一の BriefingScript という成果物へと融合させる。"
+  description: "Structured Agentic Software Engineering（SASE）で提案されている、エージェントへのミッションブリーフィングを作成するエンジニアリング活動。要求仕様、アーキテクチャ設計、戦略的な実装上の助言、テスト計画を、単一の BriefingScript アーティファクトへと融合する。"
 ---
 
-Briefing Engineering（BriefingEng）とは、[[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] において [[DefinedTerm/structured-agentic-software-engineering]]（SASE）の一部として提案された、構造化されたエンジニアリング活動のひとつである。論文はこれを、エンジニアの主たる創造的成果が実装のロジックから、曖昧さのない意図と指導を言語化することへと移行する、その活動として位置づけており、要求工学およびアジャイル／スクラムのコミュニティによる数十年の蓄積を作り直すのではなく、その上に築くものだとしている。その目的として掲げられているのは、生の漠然としたチケットを貼りつけてエージェントによい結果を期待するというよくある失敗のパターンを超えて、ミッションのブリーフをファーストクラスの成果物として扱うことである。
+Briefing Engineering（BriefingEng）は、[[DefinedTerm/structured-agentic-software-engineering]]（SASE）の一部として [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]] で提案されている、構造化されたエンジニアリング活動の 1 つである。論文はこれを、エンジニアの主要な創造的アウトプットが実装ロジックから、曖昧さのない意図とガイダンスの明文化へと移る活動として位置づけており、要求工学（Requirements Engineering）やアジャイル／スクラムのコミュニティによる数十年の成果を作り直すのではなく、その上に積み上げるものだとしている。その目的として述べられているのは、生の曖昧なチケットを貼り付けてエージェントが良い結果を出すことを期待する、というよくある失敗パターンから脱し、ミッションブリーフを第一級のアーティファクトとして扱うことである。
 
-## 使われ方
+## 用法
 
-論文は Briefing Engineering を人間の Agent Coach に割り当て、[[DefinedTerm/agent-command-environment]]（ACE）の中で行われるものとしている。そこでは AI の支援が、曖昧さを指摘し、エッジケースを浮かび上がらせ、論理的な整合性を確かめ、プロパティベースの受け入れテストを生成することによって、コーチが質の高いブリーフを書く助けとなりうる。その成果物が [[DefinedTerm/briefingscript]] である。この活動に関する論文の研究ロードマップが求めているのは、目標・制約・不変条件・ドメインの文脈・受け入れ基準を、時期尚早な設計上の決定を強いることなく表現できる言語とスキーマ、脆い事例ではなくプロパティベースの受け入れ基準へとエンジニアを導く、AI を用いた執筆・レビュー支援、そして生成されたコードや証跡から、それらを動機づけたブリーフィングの条項へと遡れるトレーサビリティである。論文によれば、最後のものは、コーチが複数のエージェント生成の代替案を比較し正当化しなければならない場合（N バージョンプログラミング）にとりわけ重要になる。
+論文は Briefing Engineering を人間の Agent Coach に割り当てており、それは [[DefinedTerm/agent-command-environment]]（ACE）の中で行われる。ACE では AI による支援が、曖昧さを指摘する、エッジケースを浮かび上がらせる、論理的な一貫性を確保する、プロパティベースの受け入れテストを生成する、といった形でコーチが質の高いブリーフを作成するのを助けられる。この活動のアーティファクトは [[DefinedTerm/briefingscript]] である。この活動についての論文の研究ロードマップは、次のものを求めている。時期尚早な設計判断を強いることなく、目標、制約、不変条件、ドメインのコンテキスト、受け入れ基準を表現できる言語とスキーマ。脆い具体例ではなくプロパティベースの受け入れ基準へとエンジニアを導く、AI を活用した作成・レビュー支援ツール。そして、生成されたコードとエビデンスから、それらを動機づけたブリーフィングの条項へと遡るトレーサビリティである。論文によれば、このトレーサビリティは、コーチがエージェントの生成した複数の代替案（N バージョンプログラミング）を比較し、選択を正当化しなければならない場合にとりわけ重要になる。
 
 ## 関連用語
 
