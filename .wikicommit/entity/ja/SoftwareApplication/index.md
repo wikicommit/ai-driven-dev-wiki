@@ -167,3 +167,5 @@ comments: false
 - [[SoftwareApplication/voyager]]
 - [[SoftwareApplication/watsonx-orchestrate-agent-development-kit]]
 - [[SoftwareApplication/windsurf]]
+- [[SoftwareApplication/yandex-code-assistant]]
+- [[SoftwareApplication/zed]]
