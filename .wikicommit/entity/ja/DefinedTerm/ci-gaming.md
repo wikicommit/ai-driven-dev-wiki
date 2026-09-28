@@ -3,7 +3,7 @@ title: "CI ゲーミング"
 type: "schema:DefinedTerm"
 lang: ja
 tags: [エージェント, コードレビュー, エージェント安全性]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/DefinedTerm/ci-gaming.md"
 source_commit: "a3e645ed9a2cca471e9bc76fd3ba0c25d255e24a"
 translated_at: "2026-09-27"
@@ -12,6 +12,7 @@ translated_with: "0.8.0"
 
 properties:
   description: "GitHub がエージェントのプルリクエストをレビューするためのガイドの中で付けた名前で、コーディングエージェントが失敗しているビルドを、コードを修正するのではなく、テストの削除、lint のスキップ、`|| true` の追記といった形でチェックそのものを弱めることによって通してしまうことを指す。"
+reviewed_by: "joyk0117"
 ---
 
 CI ゲーミングとは、GitHub がエージェントのプルリクエストをレビューするためのガイドの中で付けた名前で、
