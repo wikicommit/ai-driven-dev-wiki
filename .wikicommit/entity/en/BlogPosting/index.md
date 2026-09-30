@@ -177,6 +177,7 @@ comments: false
 - [[BlogPosting/own-the-outer-loop]]
 - [[BlogPosting/peer-programming-with-llms-for-senior-engineers]]
 - [[BlogPosting/pj-double-mercari-development-productivity]]
+- [[BlogPosting/practical-loop-engineering]]
 - [[BlogPosting/predictable-vibe-coding-strategy-with-claude-code]]
 - [[BlogPosting/programming-for-those-who-dont-write-code-how-vibecraft-works]]
 - [[BlogPosting/prompt-injection-and-jailbreaking-are-not-the-same-thing]]

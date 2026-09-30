@@ -8,10 +8,13 @@ sources:
     url: 'https://arxiv.org/html/2608.21311v1'
     hash: sha256:fbf82284375303f9675600e80d90e76d55be064a407f52c9123f292427a990b4
     license: CC-BY-4.0
+  - type: url
+    url: 'https://arxiv.org/abs/2607.03316'
+    hash: sha256:956e9dca5a4b96ebca5f05ddc9d52438ab5d8dcd654d5abfbfa8a2270ba8b20e
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-09-30"
+generated_by: "claude-opus-5-5"
+generated_with: "0.8.0"
 
 properties:
   description: "A dedicated code-review bot for GitHub pull requests, posting line-level comments under the vendor-controlled login coderabbitai[bot] and tagging each substantive comment with a self-declared category header such as Refactor suggestion, Potential issue or Nitpick."
@@ -33,3 +36,5 @@ These labels describe what CodeRabbit produced, not what is wrong with the code.
 In a study of AI-reviewed pull requests across public GitHub, CodeRabbit was the only dedicated reviewer-only bot with both substantial volume and machine-parsable category headers — Sourcery and PR-Agent together accounted for fewer than 250 review events in the same data — and it was found reviewing pull requests from at least six different authoring agents. That breadth is why the study could hold it constant as the reviewer and vary the authoring agent.
 
 Doing so produced its central observation about the bot: the mix of categories CodeRabbit emits differs by who wrote the code. On [[SoftwareApplication/claude-code]]-authored PRs 35.0% of its comments were labelled refactor, against 10.5% on [[SoftwareApplication/github-copilot-coding-agent]]-authored PRs, with the Copilot and Devin pair also drawing far more potential-issue comments. The study declines to attribute the difference: it notes it may stem from the pull requests themselves, from repository context, or from reviewer behaviour, and says its analysis cannot separate these. It makes no claim about code quality either way. Its median time from pull-request creation to first review was 7.0 minutes among pairs with usable timestamps — slower than Gemini Code Assist (0.5), Amazon Q (1.2) and OpenAI Codex (2.6) as reviewers, and faster than Copilot (17.7).
+
+A separate study of how developers respond to its comments, [[ScholarlyArticle/is-agentic-code-review-helpful]], mined 31,073 pairs of CodeRabbit reviews and developer feedback from 10,191 pull requests across 239 GitHub repositories. It found a mixed reception: 36.4% of the reviews were accepted, 7.3% triggered discussion and 56.3% were rejected. Rejections were primarily associated with invalid suggestions — false positives, redundant or out-of-scope comments — and with misalignment with developer intent and coding practices. CodeRabbit's reviews in that data focused more on functional concerns than on evolvability-related ones, yet the functional comments were more likely to be invalid.
