@@ -10,6 +10,7 @@ comments: false
 - [[TechArticle/a-practical-guide-to-building-agents]]
 - [[TechArticle/context-engineering-memory-compaction-and-tool-clearing]]
 - [[TechArticle/function-calling-using-llms]]
+- [[TechArticle/generative-ai-and-open-source-reshape-software-development]]
 - [[TechArticle/githubs-internal-playbook-for-building-an-ai-powered-workforce]]
 - [[TechArticle/model-ai-governance-framework-for-agentic-ai]]
 - [[TechArticle/technik-fuer-ki-unterstuetzte-software-entwicklung]]
