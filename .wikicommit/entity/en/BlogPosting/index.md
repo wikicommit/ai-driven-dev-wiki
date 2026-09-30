@@ -138,6 +138,7 @@ comments: false
 - [[BlogPosting/impact-of-ai-on-the-state-of-the-art-in-software-engineering-in-2026]]
 - [[BlogPosting/implementing-effective-guardrails-for-ai-agents]]
 - [[BlogPosting/improving-deep-agents-with-harness-engineering]]
+- [[BlogPosting/improving-token-efficiency-in-github-agentic-workflows]]
 - [[BlogPosting/integrating-cloud-and-ide-agents]]
 - [[BlogPosting/introducing-advanced-tool-use]]
 - [[BlogPosting/introducing-agent-hq]]
