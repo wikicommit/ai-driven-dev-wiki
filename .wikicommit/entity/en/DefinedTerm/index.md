@@ -182,6 +182,7 @@ comments: false
 - [[DefinedTerm/four-stage-evolution-of-agentic-engineering]]
 - [[DefinedTerm/frequent-intentional-compaction]]
 - [[DefinedTerm/function-calling]]
+- [[DefinedTerm/gaslight-sycophancy]]
 - [[DefinedTerm/generate-review-revise-loop]]
 - [[DefinedTerm/git-worktrees]]
 - [[DefinedTerm/github-copilot-custom-agents]]
