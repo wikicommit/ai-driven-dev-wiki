@@ -13,6 +13,9 @@ sources:
   - type: url
     url: 'https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling'
     hash: sha256:387e308af93bf5e395e63fc75ef5feab5991b415cfa035a3b416ed10b3b296ac
+  - type: url
+    url: 'https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/programmatic-tool-calling'
+    hash: sha256:42547562a018e3bd7b2b1f333ad79a9b4e7816bd113c85e722cb90d2062d43ec
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -53,6 +56,30 @@ many calls run in one code block, and accuracy gains on internal knowledge retri
 and GIA benchmarks (46.5% to 51.2%), and it states that Claude for Excel uses the feature to read and
 modify spreadsheets with thousands of rows.
 
+Anthropic's API documentation for the feature fills in the mechanics. It requires the code execution
+tool at version `code_execution_20260120` or later. `allowed_callers` takes `["direct"]` (the default),
+a code-execution version, or both, and the documentation advises choosing one per tool for clearer
+guidance to Claude; it also states that the field steers how the tool is presented rather than blocking
+direct invocation at the API level, so it must not be relied on as a security boundary. Opted-in tools
+are exposed to Claude's code as async Python functions that take a single dict of arguments and return
+the `tool_result` text as a string, so Claude can run them in parallel with `asyncio.gather`. When the
+code calls a tool, execution pauses and the API returns a `tool_use` block whose `caller` field carries
+the id of the code-execution run that made the call; the application answers every pending call in a
+user message containing only `tool_result` blocks, passing the container ID and the same `tools` array
+back, and the code resumes. The documentation states that a pending call times out after about four
+minutes, raising a `TimeoutError` inside the code, and that idle containers are currently reclaimed
+after about five minutes. Tool results from programmatic calls do not count toward input or output
+token usage; only the final code-execution result and Claude's response do.
+
+It lists several limits. Tools with `strict: true` are not supported, a programmatic call cannot be
+forced through `tool_choice`, `disable_parallel_tool_use: true` is not supported, tools whose input
+schema contains a recursive `$ref` cannot be opted in, and neither tools provided by an MCP connector
+nor the computer use and browser use toolsets can be called programmatically. It also describes the
+pattern as generalizable to one's own infrastructure, setting Anthropic's managed execution beside two
+self-hosted alternatives: executing the model's code directly in the client, which it warns runs
+untrusted code outside a sandbox, and a self-managed sandbox, which it describes as safe but complex to
+build and maintain.
+
 ### OpenAI API feature
 
 [[Organization/openai]]'s API documentation describes Programmatic Tool Calling as letting a model
@@ -89,7 +116,7 @@ output, with no further inference turn after the subprocess returns.
 
 ## When It Applies
 
-All three sources treat it as a trade-off rather than a replacement for conventional tool calling in
+All of the sources treat it as a trade-off rather than a replacement for conventional tool calling in
 every case. Anthropic describes it as most beneficial for processing large datasets where only aggregates
 are needed, workflows with three or more dependent tool calls, filtering or transforming results
 before the model sees them, tasks where intermediate data should not influence the model's reasoning,
@@ -111,6 +138,21 @@ make calls idempotent where possible, check arguments and permissions for every 
 hosted program makes it, and require application-level approval before high-impact actions whatever
 the caller.
 
+Anthropic's API documentation frames the choice as a trade of a small fixed overhead — container
+startup and script generation — against savings on tool-result tokens and model round trips. It lists
+as strong fits fan-out operations across many items, large tool results that can be filtered or
+aggregated before reaching Claude, and agentic search and retrieval; and as weak fits strictly
+sequential workflows where each call depends on Claude reasoning over the previous result, a few
+calls with small responses, and tools that need immediate user feedback between calls. It reports
+results from Anthropic's internal evaluations: on a 75-tool project-management agent benchmark, billed
+input tokens fell by roughly 38% with no change in task accuracy; on τ²-bench, where each turn makes
+one or two sequential tool calls, scores were unchanged and cost was roughly 8% higher; and across
+production API traffic, requests carrying 10 to 49 tool definitions typically save 20% to 40% of
+tokens. It also reports that on the agentic search benchmarks BrowseComp and DeepSearchQA, adding the
+feature on top of basic search tools improved performance by an average of 11% while using 24% fewer
+input tokens. Its advice where the fit is unclear is to measure billed input tokens with and without
+`allowed_callers` on representative traffic before enabling it broadly.
+
 The paper's argument is that for models that can already write executable code, emitting a JSON
 object per call is a design choice rather than a necessity. It assumes an execution environment the
 model's script can run in and a model able to produce valid multiline code: in the paper's
@@ -121,7 +163,7 @@ makes it more expensive than JSON tool calling below roughly 26 parallel calls, 
 some models to answer aggregation questions from parametric knowledge without actually executing
 the calls.
 
-The evidence behind these accounts is limited. OpenAI reports no measurements: it says the feature can reduce the amount
+The evidence behind these accounts is limited, and the figures from Anthropic come from its own evaluations. OpenAI reports no measurements: it says the feature can reduce the amount
 of intermediate tool output added to model context but that the effect depends on the task and tool
 responses, and it advises starting from direct tool calling as a baseline and comparing both on
 representative tasks, measuring correctness and evidence coverage alongside tokens, latency and cost.

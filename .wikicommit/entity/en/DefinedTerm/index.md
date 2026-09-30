@@ -166,6 +166,7 @@ comments: false
 - [[DefinedTerm/dual-llm-pattern]]
 - [[DefinedTerm/easy-approach-to-requirements-syntax]]
 - [[DefinedTerm/edit-apply-model]]
+- [[DefinedTerm/effective-tokens]]
 - [[DefinedTerm/embedding-guided-tool-routing]]
 - [[DefinedTerm/eternal-september]]
 - [[DefinedTerm/evidence-centric-inspection]]
