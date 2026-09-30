@@ -28,10 +28,13 @@ sources:
   - type: url
     url: 'https://docs.claude.com/en/docs/claude-code/overview'
     hash: sha256:c92c369ec87bb472c8a5093377d92cfd2a487ffc60b26f2473021b1518d5e358
+  - type: url
+    url: 'https://jannesklaas.github.io/ai/2025/07/20/claude-code-agent-design.html'
+    hash: sha256:4a0473d4cac9881fc7c599ead1e961497f8b69dd92f740662432f38a1d48ce18
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.8.0"
 
 properties:
   description: "Anthropic's agentic coding solution, an assistant that runs in the terminal and works through a loop of gathering context, taking action and verifying results. It combines up-front context files with just-in-time file and data retrieval, message-history compaction, and to-do list note-taking."
@@ -163,6 +166,26 @@ and contextual adaptability — traced through thirteen design principles to spe
 choices. Its own closing concern is that while the system amplifies the short-term capabilities of
 programmers and end users, it offers limited mechanisms that explicitly support long-term human
 improvement, deeper understanding and sustained codebase coherence.
+
+### Observed through its API traffic (July 2025)
+
+An outside view comes from [[BlogPosting/agent-design-lessons-from-claude-code]], in which
+Jannes Klaas inspected the API requests Claude Code made through a proxy rather than reading its
+source. At that time he counted 14 tools in a single agent loop — bash, glob, grep and ls; read,
+write, edit, multi edit, notebook read and notebook edit; web search and web fetch; and todo write and
+task — and described the loop as `while(tool_use)`: a message without a tool call ends the turn and
+waits for the user, with no explicit stop tool. He reports no critic pattern, role-switching,
+sophisticated memory system or knowledge database.
+
+What he identifies as keeping the agent on track over long sessions is a set of lightweight
+techniques: a TODO list usually created by the first tool call and rewritten in full on each update; fixed
+instruction text appended to tool results; [[DefinedTerm/system-reminder]] blocks attached to user
+messages depending on the tool called and the state of the TODO list; and sub-agents dispatched
+through the `Task` tool, which on his reading receive the same system prompt, are not told they are
+sub-agents and cannot dispatch sub-agents themselves. He also observed commands the main model was
+about to execute being sent to Claude Haiku, which returned structured output listing the file paths
+each command reads or modifies; his interpretation is that this is used to decide whether user
+approval is needed, and that Anthropic consciously traded off speed and accuracy in choosing Haiku for it.
 
 ## Working Practices
 

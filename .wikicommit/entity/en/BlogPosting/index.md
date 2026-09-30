@@ -18,6 +18,7 @@ comments: false
 - [[BlogPosting/advanced-context-engineering-for-coding-agents]]
 - [[BlogPosting/agent-as-a-judge-in-the-feedback-loop]]
 - [[BlogPosting/agent-definition-useful-jargon]]
+- [[BlogPosting/agent-design-lessons-from-claude-code]]
 - [[BlogPosting/agent-driven-development-in-copilot-applied-science]]
 - [[BlogPosting/agent-frameworks-runtimes-and-harnesses]]
 - [[BlogPosting/agent-harness-engineering]]
