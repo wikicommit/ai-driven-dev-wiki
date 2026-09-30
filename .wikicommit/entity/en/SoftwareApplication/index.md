@@ -108,6 +108,7 @@ comments: false
 - [[SoftwareApplication/langgraph]]
 - [[SoftwareApplication/litellm]]
 - [[SoftwareApplication/llamafirewall]]
+- [[SoftwareApplication/llm]]
 - [[SoftwareApplication/llm-coding-agent]]
 - [[SoftwareApplication/magentic-ui]]
 - [[SoftwareApplication/marscode-agent]]
