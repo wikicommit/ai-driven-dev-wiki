@@ -16,20 +16,23 @@ sources:
   - type: url
     url: 'https://yeasy.gitbook.io/agentic_ai_guide/di-san-bu-fen-gong-cheng-shi-jian-yu-luo-di/10_agentic_coding'
     hash: sha256:26618db82c0fda1c7e9633fba110e9dede9cc12504649f20daedac021481f3ab
+  - type: url
+    url: 'https://waylandz.com/ai-agent-book/%E7%AC%AC29%E7%AB%A0-Agentic-Coding/'
+    hash: sha256:8d26acd2d82ab50470efb941ede6e3ad8e4fb4bae0f286b12e4c0dd3fbed6b2b
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.8.0"
 
 properties:
   description: "Software development in which autonomous or semi-autonomous AI agents plan, execute, test, and iterate on multi-step coding tasks from a high-level goal, with the developer acting as a supervisor and reviewer rather than a direct implementer."
 ---
 
-Agentic coding is a mode of AI-assisted software development in which autonomous or semi-autonomous software agents are delegated substantial cognitive and operational responsibility: interpreting a high-level goal, planning and decomposing it into sub-tasks, using tools and resources (compilers, test runners, version control, APIs) to execute them, and iterating based on feedback, with minimal continuous human intervention. The developer's role shifts from low-level implementer to system-level supervisor and goal-setter: specifying objectives and constraints, monitoring execution traces and outputs, and validating results before integration.
+One 2025 review, [[ScholarlyArticle/vibe-coding-vs-agentic-coding]] by Sapkota, Roumeliotis and Karkee, defines agentic coding as a mode of AI-assisted software development in which autonomous or semi-autonomous software agents are delegated substantial cognitive and operational responsibility: interpreting a high-level goal, planning and decomposing it into sub-tasks, using tools and resources (compilers, test runners, version control, APIs) to execute them, and iterating based on feedback, with minimal continuous human intervention. On that review's account, the developer's role shifts from low-level implementer to system-level supervisor and goal-setter: specifying objectives and constraints, monitoring execution traces and outputs, and validating results before integration.
 
 ## Usage
 
-Reviewed against vibe coding, agentic coding is characterized by moderate-to-high AI autonomy, hierarchical planner–executor architectures (often with specialized sub-agents such as a coder, tester, reviewer, and fixer coordinated by a planner), sandboxed or containerized execution environments, persistent memory across multi-step tasks, and an integrated validation pipeline that automatically synthesizes and runs tests rather than relying on a human to invoke them. Named examples of agentic coding platforms include Codex, which can run `git diff`, apply patches, and generate pull requests automatically; Google's Jules, which clones and analyzes a repository, modifies code, and commits changes to a new branch for review; and Claude Code, built with explainability and oversight features that let a developer audit changes, trace reasoning, and roll back unsafe actions.
+In the same review's taxonomy, which contrasts it with vibe coding, agentic coding is characterized by moderate-to-high AI autonomy, hierarchical planner–executor architectures (often with specialized sub-agents such as a coder, tester, reviewer, and fixer coordinated by a planner), sandboxed or containerized execution environments, persistent memory across multi-step tasks, and an integrated validation pipeline that automatically synthesizes and runs tests rather than relying on a human to invoke them. The review's named examples of agentic coding platforms include Codex, which can run `git diff`, apply patches, and generate pull requests automatically; Google's Jules, which clones and analyzes a repository, modifies code, and commits changes to a new branch for review; and Claude Code, built with explainability and oversight features that let a developer audit changes, trace reasoning, and roll back unsafe actions.
 
 ## What It Looks Like in Practice
 
@@ -123,6 +126,28 @@ sequences and the context window), then a comparison of common coding-agent tool
 surface, permission model and instruction files, then a development methodology it calls the P-D-E-R
 loop combined with spec-driven and test-driven development, and finally engineering practice: human
 oversight models, checkpoint mechanisms and compound engineering.
+
+## In an AI Agent Architecture Book
+
+A chapter on agentic coding in the Chinese-language online book *AI Agent 架构：从单体到企业级多智能体*
+(AI agent architecture, from monolith to enterprise multi-agent systems) draws the line against code
+completion rather than vibe coding. Completion, on its account, works at the cursor within the current
+file, leaves the human to decide what gets written, and can neither run code nor iterate on feedback;
+agentic coding spans the whole codebase and its cross-file dependencies, lets the agent decide what to
+write, runs code and tests, and revises from the results. Its summary is that completion types out what
+you have in mind, while agentic coding implements what you ask for. The flow it describes runs from
+understanding the requirement through analysing the codebase, planning, writing code, running tests in a
+sandbox and fixing iteratively, to submitting a commit or pull request.
+
+The chapter treats understanding the codebase as one of the hardest parts: a codebase cannot be put into
+a context window whole, so the relevant code has to be selected, which it proposes doing by combining
+keyword and semantic search and by building dependency graphs. It holds that code an agent generates must
+run in an isolated environment — not as an option but as a requirement — recommends editing by unique
+text anchors rather than line numbers, and adds a guard against fix loops in which repairing one failure
+breaks another. Among the pitfalls it lists are overflowing the context window, an agent changing tests or
+test data so that tests pass while the code is wrong, adding dependencies freely, and operating on a dirty
+Git state. Most of its code is labelled as conceptual illustration; the excerpts it quotes from a real
+codebase come from the [[SoftwareApplication/shannon]] agent system.
 
 ## When It Applies
 
