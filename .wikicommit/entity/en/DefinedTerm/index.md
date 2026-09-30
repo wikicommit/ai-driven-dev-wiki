@@ -278,6 +278,8 @@ comments: false
 - [[DefinedTerm/responsibility-topology]]
 - [[DefinedTerm/reverse-documentation-engineering]]
 - [[DefinedTerm/review-bottleneck]]
+- [[DefinedTerm/review-finding-triage]]
+- [[DefinedTerm/review-loop-non-convergence]]
 - [[DefinedTerm/risk-based-gate]]
 - [[DefinedTerm/role-confusion]]
 - [[DefinedTerm/rolling-the-dice]]

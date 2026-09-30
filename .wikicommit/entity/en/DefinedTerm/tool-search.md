@@ -10,10 +10,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/advanced-tool-use'
     hash: sha256:37cff587dcd276ffbe27f31fcfa6f7985ccacfd5d06270baf40025725a068a97
+  - type: url
+    url: 'https://codepointer.dev/p/tool-design-for-ai-agents-lessons'
+    hash: sha256:798960d4831740d5de8d2d8de9ef9533000b374e32d6edc5fdbe5fa1c6862502
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.8.0"
 
 properties:
   description: "A technique for giving a model access to a large set of tools without loading them all up front: some or all tools are deferred, and the model searches for the relevant ones, adds them to its context and then calls them."
@@ -61,6 +64,19 @@ Anthropic motivates it with context consumed by MCP tool definitions — about 5
 five-server setup — and with wrong tool selection and incorrect parameters as the most common failures.
 It reports an 85% reduction in token use in its example and, in internal MCP evaluations with large
 tool libraries, accuracy rising from 49% to 74% for Opus 4 and from 79.5% to 88.1% for Opus 4.5.
+
+### In Claude Code
+
+[[BlogPosting/tool-design-for-ai-agents-lessons-from-50-claude-code-tools]], reading the source of
+[[SoftwareApplication/claude-code]], describes the same mechanism inside an agent harness. Not all of
+Claude Code's 50+ tools are loaded into the initial prompt: some appear only by name in a
+`<system-reminder>` message, and the model has to call ToolSearch to obtain a tool's full schema before
+invoking it. When tool search is enabled, the step that filters the tool list before each request drops
+deferred tools unless they were already discovered in a prior turn. Whether a tool is deferred follows
+a short set of rules: MCP tools are always deferred, on the post's reasoning that they are
+workflow-specific and can number in the hundreds; ToolSearch itself is never deferred, since it is
+needed to discover everything else; and tools marked to always load stay loaded, as do the Agent tool
+when fork-subagent mode is on and the tool the harness uses to message the user.
 
 ## When It Applies
 
