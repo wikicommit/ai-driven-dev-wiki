@@ -13,6 +13,12 @@ sources:
   - type: url
     url: 'https://tech-lab.sios.jp/archives/53091'
     hash: sha256:ad600fed8b9b62a03a62c07d1ed68806968ad524260b789712fdd5d404cb3432
+  - type: url
+    url: 'https://zenn.dev/pepabo/articles/claude-code-review-loop-zero-findings'
+    hash: sha256:d0532ff50aac8dbea50293dd13e8a3a76ebf8413805792d29a131945fbe53bfe
+  - type: url
+    url: 'https://zenn.dev/shimo4228/articles/review-chain-damping'
+    hash: sha256:9b76db71bfd5c235019df5775fd519a7856f9c9844b26dcaf21b7527849a2814
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -72,6 +78,30 @@ again bounds what the review may raise: a separate reviewer that starts from 100
 named kinds of logical breakdown, and must report a clean result rather than look for defects when it
 finds none — with the harsh reviewer kept for finished slides, and a person deciding which findings to
 adopt. Like the other two, this is one practitioner's report of their own setup.
+
+A fourth account, [[BlogPosting/review-loop-until-zero-findings-in-claude-code]], set out to build the loop
+deliberately: six specialised AI reviewers run in parallel on a pull request, their critical and warning
+findings fixed automatically and the result re-reviewed, until no findings remained or five rounds had passed.
+Its author reports that it never reached zero, and warns of the same runaway as a risk in running it — a fix
+by one AI drawing a new finding from another, whose fix draws yet another. The safety valves described bound the fixing rather than the
+review: fix only what was flagged, with minimal changes; leave findings that need a design decision to a human;
+stop after three failed test retries or when a fix would touch more than 20 files; and stop at five rounds,
+reporting what remains. A separate agent also validates each finding against the codebase and drops or
+downgrades those it judges invalid, which the author treats as a filter that works only to a degree, since it
+can reject valid findings. This is again one team's report of its own system.
+
+A fifth account, [[BlogPosting/cutting-ai-review-from-six-lines-to-one]], comes from a developer whose
+pre-commit review chain in [[SoftwareApplication/claude-code]] had grown to six standing review lines, each fix
+drawing a new finding from the next review so that the loop never reached zero findings. Its author frames the
+problem in control-engineering terms: the review-fix-re-review loop has no damping term and keeps being fed new
+findings, so it oscillates unless its input is cut from outside, because an LLM reviewer asked for gaps will
+usually return some even on sound work. Unlike the accounts above, the remedy cuts how many reviews run rather
+than what a review may raise: after counting only one demonstrated discovery from the chain, the author reduced
+it to one standing fresh-context review plus a security review for diffs that touch trust boundaries, set review
+effort to medium, and told reviewers to report only gaps that affect correctness or the stated requirements,
+treating the rest as optional. Re-reviewing after a fix was kept, with fixes limited to the smallest diff that
+answers a finding, and the author records conditions under which the cut would be reversed. The author calls the
+number of review lines being the main cause a judgment rather than a proof, drawn from their own counts.
 
 ## Related Terms
 

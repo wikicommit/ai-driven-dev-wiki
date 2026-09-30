@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://www.phodal.com/blog/autodev-cli-validate-framework/'
     hash: sha256:26bc330f65530f4365f6ce5ec9f0906f8dbd535b42fb7fa6040663a6e493c766
+  - type: url
+    url: 'https://www.phodal.com/blog/autodev-devins-the-ai-agent-language/'
+    hash: sha256:c697ad04281f2e84e44e08ada86b237fd585e5165e98e7f5fd7a0b814b3acc4c
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -24,8 +27,8 @@ generated_with: "0.8.0"
 properties:
   description: "An open-source AI coding tool published in the unit-mesh/auto-dev GitHub repository, with IDE plugins including a VS Code version, a CLI and a desktop application, and a Remote Agent that runs in GitHub Actions; its agentic code review combines diff, lint, issue, test and code-structure information with a multi-agent architecture to analyse changes and generate fixes."
   applicationCategory: "AI coding tool"
-  softwareVersion: "1.8 (IDE plugin, April 2024); 0.3.0 (CLI, November 2025); compose-0.3.0 (Desktop, November 2025)"
-  featureList: "IDE plugin features including requirement-linked commit message generation, code-smell refactoring, AI rename suggestions and terminal command generation (1.8); AutoDev Remote Agent for issue analysis, task planning and coding in GitHub Actions or as an MCP service; agentic code review (autodev review); static information collection from Git diff, CodeGraph, linters, issues and tests; structured review findings; modification plan generation; automated fixes by a CodingAgent"
+  softwareVersion: "1.7.2 (IDE plugin, the version a March 2024 post names for using DevIns); 1.8 (IDE plugin, April 2024); 0.3.0 (CLI, November 2025); compose-0.3.0 (Desktop, November 2025)"
+  featureList: "Custom agents; the DevIns agent language, whose instructions can write files, apply patches, run tests and commit code (used with plugin 1.7.2); IDE plugin features including requirement-linked commit message generation, code-smell refactoring, AI rename suggestions and terminal command generation (1.8); AutoDev Remote Agent for issue analysis, task planning and coding in GitHub Actions or as an MCP service; agentic code review (autodev review); static information collection from Git diff, CodeGraph, linters, issues and tests; structured review findings; modification plan generation; automated fixes by a CodingAgent"
 ---
 
 AutoDev is an AI coding tool whose releases are published in the `unit-mesh/auto-dev` GitHub repository. This page covers the tool in that repository; [[SoftwareApplication/autodev]] is a separate page for a
@@ -51,6 +54,18 @@ suggestions offered when the user invokes the IDE's rename feature (enabled manu
 terminal command generation that puts the date, operating system and shell into the context. The same version
 added Chinese settings pages and prompts, an easier LLM server test, support for 2024.1 IDE versions and AutoSQL
 improvements.
+
+### Custom agents and DevIns
+
+An earlier AutoDev release added custom agents, letting users build their own agents to assist with software
+development tasks. Its author describes AutoDev as assisting development through context awareness and
+custom capabilities — automatic test generation and running, and UI generation among them — and notes that
+its custom prompts can refer to the editor state, as in a prompt asking the AI to explain the selected code.
+A following release, announced in [[BlogPosting/autodev-devins-open-source-ai-agent-language]], added
+[[ComputerLanguage/devins]], a language between natural language and instruction text: with version 1.7.2 of the plugin installed, a user writes a
+`.devins` file and runs it, AutoDev compiles its instructions together with the surrounding context into
+instruction text for the agent, and instructions such as `/write`, `/run`, `/patch` and `/commit` let the
+result be written to files, tested, patched and committed.
 
 ### Code review
 
