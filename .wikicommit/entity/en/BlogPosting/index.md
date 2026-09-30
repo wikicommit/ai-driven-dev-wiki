@@ -38,6 +38,7 @@ comments: false
 - [[BlogPosting/agentic-engineering-swarms-of-ai-agents]]
 - [[BlogPosting/agents-cli-in-agent-platform]]
 - [[BlogPosting/ai-agent-guardrails-rules-that-llms-cannot-bypass]]
+- [[BlogPosting/ai-assisted-code-reviews-augmenting-pull-requests-in-dotnet-projects]]
 - [[BlogPosting/ai-assisted-coding-and-developer-productivity]]
 - [[BlogPosting/ai-code-agents-matsuri-seven-techniques]]
 - [[BlogPosting/ai-code-review-evolved-autodev-multi-agent-architecture]]
