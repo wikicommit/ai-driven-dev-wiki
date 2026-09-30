@@ -179,6 +179,7 @@ comments: false
 - [[ScholarlyArticle/the-semi-executable-stack]]
 - [[ScholarlyArticle/the-spec-growth-engine]]
 - [[ScholarlyArticle/these-arent-the-reviews-youre-looking-for]]
+- [[ScholarlyArticle/toolace-winning-the-points-of-llm-function-calling]]
 - [[ScholarlyArticle/toward-agentic-software-engineering-beyond-code]]
 - [[ScholarlyArticle/towards-ai-native-software-engineering-se-3-0]]
 - [[ScholarlyArticle/towards-secure-agent-skills]]
