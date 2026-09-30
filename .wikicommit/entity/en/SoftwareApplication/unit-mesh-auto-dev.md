@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://www.phodal.com/blog/build-devops-inside-practise-for-ai-coding/'
     hash: sha256:e4e7bc07f479e47a0e678208bbfb58443125067f5e88b81a88b42c3f55c54f38
+  - type: url
+    url: 'https://www.phodal.com/blog/autodev-cli-validate-framework/'
+    hash: sha256:26bc330f65530f4365f6ce5ec9f0906f8dbd535b42fb7fa6040663a6e493c766
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.8.0"
 
 properties:
   description: "An open-source AI coding tool published in the unit-mesh/auto-dev GitHub repository, with IDE plugins including a VS Code version, a CLI and a desktop application, and a Remote Agent that runs in GitHub Actions; its agentic code review combines diff, lint, issue, test and code-structure information with a multi-agent architecture to analyse changes and generate fixes."
@@ -63,6 +66,22 @@ sub-agents (AnalysisAgent, ErrorRecoveryAgent, CodebaseInvestigatorAgent) handle
 and repository-wide investigation; and a CodingAgent makes the code changes through tool calls such as
 `read_file`, `write_file`, lint and test. Sub-agents are managed by a `SubAgentManager`, and all tools are
 registered in a `ToolRegistry` and executed through a `ToolOrchestrator`.
+
+### CLI and agent test framework
+
+The CLI is built on AutoDev's MPP (Multiplatform Paradigm) core. Its author explains in
+[[BlogPosting/autodev-cli-quality-assurance-and-validation-architecture-for-ai-generated-ai-agents]] that it
+was designed to fix a testing problem in the earlier IntelliJ-based AutoDev: agent logic was bound to IDE UI
+events and IDE kernel objects and could not easily run in CI/CD. Because the same CodingAgent code and renderer
+are shared across the CLI, desktop and mobile targets, he treats the CLI as the place to reproduce and fix agent
+problems that would very probably appear on the other targets too. Invoked as `autodev code --path . --task "..."`, it logs tool registration, sub-agents and MCP servers, and those logs become the input an AI agent uses
+to fix the next problem.
+
+On top of it, the author had AI generate a dedicated test framework for the coding agent that analyses three
+things per scenario — the prompts generated, the tools called and the code changes produced — with scenarios
+stating expectations such as a minimum number of file reads and writes or particular files being created or
+modified. The framework runs in a GitHub Actions workflow with a pass threshold, which the author asked to be at
+least 80%.
 
 ### AutoDev Remote Agent
 
