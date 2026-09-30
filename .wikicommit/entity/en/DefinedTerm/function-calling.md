@@ -17,6 +17,9 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2025/May/27/llm-tools/'
     hash: sha256:a2f0dcf34a578fc6603991e91422876e38f9d81009a3891d641eb6b221e19cde
+  - type: url
+    url: 'https://www.promptingguide.ai/agents/function-calling'
+    hash: sha256:5ea7116ae7f1bdf8996a498ac5020c6475235d5868c1b114d1148753e14fc0bf
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -87,6 +90,30 @@ a tool call. It also states when tool use does not fit: when the model can answe
 (summarization, translation, general-knowledge questions), when the interaction is one-shot question and
 answer with nothing to execute, and when the latency of at least one extra round trip per call would
 outweigh a trivial task. These criteria are one vendor's guidance in its own documentation.
+
+## In Agent Loops
+
+DAIR.AI's Prompt Engineering Guide, in its page on function calling in AI agents, presents the mechanism
+from the side of someone building and debugging an agent. It names tool calling and reasoning as the two
+capabilities LLM-based agents rely on, and describes the flow as: the user's query arrives; the system
+message, tool definitions and user message are assembled into the context; the model decides whether a tool
+is needed and, if so, outputs which tool to call with what parameters; the developer's code executes it; the
+result comes back as the *observation*; and the observation is passed back with all prior messages so the
+model can respond. The guide calls tool definitions — a name, a description of what the tool does and when
+to use it, and typed parameters — arguably the most critical component, since they are the only way the
+model knows what tools exist, and notes that they are part of the context on every call and so cost tokens
+and latency. It frames the agent as a repeated cycle of action, environment response, observation and
+decision, in which each observation is added to the context for the next step (compare
+[[DefinedTerm/plan-act-observe-loop]]).
+
+For debugging, the guide recommends inspecting the intermediate steps — which tools were called, with what
+arguments, what each returned and how many tokens each step used — as workflow tools such as n8n can expose,
+and getting as close to the raw API calls as possible. It lists incorrect tool selection, bad arguments,
+missing guidance in the tool definition and misinterpreted observations as common failure causes. Its
+recommendations for tool definitions, which it says come from practical experience building agents, are to
+write specific descriptions that say when to use a tool, to repeat guidance on when to use which tool in the
+system prompt, to constrain parameters with enums and examples, and to have tools return informative error
+messages that help the agent recover.
 
 ## Introduction and Early Reception
 
