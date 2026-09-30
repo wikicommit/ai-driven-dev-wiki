@@ -19,10 +19,13 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2025/Dec/18/code-proven-to-work/'
     hash: sha256:da102830a9ee0a59c820635f7725af37d08e9758f677e5bc4d7b6c87b5280f39
+  - type: url
+    url: 'https://simonwillison.net/2026/Sep/24/harder/'
+    hash: sha256:7da6fbf4b1f3295e9379ed89e424be7d33adef165ddcd45ef11c6aafd414eeb6
 review_status: pending
-generated_at: "2026-09-22"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-09-30"
+generated_by: "claude-opus-5-5"
+generated_with: "0.8.0"
 
 properties:
   description: "Software powered by a large language model that takes autonomous actions on a codebase: reading files, writing or editing code, executing commands, and iterating on the results. A second account fixes the defining line more narrowly at code execution — an agent that can both write and run code."
@@ -39,6 +42,12 @@ Coding agents are described as the foundation that agentic engineering is built 
 In practice, this takes several shapes: a single-task agent that implements one described feature or fix end-to-end for a human to review; multi-agent setups where several agents work on different parts of a codebase at once; and background agents that run asynchronously on tasks like PR review or dependency updates while a person works on something else.
 
 A further account adds a normative point about how the category should be used. Because a coding agent can execute the code it writes, it can be held to demonstrating that its changes work, and [[BlogPosting/your-job-is-to-deliver-code-you-have-proven-to-work]] argues that mastering these tools means getting them to do exactly that — exercising a change manually as they go, and building automated tests that will keep it working afterwards. On that account the distinction between manual and automated testing largely collapses for an agent, since both are things it performs rather than observes. The same post reports that agents need very little encouragement to write tests, will extend a suite that already exists without being told to, and reuse the patterns they find in it — from which it draws the practical recommendation to keep test code well organised and populated with the patterns you want reproduced.
+
+Not every practitioner account treats the category as making the work easier. In a short note dated
+24 September 2026, Simon Willison wrote that the more time he spends working with coding agents, the
+more convinced he is that they make software engineering even harder: amazing things can be done with
+them, but unlocking their full potential, in his view, requires extraordinary discipline and
+knowledge. The note is a statement of one practitioner's experience rather than an argued case.
 
 ## How One Is Built
 

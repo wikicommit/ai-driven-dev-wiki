@@ -11,6 +11,12 @@ sources:
   - type: url
     url: 'https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/how-tool-use-works'
     hash: sha256:72962bc6dbde244cd4d2ed36591f00bceb8f38f4883c0f7c11aaaafd13504b19
+  - type: url
+    url: 'https://simonwillison.net/2023/Jun/13/function-calling/'
+    hash: sha256:e7d11c6a285c986f69ed52dd7b2da7c46a0d718252d9ca84ac6df6de515e6516
+  - type: url
+    url: 'https://simonwillison.net/2025/May/27/llm-tools/'
+    hash: sha256:a2f0dcf34a578fc6603991e91422876e38f9d81009a3891d641eb6b221e19cde
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -82,6 +88,35 @@ a tool call. It also states when tool use does not fit: when the model can answe
 answer with nothing to execute, and when the latency of at least one extra round trip per call would
 outweigh a trivial task. These criteria are one vendor's guidance in its own documentation.
 
+## Introduction and Early Reception
+
+A link post by Simon Willison dated 13 June 2023 records OpenAI announcing function calling that day,
+among other API updates, for GPT-3.5 and GPT-4. As that post describes it, a developer sends a JSON
+schema defining one or more functions, and the model returns a blob of JSON describing a function it
+wants called, if it determines that one should be; the developer's code executes the function and
+passes the result back to the model so that execution continues. Willison characterised this as
+effectively an implementation of the [[DefinedTerm/react-prompting]] pattern, with models that have
+been fine-tuned to execute it. He also noted that OpenAI's announcement acknowledged the risk of
+[[DefinedTerm/prompt-injection]], though not by name, quoting its advice that developers can protect
+their applications by only consuming information from trusted tools and by including user
+confirmation steps before actions with real-world impact, such as sending an email, posting online or
+making a purchase.
+
+Writing in May 2025, in [[BlogPosting/large-language-models-can-run-tools-in-your-terminal-with-llm-0-26]],
+Willison describes the same mechanism as having become, in his view, the single most effective way to
+extend what language models can do, and as a simple trick: the model is told which tools it can use,
+outputs special syntax requesting one — JSON, XML or `tool_name(arguments)`, which he says does not
+matter — and stops; the caller's code parses that output, runs the tool and starts a new prompt with
+the result. By then, according to that post, it worked with almost every model, most of which were
+specifically trained for tool use, and there were leaderboards such as the Berkeley Function-Calling
+Leaderboard tracking which models did it best. He writes that all the big model vendors — OpenAI,
+Anthropic, Google, Mistral and Meta — have a version of it built into their APIs, called either tool
+usage or function calling, and that it is the same underlying pattern; that local runtimes had it
+too, with Ollama having added tool support and the llama.cpp server supporting it; and that a year
+earlier he had not felt vendor support was mature enough to design an abstraction over it, whereas
+there was now a very definite consensus among vendors on how it should work. He built that
+abstraction into his own [[SoftwareApplication/llm]] tool.
+
 ## Related Terms
 
 - [[DefinedTerm/tool-use-design-pattern]]
@@ -90,3 +125,4 @@ outweigh a trivial task. These criteria are one vendor's guidance in its own doc
 - [[DefinedTerm/tool-search]]
 - [[DefinedTerm/programmatic-tool-calling]]
 - [[DefinedTerm/client-and-server-tools]]
+- [[DefinedTerm/react-prompting]] — the pattern one early commentator described function calling as implementing

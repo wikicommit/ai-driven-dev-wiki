@@ -10,6 +10,9 @@ sources:
   - type: url
     url: 'https://dev.to/zoetaka38/when-ai-reviews-ais-code-youve-built-an-infinite-loop-heres-how-we-stopped-it-4g1n'
     hash: sha256:e728a1e5ac20dcc643c605006d08b8675b906bc6c4143d31cd941d98c8d1418e
+  - type: url
+    url: 'https://tech-lab.sios.jp/archives/53091'
+    hash: sha256:ad600fed8b9b62a03a62c07d1ed68806968ad524260b789712fdd5d404cb3432
 review_status: pending
 generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
@@ -57,6 +60,18 @@ the fix cycle from restarting — handing off fixes only once a PR is merged, ne
 automatically from bot-authored PRs, never dispatching a finding twice — and a second incident, in which
 separate fix PRs for findings in the same file blocked one another until those findings were coalesced
 into one task. This too is a single practitioner's account of their own system, not a measured result.
+
+A third account, [[BlogPosting/splitting-one-greedy-ai-reviewer-into-three-agents-in-claude-code]],
+gives the same shape for a document outline and puts numbers on it. Its author ran a review agent
+built to score material from 0 and to find evidence of why it deserves 0 against a seminar outline,
+fixed what it raised and resubmitted it, for three cycles; the outline grew from 685 to 772 lines while
+its score fell from 47 to 44. Because that agent always finds evidence, each addition made in answer to
+one finding became the target of new ones — "too dense", "reads like a disclaimer". Sorting the findings
+into logical breakdowns and matters of taste, the author found the majority were taste. The remedy
+again bounds what the review may raise: a separate reviewer that starts from 100, may report only five
+named kinds of logical breakdown, and must report a clean result rather than look for defects when it
+finds none — with the harsh reviewer kept for finished slides, and a person deciding which findings to
+adopt. Like the other two, this is one practitioner's report of their own setup.
 
 ## Related Terms
 
