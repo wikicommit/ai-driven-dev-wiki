@@ -10,10 +10,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/engineering/advanced-tool-use'
     hash: sha256:37cff587dcd276ffbe27f31fcfa6f7985ccacfd5d06270baf40025725a068a97
+  - type: url
+    url: 'https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling'
+    hash: sha256:387e308af93bf5e395e63fc75ef5feab5991b415cfa035a3b416ed10b3b296ac
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-09-30"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.8.0"
 
 properties:
   description: "A tool-use approach in which a language model invokes tools by writing code that calls them, so that several calls, their chaining and the processing of their results happen in one executed script rather than through one model-emitted structured call per function."
@@ -30,8 +33,9 @@ their results before anything is returned to the model.
 
 ## Usage
 
-The term is used for two closely related things: a platform feature and an approach evaluated in
-research.
+The term is used for two closely related things: a platform feature, offered under this name by
+more than one model provider, and an approach evaluated in research. The two platform features below
+are described side by side; neither is the reference the other departs from.
 
 ### Claude Developer Platform feature
 
@@ -49,6 +53,30 @@ many calls run in one code block, and accuracy gains on internal knowledge retri
 and GIA benchmarks (46.5% to 51.2%), and it states that Claude for Excel uses the feature to read and
 modify spreadsheets with thousands of rows.
 
+### OpenAI API feature
+
+[[Organization/openai]]'s API documentation describes Programmatic Tool Calling as letting a model
+write and run JavaScript that coordinates its tools: a program can call tools in parallel, use loops
+and conditions, and keep intermediate results in the hosted runtime. OpenAI runs each generated
+program in a fresh, isolated V8 runtime that supports top-level `await` but provides no Node.js,
+package installation, direct network access, general-purpose filesystem, subprocess execution,
+console or persistent state between executions; a program reaches external systems only through the
+tools enabled in the request, and emits output with `text(...)` or `image(...)`.
+
+In the Responses API the developer adds a `programmatic_tool_calling` hosted tool and sets
+`allowed_callers` on each eligible tool — `["direct"]` (the default), `["programmatic"]`, or both — and
+is advised to define an `output_schema` alongside a function's `parameters` so that generated code can
+rely on the returned fields. Function, custom, MCP, `apply_patch`, local and hosted shell, and code
+interpreter tools can be called from a program. The response carries a `program` item holding the
+generated code, `function_call` items whose `caller` field names the program that made them, and a
+`program_output` item with the program's result and a `completed` or `incomplete` status. The
+application runs client-owned function calls and returns each result with its original `call_id` and
+`caller`, and a program can pause more than once, so the application continues until a final message
+arrives; the application never executes the generated JavaScript itself. In OpenAI's Agents API the
+feature is enabled by default, running in the OpenAI-managed agent harness, which gives the agent an
+`exec` tool and makes its existing tools available inside generated JavaScript; orchestrating a tool
+from JavaScript does not change where that tool runs.
+
 ### Research usage
 
 The term is also used in [[ScholarlyArticle/the-bitter-lesson-of-tool-calling]], which describes it as
@@ -61,8 +89,8 @@ output, with no further inference turn after the subprocess returns.
 
 ## When It Applies
 
-Both sources treat it as a trade-off rather than a replacement for conventional tool calling in every
-case. Anthropic describes it as most beneficial for processing large datasets where only aggregates
+All three sources treat it as a trade-off rather than a replacement for conventional tool calling in
+every case. Anthropic describes it as most beneficial for processing large datasets where only aggregates
 are needed, workflows with three or more dependent tool calls, filtering or transforming results
 before the model sees them, tasks where intermediate data should not influence the model's reasoning,
 and parallel operations across many items; and as less beneficial for single-tool invocations, tasks
@@ -70,6 +98,18 @@ where the model should see and reason about every intermediate result, and quick
 responses. It recommends documenting tool return formats clearly so that the model can write correct
 parsing code, and opting in tools that can run in parallel or are safe to retry. Its figures come from
 its own internal testing.
+
+OpenAI draws the line by the shape of the task: it recommends Programmatic Tool Calling when a stage
+has predictable control flow and code can return a smaller structured result — several results to
+filter, join, rank, deduplicate, aggregate or validate, or dependent calls whose later arguments code
+can derive — and direct tool calling when one call is enough, when each result should inform the
+model's next decision, and by default for writes, approval-sensitive actions and final citation or
+native-artifact validation. Where both modes are available it advises assigning each to a specific
+workflow stage rather than giving generic instructions, and defining one handoff between them. Its
+tool-design advice is to return compact structured data, document return shapes and error behaviour,
+make calls idempotent where possible, check arguments and permissions for every call even when a
+hosted program makes it, and require application-level approval before high-impact actions whatever
+the caller.
 
 The paper's argument is that for models that can already write executable code, emitting a JSON
 object per call is a design choice rather than a necessity. It assumes an execution environment the
@@ -81,7 +121,11 @@ makes it more expensive than JSON tool calling below roughly 26 parallel calls, 
 some models to answer aggregation questions from parametric knowledge without actually executing
 the calls.
 
-Its evidence base is a vendor's internal measurements and one controlled comparison: a single study
+The evidence behind these accounts is limited. OpenAI reports no measurements: it says the feature can reduce the amount
+of intermediate tool output added to model context but that the effect depends on the task and tool
+responses, and it advises starting from direct tool calling as a baseline and comparing both on
+representative tasks, measuring correctness and evidence coverage alongside tokens, latency and cost.
+Beyond that there are a vendor's internal measurements and one controlled comparison: a single study
 of 14 models on a subset of [[Dataset/berkeley-function-calling-leaderboard]] v4 whose stubs echo
 their arguments rather than calling real APIs, so it measures argument serialisation rather than
 end-to-end tool use. On that evidence the paper finds it matching or exceeding JSON tool calling in

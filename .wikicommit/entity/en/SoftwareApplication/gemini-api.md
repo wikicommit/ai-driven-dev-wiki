@@ -7,15 +7,18 @@ sources:
   - type: url
     url: 'https://ai.google.dev/gemini-api/docs/tools'
     hash: sha256:56f15bec50e7429858d3e245833b8767f93534d45e9f989d56c4ec97baaa3a96
+  - type: url
+    url: 'https://developers.googleblog.com/new-gemini-api-updates-for-gemini-3/'
+    hash: sha256:5c0c9a076fa04762c9220c98f1a90a42776dffeff714891ebb38383da16fa94f
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-09-30"
+generated_by: "claude-opus-5-5"
+generated_with: "0.8.0"
 
 properties:
   description: "Google's hosted API for its Gemini models. It offers a suite of fully managed built-in tools that run on Google's servers, alongside custom tools the calling application defines and executes through function calling."
   applicationCategory: "Hosted model API"
-  featureList: "Built-in tools (Google Search, Google Maps, Code Execution, URL Context, Computer Use in preview, File Search); custom tools via function calling; combining built-in and custom tools in one turn (preview); structured outputs, combinable with built-in tools for Gemini 3 series models; tool use in real-time streaming sessions through the Live API"
+  featureList: "Built-in tools (Google Search, Google Maps, Code Execution, URL Context, Computer Use in preview, File Search); custom tools via function calling; combining built-in and custom tools in one turn (preview); structured outputs, combinable with built-in tools for Gemini 3 series models; tool use in real-time streaming sessions through the Live API; for Gemini 3, a thinking_level parameter for reasoning depth, a media_resolution parameter for image, video and document inputs, and enforced thought signatures"
   author: "[[Organization/google]]"
 ---
 
@@ -72,6 +75,31 @@ or data systems, while structured outputs are for when the model's final respons
 follow a specific schema, for example to render a custom interface. For Gemini 3 series models, as a
 preview feature, structured outputs can be combined with built-in tools so that responses grounded in
 external data or computation still adhere to a strict schema.
+
+### Changes introduced for Gemini 3
+
+When Gemini 3 became available to developers, Google described in
+[[BlogPosting/new-gemini-api-updates-for-gemini-3]] a set of API updates intended to give developers
+more control over how the model reasons, how it processes media and how it interacts with the outside
+world:
+
+- **`thinking_level`** — a parameter, from Gemini 3 onwards, that controls the maximum depth of the
+  model's thinking before it responds. The model treats the levels as relative guidelines for
+  reasoning rather than strict token guarantees; "high" is suggested for complex tasks and "low" for
+  latency- and cost-sensitive applications (see [[DefinedTerm/reasoning-effort]]).
+- **`media_resolution`** — configures how many tokens are used for image, video and document inputs,
+  set per media part or globally, with defaults based on the media type when it is left unspecified.
+  Higher resolutions improve the model's ability to read fine text or identify small details, at the
+  cost of more tokens and latency.
+- **Enforced [[DefinedTerm/thought-signature]]s** — starting with Gemini 3, the API enforces the return
+  of these encrypted representations of the model's thought process. Function calling validates them
+  strictly on the current turn, and image generation and editing for all model parts, with a missing
+  signature producing a 400 error; text and chat generation does not strictly enforce them, though
+  omitting them degrades reasoning and answer quality. The official SDKs handle them automatically
+  when standard chat history is used.
+- **Hosted tools with structured outputs** — Grounding with Google Search and URL context can be
+  combined with structured outputs, which the post presents as useful for agents that fetch live
+  information from the web or specific pages and extract it into a precise JSON format.
 
 ## Adoption & Ecosystem
 

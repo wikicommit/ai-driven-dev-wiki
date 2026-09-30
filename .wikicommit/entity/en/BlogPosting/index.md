@@ -169,6 +169,7 @@ comments: false
 - [[BlogPosting/mitigating-prompt-injections-in-browser-use]]
 - [[BlogPosting/more-than-just-code-review]]
 - [[BlogPosting/my-llm-coding-workflow-going-into-2026]]
+- [[BlogPosting/new-gemini-api-updates-for-gemini-3]]
 - [[BlogPosting/new-sdlc-vibe-coding]]
 - [[BlogPosting/not-all-ai-assisted-programming-is-vibe-coding]]
 - [[BlogPosting/onboarding-your-ai-peer-programmer]]
