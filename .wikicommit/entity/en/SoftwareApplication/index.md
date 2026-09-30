@@ -124,6 +124,7 @@ comments: false
 - [[SoftwareApplication/minimaster]]
 - [[SoftwareApplication/mistral-vibe-cli]]
 - [[SoftwareApplication/model-armor]]
+- [[SoftwareApplication/muse]]
 - [[SoftwareApplication/nemo-agent-toolkit]]
 - [[SoftwareApplication/nemo-guardrails]]
 - [[SoftwareApplication/ns2]]

@@ -57,6 +57,7 @@ comments: false
 - [[BlogPosting/anatomy-of-harness-engineering]]
 - [[BlogPosting/anchoring-ai-to-a-reference-application]]
 - [[BlogPosting/assessing-internal-quality-while-coding-with-an-agent]]
+- [[BlogPosting/autodev-cli-quality-assurance-and-validation-architecture-for-ai-generated-ai-agents]]
 - [[BlogPosting/autodev-remote-coding-agent]]
 - [[BlogPosting/automate-repository-tasks-with-agentic-workflows]]
 - [[BlogPosting/automate-security-reviews-with-claude-code]]

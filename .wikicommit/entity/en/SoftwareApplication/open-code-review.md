@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://github.com/alibaba/open-code-review'
     hash: sha256:b9e25b582bd7eea6db72fdab8f395f2c2a3a3d52275e5bb2239736035a7c6c88
+  - type: url
+    url: 'https://www.infoq.cn/article/owxMsObP9h1wFcRqW000'
+    hash: sha256:60a6ed99d642c704fc28a825c63800527d10a8ac99ef3134464f957853cfb593
 review_status: pending
-generated_at: "2026-09-21"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-09-30"
+generated_by: "claude-opus-5-5"
+generated_with: "0.8.0"
 
 properties:
   description: "An open-source AI code review CLI, invoked as `ocr`, that originated as Alibaba Group's internal review assistant. Its stated design combines deterministic engineering for the steps that must not go wrong — file selection, bundling, rule matching, comment positioning — with an LLM agent for dynamic decisions and context retrieval."
@@ -67,6 +70,22 @@ recommends for AI host agents.
 A delegation mode inverts the arrangement: `ocr delegate` has the user's own coding agent perform
 the review with its own LLM, while Open Code Review handles file selection and rule resolution, so
 no LLM configuration or API key of its own is required.
+
+A talk announced for QCon Shanghai 2026 by the project's author, reported in
+[[NewsArticle/open-code-review-deterministic-engineering-and-agent-collaboration]], describes the
+same split from the engineering side as five practices: divide-and-conquer concurrency for coverage,
+three-level positioning (file, code segment, line number) with hallucination interception so that
+every comment maps to real code, a rule template engine that injects review context by file type and
+language, toolchain distillation that converges on the tool-call patterns seen most often in real
+tasks, and layered context management with a frozen zone of global background, a compressed zone of
+summarisable history and an active zone holding only what the current step needs. The talk outline
+reports validation on a million real tasks and usage by more than 20,000 Alibaba developers; these
+are the author's own figures, given in a pre-conference outline.
+
+The same outline is candid about the cost of the approach: each new file type, framework or business
+scenario needs a hand-written rule template, the template engine stays silent on patterns it has not
+seen where a general-purpose agent would generalise, and the rule base decays unless it is kept in
+step with evolving coding standards.
 
 ## Adoption & Ecosystem
 
