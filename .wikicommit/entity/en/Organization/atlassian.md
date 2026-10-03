@@ -7,13 +7,14 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2411.12924'
     hash: sha256:50d1957ea820f6e5f810bb7b7dfbb7a37c553436a744ca397d1443636efc1a41
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
   description: "An enterprise software company whose products for software development, project management and team collaboration include JIRA Software, Confluence and Bitbucket."
+reviewed_by: "joyk0117"
 ---
 
 Atlassian is an enterprise software company that develops products for software development,
