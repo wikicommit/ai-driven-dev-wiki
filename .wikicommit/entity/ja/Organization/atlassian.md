@@ -8,10 +8,11 @@ source_commit: "90f235c19401779128f2c36166ba9e641fa1393d"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "ソフトウェア開発、プロジェクト管理、チームコラボレーション向けの製品として JIRA Software、Confluence、Bitbucket などを提供するエンタープライズソフトウェア企業。"
+reviewed_by: "joyk0117"
 ---
 
 Atlassian は、ソフトウェア開発、プロジェクト管理、チームコラボレーション向けの製品を開発するエンタープライズソフトウェア企業である。Atlassian の研究者との共同で執筆された論文 [[ScholarlyArticle/human-in-the-loop-software-development-agents]] によると、同社の製品はテクノロジー、金融、ヘルスケア、政府などの業界にわたり世界中で 30 万社を超える顧客に利用されており、2024 年には同社に 12,000 人を超えるエンジニアが在籍し、95 万件を超えるプルリクエストを提出した。
