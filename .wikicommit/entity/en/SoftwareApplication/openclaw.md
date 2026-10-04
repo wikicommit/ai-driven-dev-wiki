@@ -2,7 +2,7 @@
 title: "OpenClaw"
 type: "schema:SoftwareApplication"
 lang: en
-tags: [agents, agent-architecture, governance, agent-safety]
+tags: [agents, agent-architecture, governance, agent-safety, vibe-coding]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2603.05786'
@@ -13,10 +13,13 @@ sources:
   - type: url
     url: 'https://www.imda.gov.sg/-/media/imda/files/about/emerging-tech-and-research/artificial-intelligence/mgf-for-agentic-ai.pdf'
     hash: sha256:ade20c2fa2aedf4f9ea3efe129e8b2ed3cc7823b414e766050586231d956645e
+  - type: url
+    url: 'https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/'
+    hash: sha256:385452beca91e7fc01c6dedad958d7ec1fa6f8605175db68befe2a8961aec188
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-10-04"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.8.0"
 
 properties:
   description: "An open-source, local-first AI assistant gateway that connects messaging surfaces to an embedded agent runtime, executing tools and communicating on behalf of the developer, with a manifest-first plugin system and a structured long-term memory subsystem."
@@ -35,7 +38,7 @@ The agent is also used as the implementation target in [[ScholarlyArticle/proof-
 
 OpenClaw plans, invokes tools, and responds to new messages on online communication platforms. Its model access is configurable enough that it can be pointed at a single local endpoint: the [[DefinedTerm/proof-of-guardrail]] implementation launches a local proxy LLM server inside the enclave and configures it as the only available LLM option for OpenClaw, so that every input, tool call and output passes through that proxy. The same work notes that response streaming was disabled in its setup for ease of guardrail execution.
 
-Capabilities can be registered as named skills, which the agent can then decide to invoke. Registering the enclave's attestation service as an "attestation skill" let the agent proactively offer an attestation when it received a high-stakes question, rather than only on explicit request — the paper's illustration is a user asking whether to put their savings into a newly launched token and receiving both a cautionary answer and an attestation of it.
+Capabilities can be registered as named skills, which the agent can then decide to invoke. Registering the enclave's attestation service as an "attestation skill" let the agent proactively offer an attestation when it received a high-stakes question, rather than only on explicit request. The paper's example conversation is a different case: a user asks whether to put their savings into a newly launched token, explicitly asks the bot to attest its answer, and receives both a cautionary answer and an attestation of it.
 
 The architectural study describes the runtime as an embedded agent core sitting inside a larger gateway dispatch layer: the gateway's agent RPC validates parameters, resolves sessions and returns immediately, while the embedded runner executes the agentic loop and emits lifecycle and stream events back through the gateway protocol. Runs are serialized through per-session queues and an optional global lane, which prevents tool and session races across the multi-channel surface.
 
@@ -81,3 +84,17 @@ autonomous agent risks and on the user's own responsibility to prevent careless 
 In the authors' demonstration, OpenClaw ran as an AI bot on Telegram, responding automatically to user messages, with other users in the chat able to request an attestation document at any time through a chat command. The authors characterize the agent as powerful and open-source, and exemplify their implementation with it.
 
 The architectural study reports that OpenClaw can host [[SoftwareApplication/claude-code]], OpenAI Codex and Gemini CLI as external coding harnesses through its Agent Client Protocol integration, which it offers as evidence that gateway-level systems and task-level harnesses compose rather than compete. It is used in that paper, alongside [[SoftwareApplication/hermes-agent]], as an independent point of comparison for Claude Code's design choices.
+
+[[BlogPosting/2026-in-llms-so-far]] traces the project's history and the category it started.
+According to Simon Willison, it began as an obscure GitHub repository called Warelay whose first
+commit, on 24 November 2025, added an MIT license file; by the end of January 2026 it had renamed
+itself in turn to CLAWDIS, CLAWDBOT, Moltbot and finally OpenClaw. He reports that it had about 8,300
+commits less than two months after it started and over 100,000 by September 2026, and calls it "the
+most vibe-coded piece of software in existence" (see [[DefinedTerm/vibe-coding]]). On his account it
+effectively defined a new category of software, for which he uses the generic name
+[[DefinedTerm/claw]]. Apple stores in the Bay Area sold out of Mac minis because so many people
+bought them to run OpenClaw, and in March 2026, which he calls peak OpenClaw, companies in China hosted
+install parties at which people who were not technical queued for help installing Claws on their own
+devices. He reads
+that demand as proof that ordinary people want a personal AI agent that can do useful things on their
+behalf.

@@ -8,6 +8,9 @@ sources:
   - type: url
     url: 'https://addyosmani.com/blog/software-factories/'
     hash: sha256:eb552a385a5d999797ee2b99bf1f369144b5c1e7e2d6b16e30ee78f7654314d1
+  - type: url
+    url: 'https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/'
+    hash: sha256:385452beca91e7fc01c6dedad958d7ec1fa6f8605175db68befe2a8961aec188
 review_status: pending
 generated_at: "2026-10-04"
 generated_by: "claude-opus-5-5[1m]"
@@ -36,6 +39,14 @@ at first, because removing review makes a team's throughput suddenly seem far hi
 as it can, with the tests green the whole way." He relays a report from a speaker who ran a fully
 automated code factory for about four months with no human looking at the code, and found the
 resulting failure required painstaking manual debugging to pinpoint.
+
+The name is not Osmani's alone. Recounting [[Organization/strongdm]]'s software factory in
+[[BlogPosting/2026-in-llms-so-far]], Simon Willison says Dan Shapiro called that approach the Dark
+Factory, after the idea that a sufficiently automated factory can turn the lights out because nobody
+needs to see what is going on. The approach he applies it to is defined by two rules StrongDM stated —
+code must not be written by humans, and code must not be reviewed by humans — and Willison describes
+the team as exploring how to build software without reading the code while still being confident it is
+of high quality, and what agents can do to help verify their own work.
 
 ## When It Applies
 
