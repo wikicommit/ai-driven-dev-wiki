@@ -3,7 +3,7 @@ title: "コンピュータ操作（Computer Use）"
 type: "schema:DefinedTerm"
 lang: ja
 tags: []
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/DefinedTerm/computer-use.md"
 source_commit: "3e04896e3fde39929a8aec85eca2e5b6eed44b4e"
 translated_at: "2026-09-27"
@@ -12,6 +12,7 @@ translated_with: "0.8.0"
 
 properties:
   description: "モデルがユーザーに代わってブラウザ、モバイルアプリ、デスクトップのインターフェースを操作するエージェントの能力。モデルは画面のスクリーンショットをもとに作業し、個別の UI アクションか、インターフェースを駆動するコードのいずれかを返し、それをクライアント側が用意した環境が実行する。"
+reviewed_by: "joyk0117"
 ---
 
 コンピュータ操作（computer use）とは、モデルが専用に作られた API を呼び出すのではなく、ユーザーに代わってグラフィカルなインターフェース——ブラウザ、モバイルアプリ、デスクトップ環境——を操作するエージェントの能力である。モデルは画面のスクリーンショットを、タスクのプロンプトやそれまでのコンテキストとあわせて受け取って作業し、モデルが求めたことを実際に行う環境は呼び出し側が用意する。モデルが何を返すかはベンダーによって異なる。クライアント側のハンドラが再生するための個別の UI アクション（マウスクリック、キー入力、スクロール、ドラッグ＆ドロップ）を出力する場合もあれば、自動化ライブラリを通じてインターフェースを駆動するコードを書く場合もある。
