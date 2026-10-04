@@ -10,15 +10,18 @@ sources:
   - type: url
     url: 'https://timdeschryver.dev/blog/keep-agentic-ai-simple-a-practical-workflow-for-software-development'
     hash: sha256:4f5e3967c2bcf26ffa62d57bb3d9eac62c5b65949a33d44e26d4ae20bfcb810c
+  - type: url
+    url: 'https://github.com/ForceInjection/OpenSpec-practise'
+    hash: sha256:e21ef4609f01b99fcb3b246c274f32aef2f20956b316b9b16f2272bbbb3bcc6a
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-04"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.9.0"
 
 properties:
   description: "A lightweight specification-driven development framework that concentrates intent into a single unified specification and traceable change proposals, aiming for low process overhead and broad compatibility across code assistants."
   applicationCategory: "Spec-driven AI development framework"
-  featureList: "Unified single specification; structured change-management flow; slash-command integration across many code assistants"
+  featureList: "Unified single specification; structured change-management flow; slash-command integration across many code assistants; explore-first workflow; diff-only review of spec deltas; validation findings report"
 ---
 
 OpenSpec is a framework for [[DefinedTerm/spec-driven-development]] that positions itself on
@@ -43,6 +46,30 @@ step-by-step implementation plan. He could revise them with further prompts or b
 hand, found the default templates good enough, and notes that the archived documents are committed
 with the rest of the code.
 
+A community practice repository, [OpenSpec Practise](https://github.com/ForceInjection/OpenSpec-practise),
+documents the workflow in more detail as of OpenSpec v1.13.0. There, `openspec init --tools claude`
+generates slash commands and matching skill files in a `.claude/` directory:
+`/opsx:explore`, `/opsx:propose`, `/opsx:update`, `/opsx:apply`, `/opsx:sync` and `/opsx:archive`. Explore
+acts as a thinking partner that investigates the codebase, weighs options and clarifies requirements before
+any spec or code is written; propose starts a change, with `openspec instructions` supplying templates and
+context; update revises the planning documents during implementation; apply has the AI implement the code
+from the spec; sync merges the change's delta specs into the main specification before archiving; and
+`openspec archive` moves the change into an archive directory. The repository stresses that the stages are
+not locked: the spec can be revised at any point and exploration can happen at any stage. Its worked
+examples are labelled by release: one walks through explore, propose, apply, sync and archive under
+v1.5.0, one demonstrates update under v1.7.0, and one shows archive's built-in spec merge under v1.11.0.
+
+In that repository's layout, an `openspec/config.yaml` holds project context such as the tech stack and
+conventions and is injected into every AI planning request; `openspec/specs/` holds the main specification
+per capability; and each change carries a `proposal.md` (why, what changes, capabilities), a `design.md`,
+a `tasks.md` and delta specs for the capabilities it touches, with scenarios written in Given/When/Then
+form. For review, `openspec show <change> --diff` renders only the lines that actually changed, although a
+MODIFIED requirement must restate all of its retained scenarios (shown in its v1.11.0 example); `openspec
+validate --report findings` produces a focused report of warnings and errors (its v1.13.0 example), which
+the repository reports found
+three real spec problems on its first run against one of its examples. A beta feature called stores lets
+planning live in a separate repository that several code repositories reference as read-only context.
+
 ## Adoption & Ecosystem
 
 Under the [[DefinedTerm/six-dimension-process-taxonomy]], OpenSpec scores strongly on specification
@@ -65,7 +92,15 @@ a plan, then having the coding agent implement it — and prompted the agent dir
 and bug fixes. In his experience, larger features built without a spec often missed subtle details
 and took more iterations, which is one person's account rather than a measured comparison.
 
-Note that one of the secondary tool comparisons the study drew on during its directed search — not
-OpenSpec's own product documentation, which is what the assessment above rests on — was published from
-the OpenSpec portal, which the paper flags as a case of product content written by one of the tools
-being compared.
+The OpenSpec Practise repository uses one set of OpenSpec specifications to drive two implementations of a
+minimal e-commerce system, a zero-dependency Node.js version and a Python version built on FastAPI and
+Pydantic. It also proposes a mapping from [[DefinedTerm/domain-driven-design]] onto OpenSpec's structure,
+drawn from a companion DDD skills project: a bounded context becomes a domain directory under `specs/`, a
+domain service or command becomes a requirement, aggregate behaviour becomes a scenario, an application
+service becomes the technical design, and the tactical design backlog of entities, value objects and
+repository interfaces becomes the task list.
+
+Note that one of the public tool comparisons the study consulted during its directed search was
+published from the OpenSpec portal, and the paper cites it alongside OpenSpec's own material in its
+characterization of the framework; the paper flags it as a case of product content written by one of the
+tools being compared.

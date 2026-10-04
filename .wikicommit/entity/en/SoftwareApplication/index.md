@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[SoftwareApplication/adlc-team-skills]]
+- [[SoftwareApplication/adversarial-review]]
 - [[SoftwareApplication/agent-development-kit]]
 - [[SoftwareApplication/agent-governance-toolkit]]
 - [[SoftwareApplication/agent-hq]]
@@ -54,6 +55,7 @@ comments: false
 - [[SoftwareApplication/cline]]
 - [[SoftwareApplication/codeactagent]]
 - [[SoftwareApplication/codebuddy]]
+- [[SoftwareApplication/codecall]]
 - [[SoftwareApplication/codeplan]]
 - [[SoftwareApplication/coderabbit]]
 - [[SoftwareApplication/codestrike]]
