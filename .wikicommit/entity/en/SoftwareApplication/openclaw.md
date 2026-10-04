@@ -16,6 +16,9 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/'
     hash: sha256:385452beca91e7fc01c6dedad958d7ec1fa6f8605175db68befe2a8961aec188
+  - type: url
+    url: 'https://www.infoq.cn/article/D8E3q93kBviq8Z8mu0Ao'
+    hash: sha256:a19a7c7520ea6086e1939c2775ea090be3cbbe7f9aaa86c470b64ba576357da7
 review_status: pending
 generated_at: "2026-10-04"
 generated_by: "claude-opus-5-5[1m]"
@@ -98,3 +101,11 @@ install parties at which people who were not technical queued for help installin
 devices. He reads
 that demand as proof that ordinary people want a personal AI agent that can do useful things on their
 behalf.
+
+## Practitioner reports
+
+Practitioners in China describe OpenClaw from hands-on use in [[NewsArticle/behind-openclaws-rise-agents-ai-coding-and-team-collaboration]], an InfoQ China roundtable published in March 2026. One participant, from NetEase CodeWave, describes its architecture as a single lightweight core agent called Pi, which keeps only capabilities such as memory retrieval and tool calling, behind a gateway that receives requests from different channels and forwards them to it, with concrete capabilities living in skills. He locates its innovation in connecting a desktop agent to chat tools through that channel gateway, and attributes its core idea to [[DefinedTerm/programmatic-tool-calling]]: when it meets a problem it cannot solve it writes a Python script and runs it in a sandbox. His team registers Claude Code as a skill on Pi for plugin development, and falls back to a stronger planning model when the main model's planning is weak.
+
+The participants dispute that it is a low-barrier tool. The same speaker says that using it well requires familiarity with JSON configuration, troubleshooting skills and continual tuning of skills; that its configuration file is unstable and can be rewritten or corrupted on restart, so he runs a separate agent to probe it and back the file up; and that browser access is not yet stable. Speakers report heavy token consumption, which he addressed by moving to a file-based memory system modelled on ByteDance's OpenViking, and a Ping An Technology participant recounts an unclear instruction leading the agent to call a delete endpoint and erase all his comments on a review platform — one reason, he says, many people run such agents on an old computer or a dedicated Mac mini.
+
+On a reported exposure of OpenClaw instances, the NetEase speaker says the gateway's console listens on port 18789, that some users exposed it to the public internet or bound it to the LAN, and that the console can be restricted to local access in its configuration file. The Ping An participant argues the risk remains because the agent acts with the user's permissions and its behaviour may not match the user's intent, and suggests a control layer on intent beyond conventional RBAC; the NetEase team gives each agent a tool profile with limited permissions, such as message-only or read-only with no delete rights.

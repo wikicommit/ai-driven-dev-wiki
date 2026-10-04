@@ -11,10 +11,13 @@ sources:
   - type: url
     url: 'https://www.baccan.it/articoli/24-specdrivendevelopment-it'
     hash: sha256:5b0a7edc91981e6b533c582fa956710b666f767d417899b896125e2b99d98a3d
+  - type: url
+    url: 'https://www.infoq.cn/article/D8E3q93kBviq8Z8mu0Ao'
+    hash: sha256:a19a7c7520ea6086e1939c2775ea090be3cbbe7f9aaa86c470b64ba576357da7
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-04"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.8.0"
 
 properties:
   description: "A requirements-engineering format that writes each requirement in one of a small set of fixed sentence shapes built from keywords such as WHEN, IF, WHILE, WHERE and SHALL, used in spec-driven development to leave an AI agent no room to interpret a requirement."
@@ -47,9 +50,21 @@ logical constraint that can be tested automatically. It notes that the syntax wa
 artificial intelligence, and argues that a notation devised to prevent misunderstandings between
 people has turned out to suit communication between developer and machine.
 
-The two sources describe the format's origin differently. The practitioner's guide calls it a
+Practitioners in a Chinese InfoQ roundtable, [[NewsArticle/behind-openclaws-rise-agents-ai-coding-and-team-collaboration]],
+report using it the same way. A NetEase CodeWave team lead describes EARS as a requirements-description
+method first used in aerospace that clearly states the when, how and where conditions of a requirement,
+and says Amazon's [[SoftwareApplication/kiro]] brought it into spec-driven development in 2025: whether a
+requirement arrives orally or as a PRD, it is first rewritten into a standardised description, so that a
+line such as "login requires verification" is refined into the circumstances of verification, whether a
+dialog is shown, and how long to wait — letting the product manager and the developer confirm it with each
+other and the AI understand it more accurately. A Ping An Technology participant describes his team trying
+the "when … happens, the system shall …" structure to unify requirements documents, and argues that better
+requirements make both code generation and automatic test generation smoother.
+
+The sources describe the format's origin differently. The practitioner's guide calls it a
 30-year-old format from requirements engineering. Baccan's post says it was created by Alistair Mavin
-at Rolls-Royce in 2009 for the requirements of aircraft engines.
+at Rolls-Royce in 2009 for the requirements of aircraft engines. The NetEase team lead in the InfoQ roundtable says only
+that it was first used in the aerospace field.
 
 ## When It Applies
 
@@ -59,4 +74,6 @@ that prove each one; in its worked example, the EARS-formatted requirements sit 
 concrete acceptance examples the agent must satisfy. Baccan offers it as an optional step beyond a
 plain Markdown specification rather than a requirement of the practice. The case for using it with AI
 agents rests on these practitioners' recommendations — the guide's author calls it the
-highest-leverage technique that almost no guide teaches — rather than on a measured comparison.
+highest-leverage technique that almost no guide teaches — rather than on a measured comparison. The NetEase team lead in the InfoQ roundtable likewise lists
+standardising requirements, for example by converting them to EARS, as the first of his team's three most
+effective guardrails for AI coding, again as a practitioner's account rather than a measured result.

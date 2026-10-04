@@ -63,6 +63,7 @@ comments: false
 - [[DefinedTerm/ai-agentic-programming]]
 - [[DefinedTerm/ai-assisted-programming]]
 - [[DefinedTerm/ai-coding-agent]]
+- [[DefinedTerm/ai-coding-fluency]]
 - [[DefinedTerm/ai-contribution-policy]]
 - [[DefinedTerm/ai-final-gatekeeper]]
 - [[DefinedTerm/ai-ide]]
