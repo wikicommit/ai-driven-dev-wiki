@@ -8,10 +8,13 @@ sources:
   - type: url
     url: 'https://www.phodal.com/blog/agent-acp-in-practise/'
     hash: sha256:2b6ec051410853e3f6c810e69eecfcbeea93b7ae55d070290144a335cdcc9ca7
+  - type: url
+    url: 'https://www.phodal.com/blog/coding-agent-platform-engineering/'
+    hash: sha256:8dfe0d1a99160baa5c9e267af55b3724ec49f6cd505455926157bf819fb2a673
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-04"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.8.0"
 
 properties:
   description: "A standardized communication protocol defining how IDEs and editors interact with AI coding agents, in which the IDE runs the agent as a subprocess and sees and controls each of its tool calls. It is described by analogy with the Language Server Protocol as an LSP for AI agents."
@@ -54,6 +57,20 @@ the coding tool AutoDev as both client and server with the official Kotlin and T
 The post also presents the protocol as a remedy for agents being a black box, arguing that without it
 an enterprise cannot audit which sensitive files an agent accessed, users cannot see what it is doing,
 the IDE cannot show progress, and failures cannot be traced back through the agent's operations.
+
+A later post by the same author,
+[[BlogPosting/platform-engineering-where-everything-is-a-coding-agent]], dates ACP's release by
+JetBrains and Zed to October 2025 and lists the JSON-RPC methods it defines: `initialize` for
+capability negotiation, `session/new` to create a session with an initial prompt, `session/prompt` for
+follow-up messages, `session/update` for streaming execution progress, and `session/cancel` to cancel
+the current execution. That post places ACP in a three-layer protocol stack, likening it to an
+operating system's process management — how an agent is started, run and stopped — between MCP for
+tools and context and A2A for collaboration across platforms. It also describes ACP as the process
+manager through which an orchestration engine can start different agents for different roles (for
+example one for planning and another for implementation), track session state and execution progress,
+and route complex tasks to strong models and repetitive ones to cheaper models. The reference
+architecture it describes, [[SoftwareApplication/routa]], includes an ACP process manager that manages
+coding agents' lifecycles.
 
 ## Related Terms
 
