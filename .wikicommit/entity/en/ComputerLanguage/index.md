@@ -7,4 +7,5 @@ comments: false
 ---
 
 - [[ComputerLanguage/devins]]
+- [[ComputerLanguage/nova-programming-language]]
 - [[ComputerLanguage/shire]]
