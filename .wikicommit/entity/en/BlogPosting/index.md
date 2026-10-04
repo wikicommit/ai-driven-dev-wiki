@@ -179,6 +179,7 @@ comments: false
 - [[BlogPosting/managing-context-on-the-claude-developer-platform]]
 - [[BlogPosting/markdown-as-a-programming-language]]
 - [[BlogPosting/maybe-we-shouldnt-be-reviewing-all-this-code]]
+- [[BlogPosting/measuring-what-matters-with-jules]]
 - [[BlogPosting/meet-jules-tools]]
 - [[BlogPosting/mercari-pm-agent-design]]
 - [[BlogPosting/mitigating-indirect-agents-md-injection-attacks]]
