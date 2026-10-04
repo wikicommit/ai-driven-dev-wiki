@@ -7,7 +7,7 @@ source:
   lang: ko
 
 schema:
-status: generated
+status: pending
 last_generated_at: "2026-10-04"
 extracted_tokens: 4765
 generated_pages:

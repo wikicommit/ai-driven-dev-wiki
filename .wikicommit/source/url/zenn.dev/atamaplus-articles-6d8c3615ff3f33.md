@@ -7,7 +7,7 @@ source:
   lang: ja
 
 schema:
-status: generated
+status: pending
 last_generated_at: "2026-10-04"
 extracted_tokens: 2759
 generated_pages:
