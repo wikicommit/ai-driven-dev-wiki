@@ -176,6 +176,7 @@ comments: false
 - [[DefinedTerm/effective-tokens]]
 - [[DefinedTerm/embedding-guided-tool-routing]]
 - [[DefinedTerm/engineer-ai-banzuke]]
+- [[DefinedTerm/enterprise-context-management]]
 - [[DefinedTerm/eternal-september]]
 - [[DefinedTerm/evidence-centric-inspection]]
 - [[DefinedTerm/example-mapping]]
