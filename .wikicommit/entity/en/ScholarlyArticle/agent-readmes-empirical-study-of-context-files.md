@@ -34,4 +34,3 @@ The paper was first submitted to arXiv on 17 November 2025 (arXiv:2511.12884) an
 - The most common kinds of content are functional: test procedures (75.9% of files), implementation details (70.8%) and architecture (68.1%).
 - Non-functional requirements are rarely specified: security appears in 14.8% of files and performance in 14.5%.
 - The authors conclude that developers use context files to make agents functional while providing few guardrails to keep agent-written code secure or performant, and call for improved tools and practices.
-
