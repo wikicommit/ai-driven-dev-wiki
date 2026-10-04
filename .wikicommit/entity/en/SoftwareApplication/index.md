@@ -148,6 +148,7 @@ comments: false
 - [[SoftwareApplication/pr-agent]]
 - [[SoftwareApplication/qoder]]
 - [[SoftwareApplication/r2c-agent]]
+- [[SoftwareApplication/ragent]]
 - [[SoftwareApplication/reversa]]
 - [[SoftwareApplication/rllm]]
 - [[SoftwareApplication/sandbox-runtime]]
