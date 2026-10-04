@@ -27,6 +27,7 @@ comments: false
 - [[ScholarlyArticle/agentic-ai-security-threats-defenses-evaluation-and-open-challenges]]
 - [[ScholarlyArticle/agentic-coding-and-persistent-returns-to-expertise]]
 - [[ScholarlyArticle/agentic-design-patterns-system-theoretic-framework]]
+- [[ScholarlyArticle/agentic-much-adoption-of-coding-agents-on-github]]
 - [[ScholarlyArticle/agentic-software-engineering-foundational-pillars]]
 - [[ScholarlyArticle/agentic-software-issue-resolution-with-large-language-models]]
 - [[ScholarlyArticle/agentic-software-restructuring-paradigm]]
