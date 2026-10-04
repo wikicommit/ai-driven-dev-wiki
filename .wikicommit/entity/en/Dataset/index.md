@@ -24,6 +24,7 @@ comments: false
 - [[Dataset/ifeval-fc]]
 - [[Dataset/livecodebench]]
 - [[Dataset/loopsbench]]
+- [[Dataset/mcp-bench]]
 - [[Dataset/mcptoolbench-plus-plus]]
 - [[Dataset/mcptox]]
 - [[Dataset/multi-swe-bench]]
