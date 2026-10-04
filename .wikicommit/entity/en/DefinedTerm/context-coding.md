@@ -7,13 +7,14 @@ sources:
   - type: url
     url: 'https://guangzhengli.com/blog/zh/vibe-coding-and-context-coding'
     hash: sha256:1fb990c1b96d538c33025bac005806f001ffce5a54b8a29877454d271c67a3dd
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-24"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
 
 properties:
   description: "A name proposed in a 2025 practitioner's blog post for AI-assisted programming in general, as distinct from vibe coding, on the view that beyond the model's own capability its progress comes from supplying the LLM with more suitable context."
+reviewed_by: "joyk0117"
 ---
 
 Context Coding — glossed by the post that proposes it as programming based on, or driven by, context
