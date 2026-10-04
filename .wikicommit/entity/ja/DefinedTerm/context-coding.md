@@ -3,7 +3,7 @@ title: "コンテキストコーディング"
 type: "schema:DefinedTerm"
 lang: ja
 tags: [AI 支援プログラミング, コンテキストエンジニアリング, 用語]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/DefinedTerm/context-coding.md"
 source_commit: "86e16a2d50882353cc91ba7116891cec9c627c63"
 translated_at: "2026-09-26"
@@ -12,6 +12,7 @@ translated_with: "0.8.0"
 
 properties:
   description: "2025 年のある実務家のブログ記事で、バイブコーディングとは区別される AI 支援プログラミング全般を指す名称として提案されたもの。モデル自体の能力を別にすれば、その進歩は LLM により適切なコンテキストを供給することから生まれる、という見方に基づく。"
+reviewed_by: "joyk0117"
 ---
 
 コンテキストコーディング（Context Coding） — 提案した記事自身の説明では、コンテキストに基づく、あるいはコンテキストに駆動されるプログラミング — は、ある実務家のブログ記事が、コードを読まずに対話だけでプログラミングするという本来の狭い意味での [[DefinedTerm/vibe-coding]]（バイブコーディング）とは区別される、AI 支援プログラミング全般の名称として提示したものである。[[BlogPosting/ai-coding-tools-evolution-and-vibe-coding]] の論じるところでは、モデル自体がプログラミングに長けてきたことを別にすれば、AI プログラミングにおけるもう一つの大きな進歩の源泉はツールの [[DefinedTerm/context-engineering]]（コンテキストエンジニアリング）であった。したがって、モデルを固定すれば、AI 支援プログラミングにおけるあらゆる改善は、チャット、RAG、ルール、MCP、あるいは次に来る何であれ、LLM により適切なコンテキストを渡すことに基づいている。
