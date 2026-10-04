@@ -10,10 +10,13 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic'
     hash: sha256:768151bc1fd55f4171a86c1cf74c112f09821eebf20b00b6dcd176e957394536
+  - type: url
+    url: 'https://addyosmani.com/blog/agentic-skill-decay/'
+    hash: sha256:9ad04962aaf0ace13d47849dfc19a03332011498de015a9cc7914d7dcbacb20a
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-04"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.8.0"
 
 properties:
   description: "The gradual loss of an engineering skill through disuse when AI agents consistently take over the work that used to exercise it - a risk framed not as a reason to avoid AI tools but as a reason to keep practising the skills that a reviewing role depends on."
@@ -66,8 +69,19 @@ others were unworried, saying AI helped them learn faster, that they had only lo
 or that lost skills could come back if needed; and one questioned the premise, arguing that coding will
 not return to the way it was before these tools.
 
+In a separate August 2026 post, [[BlogPosting/agentic-skill-decay]], Osmani turns to engineers early
+in their careers, for whom the concern is building expertise in the first place. Before agents, he writes, the repetitions that build judgment — trying
+an approach, watching it fail, tracing the bug, reading someone's fix — arrived as a side effect of
+writing code; an agent can now go from problem to working patch while skipping them, so for someone
+early in their career "plausible code may arrive faster than your ability to judge it." His remedy is
+to put those repetitions back on purpose: form a hypothesis before prompting, keep asking why, read
+the diff and predict what might still fail, and occasionally work a problem through by hand. He adds
+that a completed task is not necessarily a learning repetition, and that a lesson worth keeping
+should be captured somewhere durable — a test, a lint rule, a type constraint or a lessons file — so
+that it improves the agent as well as the engineer.
+
 ## Related Terms
 
 [[DefinedTerm/automation-bias]], [[DefinedTerm/the-70-percent-problem]],
 [[DefinedTerm/cognitive-debt]], [[DefinedTerm/human-in-the-loop]],
-[[DefinedTerm/paradox-of-supervision]]
+[[DefinedTerm/paradox-of-supervision]], [[DefinedTerm/outer-loop]]
