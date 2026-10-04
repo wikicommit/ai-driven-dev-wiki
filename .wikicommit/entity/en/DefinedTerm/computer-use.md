@@ -13,13 +13,14 @@ sources:
   - type: url
     url: 'https://www.anthropic.com/news/building-safeguards-for-claude'
     hash: sha256:6a49d6c32820761dc21bf0f49ae31d6b9fbf8fca45f239601c5fb33ac418abf1
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
 
 properties:
   description: "An agent capability in which a model operates a browser, mobile app, or desktop interface on a user's behalf, working from screenshots of the screen and returning either discrete UI actions or code that drives the interface, which a client-supplied environment then executes."
+reviewed_by: "joyk0117"
 ---
 
 Computer use is an agent capability in which a model operates a graphical interface — a browser, a mobile app, or a desktop environment — on a user's behalf, rather than calling a purpose-built API. The model works from screenshots of the screen together with the task prompt and any prior context, and the caller supplies the environment that actually carries out what the model asks for. Vendors differ on what the model returns: it may emit discrete UI actions (mouse clicks, keystrokes, scrolling, drag-and-drop) for a client-side handler to replay, or it may write code that drives the interface through an automation library.
