@@ -78,6 +78,7 @@ comments: false
 - [[SoftwareApplication/devin]]
 - [[SoftwareApplication/eino]]
 - [[SoftwareApplication/entire-cli]]
+- [[SoftwareApplication/everything-claude-code]]
 - [[SoftwareApplication/fastrender]]
 - [[SoftwareApplication/gemini-api]]
 - [[SoftwareApplication/gemini-api-developer-skill]]
