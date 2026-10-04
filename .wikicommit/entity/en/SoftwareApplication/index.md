@@ -30,6 +30,7 @@ comments: false
 - [[SoftwareApplication/autocoderover]]
 - [[SoftwareApplication/autodev]]
 - [[SoftwareApplication/autogen]]
+- [[SoftwareApplication/autoharness-skill]]
 - [[SoftwareApplication/better-harness]]
 - [[SoftwareApplication/bitsai-cr]]
 - [[SoftwareApplication/bmad]]
