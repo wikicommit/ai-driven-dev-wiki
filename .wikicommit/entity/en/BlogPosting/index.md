@@ -170,6 +170,7 @@ comments: false
 - [[BlogPosting/introducing-google-antigravity]]
 - [[BlogPosting/introducing-support-for-local-ai-models-in-the-antigravity-sdk]]
 - [[BlogPosting/introduction-to-cc-sdd]]
+- [[BlogPosting/introduction-to-harness-engineering]]
 - [[BlogPosting/keep-agentic-ai-simple]]
 - [[BlogPosting/langchain-context-engineering]]
 - [[BlogPosting/large-language-models-can-run-tools-in-your-terminal-with-llm-0-26]]
