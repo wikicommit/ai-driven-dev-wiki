@@ -156,6 +156,7 @@ comments: false
 - [[SoftwareApplication/ragent]]
 - [[SoftwareApplication/reversa]]
 - [[SoftwareApplication/rllm]]
+- [[SoftwareApplication/routa]]
 - [[SoftwareApplication/sandbox-runtime]]
 - [[SoftwareApplication/sandeco-loop]]
 - [[SoftwareApplication/semantic-governance-policies]]
