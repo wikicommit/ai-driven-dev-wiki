@@ -134,6 +134,7 @@ comments: false
 - [[BlogPosting/five-minutes-talking-one-proof-of-concept]]
 - [[BlogPosting/fragments-september-29]]
 - [[BlogPosting/from-ai-generated-code-to-admin]]
+- [[BlogPosting/from-coding-loop-to-business-loop-thinking-ai-engineering-holistically]]
 - [[BlogPosting/from-idea-to-pr]]
 - [[BlogPosting/from-vibe-coding-to-spec-driven-development]]
 - [[BlogPosting/future-of-agentic-coding-conductors-to-orchestrators]]

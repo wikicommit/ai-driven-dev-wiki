@@ -130,6 +130,7 @@ comments: false
 - [[SoftwareApplication/nemo-agent-toolkit]]
 - [[SoftwareApplication/nemo-guardrails]]
 - [[SoftwareApplication/ns2]]
+- [[SoftwareApplication/oh-my-claudecode]]
 - [[SoftwareApplication/oh-my-pi]]
 - [[SoftwareApplication/ohmo]]
 - [[SoftwareApplication/omnigent]]
