@@ -8,12 +8,13 @@ source_commit: "d6b740fcefb776ad598c9c610d08c7220255d861"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "Simon Willison は、バイブコーディングという言葉を AI 支援型プログラミング全般にまで広げるのではなく、コードをレビューせずに LLM でソフトウェアを構築するという本来の狭い意味にとどめるべきだと主張し、その狭い意味での実践をそれ自体として擁護している。"
   author: ["Simon Willison"]
   datePublished: "2025-03-19"
+reviewed_by: "joyk0117"
 ---
 
 この記事は、用語をめぐる介入である。Andrej Karpathy が [[DefinedTerm/vibe-coding]] という言葉を生み出してからおよそ 6 週間後に書かれたもので、この言葉が AI の支援を受けて書かれたあらゆるコードに当てはめられていることに応答している。著者は、そうした用法は言葉の意味を薄めるうえに、責任ある [[DefinedTerm/ai-assisted-programming]] が実際に何を伴うのかを誤って伝えると論じる。記事の中心となる手立ては、この用語を観察可能な 1 つの基準に固定することである。すなわち、バイブコーディングとは、LLM が書いたコードをレビューせずに LLM でソフトウェアを構築することを意味する。
