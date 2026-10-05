@@ -7,7 +7,7 @@ sources:
   - type: url
     url: https://simonwillison.net/2025/Mar/19/vibe-coding/
     hash: sha256:653ba52b66ad62da601ae6fd257897841726d7ac6a07029edc6d0e1c5b12188f
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-15"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.6.1"
@@ -16,6 +16,7 @@ properties:
   description: "Simon Willison argues that vibe coding should keep its original narrow meaning — building software with an LLM without reviewing the code — rather than expanding to cover all AI-assisted programming, and defends the narrow practice on its own terms."
   author: ["Simon Willison"]
   datePublished: "2025-03-19"
+reviewed_by: "joyk0117"
 ---
 
 This post is a terminological intervention. Written roughly six weeks after Andrej Karpathy coined
