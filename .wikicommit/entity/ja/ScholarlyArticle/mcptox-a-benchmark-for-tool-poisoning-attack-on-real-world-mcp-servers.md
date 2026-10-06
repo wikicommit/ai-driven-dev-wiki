@@ -3,7 +3,7 @@ title: "MCPTox: 実世界の MCP サーバーに対するツールポイズニ�
 type: "schema:ScholarlyArticle"
 lang: ja
 tags: [MCP, セキュリティ, エージェント, ベンチマーク]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/ScholarlyArticle/mcptox-a-benchmark-for-tool-poisoning-attack-on-real-world-mcp-servers.md"
 source_commit: "48d80cbbb1b1176580f1d3e42bed65bbe89633ce"
 translated_at: "2026-09-27"
@@ -15,6 +15,7 @@ properties:
   author: ["Zhiqiang Wang", "Yichao Gao", "Yanting Wang", "Suyuan Liu", "Haifeng Sun", "Haoran Cheng", "Guanquan Shi", "Haohua Du", "Xiangyang Li"]
   datePublished: "2025-08-19"
   keywords: ["ツールポイズニング", "Model Context Protocol", "LLM エージェント", "ベンチマーク"]
+reviewed_by: "joyk0117"
 ---
 
 この論文の出発点は、[[DefinedTerm/model-context-protocol]]（MCP）が LLM エージェントに外部ツールへの標準化されたインターフェースを与える一方で、信頼できないツールを通じた新たな攻撃対象領域も生み出しているという観察である。先行研究がツールの出力を通じて注入される攻撃に焦点を当てていたのに対し、本論文は著者らがより根本的な脆弱性と呼ぶ[[DefinedTerm/tool-poisoning]]を調査する。これは、ツールが実行されることなく、ツールのメタデータに悪意のある指示が埋め込まれる攻撃である。著者らは、この脅威がこれまで主に個別の事例を通じて示されてきただけで、体系的かつ大規模な評価は行われていなかったと主張する。
