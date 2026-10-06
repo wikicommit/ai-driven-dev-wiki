@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2508.14925'
     hash: sha256:8db20272b1605a009e9ef020f5be444088c3642207c17b713cb6fa5a17831261
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
@@ -17,6 +17,7 @@ properties:
   author: ["Zhiqiang Wang", "Yichao Gao", "Yanting Wang", "Suyuan Liu", "Haifeng Sun", "Haoran Cheng", "Guanquan Shi", "Haohua Du", "Xiangyang Li"]
   datePublished: "2025-08-19"
   keywords: ["tool poisoning", "Model Context Protocol", "LLM agents", "benchmark"]
+reviewed_by: "joyk0117"
 ---
 
 This paper starts from the observation that the [[DefinedTerm/model-context-protocol]] (MCP), by giving LLM agents a standardized interface to external tools, also creates new attack surfaces through untrusted tools. Where prior work focused on attacks injected through tool outputs, it investigates what it calls a more fundamental vulnerability, [[DefinedTerm/tool-poisoning]], in which malicious instructions are embedded in a tool's metadata without the tool being executed. The authors argue that this threat had so far been demonstrated mainly through isolated cases, without a systematic, large-scale evaluation.
