@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://github.com/block/goose'
     hash: sha256:9e320d928a6bc22d89ce2015a058a7eb31b11dc5166a79f0f4a4f94290b68c9f
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
@@ -16,6 +16,7 @@ properties:
   description: "An open-source, general-purpose AI agent that runs on the user's own machine as a desktop app, a CLI and an embeddable API, for coding as well as research, writing, automation and data analysis, and that connects to extensions through the Model Context Protocol."
   applicationCategory: "AI agent"
   operatingSystem: "macOS, Linux, Windows"
+reviewed_by: "joyk0117"
 ---
 
 goose is an open-source AI agent, released under the Apache 2.0 license, that runs on the user's own
