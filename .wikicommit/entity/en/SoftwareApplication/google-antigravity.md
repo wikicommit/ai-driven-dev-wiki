@@ -27,7 +27,7 @@ sources:
   - type: url
     url: 'https://simonwillison.net/2025/Nov/18/google-antigravity/'
     hash: sha256:3e7b3fbdc9081875732d8763d1a0b12ae6866774c9614a43f8e5181ad519ff58
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
@@ -39,6 +39,7 @@ properties:
   operatingSystem: "macOS, Windows, Linux"
   featureList: "Editor View with tab completion and inline commands; Manager surface for spawning, orchestrating and observing asynchronous agents; agent Artifacts (task lists, implementation plans, walkthroughs, screenshots, browser recordings); inline feedback on Artifacts; knowledge base of saved context and code snippets"
   author: "[[Organization/google]]"
+reviewed_by: "joyk0117"
 ---
 
 Google Antigravity is an agentic development platform published by
