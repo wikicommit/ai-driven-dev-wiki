@@ -8,7 +8,7 @@ source_commit: "7eb1cf131af15d0a15cbf2c12619cd499ed31158"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "Google のエージェント型開発プラットフォーム。AI を搭載したエディタと、エージェントファーストの Manager サーフェスを組み合わせたもので、そのエージェントはエディタ、ターミナル、ブラウザをまたいでタスクを計画・実行・検証する。"
@@ -16,6 +16,7 @@ properties:
   operatingSystem: "macOS, Windows, Linux"
   featureList: "タブ補完とインラインコマンドを備えた Editor View、非同期のエージェントを起動・オーケストレーション・観察するための Manager サーフェス、エージェントの Artifacts（タスクリスト、実装計画、ウォークスルー、スクリーンショット、ブラウザ録画）、Artifacts へのインラインフィードバック、保存したコンテキストとコードスニペットのナレッジベース"
   author: "[[Organization/google]]"
+reviewed_by: "joyk0117"
 ---
 
 Google Antigravity は、[[Organization/google]] が公開したエージェント型開発プラットフォームであり、2025 年 11 月に
