@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2504.15546'
     hash: sha256:39549788a2452ec0fb8ea5da808b3e0e1e78cd4676d00b50ff2c06f8b85de2cd
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-17"
 generated_by: "claude-sonnet-5"
 generated_with: "0.6.1"
@@ -16,6 +16,7 @@ properties:
   description: "A framework from IBM Research that adapts established API testing techniques to evaluate whether enterprise REST APIs are usable as tools by LLM-based agents, generating data-aware test cases, translating them into natural-language utterances, and comparing direct tool execution against agent-driven execution to build a taxonomy of tool-use errors."
   author: ["Jayachandu Bandlamudi", "Ritwik Chaudhuri", "Neelamadhav Gantayat", "Sambit Ghosh", "Kushal Mukherjee", "Prerna Agarwal", "Renuka Sindhgatta", "Sameep Mehta"]
   keywords: ["REST APIs", "LLM tools", "agentic testing", "tool robustness", "enterprise APIs"]
+reviewed_by: "joyk0117"
 ---
 
 The paper argues that REST APIs exposing enterprise software functionality are typically not designed with LLM agents in mind, and that existing tool-use benchmarks such as the Berkeley Function Calling Leaderboard, τ-bench, and ToolACE evaluate tool selection and argument correctness but not whether a given API is actually usable — "agent-ready" — as a tool in the first place. The authors present a framework that wraps an API's OpenAPI specification as a Python (LangChain) tool, generates test cases with an LLM, converts them into natural-language utterances of the kind an agent would receive, and executes those utterances inside a [[DefinedTerm/react-prompting]] agent to check whether the agent can invoke the tool correctly and interpret its response.
