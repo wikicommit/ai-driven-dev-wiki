@@ -8,12 +8,13 @@ source_commit: "1241f6026eea3b9fe7666601cd9fbf68d202989f"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "確立された API テストの手法を応用して、エンタープライズの REST API が LLM ベースのエージェントのツールとして使えるかどうかを評価する IBM Research のフレームワーク。データを考慮したテストケースを生成し、それを自然言語の発話に変換し、ツールの直接実行とエージェント経由の実行を比較することで、ツール利用のエラーの分類法を構築する。"
   author: ["Jayachandu Bandlamudi", "Ritwik Chaudhuri", "Neelamadhav Gantayat", "Sambit Ghosh", "Kushal Mukherjee", "Prerna Agarwal", "Renuka Sindhgatta", "Sameep Mehta"]
   keywords: ["REST API", "LLM ツール", "エージェント型テスト", "ツールの頑健性", "エンタープライズ API"]
+reviewed_by: "joyk0117"
 ---
 
 本論文は、エンタープライズソフトウェアの機能を公開する REST API は通常 LLM エージェントを念頭に置いて設計されていないこと、そして Berkeley Function Calling Leaderboard、τ-bench、ToolACE といった既存のツール利用ベンチマークは、ツール選択と引数の正しさは評価するものの、そもそも特定の API がツールとして実際に使えるかどうか、すなわち「エージェント対応（agent-ready）」であるかどうかは評価しないことを論じる。著者らが提示するフレームワークは、API の OpenAPI 仕様を Python（LangChain）のツールとしてラップし、LLM でテストケースを生成し、それをエージェントが受け取るような自然言語の発話に変換し、その発話を [[DefinedTerm/react-prompting]] エージェントの中で実行して、エージェントがツールを正しく呼び出し、その応答を解釈できるかどうかを確認する。
