@@ -3,7 +3,7 @@ title: "単発のプロンプトからワークフローへ：GitHub Copilot CLI
 type: "schema:BlogPosting"
 lang: ja
 tags: [コーディングエージェント, エージェント設定, CLI]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/BlogPosting/custom-agents-in-github-copilot-cli.md"
 source_commit: "7567a177e4f0172fd7847cc2fe9a076543e5ad54"
 translated_at: "2026-09-27"
@@ -15,6 +15,7 @@ properties:
   author: ["Jacklyn Carroll"]
   datePublished: "2026-06-09"
   publisher: "[[Organization/github]]"
+reviewed_by: "joyk0117"
 ---
 
 GitHub のブログに掲載された 2026 年 6 月 9 日付の記事で、[[SoftwareApplication/github-copilot-cli]]から使う[[DefinedTerm/github-copilot-custom-agents]]を紹介している。出発点は、ターミナルで積み重なっていく摩擦——同じコマンドを何度も実行し直すこと、コンテキストを何度も説明し直すこと、ログをチームが対処できる形に翻訳すること——であり、記事の提案は、チームのコンテキストを Markdown のエージェントプロファイルに一度だけ書き込んでおくことで、繰り返し行うタスクを単発のプロンプトから始めるのではなく、毎回同じやり方で実行できるようにすることである。
