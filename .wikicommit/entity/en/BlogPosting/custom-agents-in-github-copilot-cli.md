@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/'
     hash: sha256:908a068edfb3a08239ae4b7a9d0277e7b0d0f94b1ed81916e9b85d32d72e5c33
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.7.0"
@@ -17,6 +17,7 @@ properties:
   author: ["Jacklyn Carroll"]
   datePublished: "2026-06-09"
   publisher: "[[Organization/github]]"
+reviewed_by: "joyk0117"
 ---
 
 A post on GitHub's blog, dated June 9, 2026, introducing [[DefinedTerm/github-copilot-custom-agents]]
