@@ -8,12 +8,13 @@ source_commit: "0905902793f108bf59d40f17ccaecab6d323e38b"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "シンガポール国立大学による論文。AutoCodeRover を基盤とし、GitHub のイシューを解決する過程で意図された振る舞いの仕様を推論し、レビューアエージェントを用いてパッチを審査・説明する LLM エージェント SpecRover を提示している。SWE-bench Lite の 31% を解決したと報告されている。"
   author: ["Haifeng Ruan", "Yuntong Zhang", "Abhik Roychoudhury"]
   abstract: "自律的なプログラム改善（典型的にはバグ修正や機能追加を生み出すもの）は、LLM エージェントの中で LLM とプログラム解析の能力を組み合わせることで達成でき、それには意図された振る舞いの仕様が必要となるため、仕様推論は高品質なパッチの生成に役立ちうる。著者らは、LLM エージェント内で反復的な仕様推論を行う、効率的で低コストなワークフローを検討する。GitHub のイシューが与えられると、SpecRover は仕様推論を伴う反復的なコード検索を行い、プロジェクトの構造と振る舞いから意図を推論する。そしてレビューアエージェントがパッチを審査し、それに対する信頼度の尺度を提供する。オープンソースのエージェント AutoCodeRover を基盤として構築され、2294 件のイシューからなる SWE-bench 全体において AutoCodeRover に対し 50% を超える有効性の向上を示し、SWE-bench Lite ではイシューあたり 0.65 ドルという控えめなコストで済む。またその説明は、パッチをいつ確信をもって受け入れられるかについて、開発者により良いシグナルを与える。"
+reviewed_by: "joyk0117"
 ---
 
 この論文は、プログラム修復やプログラム改善には開発者の意図を何らかの形で示すものが必要だが、その意図は
