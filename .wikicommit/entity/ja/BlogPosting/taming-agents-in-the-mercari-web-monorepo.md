@@ -3,7 +3,7 @@ title: "メルカリ Web モノレポでエージェントを飼いならす"
 type: "schema:BlogPosting"
 lang: ja
 tags: [エージェント, エージェント設定, モノレポ, フロントエンド]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/BlogPosting/taming-agents-in-the-mercari-web-monorepo.md"
 source_commit: "dd9449729978a2bb341016b5d35f2f19ff11a7a4"
 translated_at: "2026-09-27"
@@ -15,6 +15,7 @@ properties:
   author: ["Maximilien Mellen"]
   datePublished: "2025-10-30"
   publisher: "[[Organization/mercari]]"
+reviewed_by: "joyk0117"
 ---
 
 この記事は、ある調整上の問題と、チームがそれを解決するために用いたファイルについて述べている。同社の新しい Global App を開発しているメルカリの Web チームは、多様なバックグラウンドを持つメンバーで構成されており、使うツールや環境も大きく異なる。記事は目標を、エンジニアにまったく異なる環境を強いることなく AI ツールを使えるようにすることだと述べている。ツールがばらばらであることへの答えは全員に同じツールを使わせることではなかった — AI をめぐる状況は依然として急速に進化し続けているとされる — というのが記事の立場であり、むしろ異なる仕事のスタイルを共通の目標に向けてそろえる方法を見つけることだった。
