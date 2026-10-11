@@ -8,12 +8,13 @@ source_commit: "066a83f8808c1d613f191302234db9602ef3885a"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "ターミナルを主なインターフェースとする、オープンソースのエンドツーエンドな AI コーディングエージェント。多数のプロバイダーのモデルやローカルモデルと連携できるように作られており、計画用とコード変更用に別々のエージェントを持つ。"
   applicationCategory: "AI コーディングエージェント（ターミナル）"
   featureList: "ネイティブのターミナルユーザーインターフェース（TUI）、ローカルモデルを含む Models.dev 経由での 75 以上のモデルプロバイダーのサポート、Language Server Protocol（LSP）との統合、並列セッションとセッション共有、編集せずに計画する Plan エージェントと変更を行う Build エージェント、複雑な検索や複数ステップのタスクのための general サブエージェント、ベータ版のデスクトップアプリケーション、IDE 拡張機能、エージェントによる変更の取り消しとやり直し、共有可能な会話リンク"
+reviewed_by: "joyk0117"
 ---
 
 OpenCode は、ターミナルを主なインターフェースとするオープンソースのエンドツーエンドな AI コーディングエージェントであり、開発者がローカル環境でコードを書き、エラーを修正し、コードを理解するのを支援する。Jimmy Song のオンラインハンドブック『智能体构建指南』の一章は、これを AI プログラミングにおける重要なオープンソースプロジェクトの 1 つと位置づけ、[[SoftwareApplication/claude-code]] のようなクローズドソースのコーディングアシスタントに対する重要なオープンソースの代替として紹介している。
