@@ -8,10 +8,11 @@ source_commit: "3bb09ff875f75497dbb9ad4d6786745fc33ecce5"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "Java、TypeScript、JavaScript、Go、Rust、C、C++ を対象とする、アノテーション済みの 1,632 インスタンスからなる多言語のイシュー解決ベンチマーク。Python 以外のエコシステムにおいて、与えられたイシューに対処するパッチを生成するようにコードベースを修正する能力を、大規模言語モデルについて評価するために構築された。"
+reviewed_by: "joyk0117"
 ---
 
 Multi-SWE-bench は、イシュー解決 — 与えられたイシューに対処するパッチを生成するようにコードベースを
