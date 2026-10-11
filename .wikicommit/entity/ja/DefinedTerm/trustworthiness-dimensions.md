@@ -3,7 +3,7 @@ title: "信頼に足ることの次元"
 type: "schema:DefinedTerm"
 lang: ja
 tags: [エージェント, エージェント型エンジニアリング, 評価, ガバナンス]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/DefinedTerm/trustworthiness-dimensions.md"
 source_commit: "8d7644d8b85a563c829192e2cb8492577074f87c"
 translated_at: "2026-09-27"
@@ -12,6 +12,7 @@ translated_with: "0.8.0"
 
 properties:
   description: "Aleti、Hoda、Ray、Chen が [[ScholarlyArticle/trustworthy-ai-software-engineers]] で提案した、AI ソフトウェアエンジニアが信頼に足るかどうかを捉える多次元的な枠組み。技術的品質、透明性と説明責任、認識論的謙虚さ、社会的・倫理的整合性にまたがる。"
+reviewed_by: "joyk0117"
 ---
 
 信頼に足ることの次元とは、[[ScholarlyArticle/trustworthy-ai-software-engineers]] で提案された、[[DefinedTerm/agentic-engineer]] を頼りにできるかどうかを共同で決定すると同論文が論じる一連の性質であり、技術的品質、透明性と説明責任、認識論的謙虚さ、社会的・倫理的整合性の 4 つの領域にまとめられている。同論文は、信頼に足るための必要条件であり十分条件でもあるような単一の次元は存在しない——どれか 1 つの次元だけでシステムが信頼に足るものになったり、足らないものになったりすることはない——と論じ、信頼に足ることはむしろ、所与の状況においてそのシステムに依拠することを全体として正当化する次元の組み合わせから生じるとしている。
