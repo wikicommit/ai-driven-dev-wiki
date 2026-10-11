@@ -16,7 +16,7 @@ sources:
   - type: url
     url: 'https://opencode.ai/docs/'
     hash: sha256:a089d588869c390fcc98738c0a7686e55af8afc9c7c862f5d27d6b95bfb76732
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
@@ -25,6 +25,7 @@ properties:
   description: "An open-source, end-to-end AI coding agent whose primary interface is the terminal, built to work with models from many providers as well as local models, with separate agents for planning and for changing code."
   applicationCategory: "AI coding agent (terminal)"
   featureList: "Native terminal user interface (TUI); support for 75+ model providers through Models.dev, including local models; Language Server Protocol (LSP) integration; parallel sessions and session sharing; a Plan agent that plans without editing and a Build agent that makes changes; a general subagent for complex searches and multistep tasks; a desktop application in beta; an IDE extension; undo and redo of agent changes; shareable conversation links"
+reviewed_by: "joyk0117"
 ---
 
 OpenCode is an open-source, end-to-end AI coding agent that uses the terminal as its main interface,
