@@ -7,13 +7,14 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2504.02605'
     hash: sha256:efffadb8771463b26f920f9ded479e505f88487063add19a6bfb5eafcc304e4e
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-20"
 generated_by: "claude-opus-5"
 generated_with: "0.7.0"
 
 properties:
   description: "A multilingual issue-resolving benchmark of 1,632 annotated instances covering Java, TypeScript, JavaScript, Go, Rust, C and C++, built to evaluate large language models on modifying a codebase to produce a patch that addresses a given issue across ecosystems other than Python."
+reviewed_by: "joyk0117"
 ---
 
 Multi-SWE-bench is a benchmark for issue resolving — the task of modifying a codebase to generate a
