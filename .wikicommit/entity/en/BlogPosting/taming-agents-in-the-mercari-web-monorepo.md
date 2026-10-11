@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://engineering.mercari.com/en/blog/entry/20251030-taming-agents-in-the-mercari-web-monorepo/'
     hash: sha256:2be25eae3259d1a99d5bcb659f731c2564ffe64e94c6bf0ad803148e7fb2a464
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-21"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
@@ -17,6 +17,7 @@ properties:
   author: ["Maximilien Mellen"]
   datePublished: "2025-10-30"
   publisher: "[[Organization/mercari]]"
+reviewed_by: "joyk0117"
 ---
 
 This post describes a coordination problem and the file the team used to solve it. Mercari's Web team, building the company's new Global App, is made up of people from diverse backgrounds whose tools and setups differ widely, and the post states the goal as enabling engineers to use AI tooling without forcing them into a completely different setup. Its stated position is that the answer to divergent tooling was not to make everyone use the same tool — the AI landscape being described as continuing to evolve quickly — but to find a way to align different work styles toward a shared goal.
