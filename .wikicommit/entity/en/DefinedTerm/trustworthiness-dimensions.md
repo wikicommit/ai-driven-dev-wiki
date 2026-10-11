@@ -7,13 +7,14 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.06310'
     hash: sha256:46f38f583fd26c851dbe000e63a827534bfc88506117ab3f9d5423e0303e5cd8
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-19"
 generated_by: "claude-opus-5[1m]"
 generated_with: "0.7.0"
 
 properties:
   description: "A multidimensional trustworthiness framework for AI software engineers, proposed by Aleti, Hoda, Ray, and Chen in [[ScholarlyArticle/trustworthy-ai-software-engineers]], spanning technical quality, transparency and accountability, epistemic humility, and societal and ethical alignment."
+reviewed_by: "joyk0117"
 ---
 
 Trustworthiness dimensions, as proposed in [[ScholarlyArticle/trustworthy-ai-software-engineers]], are a set of properties the paper argues jointly determine whether an [[DefinedTerm/agentic-engineer]] can be relied on, grouped into four areas: technical quality, transparency and accountability, epistemic humility, and societal and ethical alignment. The paper argues that no single dimension is both necessary and sufficient for trustworthiness — a system is not made trustworthy or untrustworthy by any one dimension alone — and that trustworthiness instead emerges from configurations of dimensions that collectively justify reliance in a given setting.
