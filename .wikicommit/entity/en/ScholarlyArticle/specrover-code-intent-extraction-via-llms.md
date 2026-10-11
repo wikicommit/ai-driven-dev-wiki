@@ -7,7 +7,7 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2408.02232'
     hash: sha256:11a685d857df7202abc79fb94c2c9f7d605a6905b47206c856a11b12b3234adb
-review_status: pending
+review_status: reviewed
 generated_at: "2026-09-25"
 generated_by: "claude-opus-5-5"
 generated_with: "0.7.0"
@@ -16,6 +16,7 @@ properties:
   description: "A National University of Singapore paper presenting SpecRover, an LLM agent built on AutoCodeRover that infers specifications of intended behavior while resolving GitHub issues and uses a reviewer agent to vet patches and explain them, reported as resolving 31% of SWE-bench Lite."
   author: ["Haifeng Ruan", "Yuntong Zhang", "Abhik Roychoudhury"]
   abstract: "Autonomous program improvement, typically producing bug fixes and feature additions, can be accomplished by combining LLM and program analysis capabilities in an LLM agent, and since it requires a specification of intended behavior, specification inference can help produce high quality patches. The authors examine efficient, low-cost workflows for iterative specification inference within an LLM agent: given a GitHub issue, SpecRover conducts iterative code search accompanied by specification inference, inferring intent from project structure and behavior, and a reviewer agent vets the patches and provides a measure of confidence in them. Built on the open-source agent AutoCodeRover, it shows more than 50% improvement in efficacy over AutoCodeRover on the full SWE-bench of 2294 issues, at a modest cost of $0.65 per issue on SWE-bench Lite, and its explanations give the developer a better signal of when a patch can be accepted with confidence."
+reviewed_by: "joyk0117"
 ---
 
 This paper starts from the problem that program repair and program improvement need some statement
