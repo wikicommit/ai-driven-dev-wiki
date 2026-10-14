@@ -11,11 +11,11 @@ sources:
     hash: sha256:56f15bec50e7429858d3e245833b8767f93534d45e9f989d56c4ec97baaa3a96
   - type: url
     url: 'https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/how-tool-use-works'
-    hash: sha256:72962bc6dbde244cd4d2ed36591f00bceb8f38f4883c0f7c11aaaafd13504b19
+    hash: sha256:09b206b0019d5f083146422256f13de76bbf7d52aa69dc09f4125dd542b626a8
 review_status: pending
-generated_at: "2026-09-30"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 tags: [tool-use, agent-architecture, llm]
 
 properties:
@@ -96,7 +96,7 @@ results, so the final answer is generated from the combined context.
 
 ## Related Terms
 
-- [[DefinedTerm/tool-use-design-pattern]] — the general pattern this distinction refines
+- [[DefinedTerm/function-calling]] — the general pattern this distinction refines
 - [[DefinedTerm/function-calling]] — the request-and-result exchange that client tools are built on
 - [[DefinedTerm/computer-use]] — a tool both accounts place on the client side
 - [[DefinedTerm/model-context-protocol]] — another route by which an agent reaches external tools

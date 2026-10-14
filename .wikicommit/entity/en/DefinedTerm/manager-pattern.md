@@ -38,7 +38,7 @@ tool with `as_tool(...)`, given a tool name and a tool description, and listed i
 The guide treats agents-as-tools as one of three tool categories an agent may need, alongside data
 tools that retrieve context and action tools that change something in an external system — so the
 pattern is presented as an application of the ordinary
-[[DefinedTerm/tool-use-design-pattern]] rather than as a separate mechanism.
+[[DefinedTerm/function-calling]] rather than as a separate mechanism.
 
 ## When It Applies
 
@@ -67,4 +67,4 @@ established taxonomy, and its code examples assume that vendor's own SDK through
   implementation roles
 - [[DefinedTerm/sub-agent-architecture]] — a related arrangement described in terms of context
   isolation rather than tool calls
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]

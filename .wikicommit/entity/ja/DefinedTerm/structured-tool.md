@@ -23,5 +23,5 @@ properties:
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/react-prompting]]

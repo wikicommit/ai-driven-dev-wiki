@@ -37,5 +37,5 @@ did not work with multi-argument tools without customization.
 
 ## Related Terms
 
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/react-prompting]]

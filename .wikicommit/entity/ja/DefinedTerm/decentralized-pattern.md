@@ -35,4 +35,4 @@ properties:
 
 - [[DefinedTerm/manager-pattern]] — 同じガイドが挙げるもう一方の類型で、1 つのエージェントが制御を保ち、他のエージェントをツールとして呼び出す
 - [[DefinedTerm/agent-teams]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]

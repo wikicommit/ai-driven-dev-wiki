@@ -61,4 +61,4 @@ established taxonomy, and its code examples assume that vendor's own SDK through
 - [[DefinedTerm/manager-pattern]] — the other category the same guide names, where one agent keeps
   control and calls the others as tools
 - [[DefinedTerm/agent-teams]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]

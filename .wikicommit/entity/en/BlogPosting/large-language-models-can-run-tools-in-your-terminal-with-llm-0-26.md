@@ -6,11 +6,11 @@ tags: [llm-tool-use, agent-tooling, cli-tools]
 sources:
   - type: url
     url: 'https://simonwillison.net/2025/May/27/llm-tools/'
-    hash: sha256:a2f0dcf34a578fc6603991e91422876e38f9d81009a3891d641eb6b221e19cde
+    hash: sha256:897bec73f778aa6be11624201d969f7572e6c5d2ac80b9e64fdf62a5631aa0e5
 review_status: pending
-generated_at: "2026-09-30"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "Simon Willison's release post for LLM 0.26, which adds tool support to his LLM command-line tool and Python library, walks through tools from plugins, ad-hoc Python functions and the Python API, and explains why he waited for model vendors to converge before building it."

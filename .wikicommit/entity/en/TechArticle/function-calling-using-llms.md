@@ -20,7 +20,7 @@ properties:
 ---
 
 This article, published on martinfowler.com, is a worked introduction to function calling — the
-capability described on this wiki under [[DefinedTerm/tool-use-design-pattern]] — for building
+capability described on this wiki under [[DefinedTerm/function-calling]] — for building
 agents that interact with external systems. It defines function calling as letting an LLM analyse a
 natural-language input, extract the user's intent, and generate structured output containing a
 function name and the arguments needed to invoke it. The article stresses that the LLM does not

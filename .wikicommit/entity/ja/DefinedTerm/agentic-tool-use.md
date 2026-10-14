@@ -36,7 +36,7 @@ properties:
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/react-prompting]]
 - [[DefinedTerm/plan-then-execute-pattern]]
 - [[DefinedTerm/code-then-execute-pattern]]

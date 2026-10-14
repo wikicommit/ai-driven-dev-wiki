@@ -49,6 +49,6 @@ accepted by ICML 2024.
 ## Related Terms
 
 - [[DefinedTerm/action-space]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/code-then-execute-pattern]]
 - [[DefinedTerm/code-execution-mcp]]

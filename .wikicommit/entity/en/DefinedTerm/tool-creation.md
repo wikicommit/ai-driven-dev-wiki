@@ -27,4 +27,4 @@ The same paper pushes the term toward creating tools from existing code. Its [[S
 ## Related Terms
 
 - [[DefinedTerm/agentic-tool-use]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]

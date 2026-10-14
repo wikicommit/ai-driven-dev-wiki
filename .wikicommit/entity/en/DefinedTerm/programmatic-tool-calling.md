@@ -177,7 +177,7 @@ calling showed for Claude Sonnet 5, and staying stable when decoy schemas flood 
 ## Related Terms
 
 - [[DefinedTerm/codeact]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/agentic-tool-use]]
 - [[DefinedTerm/context-rot]]
 - [[DefinedTerm/tool-search]]

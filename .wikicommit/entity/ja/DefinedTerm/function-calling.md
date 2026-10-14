@@ -52,7 +52,7 @@ OpenAI の API では、関数定義は type、name、いつどのように使�
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/agentic-tool-use]]
 - [[DefinedTerm/tool-namespacing]]
 - [[DefinedTerm/tool-search]]

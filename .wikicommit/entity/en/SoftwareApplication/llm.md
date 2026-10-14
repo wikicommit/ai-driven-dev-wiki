@@ -6,11 +6,11 @@ tags: [cli-tools, llm-tool-use, agent-tooling]
 sources:
   - type: url
     url: 'https://simonwillison.net/2025/May/27/llm-tools/'
-    hash: sha256:a2f0dcf34a578fc6603991e91422876e38f9d81009a3891d641eb6b221e19cde
+    hash: sha256:897bec73f778aa6be11624201d969f7572e6c5d2ac80b9e64fdf62a5631aa0e5
 review_status: pending
-generated_at: "2026-09-30"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A command-line tool and Python library by Simon Willison for running prompts against large language models from many vendors and local runtimes, extended through plugins; since version 0.26 it can also give models tools written as Python functions."

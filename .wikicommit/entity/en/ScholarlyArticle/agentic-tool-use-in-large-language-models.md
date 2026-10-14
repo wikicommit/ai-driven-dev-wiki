@@ -94,7 +94,7 @@ foundations to work that predates modern instruction-tuned models, places prompt
 policy optimisation from 2024 onward.
 
 It relates to several subjects this wiki already covers.
-[[DefinedTerm/tool-use-design-pattern]] and [[DefinedTerm/agentic-tool-use]] are the practice it
+[[DefinedTerm/function-calling]] and [[DefinedTerm/agentic-tool-use]] are the practice it
 surveys; [[DefinedTerm/react-prompting]] is the interleaved reasoning-and-action control loop it
 treats as the canonical starting point of the prompting paradigm; and
 [[Dataset/berkeley-function-calling-leaderboard]] is among the function-call-validity benchmarks it

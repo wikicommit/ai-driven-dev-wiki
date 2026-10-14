@@ -36,6 +36,6 @@ Willison が紹介している記事は [[BlogPosting/building-effective-agents]
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]] — 拡張機能の中身として通常用いられる仕組み
+- [[DefinedTerm/function-calling]] — 拡張機能の中身として通常用いられる仕組み
 - [[DefinedTerm/ai-coding-agent]]
 - [[DefinedTerm/sub-agent-architecture]]

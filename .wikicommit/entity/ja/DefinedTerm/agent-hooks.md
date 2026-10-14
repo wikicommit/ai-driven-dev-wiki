@@ -50,4 +50,4 @@ Claude Code の指示をどこに置くべきかについての Anthropic の投
 
 ## 関連用語
 
-[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/tool-use-design-pattern]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]], [[DefinedTerm/claude-md]], [[BlogPosting/steering-claude-code]], [[BlogPosting/claude-code-hooks-complete-guide]]
+[[DefinedTerm/sandboxing]], [[DefinedTerm/guardrails]], [[DefinedTerm/neurosymbolic-validation]], [[DefinedTerm/function-calling]], [[SoftwareApplication/strands-agents]], [[SoftwareApplication/claude-code]], [[BlogPosting/agentic-coding-hooks-deterministic-ai-guardrails]], [[SoftwareApplication/pfmls-stylepack]], [[DefinedTerm/lost-in-the-middle]], [[DefinedTerm/claude-md]], [[BlogPosting/steering-claude-code]], [[BlogPosting/claude-code-hooks-complete-guide]]

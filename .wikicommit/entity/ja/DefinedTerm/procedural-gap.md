@@ -39,5 +39,5 @@ API、プラグイン、あるいは [[DefinedTerm/model-context-protocol]] の�
 ## 関連用語
 
 - [[DefinedTerm/agent-skills]] — サーベイがこのギャップを渡る橋として提案しているもの
-- [[DefinedTerm/tool-use-design-pattern]] — このギャップがその上に位置する、能力へのアクセス
+- [[DefinedTerm/function-calling]] — このギャップがその上に位置する、能力へのアクセス
 - [[DefinedTerm/model-context-protocol]] — サーベイが、このギャップではなく相互運用性を解決するものと読むインフラ

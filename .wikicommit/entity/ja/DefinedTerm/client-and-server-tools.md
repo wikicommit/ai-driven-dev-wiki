@@ -61,7 +61,7 @@ Google のサーバー上でそれを実行し、その結果に根拠づけら�
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]] — この区別がより細かく分けている一般的なパターン
+- [[DefinedTerm/function-calling]] — この区別がより細かく分けている一般的なパターン
 - [[DefinedTerm/computer-use]] — 両方の記述がクライアント側に置いているツール
 - [[DefinedTerm/model-context-protocol]] — エージェントが外部ツールに到達するもう 1 つの経路
 - [[DefinedTerm/code-execution-mcp]] — エージェントに代わってコードを実行する関連したアプローチ

@@ -44,6 +44,6 @@ CodeAct は統合された Python インタープリタと組み合わせて使�
 ## 関連用語
 
 - [[DefinedTerm/action-space]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/code-then-execute-pattern]]
 - [[DefinedTerm/code-execution-mcp]]

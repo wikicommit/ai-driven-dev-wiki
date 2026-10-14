@@ -83,7 +83,7 @@ where its actions change the external world, including under adversarial conditi
 
 ## Related Terms
 
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/react-prompting]]
 - [[DefinedTerm/plan-then-execute-pattern]]
 - [[DefinedTerm/code-then-execute-pattern]]

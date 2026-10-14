@@ -72,4 +72,4 @@ The post is written for engineers designing tools for their own agents and uses 
 example. Its claims about the code rest on the file paths and excerpts it quotes, and it states that
 Anthropic has not published per-tool usage statistics, so its choice of four "core" tools is
 illustrative. It connects to the wider writing on how tool definitions are presented to models —
-[[DefinedTerm/tool-use-design-pattern]], [[DefinedTerm/tool-search]] and [[DefinedTerm/token-caching]].
+[[DefinedTerm/function-calling]], [[DefinedTerm/tool-search]] and [[DefinedTerm/token-caching]].

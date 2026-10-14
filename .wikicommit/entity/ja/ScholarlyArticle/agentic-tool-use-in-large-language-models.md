@@ -91,7 +91,7 @@ properties:
 位置づけている。
 
 このサーベイは、このウィキがすでに扱っているいくつかの主題と関連している。
-[[DefinedTerm/tool-use-design-pattern]] と [[DefinedTerm/agentic-tool-use]] は、このサーベイが
+[[DefinedTerm/function-calling]] と [[DefinedTerm/agentic-tool-use]] は、このサーベイが
 概観する実践そのものである。[[DefinedTerm/react-prompting]] は、プロンプティングのパラダイムの
 典型的な出発点として扱われる、推論と行動を交互に行う制御ループである。そして
 [[Dataset/berkeley-function-calling-leaderboard]] は、このサーベイがカタログ化している関数呼び出しの

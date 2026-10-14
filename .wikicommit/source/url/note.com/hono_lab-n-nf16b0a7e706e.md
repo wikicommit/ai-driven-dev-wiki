@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://note.com/hono_lab/n/nf16b0a7e706e'
-  hash: sha256:188769023c2c6105b466ddc0e1e1626f6f76199a3fc6e65aa7fb82ea260929f3
+  hash: sha256:5bf69d8053c5d7bbf870187f45ef287ce6cf4c57f5f50fd144ae9a83cad4ef52
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 1986
+status: generated
+last_generated_at: "2026-10-14"
+extracted_tokens: 2161
 generated_pages:
   - .wikicommit/entity/en/Book/ai-spec-driven-development-the-new-norm-of-ai-agent-development.md
 failed_pages: []
