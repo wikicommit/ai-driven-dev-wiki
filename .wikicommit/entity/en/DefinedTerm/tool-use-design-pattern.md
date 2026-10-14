@@ -29,7 +29,7 @@ sources:
   - type: url
     url: 'https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use'
     hash: sha256:102825bd22956a3a1ad7b346c85fe7d13cfd7c98f9d6af78d46a4d428a52fd84
-review_status: pending
+review_status: reviewed
 generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
 generated_with: "0.10.0"
@@ -40,6 +40,7 @@ status: removed
 removed_at: "2026-10-14"
 removed_reason: merged
 merged_into: .wikicommit/entity/en/DefinedTerm/function-calling.md
+reviewed_by: "joyk0117"
 ---
 
 The tool use design pattern gives a language model the ability to invoke external functions or
