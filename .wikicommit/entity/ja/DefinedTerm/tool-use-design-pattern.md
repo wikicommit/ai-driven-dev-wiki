@@ -4,7 +4,7 @@ type: "schema:DefinedTerm"
 lang: ja
 aliases: ["Tool Use Design Pattern", "Tool-based agents", "Function calling"]
 tags: [エージェント, ツール利用, LLM, エージェントアーキテクチャ]
-review_status: pending
+review_status: reviewed
 translated_from: ".wikicommit/entity/en/DefinedTerm/tool-use-design-pattern.md"
 source_commit: "365b166bc72ad4ec07cef9322a261ed16ae7b35b"
 translated_at: "2026-09-27"
@@ -17,6 +17,7 @@ status: removed
 removed_at: "2026-10-14"
 removed_reason: merged
 merged_into: .wikicommit/entity/en/DefinedTerm/function-calling.md
+reviewed_by: "joyk0117"
 ---
 
 ツール利用デザインパターンは、言語モデルに対し、言語だけで答えるのではなく外部の関数やサービスを呼び出す能力を与える。モデルには利用可能なツールの説明が与えられる。モデルはリクエストに合うツールを選び、呼び出しのための引数を生成し、その結果として得られた出力がモデルの推論に戻されることで、最終的な応答が呼び出しの結果を反映したものになる。AWS はこのパターンを、エージェントが言語の理解からアクションの実行へと移行する地点として説明し、エージェントが「応答を返すだけでなく行動する」ことを可能にするものだとしている。Microsoft のコースは、ツールを、エージェントを限られたアクションの集合から幅広いアクションへと広げるものとして位置づけている。ツールのインターフェースは意図的に汎用的に作られており、算術からデータベース検索、外部 API やクラウドサービスに至るまで、呼び出し可能なあらゆる機能を表す。
