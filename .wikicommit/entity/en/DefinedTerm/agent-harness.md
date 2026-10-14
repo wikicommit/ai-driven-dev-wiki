@@ -3,6 +3,7 @@ title: "Agent Harness"
 type: "schema:DefinedTerm"
 lang: en
 tags: [agent-architecture, agent-tooling, verification, agent-state, benchmarking]
+aliases: ["运行时基座"]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2605.18747'
@@ -22,10 +23,13 @@ sources:
   - type: url
     url: 'https://github.com/HKUDS/OpenHarness'
     hash: sha256:9bbda0914ba868f48d4405712010871672d985e50cc184e63fbbbd2d0a88071e
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/runtime/harness/'
+    hash: sha256:82cf9e7387cf2117eac969bb6ccb6061e9f58fd5de7e0191c1baed3aae3a014b
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.7.0"
+generated_at: "2026-10-14"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "The policy-governed system around a language model that grounds its outputs in external execution, persistent state and verifiable feedback, turning a stateless model into a functional agent. In the vocabulary of Gorinova et al., it is the inner of two orchestration levels — one model working with tools towards a single task — as distinguished from the system harness that decomposes goals and dispatches tasks to it."
@@ -94,6 +98,36 @@ through a permission check and lifecycle hooks before feeding the result back, s
 for tools, skills, plugins, permissions, hooks, commands, MCP, memory, background tasks and multi-agent
 coordination — the model, as the README puts it, decides what to do and the harness handles how.
 
+Jimmy Song's online book on building agents gives the term a chapter of its own and defines a harness as
+a runtime substrate that mediates observation, action, feedback and completion — the layer between model
+and application that turns the model's reasoning into behaviour that can be executed, observed, recovered
+and governed. Where the model is the engine, he writes, the harness is the chassis. The chapter assigns a
+complete harness six responsibilities: observation (assembling file-system state, process output, user
+input and API responses into context), action (gating and sandboxing tool calls, scheduling concurrent
+calls and tracking side effects), feedback (writing results back, retrying, compressing context and holding
+intermediate state), completion (validating output, running tests and archiving evidence), permission
+(approval for destructive operations, allowlists and blocklists, and file-, network- and process-level
+access control) and memory (persisting sessions, cross-session memory, checkpoints and session lineage). On
+this account the completeness of those six is what separates a harness from a framework: a library that only
+wraps tool calls is a framework. The chapter attributes the shift to agents moving from one-off task
+execution to long-running autonomous operation, which calls for checkpoints, audit trails, permissions and
+memory rather than stateless chains, and it notes that research has begun to group Claude Code, OpenAI
+Codex, [[SoftwareApplication/hermes-agent]] and [[SoftwareApplication/openclaw]] together as CLI harnesses.
+It reads Hermes Agent (always-on), Claude Code (developer-facing and interactive) and Codex (asynchronous
+and isolated in the cloud) as three forms of the same idea, concluding that "harness" names a class of
+runtime substrate rather than any one product.
+
+Song's layering inverts Chase's. Where Chase puts the [[DefinedTerm/agent-runtime]] at the bottom of the
+stack, beneath frameworks and harnesses, Song puts it above the harness: the harness is the runtime
+substrate of a single agent and is concerned with that agent's execution quality, while the agent runtime is
+the operating platform for many agents, handling scheduling and governance at system level, and one runtime
+can manage several harness instances. He presents the two as complementary rather than as substitutes. The
+chapter also names the security risks this layer has to face once agents run continuously — prompt
+injection when messages, memory, skills, scheduling and the shell share one authority boundary,
+confused-deputy attacks, permission escape where gates exist only at the shell level, and checkpoints that
+may capture sensitive data — and argues for least privilege, audit trails for every operation and approval
+gates for destructive ones.
+
 ## Related Terms
 
 - [[DefinedTerm/system-harness]]
@@ -108,3 +142,4 @@ coordination — the model, as the README puts it, decides what to do and the ha
 - [[DefinedTerm/tool-call-offloading]]
 - [[BlogPosting/the-anatomy-of-an-agent-harness]]
 - [[SoftwareApplication/openharness]]
+- [[SoftwareApplication/hermes-agent]]

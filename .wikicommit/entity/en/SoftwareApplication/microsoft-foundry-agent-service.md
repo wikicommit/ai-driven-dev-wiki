@@ -22,7 +22,7 @@ properties:
 Microsoft Foundry Agent Service is a managed service for building, deploying and scaling AI agents
 without managing the underlying compute and storage. Microsoft's *AI Agents for Beginners* course
 presents it as the newer of two Microsoft routes to implementing the
-[[DefinedTerm/tool-use-design-pattern]], and positions it for enterprise applications on the
+[[DefinedTerm/function-calling]], and positions it for enterprise applications on the
 grounds that it is fully managed and offers enterprise-grade security.
 
 The course states three advantages over calling a model API directly: tool calling is automatic, so

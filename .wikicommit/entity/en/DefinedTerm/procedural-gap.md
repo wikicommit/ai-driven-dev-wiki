@@ -45,5 +45,5 @@ external capabilities should be applied — as what closes it.
 ## Related Terms
 
 - [[DefinedTerm/agent-skills]] — what the survey proposes as the bridge across the gap
-- [[DefinedTerm/tool-use-design-pattern]] — the capability access the gap sits on top of
+- [[DefinedTerm/function-calling]] — the capability access the gap sits on top of
 - [[DefinedTerm/model-context-protocol]] — infrastructure the survey reads as solving interoperability, not this gap

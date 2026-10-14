@@ -9,11 +9,11 @@ sources:
     hash: sha256:7541e4e46d675b2aed1175d9291d45d75f493ae908aea2afc77b29c615a324ea
   - type: url
     url: 'https://platform.openai.com/docs/guides/function-calling'
-    hash: sha256:837fddfb4f47440271a02bb4e3bf476c552ccbfc1b962b602a0217dc5bf68f47
+    hash: sha256:33e313e8ef53f2cc87fbe55e08f0ea5a56700f9f25a58c86e79dd18a8adac2a0
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "Grouping related agent tools under common name prefixes — by service, by resource, or both — so that an agent with access to many overlapping tools can tell which one to reach for. Anthropic reports that the choice between prefix- and suffix-based schemes had non-trivial effects on its tool-use evaluations and varied by model."
@@ -80,7 +80,7 @@ guide separately offers namespaces as a first-class API feature for grouping too
 
 ## Related Terms
 
-- [[DefinedTerm/tool-use-design-pattern]] — the broader pattern this is a design discipline within
+- [[DefinedTerm/function-calling]] — the broader pattern this is a design discipline within
 - [[DefinedTerm/model-context-protocol]] — the protocol whose tool sprawl motivates the practice
 - [[DefinedTerm/context-engineering]] — the concern that tool names and descriptions occupy context
 - [[DefinedTerm/function-calling]] — the mechanism through which namespaced tools are offered to a model

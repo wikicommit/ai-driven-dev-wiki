@@ -2,13 +2,14 @@
 source:
   type: url
   url: 'https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use'
-  hash: sha256:f6402a3fe89e2e1e8e08eb769fbf3dc97994f6b04e1f57f8702632cabc6b897b
+  hash: sha256:102825bd22956a3a1ad7b346c85fe7d13cfd7c98f9d6af78d46a4d428a52fd84
   license:
+  lang: en
 
 schema:
 status: generated
-last_generated_at: "2026-09-25"
-extracted_tokens: 2505
+last_generated_at: "2026-10-14"
+extracted_tokens: 2518
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/agentic-design-patterns-part-3-tool-use.md
   - .wikicommit/entity/en/DefinedTerm/tool-use-design-pattern.md

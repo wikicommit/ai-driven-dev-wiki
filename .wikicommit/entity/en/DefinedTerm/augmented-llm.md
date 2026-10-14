@@ -80,6 +80,6 @@ before the patterns without placing it against the split itself.
 
 ## Related Terms
 
-- [[DefinedTerm/tool-use-design-pattern]] — the mechanism the augmentation usually consists of
+- [[DefinedTerm/function-calling]] — the mechanism the augmentation usually consists of
 - [[DefinedTerm/ai-coding-agent]]
 - [[DefinedTerm/sub-agent-architecture]]

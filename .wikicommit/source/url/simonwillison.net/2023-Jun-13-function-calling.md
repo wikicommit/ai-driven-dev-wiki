@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://simonwillison.net/2023/Jun/13/function-calling/'
-  hash: sha256:e7d11c6a285c986f69ed52dd7b2da7c46a0d718252d9ca84ac6df6de515e6516
+  hash: sha256:e586b3ef6e21a9825daf98ac133095de870d331bdf427672a6c2e1b4bcbb726d
   license:
   lang: en
 
 schema:
 status: generated
-last_generated_at: "2026-09-30"
-extracted_tokens: 766
+last_generated_at: "2026-10-14"
+extracted_tokens: 796
 generated_pages:
   - .wikicommit/entity/en/DefinedTerm/function-calling.md
 failed_pages: []

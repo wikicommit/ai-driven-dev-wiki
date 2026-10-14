@@ -21,7 +21,7 @@ properties:
 
 This post from the LangChain team introduces a standard interface in [[SoftwareApplication/langchain]]
 for tool calling, the capability that lets a model return a list of tool invocations alongside or instead
-of plain text (see [[DefinedTerm/tool-use-design-pattern]]). Its occasion was that more and more model
+of plain text (see [[DefinedTerm/function-calling]]). Its occasion was that more and more model
 providers were exposing native tool calling, each through a slightly different interface — including,
 the post notes, the three it calls the highest-performing, OpenAI, Anthropic and Gemini, which were
 incompatible with one another — and that the community wanted a standard way to switch between them.

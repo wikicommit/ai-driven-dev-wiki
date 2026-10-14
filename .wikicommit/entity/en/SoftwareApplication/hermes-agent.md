@@ -10,15 +10,18 @@ sources:
   - type: url
     url: 'https://arxiv.org/pdf/2606.05608'
     hash: sha256:0793091fcad2dc48f9eb6412001558cc2e993e5d5904e18d8fd0c943453879be
+  - type: url
+    url: 'https://jimmysong.io/zh/book/ai-handbook/runtime/harness/'
+    hash: sha256:82cf9e7387cf2117eac969bb6ccb6061e9f58fd5de7e0191c1baed3aae3a014b
 review_status: pending
-generated_at: "2026-09-18"
-generated_by: "claude-opus-5[1m]"
-generated_with: "0.6.1"
+generated_at: "2026-10-14"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "An open-source AI agent from Nous Research that runs as a single Python process whose role is set by the entry point that launched it, fronting many messaging and IDE surfaces over one runtime and one persistence layer."
   applicationCategory: "AI agent"
-  featureList: "Single-process multi-surface runtime; centralized per-action tool approval with three modes; pluggable memory and model-provider backends; SQLite session store with full-text search; cron scheduler and webhook subscriptions; SQLite-backed Kanban work queue; agent-created Skills, distinct from the bundled ones, which the agent writes after completing tasks and patches when it finds them insufficient"
+  featureList: "Single-process multi-surface runtime; centralized per-action tool approval with three modes; pluggable memory and model-provider backends; SQLite session store with full-text search; cron scheduler and webhook subscriptions; SQLite-backed Kanban work queue; agent-created Skills, distinct from the bundled ones, which the agent writes after completing tasks and patches when it finds them insufficient; Shadow Git checkpoints of the working directory before destructive operations, reversible with `/rollback`"
   author: "Nous Research"
 ---
 
@@ -50,6 +53,15 @@ cycle as operating without human intervention, and takes it as the dynamic disti
 systems from traditional software. It also points to the framework's cross-session episodic memory,
 realised through FTS5-backed conversation search with LLM summarization, and to its subagent delegation
 as an early demonstration of multi-agent coordination in a widely deployed system.
+
+Jimmy Song's chapter on the [[DefinedTerm/agent-harness]] presents Hermes Agent as a typical productized
+harness and the always-on form of one, beside Claude Code as the developer-facing form and OpenAI Codex as
+the cloud-asynchronous one. Among the capabilities it lists are Shadow Git checkpoints, which snapshot the
+working directory before a destructive operation so that it can be reverted with `/rollback`; FTS5-indexed
+search over session history; memory and skills that persist across sessions; approval gating for dangerous
+commands; and a gateway architecture that connects more than twenty messaging platforms through one entry
+point. The same chapter cautions that such snapshots may contain sensitive information and need access
+control of their own.
 
 ## Adoption & Ecosystem
 

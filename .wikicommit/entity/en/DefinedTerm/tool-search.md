@@ -6,7 +6,7 @@ tags: [tool-use, agent-tooling, context-engineering]
 sources:
   - type: url
     url: 'https://platform.openai.com/docs/guides/function-calling'
-    hash: sha256:837fddfb4f47440271a02bb4e3bf476c552ccbfc1b962b602a0217dc5bf68f47
+    hash: sha256:33e313e8ef53f2cc87fbe55e08f0ea5a56700f9f25a58c86e79dd18a8adac2a0
   - type: url
     url: 'https://www.anthropic.com/engineering/advanced-tool-use'
     hash: sha256:37cff587dcd276ffbe27f31fcfa6f7985ccacfd5d06270baf40025725a068a97
@@ -14,9 +14,9 @@ sources:
     url: 'https://codepointer.dev/p/tool-design-for-ai-agents-lessons'
     hash: sha256:798960d4831740d5de8d2d8de9ef9533000b374e32d6edc5fdbe5fa1c6862502
 review_status: pending
-generated_at: "2026-09-30"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A technique for giving a model access to a large set of tools without loading them all up front: some or all tools are deferred, and the model searches for the relevant ones, adds them to its context and then calls them."

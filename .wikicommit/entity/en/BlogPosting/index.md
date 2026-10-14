@@ -134,6 +134,7 @@ comments: false
 - [[BlogPosting/evolving-spec-driven-development-conductor-now-supports-antigravity]]
 - [[BlogPosting/exercise-caution-when-building-off-llms]]
 - [[BlogPosting/experimental-verification-of-harness-engineering-with-claude-code]]
+- [[BlogPosting/facing-claude-code-used-by-2000-people]]
 - [[BlogPosting/factory-model]]
 - [[BlogPosting/five-minutes-talking-one-proof-of-concept]]
 - [[BlogPosting/fragments-september-29]]

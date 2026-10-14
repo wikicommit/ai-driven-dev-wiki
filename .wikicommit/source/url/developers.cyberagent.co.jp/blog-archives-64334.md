@@ -2,16 +2,18 @@
 source:
   type: url
   url: 'https://developers.cyberagent.co.jp/blog/archives/64334/'
-  hash: sha256:6e2f64b6e3b8fa2acfd82be7dd1e77d7613acc6d2b4847a70e9fd459d6ca1c06
+  hash: sha256:dc18d8b45978e25db5c716ec05dbb95fe49177aa52fd0b8812a9a63fd1f9b1b2
   license:
+  lang: ja
 
 schema:
-status: partial
-last_generated_at: "2026-09-24"
-extracted_tokens: 6192
-generated_pages: []
-failed_pages:
+status: generated
+last_generated_at: "2026-10-14"
+extracted_tokens: 6222
+generated_pages:
   - .wikicommit/entity/en/BlogPosting/facing-claude-code-used-by-2000-people.md
+  - .wikicommit/entity/en/Organization/cyberagent.md
+failed_pages: []
 ---
 
 ## Summary

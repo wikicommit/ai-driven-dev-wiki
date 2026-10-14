@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://simonwillison.net/2025/May/27/llm-tools/'
-  hash: sha256:a2f0dcf34a578fc6603991e91422876e38f9d81009a3891d641eb6b221e19cde
+  hash: sha256:897bec73f778aa6be11624201d969f7572e6c5d2ac80b9e64fdf62a5631aa0e5
   license:
   lang: en
 
 schema:
 status: generated
-last_generated_at: "2026-09-30"
-extracted_tokens: 5742
+last_generated_at: "2026-10-14"
+extracted_tokens: 5773
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/large-language-models-can-run-tools-in-your-terminal-with-llm-0-26.md
   - .wikicommit/entity/en/SoftwareApplication/llm.md

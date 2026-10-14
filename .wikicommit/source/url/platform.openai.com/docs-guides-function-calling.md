@@ -2,13 +2,14 @@
 source:
   type: url
   url: 'https://platform.openai.com/docs/guides/function-calling'
-  hash: sha256:837fddfb4f47440271a02bb4e3bf476c552ccbfc1b962b602a0217dc5bf68f47
+  hash: sha256:33e313e8ef53f2cc87fbe55e08f0ea5a56700f9f25a58c86e79dd18a8adac2a0
   license:
+  lang: en
 
 schema:
 status: generated
-last_generated_at: "2026-09-25"
-extracted_tokens: 36045
+last_generated_at: "2026-10-14"
+extracted_tokens: 37964
 generated_pages:
   - .wikicommit/entity/en/DefinedTerm/function-calling.md
   - .wikicommit/entity/en/DefinedTerm/tool-search.md

@@ -38,7 +38,7 @@ OpenAI の関数呼び出しガイド（[[DefinedTerm/function-calling]] を参�
 
 ## 関連用語
 
-- [[DefinedTerm/tool-use-design-pattern]] — この実践がその内部の設計上の規律として位置づけられる、より広いパターン
+- [[DefinedTerm/function-calling]] — この実践がその内部の設計上の規律として位置づけられる、より広いパターン
 - [[DefinedTerm/model-context-protocol]] — そのツールの乱立がこの実践の動機となっているプロトコル
 - [[DefinedTerm/context-engineering]] — ツール名とツール説明がコンテキストを占めるという懸念
 - [[DefinedTerm/function-calling]] — 名前空間化されたツールがモデルに提供される仕組み

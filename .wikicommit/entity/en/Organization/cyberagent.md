@@ -10,18 +10,28 @@ sources:
   - type: url
     url: 'https://developers.cyberagent.co.jp/blog/archives/59886/'
     hash: sha256:9ad6bd103b607c72951091c1d9a87a9535287f7a957486fd9a5a463e181c52fc
+  - type: url
+    url: 'https://developers.cyberagent.co.jp/blog/archives/64334/'
+    hash: sha256:dc18d8b45978e25db5c716ec05dbb95fe49177aa52fd0b8812a9a63fd1f9b1b2
 review_status: pending
-generated_at: "2026-09-24"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A Japanese company whose management has set the aim of fully automating its development process by 2028, and which one of its engineers describes as promoting AI adoption irrespective of job function and investing ¥400 million a year in introducing development agents."
 ---
 
-CyberAgent appears in this wiki as an adopter of AI-driven development practice rather than as a vendor of tooling. Both accounts available here come from inside the company — posts on its own developers' blog, one by an engineer and one by the executive in charge of technology — so what they establish is how the organization describes itself, not an outside assessment of it.
+CyberAgent appears in this wiki as an adopter of AI-driven development practice rather than as a vendor of tooling. All the accounts available here come from inside the company — posts on its own developers' blog, by engineers and by the executive in charge of technology — so what they establish is how the organization describes itself, not an outside assessment of it.
 
 The engineer's post states three organization-level facts. The company is described as having a culture of promoting AI adoption irrespective of job function. Its annual investment in introducing development agents is given as ¥400 million. And internal AI usage is made visible across the company, concretely as a ranking of tool usage: that post's author reports having placed second company-wide for [[SoftwareApplication/claude-code]] usage, while noting that the denominator was masked.
+
+A third post, [[BlogPosting/facing-claude-code-used-by-2000-people]], gives the scale of that adoption for
+one tool: about 2,000 people inside the company were using [[SoftwareApplication/claude-code]] in June
+2026, by which point use had moved from individual engineers' experiments to an organization-wide phase
+in which governance, cost management, security, education and knowledge sharing had become design concerns,
+not only productivity. The same post mentions initiatives spreading across the CyberAgent group to make
+AI utilization visible and to give non-engineers Claude Code training.
 
 The company's stated direction is set out by its executive officer in charge of technology in [[BlogPosting/engineering-organization-reform-toward-full-development-automation-by-2028]]: at an internal event in October 2025 it adopted the vision of aiming for full automation of its development process, equated with AI maturity Level 4, by 2028, which that post frames as engineers and AI agents working together to reinvent development rather than as automation to save effort.
 
@@ -44,3 +54,4 @@ Pages in this wiki written from CyberAgent's developers' blog:
 - [[BlogPosting/automating-coding-guidelines-with-ai]]
 - [[BlogPosting/agent-as-a-judge-in-the-feedback-loop]]
 - [[BlogPosting/human-intent-ai-implementation-codex-workflow]]
+- [[BlogPosting/facing-claude-code-used-by-2000-people]]

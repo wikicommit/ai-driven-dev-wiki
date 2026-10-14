@@ -1,0 +1,26 @@
+# Relations a person decided between pages, one list item each.
+# Written by /wikicommit-relate (record_relation.py appends; it never rewrites).
+# Pages are <Type>/<slug>, the same in every language.
+# relation: same | broader | related | distinct | series
+# To revise a decision, edit or delete its item.
+- relation: same
+  pages:
+  - DefinedTerm/function-calling
+  - DefinedTerm/tool-use-design-pattern
+  decided_at: '2026-10-14'
+- relation: broader
+  broader: DefinedTerm/agentic-tool-use
+  pages:
+  - DefinedTerm/tool-use-design-pattern
+  - DefinedTerm/function-calling
+  decided_at: '2026-10-14'
+- relation: same
+  pages:
+  - DefinedTerm/function-calling
+  - DefinedTerm/tool-use-design-pattern
+  merged_into: DefinedTerm/function-calling
+  merged_aliases:
+  - Tool use design pattern
+  - Tool-based agents
+  - ツール利用デザインパターン
+  merged_at: '2026-10-14'

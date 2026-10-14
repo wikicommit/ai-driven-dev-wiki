@@ -28,14 +28,18 @@ sources:
     hash: sha256:b617f4377dcd4fcab5698ec8b5919a3fec12cf22b96c9f6c69bfb3d73b497ce6
   - type: url
     url: 'https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use'
-    hash: sha256:f6402a3fe89e2e1e8e08eb769fbf3dc97994f6b04e1f57f8702632cabc6b897b
+    hash: sha256:102825bd22956a3a1ad7b346c85fe7d13cfd7c98f9d6af78d46a4d428a52fd84
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-14"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A design pattern in which a language model is given machine-readable descriptions of callable functions, selects one and produces its arguments, and has the result fed back into its reasoning — extending an agent from producing language to taking actions against external systems."
+status: removed
+removed_at: "2026-10-14"
+removed_reason: merged
+merged_into: .wikicommit/entity/en/DefinedTerm/function-calling.md
 ---
 
 The tool use design pattern gives a language model the ability to invoke external functions or

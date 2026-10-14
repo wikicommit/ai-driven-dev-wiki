@@ -6,11 +6,11 @@ tags: [spec-driven-development, ai-agents]
 sources:
   - type: url
     url: 'https://note.com/hono_lab/n/nf16b0a7e706e'
-    hash: sha256:188769023c2c6105b466ddc0e1e1626f6f76199a3fc6e65aa7fb82ea260929f3
+    hash: sha256:5bf69d8053c5d7bbf870187f45ef287ce6cf4c57f5f50fd144ae9a83cad4ef52
 review_status: pending
-generated_at: "2026-10-04"
-generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_at: "2026-10-14"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "A Japanese Kindle technical book by 岡崎 太 that sets out the role of specifications, and the practical steps for writing them, in software development carried out with AI agents."

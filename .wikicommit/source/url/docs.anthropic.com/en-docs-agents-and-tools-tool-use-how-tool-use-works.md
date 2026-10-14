@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/how-tool-use-works'
-  hash: sha256:72962bc6dbde244cd4d2ed36591f00bceb8f38f4883c0f7c11aaaafd13504b19
+  hash: sha256:09b206b0019d5f083146422256f13de76bbf7d52aa69dc09f4125dd542b626a8
   license:
   lang: en
 
 schema:
 status: generated
-last_generated_at: "2026-09-30"
-extracted_tokens: 4788
+last_generated_at: "2026-10-14"
+extracted_tokens: 4795
 generated_pages:
   - .wikicommit/entity/en/DefinedTerm/client-and-server-tools.md
   - .wikicommit/entity/en/DefinedTerm/function-calling.md

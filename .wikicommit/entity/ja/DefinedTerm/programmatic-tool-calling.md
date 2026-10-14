@@ -39,7 +39,7 @@ properties:
 ## 関連用語
 
 - [[DefinedTerm/codeact]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
 - [[DefinedTerm/agentic-tool-use]]
 - [[DefinedTerm/context-rot]]
 - [[DefinedTerm/tool-search]]

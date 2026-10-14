@@ -33,7 +33,7 @@ feature, as described in Microsoft's *AI Agents for Beginners* course, is how li
 requires to expose a function to a model: tools are defined as Python functions carrying a `@tool`
 decorator, and the framework serializes the function and its parameters into the schema sent to the
 model, then handles the back-and-forth between the model and the application's code. This is what the framework
-contributes to a direct implementation of the [[DefinedTerm/tool-use-design-pattern]]: the schema is
+contributes to a direct implementation of the [[DefinedTerm/function-calling]]: the schema is
 generated rather than written by hand, and the exchange with the model is the framework's
 responsibility rather than the application's.
 

@@ -25,4 +25,4 @@ properties:
 ## 関連用語
 
 - [[DefinedTerm/agentic-tool-use]]
-- [[DefinedTerm/tool-use-design-pattern]]
+- [[DefinedTerm/function-calling]]
