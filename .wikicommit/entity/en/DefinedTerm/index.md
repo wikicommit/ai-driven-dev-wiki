@@ -205,6 +205,7 @@ comments: false
 - [[DefinedTerm/governed-engineering-environment]]
 - [[DefinedTerm/guardrails]]
 - [[DefinedTerm/guides-and-sensors]]
+- [[DefinedTerm/hard-budget-cap]]
 - [[DefinedTerm/harness-as-a-service]]
 - [[DefinedTerm/harness-engineering]]
 - [[DefinedTerm/harness-templates]]
