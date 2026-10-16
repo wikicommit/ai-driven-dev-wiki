@@ -8,9 +8,9 @@ sources:
     url: 'https://arxiv.org/pdf/2404.18496'
     hash: sha256:2814a3d61744a6080c0eba56810e965df3e68fbbb55c5ecfb97f34bf9762da3a
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A short early-results paper proposing an LLM-based multi-agent system for code review in which four GPT-4 agents — code review, bug report, code smell and code optimization — identify bugs, code smells and deviations from coding standards and suggest improvements. Its evaluation is preliminary and qualitative."

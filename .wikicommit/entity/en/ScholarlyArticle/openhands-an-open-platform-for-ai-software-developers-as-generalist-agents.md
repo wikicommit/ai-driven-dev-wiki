@@ -8,16 +8,15 @@ sources:
     url: 'https://arxiv.org/abs/2407.16741'
     hash: sha256:01c47d5b7e938859b4b50218e91582dfc7f340a1b2c75d210d80be48372dc1f6
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "The arXiv preprint, accepted at ICLR 2025, that introduces OpenHands (formerly OpenDevin) — a platform for building AI agents that interact with the world as a human developer does, by writing code, using a command line and browsing the web."
   author: ["Xingyao Wang", "Boxuan Li", "Yufan Song", "Frank F. Xu", "Xiangru Tang", "Mingchen Zhuge", "Jiayi Pan", "Yueqi Song", "Bowen Li", "Jaskirat Singh", "Hoang H. Tran", "Fuqiang Li", "Ren Ma", "Mingzhang Zheng", "Bill Qian", "Yanjun Shao", "Niklas Muennighoff", "Yizhe Zhang", "Binyuan Hui", "Junyang Lin", "Robert Brennan", "Hao Peng", "Heng Ji", "Graham Neubig"]
   datePublished: "2024-07-23"
   abstract: "The paper introduces OpenHands (formerly OpenDevin), a platform for developing powerful and flexible AI agents that interact with the world in ways similar to a human developer: by writing code, interacting with a command line, and browsing the web. It describes how the platform supports implementing new agents, safe interaction with sandboxed environments for code execution, coordination between multiple agents, and the incorporation of evaluation benchmarks, and reports an evaluation of agents over 15 challenging tasks spanning software engineering and web browsing. OpenHands is released under the permissive MIT license as a community project spanning academia and industry, with more than 2.1K contributions from over 188 contributors."
-  keywords: ["Software Engineering (cs.SE)", "Artificial Intelligence (cs.AI)", "Computation and Language (cs.CL)"]
   citation: "arXiv:2407.16741, DOI 10.48550/arXiv.2407.16741"
 ---
 
@@ -39,8 +38,8 @@ over 15 challenging tasks, which they state include software engineering (giving
 
 The paper also states the project's standing as software rather than only as a research artifact:
 OpenHands is released under the permissive MIT license and is a community project spanning academia
-and industry, with more than 2.1K contributions from over 188 contributors. The preprint is filed
-under Software Engineering (cs.SE), with cross-listings to Artificial Intelligence (cs.AI) and
+and industry, with more than 2.1K contributions from over 188 contributors. On arXiv the preprint is
+filed under Software Engineering (cs.SE), with cross-listings to Artificial Intelligence (cs.AI) and
 Computation and Language (cs.CL). It was first submitted on 23 July 2024 and last revised on 18
 April 2025 as version 3, carries the arXiv-issued DOI 10.48550/arXiv.2407.16741, and is noted as
 accepted by ICLR 2025. The code is stated to be at
