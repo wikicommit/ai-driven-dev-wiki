@@ -6,11 +6,11 @@ tags: [harness-engineering, agent-config, claude-code]
 sources:
   - type: url
     url: 'https://qiita.com/nogataka/items/d1b3fcf355c630cd7fc8'
-    hash: sha256:3fd5e6d04c8d269d9f789b575d8917216722eb38a320372721e33c225935ddf3
+    hash: sha256:ec282977cf9ef7288896e546f8aed2a1801ae1ff70fa368f572576d3eb582d4a
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A Qiita article presenting harness engineering as the next step after CLAUDE.md for controlling AI coding agents, breaking a harness into five components and recommending that they be added incrementally as problems appear."

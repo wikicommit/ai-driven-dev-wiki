@@ -2,15 +2,17 @@
 source:
   type: url
   url: 'https://revistas.unlp.edu.ar/JAIIO/article/download/19957/20195/95722'
-  hash: sha256:21b2c26021ac723b4a478e88292aa2f196527489f22b5557facb38fa958d9b1a
+  hash: sha256:7814321c9cdbe97832b83303a22a3f383abe37f211b944bce10796a1f3d358ef
   license:
+  lang: es
 
 schema:
-status: partial
-last_generated_at: "2026-09-25"
+status: generated
+last_generated_at: "2026-10-16"
 extracted_tokens: 8562
-generated_pages: []
-failed_pages: [.wikicommit/entity/en/ScholarlyArticle/ai-assisted-software-development-for-professionals-with-diverse-backgrounds.md]
+generated_pages:
+  - .wikicommit/entity/en/ScholarlyArticle/ai-assisted-software-development-for-professionals-with-diverse-backgrounds.md
+failed_pages: []
 ---
 
 ## Summary
