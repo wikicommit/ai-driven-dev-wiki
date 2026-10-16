@@ -2,6 +2,7 @@
 title: "Agentic Coding"
 type: "schema:DefinedTerm"
 lang: en
+aliases: ["エージェンティックコーディング"]
 tags: [agentic-coding, coding-tools, team-practices]
 sources:
   - type: url
@@ -19,10 +20,13 @@ sources:
   - type: url
     url: 'https://waylandz.com/ai-agent-book/%E7%AC%AC29%E7%AB%A0-Agentic-Coding/'
     hash: sha256:8d26acd2d82ab50470efb941ede6e3ad8e4fb4bae0f286b12e4c0dd3fbed6b2b
+  - type: url
+    url: 'https://speakerdeck.com/masahiro_nishimi/aiezientonokihonkaraxue-bu-ezienteitukukodeingu-shi-jian-ru-men'
+    hash: sha256:fa071c0dc57659b4011b91c9181bcd112d105d0171ad4d30c227774756d6c9f9
 review_status: pending
-generated_at: "2026-09-30"
-generated_by: "claude-opus-5-5"
-generated_with: "0.8.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.10.0"
 
 properties:
   description: "Software development in which autonomous or semi-autonomous AI agents plan, execute, test, and iterate on multi-step coding tasks from a high-level goal, with the developer acting as a supervisor and reviewer rather than a direct implementer."
@@ -149,9 +153,13 @@ test data so that tests pass while the code is wrong, adding dependencies freely
 Git state. Most of its code is labelled as conceptual illustration; the excerpts it quotes from a real
 codebase come from the [[SoftwareApplication/shannon]] agent system.
 
+## In a Practitioner Talk
+
+A Japanese-language conference talk, [[PresentationDigitalDocument/agentic-coding-practical-introduction-from-ai-agent-basics]], defines agentic coding (エージェンティックコーディング, which it also glosses as AI coding) as a way of developing software that makes use of coding agents, with an LLM as the reasoning engine. Like the architecture book above, it draws the line against code completion: with completion the human drives and the AI navigates, with a coding agent the AI drives and the human navigates. It explains a coding agent as an AI agent whose environment is the codebase and which keeps choosing among its tools on the basis of what it has perceived. The talk traces three common failures — the agent building something other than what was asked, code it reports as "done" that does not run, and ignored rules or scattered duplicate code — to the agent not having been given enough information to plan, a means to check its own work, or a mechanism that controls its actions. It answers them with three principles of its own: define what to build, make self-verification systematic, and grow the rules that must be kept, putting whatever must always be obeyed into a rule-based mechanism such as hooks rather than leaving it to prompts.
+
 ## When It Applies
 
-It suits feature-level or system-level tasks where correctness, traceability, and automation matter more than exploratory speed: end-to-end feature implementation, complex multi-file refactoring, system migrations, and CI/CD pipeline automation. It assumes an execution environment that can safely grant an agent write access and tool use (a sandbox or container with resource and namespace isolation), and it introduces risks distinct from vibe coding: reduced human oversight can lead to skill atrophy in developers who stop engaging with implementation details, and autonomous changes across multiple modules can propagate errors silently if the agent lacks rollback mechanisms or observability hooks. It is presented as complementary to, rather than a replacement for, vibe coding — suited to the implementation and operational phases of a project that vibe coding's exploratory prototyping feeds into.
+The Sapkota, Roumeliotis and Karkee review holds that it suits feature-level or even simple application-level tasks where correctness, traceability, and automation matter more than exploratory speed: end-to-end feature implementation, complex multi-file refactoring, system migrations, and CI/CD pipeline automation. On that review's account it assumes an execution environment that can safely grant an agent write access and tool use (a sandbox or container with resource and namespace isolation), and the review identifies risks distinct from vibe coding: reduced human oversight can lead to skill atrophy in developers who stop engaging with implementation details, and autonomous changes across multiple modules can propagate errors silently if the agent lacks rollback mechanisms or observability hooks. The review presents it as complementary to, rather than a replacement for, vibe coding — suited to the implementation and operational phases of a project that vibe coding's exploratory prototyping feeds into.
 
 ## Related Terms
 

@@ -2,15 +2,16 @@
 source:
   type: url
   url: 'https://speakerdeck.com/masahiro_nishimi/aiezientonokihonkaraxue-bu-ezienteitukukodeingu-shi-jian-ru-men'
-  hash: sha256:a31b631a9bf754b5224d1fc8eec2e90d73546e4438293609914999e02b29a675
+  hash: sha256:fa071c0dc57659b4011b91c9181bcd112d105d0171ad4d30c227774756d6c9f9
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 9425
+status: generated
+last_generated_at: "2026-10-16"
+extracted_tokens: 14790
 generated_pages:
+  - .wikicommit/entity/en/DefinedTerm/agentic-coding.md
   - .wikicommit/entity/en/PresentationDigitalDocument/agentic-coding-practical-introduction-from-ai-agent-basics.md
 failed_pages: []
 ---

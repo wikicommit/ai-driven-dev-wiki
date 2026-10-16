@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://speakerdeck.com/deors/desarrollo-guiado-por-especificaciones-at-jornadas-ecomputing-2026'
-  hash: sha256:c11fad15161e89737cb90d0e5c9d1fe43f23aac1b7be0344c33ed8184ae832bb
+  hash: sha256:3d50a40d91e845fcd3550ac55c0a2fc2e8146bd7add02de3f4b01d034460abee
   license:
   lang: es
 
 schema:
 status: pending
 last_generated_at: "2026-10-04"
-extracted_tokens: 6873
+extracted_tokens: 7311
 generated_pages:
   - .wikicommit/entity/en/PresentationDigitalDocument/spec-driven-development-at-jornadas-ecomputing-2026.md
 failed_pages: []
@@ -22,3 +22,7 @@ Slides from a talk given on 3 July 2026 at the Jornadas eComputing in Vitoria-Ga
 ## Generation Notes
 
 "Jorge Hidalgo": exclude_reason privacy — the deck's author and a living individual; entity-policy.md does not allow pages about living individuals.
+
+## Deferred Reason
+
+Pass 2c: the entity "Spec-Driven Development" is an action: update of .wikicommit/entity/en/DefinedTerm/spec-driven-development.md, and one of that page's existing sources could not be fetched, so nothing was written for this source. Source: https://github.com/NeoLabHQ/context-engineering-kit (also https://github.com/engineering4ai/awesome-spec-driven-development) — GitHub proxy: repo not attached to session (github.com returns 403 in this session; fetch not attempted).
