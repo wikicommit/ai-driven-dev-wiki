@@ -6,11 +6,11 @@ tags: [agent-skills, coding-tools, context-management]
 sources:
   - type: url
     url: 'https://zenn.dev/atamaplus/articles/6d8c3615ff3f33'
-    hash: sha256:ca7b63ec337b963433b4413e2e2821307e56ce9248f4a9ff5d3f2cc95316d76a
+    hash: sha256:03585dea055a54c34305328926bf74ba1d31494ccd89141743628b82e760efeb
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A post on the atama plus tech blog describing how a team using both Claude Code and OpenAI Codex keeps one shared set of Agent Skills, by storing the skills in a common directory and pointing each agent's skills directory at it with a symbolic link."

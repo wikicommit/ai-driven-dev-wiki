@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://zenn.dev/atamaplus/articles/6d8c3615ff3f33'
-  hash: sha256:ca7b63ec337b963433b4413e2e2821307e56ce9248f4a9ff5d3f2cc95316d76a
+  hash: sha256:03585dea055a54c34305328926bf74ba1d31494ccd89141743628b82e760efeb
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 2759
+status: generated
+last_generated_at: "2026-10-16"
+extracted_tokens: 2767
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/sharing-skills-across-multiple-coding-agents.md
 failed_pages: []

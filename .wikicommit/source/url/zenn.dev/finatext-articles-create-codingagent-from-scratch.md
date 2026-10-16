@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://zenn.dev/finatext/articles/create-codingagent-from-scratch'
-  hash: sha256:f2f67945e5431dbe4a2a268e3e16b3b5db6f49d349699e7530f7ec02476812bc
+  hash: sha256:dc3fb228a4ac418cfef6ff002cdd3cf3b07882e14c889527dfe2db2599a5e249
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 6722
+status: generated
+last_generated_at: "2026-10-16"
+extracted_tokens: 6829
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/building-a-coding-agent-from-scratch-in-python.md
 failed_pages: []

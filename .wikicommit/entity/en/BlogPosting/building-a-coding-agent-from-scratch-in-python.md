@@ -6,11 +6,11 @@ tags: [multi-agent-systems, coding-agents, tool-use, agent-frameworks]
 sources:
   - type: url
     url: 'https://zenn.dev/finatext/articles/create-codingagent-from-scratch'
-    hash: sha256:f2f67945e5431dbe4a2a268e3e16b3b5db6f49d349699e7530f7ec02476812bc
+    hash: sha256:dc3fb228a4ac418cfef6ff002cdd3cf3b07882e14c889527dfe2db2599a5e249
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A Nowcast data engineer's account of building a multi-agent coding agent from scratch in Python with LangChain and Azure OpenAI GPT-4.1, in which a programmer agent and a reviewer agent iterate under a coordinator until the reviewer approves."
