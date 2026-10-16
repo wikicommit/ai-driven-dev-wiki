@@ -6,14 +6,14 @@ tags: [harness-engineering, claude-code, agent-config, multi-agent]
 sources:
   - type: url
     url: 'https://qiita.com/nogataka/items/d1b3fcf355c630cd7fc8'
-    hash: sha256:3fd5e6d04c8d269d9f789b575d8917216722eb38a320372721e33c225935ddf3
+    hash: sha256:ec282977cf9ef7288896e546f8aed2a1801ae1ff70fa368f572576d3eb582d4a
   - type: url
     url: 'https://velog.io/@sammy0329/Claude-Code%EB%A5%BC-200-%ED%99%9C%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-spec-kit-Everything-Claude-Code-Oh-My-ClaudeCode-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C'
     hash: sha256:72acff284adbf85c43f84d89f0d728dc7b8061e0e89dd2aac0bbb415897290e6
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A GitHub repository for Claude Code that describes itself as an \"agent harness performance optimization system\", bundling rules, skills, specialist agents, hooks, contexts and tests into one executable setup."

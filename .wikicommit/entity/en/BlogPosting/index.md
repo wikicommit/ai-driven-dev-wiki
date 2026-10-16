@@ -275,6 +275,7 @@ comments: false
 - [[BlogPosting/the-uncomfortable-truth-about-vibe-coding]]
 - [[BlogPosting/the-vibesec-reckoning]]
 - [[BlogPosting/three-layer-agent-orchestration-ai-code-review]]
+- [[BlogPosting/three-team-practices-for-spec-driven-development-challenges]]
 - [[BlogPosting/tool-calling-with-langchain]]
 - [[BlogPosting/tool-design-for-ai-agents-lessons-from-50-claude-code-tools]]
 - [[BlogPosting/toss-ai-surf-day]]

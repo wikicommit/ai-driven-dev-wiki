@@ -9,7 +9,7 @@ source:
 schema:
 status: pending
 last_generated_at:
-extracted_tokens: 1076
+extracted_tokens: 1075
 generated_pages: []
 failed_pages: []
 ---
@@ -18,6 +18,10 @@ failed_pages: []
 ## Summary
 
 In this short bliki entry, Martin Fowler describes agentic engineering as a shift in which developers prompt LLM agents to write and modify code — agents that work in a terminal, manipulate the source tree, run tests and continue for extended periods — and then review the results, while humans remain responsible for what the software does. He distinguishes it from vibe coding, where humans do not look at the code, and from LLM-based code completion inside an IDE, and suggests that harness engineering and a deeper understanding of the domain become central skills.
+
+## Generation Notes
+
+- "Martin Fowler": privacy — the entry's author, a living individual; entity-policy.md rules out pages about living individuals.
 
 ## Deferred Reason
 

@@ -38,6 +38,7 @@ comments: false
 - [[ScholarlyArticle/agilecoder-dynamic-collaborative-agents-for-software-development-based-on-agile-methodology]]
 - [[ScholarlyArticle/agrail]]
 - [[ScholarlyArticle/ai-agentic-programming-survey]]
+- [[ScholarlyArticle/ai-assisted-software-development-for-professionals-with-diverse-backgrounds]]
 - [[ScholarlyArticle/ai-ides-or-autonomous-agents]]
 - [[ScholarlyArticle/ai-powered-code-review-with-llms-early-results]]
 - [[ScholarlyArticle/ai-to-ai-code-reviews-of-github-pull-requests]]
