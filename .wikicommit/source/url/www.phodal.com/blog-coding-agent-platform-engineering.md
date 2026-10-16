@@ -7,13 +7,15 @@ source:
   lang: zh
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
+status: generated
+last_generated_at: "2026-10-16"
 extracted_tokens: 4174
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/platform-engineering-where-everything-is-a-coding-agent.md
   - .wikicommit/entity/en/SoftwareApplication/routa.md
   - .wikicommit/entity/en/DefinedTerm/agent-client-protocol.md
+  - .wikicommit/entity/en/DefinedTerm/model-context-protocol.md
+  - .wikicommit/entity/en/DefinedTerm/agent2agent-protocol.md
 failed_pages: []
 ---
 

@@ -14,9 +14,9 @@ sources:
     url: 'https://www.phodal.com/blog/routa-harness-engineering-builtin-platform/'
     hash: sha256:4ba80d8b7c39b0795402b9a0c3ede0acef5af2849700b26983a9c5d2c5201060
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "An open-source multi-agent orchestration platform for coding agents that combines an external orchestrator with an optional Workspace Agent mode. It connects agents through A2A, MCP, ACP and REST and runs coding agents such as Claude Code, OpenCode, Gemini and Codex as ACP processes."

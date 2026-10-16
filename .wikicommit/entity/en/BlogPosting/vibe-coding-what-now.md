@@ -6,11 +6,11 @@ tags: [ai-assisted-programming, agentic-coding, prototyping, code-quality]
 sources:
   - type: url
     url: 'https://www.codecentric.de/wissens-hub/blog/vibe-coding-was-nun'
-    hash: sha256:70cefba72a447488040405c4b7a7af3c3f7095bf18585232db3eed1169522ba1
+    hash: sha256:436447d4d012847436541071fd3a2651509c94375e77775670f1ebf8c92558aa
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A German-language codecentric blog post from April 2025 that looks past the hype around vibe coding, weighs the strengths and weaknesses of generative AI in software development, and concludes that vibe coding suits prototypes, idea generation and small well-specified modules but not applications put into production."

@@ -8,9 +8,9 @@ sources:
     url: 'https://www.phodal.com/blog/coding-agent-platform-engineering/'
     hash: sha256:8dfe0d1a99160baa5c9e267af55b3724ec49f6cd505455926157bf819fb2a673
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A March 2026 Chinese-language blog post by Phodal Huang on the trend he expects for the year: platform engineering built from many coding agents, connected by the MCP, ACP and A2A protocols plus Skills, and coordinated by an orchestration layer. It contrasts external orchestration with a Workspace Agent mode and uses the Routa platform as a reference implementation."
@@ -72,5 +72,4 @@ of [[SoftwareApplication/routa]] as a practical reference.
 
 The post is the author's forecast and opinion piece combined with a description of an open-source
 project linked from it. It reports no measurements of its own; the survey figures it quotes are
-attributed to reports listed in its references. It belongs to a run of the author's writing on agent protocols and
-multi-agent coding platforms, including [[BlogPosting/acp-protocol-and-multiple-ai-coding-agents]].
+attributed to reports listed in its references.
