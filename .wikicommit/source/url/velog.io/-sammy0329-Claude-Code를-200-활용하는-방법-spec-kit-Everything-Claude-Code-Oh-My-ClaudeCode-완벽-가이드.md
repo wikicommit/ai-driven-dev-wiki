@@ -22,4 +22,8 @@ A Korean developer's guide, published in February 2026, to three open-source pro
 
 ## Generation Notes
 
-"Affaan Mustafa": exclude_reason privacy — the developer of Everything Claude Code, a living individual; entity-policy.md does not allow pages about living individuals.
+- "Affaan Mustafa": privacy — the developer of Everything Claude Code, a living individual; entity-policy.md rules out pages about living individuals.
+
+## Deferred Reason
+
+Pass 2c: the entity "GitHub Spec Kit" is an action: update of .wikicommit/entity/en/SoftwareApplication/github-spec-kit.md, and one of that page's existing sources could not be fetched, so nothing was written for this source. Source: https://github.com/github/spec-kit — GitHub proxy: repo not attached to session (github.com returns 403 in this session; fetch not attempted).

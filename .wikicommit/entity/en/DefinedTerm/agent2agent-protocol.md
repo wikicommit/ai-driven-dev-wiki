@@ -22,10 +22,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2505.02279'
     hash: sha256:7697852f9428f817d9c744137c1cc2162cddc7fa5d0876349a9b513835cce643
+  - type: url
+    url: 'https://www.phodal.com/blog/coding-agent-platform-engineering/'
+    hash: sha256:8dfe0d1a99160baa5c9e267af55b3724ec49f6cd505455926157bf819fb2a673
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.10.0"
 
 properties:
   description: "A standard defining how agents communicate with each other, listed as the agent-to-agent counterpart to the Model Context Protocol's agent-to-tool role. A further source describes it as Google-led and reports a 2026 update introducing an agent directory; Google's developer guide to agent protocols presents it as the standard for how agents discover and communicate with each other, with each agent publishing an Agent Card at a well-known URL."
@@ -106,6 +109,18 @@ to tools and data, and A2A connects agents to other agents. It also notes that t
 [[DefinedTerm/universal-commerce-protocol]] reuses A2A's well-known-URL discovery pattern and can run over
 A2A as a transport.
 
+A Chinese-language post by Phodal Huang,
+[[BlogPosting/platform-engineering-where-everything-is-a-coding-agent]], states that A2A was released
+by Google in April 2025 and names Microsoft, Anthropic and LangChain among its supporters. It places
+A2A in a three-layer protocol stack, likening it to the internet's HTTP — how agents talk to one
+another — and argues that MCP, which handles tool calls, and the [[DefinedTerm/agent-client-protocol]],
+which handles coding-agent processes, are both confined to a single platform, whereas A2A supplies the
+cross-platform layer. The elements it names are the AgentCard, a capability declaration it likens to
+OpenAPI; the Skill, the kinds of task an agent is good at (its examples are code review and test
+generation); and the Task, a status flow from submitted through working to completed. With these, it
+says, an orchestration system could discover a GitLab security agent, delegate a task to GitHub's
+coding agent, and receive a completion notice from a Vercel deployment agent.
+
 A survey of four emerging agent communication protocols,
 [[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]], summarizes A2A as enabling
 peer-to-peer task delegation using capability-based Agent Cards, supporting secure and scalable
@@ -118,4 +133,5 @@ extends to ANP for decentralized agent marketplaces.
 ## Related Terms
 
 [[DefinedTerm/model-context-protocol]], [[DefinedTerm/ai-agent]], [[DefinedTerm/universal-commerce-protocol]],
-[[DefinedTerm/agent-communication-protocol]], [[DefinedTerm/agent-network-protocol]]
+[[DefinedTerm/agent-communication-protocol]], [[DefinedTerm/agent-network-protocol]],
+[[DefinedTerm/agent-client-protocol]]

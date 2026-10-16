@@ -40,10 +40,13 @@ sources:
   - type: url
     url: 'https://developers.redhat.com/articles/2026/02/17/uncomfortable-truth-about-vibe-coding'
     hash: sha256:42f3249cb6e39d9ef4f8c213fa9e954e331b6f259c1af55afe2c58acef2f03fb
+  - type: url
+    url: 'https://www.codecentric.de/wissens-hub/blog/vibe-coding-was-nun'
+    hash: sha256:436447d4d012847436541071fd3a2651509c94375e77775670f1ebf8c92558aa
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "Building software with an LLM without reviewing the code it writes. Coined by Andrej Karpathy in early February 2025 for a deliberately unexamined, fast style of building, and argued here to be a narrow subset of AI-assisted programming rather than a synonym for it."
@@ -87,6 +90,17 @@ settle on definitions: he said he uses "vibe coding" for the occasions when he f
 the "I have no idea what I'm doing" image, citing an iOS app he had built the night before, but that
 in practice he rarely goes full out vibe coding — more often he still looks at the code, adds
 complexity slowly, tries to learn over time how the pieces work, and asks clarifying questions.
+
+A German-language practitioner post from April 2025 on codecentric's blog,
+[[BlogPosting/vibe-coding-what-now]], by Goetz Markgraf, holds the same narrow boundary from a consultancy's side. It
+summarizes Karpathy's tweet as describing not caring about the code, using only AI-supported tools,
+always accepting the AI's suggestions and passing error messages straight back to the AI to fix, and
+insists that not every use of generative AI is vibe coding: someone who uses Copilot, ChatGPT, Claude,
+Cursor or Windsurf as one tool among many to write, change or understand code is not a "vibe coder",
+because the term means only a way of working in which one does not, or barely, looks at the generated
+code. Its reply to the hype is that most people overlook the sentence in Karpathy's tweet calling it
+"not too bad for throwaway weekend projects", so that he himself framed it as a method for throwaway
+weekend projects rather than for productive use.
 
 By 2026 Willison was still holding the narrow reading, and had begun stating it as settled
 vocabulary rather than as an argument. Introducing his guide
@@ -184,20 +198,19 @@ reading should not be taken as settled or universal usage.
 A 2025 academic review, [[ScholarlyArticle/vibe-coding-vs-agentic-coding]], illustrates the broader
 usage Willison describes losing ground to: it also attributes the term's coining to Karpathy, but
 defines vibe coding itself as a human-centric model in which the developer remains an active
-co-creator who reviews and refines each generated piece — a description close to ordinary,
+co-creator who iteratively reviews, critiques and refines the prompt or the generated code — a description close to ordinary,
 reviewed [[DefinedTerm/ai-assisted-programming]] rather than Karpathy's original "forgetting that
 the code even exists." The paper contrasts vibe coding with [[DefinedTerm/agentic-coding]], where
 autonomous agents plan and execute multi-step tasks with reduced human supervision.
 
-A separate 2025 survey, [[ScholarlyArticle/a-survey-of-vibe-coding]], names the same drift explicitly
-from within the broader camp: it defines vibe coding overall as validating an implementation "through
-outcome observation rather than line-by-line code comprehension," but of its own five-model
-taxonomy of vibe-coding practice ([[DefinedTerm/vibe-coding-development-models]]), it identifies only
-one — the Unconstrained Automation Model, where AI output is trusted without review — as "the
-development approach most closely aligned with the original definition of Vibe Coding." Three of its
-other four named models — Iterative Conversational Collaboration, Planning-Driven, and Test-Driven —
-involve some form of human review, upfront planning, or test-based verification that Karpathy's
-original coinage excluded. The fifth, Context-Enhanced, is not itself a review or planning practice:
+A separate 2025 survey, [[ScholarlyArticle/a-survey-of-vibe-coding]], defines vibe coding overall as
+validating an implementation "through outcome observation rather than line-by-line code
+comprehension," and sets out a five-model taxonomy of vibe-coding practice
+([[DefinedTerm/vibe-coding-development-models]]). It describes one of the five — the Unconstrained
+Automation Model, where AI output is trusted without review — as "the development approach most
+closely aligned with the original definition of Vibe Coding." Three of the other four named models —
+Iterative Conversational Collaboration, Planning-Driven, and Test-Driven — add some form of human
+review, upfront planning, or test-based verification. The fifth, Context-Enhanced, is not itself a review or planning practice:
 the survey describes it as an orthogonal, technical context-management capability (retrieval,
 codebase indexing) that can be layered onto any of the other four models, including the
 Unconstrained Automation Model itself.
@@ -221,6 +234,14 @@ reflect — adding that, at least today, a model cannot hold an application past
 its context window. His conclusion is the plainest version of the narrow reading: if you don't
 understand the code, you can't debug it, extend it, or explain it to your team.
 
+The author of the codecentric post, drawing on more than a year of client projects with GitHub
+Copilot and exchanges with colleagues rather than on measurement, sees a few professional uses once its risks are
+taken into account: rapid prototyping — sample applications for user tests or for showing
+stakeholders tangible approaches, but not for production — generating ideas in a discovery phase,
+especially with tools that also generate user interfaces, and creating individual code blocks and
+modules that can be fully described in a few sentences, provided the code is then checked thoroughly.
+The author adds that they would never put an application built this way live.
+
 A practitioner article on Red Hat Developer,
 [[BlogPosting/the-uncomfortable-truth-about-vibe-coding]], uses the broad sense of the term — building
 software by conversing with AI rather than writing every line — and draws the boundary by project
@@ -241,13 +262,13 @@ list. These are one practitioner's observations from their own projects, not mea
 - [[DefinedTerm/ai-assisted-programming]] — the broader practice this term is a subset of
 - [[DefinedTerm/semantic-diffusion]] — the effect this term's own reception is offered as an example of
 - [[DefinedTerm/agentic-coding]] — the paradigm a 2025 academic taxonomy contrasts vibe coding with
-- [[DefinedTerm/vibe-coding-development-models]] — a five-model taxonomy of practices published under this term, only one of which the source ties to the original coinage
-- [[ScholarlyArticle/context-before-code]] — an experience report finding vibe coding reliable for
-  scaffolding but not for architectural properties like tenant isolation and asynchronous
-  processing unless explicitly prompted, proposing [[DefinedTerm/non-delegation-zone]] for the gap
+- [[DefinedTerm/vibe-coding-development-models]] — a five-model taxonomy of practices published under this term, one of which the survey describes as most closely aligned with "the original definition"
+- [[ScholarlyArticle/context-before-code]] — an experience report finding that vibe coding
+  accelerated scaffolding but did not reliably deliver architectural properties like tenant
+  isolation and asynchronous processing, proposing [[DefinedTerm/non-delegation-zone]] for the gap
 - [[BlogPosting/vibe-coding-and-agentic-engineering-getting-closer]] — the same author reporting the
   boundary eroding from the disciplined side of it
 - [[DefinedTerm/spec-driven-development]] — the practice one practitioner article prescribes once a
   vibe-coded project has to be maintained
-- [[DefinedTerm/verification-debt]] — what accumulates when the review step the narrow definition
-  turns on is skipped
+- [[BlogPosting/vibe-coding-what-now]] — a 2025 practitioner post that scopes the term to
+  prototypes and throwaway projects

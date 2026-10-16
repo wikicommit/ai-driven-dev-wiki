@@ -20,10 +20,13 @@ sources:
   - type: url
     url: 'https://arxiv.org/abs/2505.02279'
     hash: sha256:7697852f9428f817d9c744137c1cc2162cddc7fa5d0876349a9b513835cce643
+  - type: url
+    url: 'https://www.phodal.com/blog/coding-agent-platform-engineering/'
+    hash: sha256:8dfe0d1a99160baa5c9e267af55b3724ec49f6cd505455926157bf819fb2a673
 review_status: pending
-generated_at: "2026-09-25"
-generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5[1m]"
+generated_with: "0.10.0"
 
 properties:
   description: "A client-server protocol that standardizes how AI agents discover, select, and invoke external tools exposed by MCP servers, without specifying how much tool metadata or output must be exposed to the model."
@@ -85,6 +88,20 @@ The same paper sets out [[DefinedTerm/code-execution-mcp]] as an alternative, co
 execution model that addresses this limitation by decoupling tool orchestration from the agent's
 context window.
 
+A Chinese-language post by Phodal Huang,
+[[BlogPosting/platform-engineering-where-everything-is-a-coding-agent]], states that MCP was released
+by Anthropic in November 2024 and is hosted by the Linux Foundation. It presents MCP as unifying the
+tool-calling interfaces of different AI clients — its examples are Claude's `tool_use` and OpenAI's
+`function_calling` — around three things a server provides: tools (callable functions), resources
+(readable data sources such as file systems, databases and API responses) and prompts (reusable prompt
+templates), so that one MCP server can be used by every agent that supports the protocol. The post
+places MCP in a three-layer protocol stack, likening it to a USB port through which an agent plugs in
+new capabilities, alongside the [[DefinedTerm/agent-client-protocol]] for managing a coding agent's
+process lifecycle and [[DefinedTerm/agent2agent-protocol]] for discovery and collaboration across
+platforms. From an orchestration point of view, it adds, collaboration operations — creating a
+sub-agent, delegating a task, messaging another agent, reporting to a parent — can themselves be
+exposed as MCP tools that any MCP-capable agent can call.
+
 A survey of agent communication protocols,
 [[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]], describes MCP as providing a
 JSON-RPC client-server interface for secure tool invocation and typed data exchange, and places it
@@ -105,5 +122,7 @@ adopted for messaging, collaborative task execution and decentralized agent mark
   server and registering it with GitHub Copilot in VS Code
 - [[DefinedTerm/agent2agent-protocol]] — the agent-to-agent counterpart that Google's protocol guide
   places alongside MCP
+- [[DefinedTerm/agent-client-protocol]] — the protocol for managing coding agents' process lifecycles
+  that one practitioner places beside MCP and A2A in a three-layer stack
 - [[ScholarlyArticle/a-survey-of-agent-interoperability-protocols]] — a survey comparing MCP with
   ACP, A2A and ANP and proposing a phased adoption roadmap

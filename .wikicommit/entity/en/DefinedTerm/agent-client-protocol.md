@@ -12,9 +12,9 @@ sources:
     url: 'https://www.phodal.com/blog/coding-agent-platform-engineering/'
     hash: sha256:8dfe0d1a99160baa5c9e267af55b3724ec49f6cd505455926157bf819fb2a673
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A standardized communication protocol defining how IDEs and editors interact with AI coding agents, in which the IDE runs the agent as a subprocess and sees and controls each of its tool calls. It is described by analogy with the Language Server Protocol as an LSP for AI agents."
