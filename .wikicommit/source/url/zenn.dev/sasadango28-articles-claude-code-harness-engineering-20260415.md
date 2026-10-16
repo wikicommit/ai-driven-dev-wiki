@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://zenn.dev/sasadango28/articles/claude-code-harness-engineering-20260415'
-  hash: sha256:79cb7abe556ce0e76b248f159ac27efc7053962370948d78172ea53f09fa7494
+  hash: sha256:7cd025ec9144f01f5f085366ebe9b407568f7b2adb0223a1b34b86cd6fb9b7d6
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 3671
+status: generated
+last_generated_at: "2026-10-16"
+extracted_tokens: 3679
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/practicing-harness-engineering-with-claude-code-five-layers.md
 failed_pages: []

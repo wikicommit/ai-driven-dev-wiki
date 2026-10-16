@@ -6,11 +6,11 @@ tags: [harness-engineering, claude-code-configuration, agent-skills]
 sources:
   - type: url
     url: 'https://zenn.dev/sasadango28/articles/claude-code-harness-engineering-20260415'
-    hash: sha256:79cb7abe556ce0e76b248f159ac27efc7053962370948d78172ea53f09fa7494
+    hash: sha256:7cd025ec9144f01f5f085366ebe9b407568f7b2adb0223a1b34b86cd6fb9b7d6
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A data engineer's account of applying harness engineering to Claude Code in a personal knowledge-management repository, organised as five layers: CLAUDE.md, rules, skills, agents and permission settings."
@@ -31,7 +31,7 @@ The author grounds the need for a harness in the statelessness of LLMs: a model 
 - Layer 3 uses [[DefinedTerm/agent-skills]] for reusable workflows; the author runs thirteen. The key design principle stated is separating work the LLM should do from work a script should do.
 - The author's example: an early news-gathering skill had the LLM fetch and parse RSS feeds; a revised version moved fetching and parsing into a Python script and left the LLM only translation and classification, which the author reports cut token use to a sixth and processing time to a third.
 - Layer 4 uses agents, subagents called by name that run in a separate context, so that a search across hundreds of notes returns only a summary to the main conversation. The author identifies context isolation as their benefit.
-- Layer 5 uses `settings.json` permissions as the safety device: allow broadly what the work needs so confirmations do not break the rhythm, deny destructive operations explicitly, and keep machine-specific permissions in `settings.local.json`.
+- Layer 5 uses `settings.json` permissions as the safety device: allow broadly what the work needs so confirmations do not break the rhythm, deny destructive operations explicitly, and keep local-only permissions, such as curl commands fixed to a URL, in `settings.local.json` while general tool permissions stay in the Git-shared `settings.json`.
 - Lessons the author draws from the setup: stating what the agent should not do was the most cost-effective decision; moving deterministic processing to scripts improved token use and stability; `CLAUDE.md` should stay small — "a constitution, not an encyclopedia" — with detail delegated to rules and skills; and permissions converge only through use.
 - The author has not adopted hooks. The post contrasts `CLAUDE.md` and rules as advisory with hooks as deterministic, and argues that for blocking alone `deny` rules often suffice; hooks become necessary for dynamic judgments that pattern matching cannot express, and handlers that call an LLM add token overhead on every tool call. See [[DefinedTerm/agent-hooks]].
 
