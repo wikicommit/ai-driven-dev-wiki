@@ -25,3 +25,7 @@ Phodal Huang's March 2026 post argues that the problems teams hit when AI writes
 
 - "Phodal Huang": privacy — the post's author, a living individual; entity-policy.md rules out pages about living people.
 - "Kief Morris": privacy — a living individual whose view on two development loops the post cites; entity-policy.md rules out pages about living people.
+
+## Deferred Reason
+
+Pass 2c: the entity "Harness Engineering" is an action: update of .wikicommit/entity/en/DefinedTerm/harness-engineering.md, and one of that page's existing sources could not be fetched, so nothing was written for this source. Source: https://github.com/datawhalechina/self-harness — GitHub proxy: repo not attached to session (github.com returns 403 in this session; fetch not attempted).
