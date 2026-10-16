@@ -7,10 +7,13 @@ sources:
   - type: url
     url: 'https://upsilon.cc/~zack/research/publications/tosem-2026-agentic-much.pdf'
     hash: sha256:d47db1332f6875b844e179b1401cd02f6dabf6838a032776f53c385572ae7187
+  - type: url
+    url: 'https://arxiv.org/abs/2601.18341'
+    hash: sha256:904ed06d83bc1e1b207a6c507d213bea787bba5d978aa85eba07d833f51a5c64
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A large-scale mining study of 128,018 GitHub projects that uses the traces coding agents leave in files, commits, branches and pull requests to estimate that 22.20% to 28.66% of the projects had adopted coding agents as of 21 February 2026, and characterizes where adoption occurs and what agent-assisted commits look like."
@@ -88,4 +91,7 @@ The study counts the guidance files that make agents visible but cannot always a
 than crediting them to Codex, which originally introduced it (see [[DefinedTerm/agents-md]]). They
 close with a call for practitioners to document rather than hide their use of coding agents, and for
 agent providers to keep standardizing while defining mechanisms to identify individual agents.
+The paper was posted to arXiv as arXiv:2601.18341 in the Software Engineering (cs.SE) category, first
+submitted on 26 January 2026 and revised on 8 April 2026; its arXiv abstract reports the 22.20% to 28.66%
+adoption estimate and characterizes the figure as very high for a technology only a few months old.
 Related empirical work in this wiki includes [[ScholarlyArticle/adoption-and-impact-of-command-line-ai-coding-agents]].

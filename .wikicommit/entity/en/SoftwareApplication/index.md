@@ -27,6 +27,7 @@ comments: false
 - [[SoftwareApplication/apm-agent-package-manager]]
 - [[SoftwareApplication/ast-grep]]
 - [[SoftwareApplication/asyncreview]]
+- [[SoftwareApplication/atomic-crm]]
 - [[SoftwareApplication/attractor]]
 - [[SoftwareApplication/autocoderover]]
 - [[SoftwareApplication/autodev]]
