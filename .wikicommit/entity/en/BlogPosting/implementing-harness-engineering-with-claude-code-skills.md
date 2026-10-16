@@ -6,11 +6,11 @@ tags: [harness-engineering, agent-skills, claude-code-configuration, agent-hooks
 sources:
   - type: url
     url: 'https://zenn.dev/shintaroamaike/articles/df3ecc0ddee047'
-    hash: sha256:ed1e00178a0ca382854e79709eae5586c0b71d612ff7e82aac0e1c75dff42146
+    hash: sha256:047868760948bcad375dd90bb5ecaadaa138cc81406bbfa2d72e0f06b210810f
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "The author introduces AutoHarness, a set of Claude Code skills that generate and then keep revising a project's coding rules and a verification script, reports a small self-reported trial, and in a June 2026 revision recasts CLAUDE.md as the describe layer and hooks as the enforce layer."
@@ -32,7 +32,7 @@ The skills borrow their idea from Google DeepMind's AutoHarness paper, which the
 - The author interprets the convention differences as the agent following rules because they were in the prompt, not because the harness enforced them.
 - The June 2026 revision adopts a distinction the author describes as having become common: `CLAUDE.md` and the harness rule file are a describe layer that the agent usually follows but can drop under long sessions or competing priorities, while [[DefinedTerm/agent-hooks]] are an enforce layer that runs outside the model's reasoning and cannot be forgotten or bypassed.
 - Wiring the verification script to a PostToolUse hook on edits and writes, the author argues, returns lint and type-check results to the agent in the same turn, reproducing the paper's run, feedback and fix loop in outline though not its optimisation search. The suggested split is rule content in the rule file, checks that must hold in a hook.
-- The revision also records that `CLAUDE.md` `@` imports are now documented officially and that slash commands and skills have been unified, so a skill file now also works as a slash command.
+- The revision also records that `CLAUDE.md` `@` imports are now documented officially — imported files are expanded recursively up to five levels, and user, project and local `CLAUDE.md` files are concatenated rather than overriding one another, though which of two conflicting rules wins is not guaranteed — and that slash commands and skills have been unified, so a skill file now also works as a slash command.
 - On cost, the author notes that a rule file loaded into every session consumes tokens, and points to the guidance of keeping only project-wide rules in `CLAUDE.md` and moving workflow-specific rules into skills loaded on demand.
 
 ## Context

@@ -7,11 +7,11 @@ tags: [harness-engineering, agent-skills, claude-code-configuration]
 sources:
   - type: url
     url: 'https://zenn.dev/shintaroamaike/articles/df3ecc0ddee047'
-    hash: sha256:ed1e00178a0ca382854e79709eae5586c0b71d612ff7e82aac0e1c75dff42146
+    hash: sha256:047868760948bcad375dd90bb5ecaadaa138cc81406bbfa2d72e0f06b210810f
 review_status: pending
-generated_at: "2026-10-04"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5[1m]"
-generated_with: "0.8.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A set of three Claude Code skills that analyse a project to generate natural-language coding rules and a verification script, and then revise them when rule violations or feedback occur."

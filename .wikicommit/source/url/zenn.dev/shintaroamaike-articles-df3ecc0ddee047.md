@@ -2,14 +2,14 @@
 source:
   type: url
   url: 'https://zenn.dev/shintaroamaike/articles/df3ecc0ddee047'
-  hash: sha256:ed1e00178a0ca382854e79709eae5586c0b71d612ff7e82aac0e1c75dff42146
+  hash: sha256:047868760948bcad375dd90bb5ecaadaa138cc81406bbfa2d72e0f06b210810f
   license:
   lang: ja
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
-extracted_tokens: 4557
+status: generated
+last_generated_at: "2026-10-16"
+extracted_tokens: 4565
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/implementing-harness-engineering-with-claude-code-skills.md
   - .wikicommit/entity/en/SoftwareApplication/autoharness-skill.md
