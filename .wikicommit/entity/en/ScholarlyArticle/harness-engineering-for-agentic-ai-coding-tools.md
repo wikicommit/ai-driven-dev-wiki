@@ -2,21 +2,20 @@
 title: "Harness Engineering for Agentic AI Coding Tools: An Exploratory Study"
 type: "schema:ScholarlyArticle"
 lang: en
-tags: [agents, context-engineering, software-engineering, empirical-study]
+tags: [agents, context-engineering, harness-engineering, software-engineering, empirical-study]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.14690'
     hash: sha256:09e9ad225a048f9efa9c17ecb63a1279c9685e21a0d73a0dd61a4970114bc3aa
 review_status: pending
-generated_at: "2026-09-24"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "A cross-tool study that documents eight repository-level configuration mechanisms offered by five agentic AI coding tools and measures their adoption in 2,853 open-source GitHub repositories, finding that context files dominate while Skills and Subagents remain rare."
   author: ["Matthias Galster", "Seyedmoein Mohsenimofidi", "Jai Lal Lulla", "Muhammad Auwal Abubakar", "Christoph Treude", "Sebastian Baltes"]
-  abstract: "The paper presents a systematic analysis of configuration mechanisms for agentic AI coding tools, covering Claude Code, GitHub Copilot, Cursor, Gemini and Codex. It identifies eight mechanisms spanning static context to executable and external integrations and, in an empirical study of 2,853 GitHub repositories, examines whether and how they are adopted, with a detailed analysis of Context Files, Skills and Subagents."
-  keywords: ["harness engineering", "context engineering", "configuration", "AI agents", "AGENTS.md"]
+  keywords: ["Software Engineering", "Generative AI", "AI Agents", "Configuration"]
 ---
 
 This paper asks which configuration mechanisms agentic AI coding tools offer, and how developers

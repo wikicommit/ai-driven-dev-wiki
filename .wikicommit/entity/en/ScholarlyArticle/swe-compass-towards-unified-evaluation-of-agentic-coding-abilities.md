@@ -2,20 +2,20 @@
 title: "SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models"
 type: "schema:ScholarlyArticle"
 lang: en
-tags: [evaluation, agents, benchmarks]
+tags: [evaluation, agents, benchmarks, coding-agents, software-engineering]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2511.05459'
     hash: sha256:306904f768da56528a41e5c9652823b778a536de3b45569339cba85aa458105c
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "Introduces SWE-Compass, a 2,000-instance benchmark spanning eight task types, eight programming scenarios and ten programming languages, and reports an evaluation of ten large language models under the SWE-Agent and Claude Code agentic frameworks together with a taxonomy-based analysis of why their trajectories fail."
+  author: ["Jingxuan Xu", "Ken Deng", "Weihao Li", "Songwei Yu", "Huaixi Tang", "Haoyang Huang", "Zhiyi Lai", "Zizheng Zhan", "Yanan Wu", "Chenchen Zhang", "Kepeng Lei", "Yifan Yao", "Xinping Lei", "Wenqiang Zhu", "Zongxian Feng", "Han Li", "Junqi Xiong", "Dailin Li", "Zuchen Gao", "Kun Wu", "Wen Xiang", "Ziqi Zhan", "Yuanxing Zhang", "Wuxuan Gong", "Ziyuan Gao", "Guanxiang Wang", "Yirong Xue", "Mengtong Li", "Mengfei Xie", "Xiaojiang Zhang", "Jinghui Wang", "Wenhao Zhuang", "Zheng Lin", "Huiming Wang", "Zhaoxiang Zhang", "Yuqun Zhang", "Haotian Zhang", "Bin Chen", "Jiaheng Liu"]
   abstract: "The paper argues that evaluating large language models for software engineering has been limited by narrow task coverage, language bias and insufficient alignment with real-world developer workflows, with existing benchmarks focused on algorithmic problems or Python-centric bug fixing. It introduces SWE-Compass, a benchmark unifying heterogeneous code-related evaluations into a structured, production-aligned framework of 2,000 instances curated from authentic GitHub pull requests, and benchmarks ten state-of-the-art models under two agentic frameworks, reporting a clear hierarchy of difficulty across task types, languages and scenarios."
-  keywords: ["agentic coding", "benchmark", "software engineering evaluation", "large language models"]
 ---
 
 This paper introduces [[Dataset/swe-compass]], a benchmark for evaluating the agentic coding

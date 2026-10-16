@@ -8,16 +8,15 @@ sources:
     url: 'https://arxiv.org/abs/2407.01489'
     hash: sha256:ec78fdd1fa6d6641919d4b68279ff1e8157c8bebd09ad96bd24d862821b708e7
 review_status: pending
-generated_at: "2026-09-20"
-generated_by: "claude-opus-5"
-generated_with: "0.7.0"
+generated_at: "2026-10-16"
+generated_by: "claude-opus-5-5"
+generated_with: "0.10.0"
 
 properties:
   description: "The arXiv preprint that asks whether complex autonomous software agents are really necessary, and answers it by building Agentless — a three-phase localization, repair and patch-validation process that the authors report outperforming every existing open-source software agent on SWE-bench Lite at a fraction of the cost."
   author: ["Chunqiu Steven Xia", "Yinlin Deng", "Soren Dunn", "Lingming Zhang"]
   datePublished: "2024-07-01"
   abstract: "The paper observes that researchers and practitioners have built various autonomous LLM agents able to use tools, run commands, observe environment feedback and plan future actions, and asks whether that complexity is warranted given the limited abilities of current LLMs. To answer it the authors build Agentless, which replaces the verbose and complex setup of agent-based approaches with a three-phase process of localization, repair and patch validation, without letting the LLM decide future actions or operate complex tools. On SWE-bench Lite the authors report Agentless achieving both the highest performance (32.00%, 96 correct fixes) and a low cost ($0.70) compared with all existing open-source software agents. They also manually classify the benchmark's problems, find some with exact ground truth patches or insufficient and misleading issue descriptions, and construct SWE-bench Lite-S by excluding them."
-  keywords: ["Software Engineering (cs.SE)", "Artificial Intelligence (cs.AI)", "Computation and Language (cs.CL)", "Machine Learning (cs.LG)"]
   citation: "arXiv:2407.01489, DOI 10.48550/arXiv.2407.01489"
 ---
 
@@ -50,7 +49,7 @@ The authors frame the work as highlighting the currently overlooked potential of
 interpretable technique in autonomous software development, and state the hope that Agentless will
 help reset the baseline, starting point and horizon for autonomous software agents.
 
-The preprint is filed under Software Engineering (cs.SE), with cross-listings to Artificial
+On arXiv the preprint is filed under Software Engineering (cs.SE), with cross-listings to Artificial
 Intelligence (cs.AI), Computation and Language (cs.CL) and Machine Learning (cs.LG). It was first
 submitted on 1 July 2024 and revised on 29 October 2024 as version 2, and carries the arXiv-issued
 DOI 10.48550/arXiv.2407.01489.

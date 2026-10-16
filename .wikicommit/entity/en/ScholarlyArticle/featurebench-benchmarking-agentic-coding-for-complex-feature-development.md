@@ -2,21 +2,20 @@
 title: "FeatureBench: Benchmarking Agentic Coding for Complex Feature Development"
 type: "schema:ScholarlyArticle"
 lang: en
-tags: [benchmarks, evaluation, coding-agents]
+tags: [benchmarks, evaluation, coding-agents, agentic-coding]
 sources:
   - type: url
     url: 'https://arxiv.org/pdf/2602.10975'
     hash: sha256:41a29ebab57dc2c90294974e352929b6c0d4706053fdba87e2ee97ba915b22f2
 review_status: pending
-generated_at: "2026-09-25"
+generated_at: "2026-10-16"
 generated_by: "claude-opus-5-5"
-generated_with: "0.7.0"
+generated_with: "0.10.0"
 
 properties:
   description: "An ICLR 2026 paper that introduces FeatureBench, an execution-based benchmark for feature-level agentic coding built by a test-driven pipeline that derives tasks automatically from Python repositories, and reports that frontier agents resolve only a small fraction of its tasks."
   author: ["Qixing Zhou", "Jiacheng Zhang", "Haiyang Wang", "Rui Hao", "Jiahe Wang", "Minghao Han", "Yuxue Yang", "Shuzhe Wu", "Feiyang Pan", "Lue Fan", "Dandan Tu", "Zhaoxiang Zhang"]
   abstract: "Existing agentic coding benchmarks cover a limited task scope, such as bug fixing within a single pull request, and often rely on non-executable evaluations or lack an automated way to keep evaluation coverage updated. FeatureBench evaluates agentic coding performance in end-to-end, feature-oriented software development, combining an execution-based evaluation protocol with a scalable test-driven method that automatically derives tasks from code repositories. By tracing from unit tests along a dependency graph, it identifies feature-level tasks spanning multiple commits and PRs while ensuring other features keep working after separation. The first version contains 200 evaluation tasks and 3825 executable environments from 24 open-source repositories; Claude Opus 4.5, which achieves a 74.4% resolved rate on SWE-bench, succeeds on only 11.0% of tasks."
-  keywords: ["agentic coding", "benchmark", "feature development", "execution-based evaluation"]
 ---
 
 This paper, published as a conference paper at ICLR 2026 by authors at the Institute of
