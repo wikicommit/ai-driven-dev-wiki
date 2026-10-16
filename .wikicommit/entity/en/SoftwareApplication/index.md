@@ -163,6 +163,7 @@ comments: false
 - [[SoftwareApplication/routa]]
 - [[SoftwareApplication/sandbox-runtime]]
 - [[SoftwareApplication/sandeco-loop]]
+- [[SoftwareApplication/scion]]
 - [[SoftwareApplication/semantic-governance-policies]]
 - [[SoftwareApplication/shannon]]
 - [[SoftwareApplication/sourcery]]

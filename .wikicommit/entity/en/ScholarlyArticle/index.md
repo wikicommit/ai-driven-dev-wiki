@@ -149,6 +149,7 @@ comments: false
 - [[ScholarlyArticle/sdad-spec-driven-agentic-development-for-the-ai-native-sdlc]]
 - [[ScholarlyArticle/sdd-foundation-of-ai-native-enterprise-software-engineering]]
 - [[ScholarlyArticle/sdd-in-software-development-pbl]]
+- [[ScholarlyArticle/sdd-in-software-development-pbl-repit-2026]]
 - [[ScholarlyArticle/skillsbench-benchmarking-how-well-agent-skills-work-across-diverse-tasks]]
 - [[ScholarlyArticle/software-delegation-contracts-measuring-reviewability-in-ai-coding-agent-work]]
 - [[ScholarlyArticle/software-engineering-in-the-agent-era]]
