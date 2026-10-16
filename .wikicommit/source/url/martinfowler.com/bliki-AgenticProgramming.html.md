@@ -9,7 +9,7 @@ source:
 schema:
 status: pending
 last_generated_at:
-extracted_tokens: 1075
+extracted_tokens: 1076
 generated_pages: []
 failed_pages: []
 ---

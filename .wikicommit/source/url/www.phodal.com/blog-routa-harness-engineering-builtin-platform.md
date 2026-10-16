@@ -7,8 +7,8 @@ source:
   lang: zh
 
 schema:
-status: pending
-last_generated_at: "2026-10-04"
+status: generated
+last_generated_at: "2026-10-16"
 extracted_tokens: 2378
 generated_pages:
   - .wikicommit/entity/en/BlogPosting/routa-desktop-release-ai-coding-workbench-with-built-in-harness-engineering.md
