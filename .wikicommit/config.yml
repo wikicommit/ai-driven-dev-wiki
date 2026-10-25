@@ -1,4 +1,4 @@
-wikicommit_version: "0.10.0"
+wikicommit_version: "0.12.0"
 
 translation:
   targets: [ja]
@@ -41,4 +41,4 @@ generate:
   max_retries: 2
 
 schema:
-  base_types: [Person, Place, Organization, Event, HowTo, DefinedTerm, ScholarlyArticle, NewsArticle, BlogPosting, ShortStory, Book]
+  base_types: [Person, Place, Organization, Event, HowTo, DefinedTerm, SoftwareApplication, Dataset, ScholarlyArticle, NewsArticle, BlogPosting, ShortStory, Book]

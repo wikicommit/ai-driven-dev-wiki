@@ -67,6 +67,24 @@ name: Sync review_status on tracking-issue close
 # deploy.yml explicitly — `workflow_dispatch` is the documented exception to
 # that guard, and deploy.yml already declares it. Dispatching needs
 # `actions: write`, added to the permissions block below.
+#
+# Issue #1323: GitHub's close dialog offers more than one reason, and only
+# "completed" can mean "read it, nothing looked wrong" — the two things
+# `reviewed` asserts. "Not planned" usually means "won't fix" or "this page
+# should not exist", and "duplicate" says nothing about whether anyone read
+# the page. The "Resolve target page" step therefore proceeds only when
+# github.event.issue.state_reason is exactly "completed" (checked after the
+# missing-page and `status: removed` skips, which stay silent); any other value,
+# including an empty one (closed through the API with no reason), writes
+# nothing and leaves the page `pending`. The check lives in that step rather
+# than in the job's `if:` so the skip and its reason show up in the run log,
+# the same way the `status: removed` skip does. `gh issue close` without
+# `--reason` still lands as "completed", so an operator's ordinary CLI close
+# is unaffected. Because the person who closed it cannot see that nothing
+# happened, the "Explain a skipped close" step comments on the Issue once per
+# such close, which needs `issues: write` (previously `read`). Reopening and
+# closing again as "completed" then runs this workflow again normally;
+# reopening by itself still does nothing (the Issue #313 known gap above).
 
 on:
   issues:
@@ -75,7 +93,7 @@ on:
 permissions:
   actions: write
   contents: write
-  issues: read
+  issues: write
   pull-requests: write
 
 jobs:
@@ -101,6 +119,7 @@ jobs:
         id: resolve
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          STATE_REASON: ${{ github.event.issue.state_reason }}
         run: |
           python3 - <<'PY'
           import os
@@ -139,6 +158,22 @@ jobs:
               emit(proceed="false")
               sys.exit(0)
 
+          # A page taken down by /wikicommit-remove or by a merge stays on disk at
+          # `status: removed`. Its tracking Issue is closed because the page is gone,
+          # not because a person read it, so recording it as `reviewed` with a human
+          # review record would claim a reading that never happened (Issue #1131).
+          import yaml
+          with open(path, encoding="utf-8") as f:
+              fm = re.match(r"^\ufeff?---\r?\n(.*?)\r?\n---", f.read(), re.DOTALL)
+          try:
+              front = yaml.safe_load(fm.group(1)) if fm else None
+          except yaml.YAMLError:
+              front = None
+          if isinstance(front, dict) and front.get("status") == "removed":
+              print(f"{path} is at status: removed; skipping (closing its Issue is not a review).")
+              emit(proceed="false")
+              sys.exit(0)
+
           # An entity page's path is .wikicommit/entity/<lang>/<Type>/<slug>.md
           # (<Type> may itself contain a "/" for custom types, e.g. custom/Decision).
           # A view page's is .wikicommit/view/<lang>/<slug>.md with no Type segment at
@@ -164,8 +199,43 @@ jobs:
           # (e.g. custom/Decision) — flatten it, same as wikicommit-merge Step 8.
           type_slug = type_.replace("/", "-")
 
+          # Only "completed" can stand for "read it and nothing looked wrong".
+          # "not_planned", "duplicate", and no reason at all leave the page
+          # pending: `reviewed` is an assertion, so without grounds it is not made.
+          # This runs after the skips above on purpose: an Issue for a page that
+          # is gone or at `status: removed` (typically closed as "not planned" or
+          # "duplicate" after /wikicommit-remove or a merge) must stay a quiet
+          # skip, not get a comment telling the closer to reopen it.
+          # The value is reduced to [a-z_] before it reaches GITHUB_OUTPUT.
+          state_reason = os.environ.get("STATE_REASON") or ""
+          if state_reason != "completed":
+              shown = re.sub(r"[^a-z_]", "", state_reason.lower()) or "none"
+              print(f"Issue was closed with state_reason={shown}, not completed; "
+                    "skipping (only a close as completed marks the page reviewed).")
+              emit(proceed="false", not_completed="true", state_reason=shown)
+              sys.exit(0)
+
           emit(proceed="true", path=path, lang=lang, type=type_, type_slug=type_slug, slug=slug)
           PY
+
+      - name: Explain a skipped close
+        # The closer cannot see that nothing happened, so say so on the Issue.
+        if: steps.resolve.outputs.not_completed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          STATE_REASON: ${{ steps.resolve.outputs.state_reason }}
+        run: |
+          case "${STATE_REASON}" in
+            not_planned) label="not planned" ;;
+            duplicate) label="duplicate" ;;
+            none) label="no reason given" ;;
+            *) label="${STATE_REASON}" ;;
+          esac
+          # A comment that cannot be posted (a locked Issue, say) must not turn
+          # a correct skip into a failed run: nothing was meant to be written.
+          gh issue comment "${ISSUE_NUMBER}" --body "This Issue was closed as \"${label}\", so the page stays \`review_status: pending\` and no review was recorded. Only closing as \"completed\" marks the page reviewed. If you have read the page and nothing looked wrong, reopen this Issue and close it again as \"completed\"." \
+            || echo "::warning::Could not comment on Issue #${ISSUE_NUMBER}; the page was left pending as intended."
 
       - name: Rewrite review_status
         id: rewrite
@@ -219,7 +289,7 @@ jobs:
           # github.event.issue.closed_by.login (the issues-webhook payload snapshot)
           # was found to always come back empty on this event in practice (Issue
           # #403) — re-resolve it via a live API call instead of trusting the
-          # payload. Requires the `issues: read` permission declared above.
+          # payload. Requires read access to issues (`issues: write` above covers it).
           CLOSER_LOGIN=$(gh api "repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}" --jq '.closed_by.login // empty')
           if [ -z "${CLOSER_LOGIN}" ]; then
             echo "::error::Could not resolve the closer's login via the GitHub API (closed_by was empty)."
@@ -452,7 +522,7 @@ jobs:
           git push origin "${BRANCH}"
           pr_url=$(gh pr create \
             --title "review: ${TYPE}/${SLUG} (${LANG})" \
-            --body "Closes the tracking issue #${ISSUE_NUMBER} by marking \`${PAGE_PATH}\` as reviewed." \
+            --body "$(printf 'Closes the tracking issue #%s by marking `%s` as reviewed.\n\nReviewed-by: %s <%s@users.noreply.github.com>' "${ISSUE_NUMBER}" "${PAGE_PATH}" "${REVIEWER_NAME}" "${REVIEWER_LOGIN}")" \
             --base "${DEFAULT_BRANCH}" \
             --head "${BRANCH}")
           echo "pr_url=${pr_url}" >> "$GITHUB_OUTPUT"
@@ -477,10 +547,12 @@ jobs:
           fi
 
       - name: Auto-merge on quality pass
+        id: merge
         if: steps.rewrite.outputs.proceed == 'true' && steps.existing_pr.outputs.proceed == 'true' && steps.quality.outputs.pass == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
           LANG: ${{ steps.resolve.outputs.lang }}
           TYPE: ${{ steps.resolve.outputs.type }}
           SLUG: ${{ steps.resolve.outputs.slug }}
@@ -504,26 +576,131 @@ jobs:
           # auto-merge's "wait for checks" behavior to add here — only the
           # few seconds GitHub needs to finish computing mergeability, which
           # is plan-independent. Poll for that instead of relying on --auto.
-          state="UNKNOWN"
+          #
+          # Issue #1396: BLOCKED covers more than one cause, and on a default
+          # branch that requires an approving review it is the expected result,
+          # not a failure — the same split /wikicommit-merge makes (Issue #1377,
+          # `.claude/skills/wikicommit-merge/references/merge-pr.md`). The
+          # classifier below reads statusCheckRollup and reviewDecision:
+          #   running check (CheckRun not COMPLETED / StatusContext PENDING) -> keep polling
+          #   failed check                                                     -> fail
+          #   review required / changes requested, or a check left EXPECTED    -> leave the PR for a person
+          #   anything else                                                    -> fail
+          # Unlike merge-pr.md, an EXPECTED status is not waited for: this PR is
+          # opened with GITHUB_TOKEN, so `pull_request` workflows never start for
+          # it (the Issue #544 guard) and an EXPECTED check would only run the
+          # 300s out. A person can start them by closing and reopening the PR.
+          echo "merged=false" >> "$GITHUB_OUTPUT"
+          classify() {
+            python3 -c "$(cat <<'PY'
+          import json
+          import sys
+
+          pr = json.load(sys.stdin)
+          state = pr.get("state") or ""
+          merge_state = pr.get("mergeStateStatus") or "UNKNOWN"
+          review = pr.get("reviewDecision") or ""
+          if state == "MERGED":
+              print("merged", merge_state, "-")
+              raise SystemExit
+          if state != "OPEN":
+              print("closed", merge_state, "-")
+              raise SystemExit
+          if merge_state == "CLEAN":
+              print("clean", merge_state, "-")
+              raise SystemExit
+          if merge_state == "DIRTY":
+              print("dirty", merge_state, "-")
+              raise SystemExit
+          if merge_state != "BLOCKED":
+              print("wait", merge_state, "-")
+              raise SystemExit
+          running, failed, expected = False, False, []
+          for check in pr.get("statusCheckRollup") or []:
+              name = check.get("name") or check.get("context") or "?"
+              if check.get("__typename") == "StatusContext":
+                  status = check.get("state") or ""
+                  if status == "EXPECTED":
+                      expected.append(name)
+                  elif status == "PENDING":
+                      running = True
+                  elif status in ("FAILURE", "ERROR"):
+                      failed = True
+              elif (check.get("status") or "") != "COMPLETED":
+                  running = True
+              elif (check.get("conclusion") or "") not in ("SUCCESS", "NEUTRAL", "SKIPPED"):
+                  failed = True
+          review_required = review in ("REVIEW_REQUIRED", "CHANGES_REQUESTED")
+          expected_list = ",".join(expected) or "-"
+          if failed:
+              verdict = "failed"
+          elif running:
+              verdict = "wait-review" if review_required else "wait"
+          elif review_required or expected:
+              verdict = "awaiting"
+          else:
+              verdict = "blocked"
+          print(verdict, merge_state, expected_list)
+          PY
+          )"
+          }
+          verdict="wait"
           merge_state="UNKNOWN"
+          expected="-"
           for i in $(seq 1 30); do
-            read -r state merge_state <<< "$(gh pr view "${PR_NUMBER}" --json state,mergeStateStatus -q '.state + " " + .mergeStateStatus')"
-            if [ "${state}" = "CLOSED" ]; then
-              echo "::error::PR #${PR_NUMBER} was closed before it became mergeable."
-              exit 1
-            fi
-            if [ "${merge_state}" = "CLEAN" ]; then
-              break
-            fi
-            if [ "${merge_state}" = "DIRTY" ] || [ "${merge_state}" = "BLOCKED" ]; then
-              echo "::error::PR #${PR_NUMBER} reached a terminal non-mergeable state (mergeStateStatus=${merge_state}) that will not resolve by waiting."
-              exit 1
-            fi
+            read -r verdict merge_state expected <<< "$(gh pr view "${PR_NUMBER}" --json state,mergeStateStatus,reviewDecision,statusCheckRollup | classify)"
+            case "${verdict}" in
+              clean|awaiting) break ;;
+              merged)
+                # A person (e.g. an admin bypassing protection) merged it while
+                # this step polled: their push runs deploy.yml on its own.
+                echo "PR #${PR_NUMBER} was merged by someone else while waiting; nothing left to do."
+                exit 0 ;;
+              closed)
+                echo "::error::PR #${PR_NUMBER} was closed before it became mergeable."
+                exit 1 ;;
+              dirty|failed|blocked)
+                echo "::error::PR #${PR_NUMBER} reached a terminal non-mergeable state (mergeStateStatus=${merge_state}, ${verdict}) that will not resolve by waiting."
+                exit 1 ;;
+            esac
             if [ "${i}" -lt 30 ]; then
               sleep 10
             fi
           done
-          if [ "${merge_state}" != "CLEAN" ]; then
+          # Only running checks stood between this PR and a required review:
+          # it needs a person anyway, and the checks finish before they merge.
+          if [ "${verdict}" = "wait-review" ]; then
+            verdict="awaiting"
+          fi
+          if [ "${verdict}" = "awaiting" ]; then
+            # Leave the PR open — it is exactly what the person approves — and
+            # tell them on the Issue, since they cannot see the job's log. The
+            # PR author is github-actions[bot], so the person who closed the
+            # Issue may approve it themselves. Once a person merges it, that
+            # merge is their push, not a GITHUB_TOKEN one, so deploy.yml's
+            # `on: push` rebuilds the site; the dispatch step below is skipped.
+            rebuilt=""
+            if [ -f .github/workflows/deploy.yml ]; then
+              rebuilt=" and the published site is rebuilt"
+            fi
+            body="The page is not marked reviewed yet. This repository's default branch requires a pull request to pass branch protection before it is merged, so ${PR_URL} — which sets \`review_status: reviewed\` and records this review — was left open instead of merged. It was opened by github-actions[bot], so you can approve it yourself: approve and merge it, and the page becomes reviewed${rebuilt}. There is no need to reopen or close this Issue again."
+            if [ "${expected}" = "-" ]; then
+              # Required checks that were never reported do not appear in
+              # statusCheckRollup at all, so they cannot be named here.
+              body="${body} If merging stays blocked by a required check that never started, close and reopen the pull request yourself to run it."
+            else
+              body="${body} Required checks that have not started (${expected//,/, }): GitHub does not run \`pull_request\` workflows for a pull request opened by GitHub Actions, so they will not start on their own. Close and reopen the pull request yourself to run them, then merge once they pass."
+            fi
+            # Fail loudly if the comment cannot be posted: it is the only thing
+            # that tells the person the page is still pending.
+            if ! gh issue comment "${ISSUE_NUMBER}" --body "${body}"; then
+              echo "::error::PR #${PR_NUMBER} waits for a person to approve and merge it, but the comment saying so could not be posted on Issue #${ISSUE_NUMBER}."
+              exit 1
+            fi
+            echo "PR #${PR_NUMBER} is left for a person to approve and merge (mergeStateStatus=${merge_state}, expected checks: ${expected})."
+            exit 0
+          fi
+          if [ "${verdict}" != "clean" ]; then
             echo "::error::Timed out after 300s waiting for PR #${PR_NUMBER} to become mergeable (last mergeStateStatus=${merge_state})."
             exit 1
           fi
@@ -536,12 +713,15 @@ jobs:
           gh pr merge "${PR_NUMBER}" --squash \
             --subject "review: mark ${TYPE}/${SLUG} (${LANG}) as reviewed" \
             --body "$(printf 'Refs #%s\n\nReviewed-by: %s <%s@users.noreply.github.com>' "${ISSUE_NUMBER}" "${REVIEWER_NAME}" "${REVIEWER_LOGIN}")"
+          echo "merged=true" >> "$GITHUB_OUTPUT"
 
       - name: Trigger GitHub Pages rebuild
-        # Same guard as the merge step above, and step-level `if:` still
-        # implies "only when every earlier step succeeded" — so this never
-        # dispatches a build for a merge that did not actually happen.
-        if: steps.rewrite.outputs.proceed == 'true' && steps.existing_pr.outputs.proceed == 'true' && steps.quality.outputs.pass == 'true'
+        # Same guard as the merge step above, plus `merged` (Issue #1396: a PR
+        # left for a person is not merged yet — their merge rebuilds the site
+        # through deploy.yml's own `on: push`). Step-level `if:` still implies
+        # "only when every earlier step succeeded" — so this never dispatches a
+        # build for a merge that did not actually happen.
+        if: steps.rewrite.outputs.proceed == 'true' && steps.existing_pr.outputs.proceed == 'true' && steps.quality.outputs.pass == 'true' && steps.merge.outputs.merged == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
