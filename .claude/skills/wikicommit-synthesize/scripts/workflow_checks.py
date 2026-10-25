@@ -43,8 +43,8 @@ if __name__ == "__main__":
             pass
 
 # The helpers every Skill's checks read the same way live in
-# `.wikicommit/scripts/_workflow_checks.py` (Issue #1219). A wiki whose scripts predate
-# it has none until `/wikicommit-update` is merged.
+# `.wikicommit/scripts/_workflow_checks.py`. A wiki whose scripts predate it has
+# none until `/wikicommit-update` is merged.
 # Exit 2, not 1, whatever is missing: a `when:` condition exiting 1 would read as
 # "skip this step", while 2 stops the engine. Only a module of `.wikicommit/scripts/`
 # is fixed by `/wikicommit-update`; a missing PyYAML is not, so it gets its own
@@ -67,6 +67,11 @@ except ImportError as e:
 
 CONFIG = Path(".wikicommit/config.yml")
 RULES = Path(".wikicommit/review-rules.md")
+# Step 5 writes the body by the writing rules every entity page follows, which live
+# in the sibling Skill (`metadata.requires` in SKILL.md). Checked in preflight so a
+# partial install stops before the grounding search, not at the write.
+WRITING_RULES = (Path(__file__).resolve().parent.parent.parent
+                 / "wikicommit-generate" / "references" / "writing-rules.md")
 ENTITY_PREFIX = ".wikicommit/entity/"
 VIEW_PREFIX = ".wikicommit/view/"
 REBUILD_SCRIPT = Path(".wikicommit/scripts/rebuild_index.py")
@@ -151,6 +156,10 @@ def cmd_preflight(args) -> int:
     if not RULES.is_file():
         print(".wikicommit/review-rules.md does not exist; run /wikicommit-init "
               "--no-overwrite to install it (the synthesize-step5.5 review cannot run without it)")
+        return 1
+    if not WRITING_RULES.is_file():
+        print(f"{WRITING_RULES} does not exist; install the wikicommit-generate Skill "
+              "alongside this one (Step 5 writes the page by its references/writing-rules.md)")
         return 1
     if not primary_lang():
         print(".wikicommit/config.yml has no translation.primary_lang")
