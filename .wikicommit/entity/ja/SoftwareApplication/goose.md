@@ -8,12 +8,13 @@ source_commit: "abe7dbaa9cb573068b927bda52cc565d6ba058e6"
 translated_at: "2026-09-27"
 translated_by: "claude-opus-5-5"
 translated_with: "0.8.0"
-review_status: pending
+review_status: reviewed
 
 properties:
   description: "ユーザー自身のマシン上でデスクトップアプリ、CLI、組み込み可能な API として動作するオープンソースの汎用 AI エージェント。コーディングに加え、調査、執筆、自動化、データ分析にも使え、Model Context Protocol を通じて拡張機能と接続する。"
   applicationCategory: "AI エージェント"
   operatingSystem: "macOS, Linux, Windows"
+reviewed_by: "joyk0117"
 ---
 
 goose は、Apache 2.0 ライセンスのもとで公開されている、ユーザー自身のマシン上で動作するオープンソースの AI エージェントで
